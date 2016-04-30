@@ -4,35 +4,39 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>hello asii 使用github pages+hexo 搭建的第一个博客 | Asii Blog</title>
+  <title>Android源码设计模式解析与实践-读书笔记（二） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2016年4月28日22:45 更新
-今天中午还在埋怨怎么dnspod的域名解析这么久 要等3天 其实是自己懵逼了 是自己没有在dnspod填写正确的ip地址导致的 之前看着教程一步一步做 有一步做错了 没发现到 幸好自己反省后重新发现到问题
-解决法案（2步）
+  <meta name="description" content="单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
+首先是 周所周知的饿汉模式和懒汉模式
+//懒汉模式 
+public class Singleton{
+   private static Singleton instance;
+   private Singleton(){}
 
-打开终端 输入ping asi2012asi.github.io（自己的github repo地址） 复制获取到的ip地址
-打开dns">
+   public static synchronized Singleton getInstance(){">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello asii 使用github pages+hexo 搭建的第一个博客">
-<meta property="og:url" content="http://yoursite.com/2016/04/24/hello-asii/index.html">
+<meta property="og:title" content="Android源码设计模式解析与实践-读书笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2016/04/30/Android源码设计模式解析与实践-读书笔记（二）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="2016年4月28日22:45 更新
-今天中午还在埋怨怎么dnspod的域名解析这么久 要等3天 其实是自己懵逼了 是自己没有在dnspod填写正确的ip地址导致的 之前看着教程一步一步做 有一步做错了 没发现到 幸好自己反省后重新发现到问题
-解决法案（2步）
+<meta property="og:description" content="单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
+首先是 周所周知的饿汉模式和懒汉模式
+//懒汉模式 
+public class Singleton{
+   private static Singleton instance;
+   private Singleton(){}
 
-打开终端 输入ping asi2012asi.github.io（自己的github repo地址） 复制获取到的ip地址
-打开dns">
-<meta property="og:image" content="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fdnspod%E5%9C%B0%E5%9D%80%E8%AE%BE%E7%BD%AE.png">
-<meta property="og:updated_time" content="2016-04-28T15:15:14.000Z">
+   public static synchronized Singleton getInstance(){">
+<meta property="og:updated_time" content="2016-04-30T10:11:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hello asii 使用github pages+hexo 搭建的第一个博客">
-<meta name="twitter:description" content="2016年4月28日22:45 更新
-今天中午还在埋怨怎么dnspod的域名解析这么久 要等3天 其实是自己懵逼了 是自己没有在dnspod填写正确的ip地址导致的 之前看着教程一步一步做 有一步做错了 没发现到 幸好自己反省后重新发现到问题
-解决法案（2步）
+<meta name="twitter:title" content="Android源码设计模式解析与实践-读书笔记（二）">
+<meta name="twitter:description" content="单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
+首先是 周所周知的饿汉模式和懒汉模式
+//懒汉模式 
+public class Singleton{
+   private static Singleton instance;
+   private Singleton(){}
 
-打开终端 输入ping asi2012asi.github.io（自己的github repo地址） 复制获取到的ip地址
-打开dns">
-<meta name="twitter:image" content="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fdnspod%E5%9C%B0%E5%9D%80%E8%AE%BE%E7%BD%AE.png">
+   public static synchronized Singleton getInstance(){">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -200,11 +204,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-hello-asii" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践-读书笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/24/hello-asii/" class="article-date">
-  	<time datetime="2016-04-24T07:55:22.000Z" itemprop="datePublished">2016-04-24</time>
+      <a href="/2016/04/30/Android源码设计模式解析与实践-读书笔记（二）/" class="article-date">
+  	<time datetime="2016-04-30T07:50:47.000Z" itemprop="datePublished">2016-04-30</time>
 </a>
     </div>
   
@@ -217,7 +221,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hello asii 使用github pages+hexo 搭建的第一个博客
+      Android源码设计模式解析与实践-读书笔记（二）
     </h1>
   
 
@@ -226,7 +230,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
         
@@ -237,17 +241,105 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>2016年4月28日22:45 更新</p>
-<p>今天中午还在埋怨怎么dnspod的域名解析这么久 要等3天 其实是自己懵逼了 是自己没有在dnspod填写正确的ip地址导致的 之前看着教程一步一步做 有一步做错了 没发现到 幸好自己反省后重新发现到问题</p>
-<p>解决法案（2步）</p>
+        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式应该是们使用的第一个 而且是经常使用的模式 </p>
+<p>首先是 周所周知的饿汉模式和懒汉模式</p>
+<pre><code>//懒汉模式 
+public class Singleton{
+   private static Singleton instance;
+   private Singleton(){}
+
+   public static synchronized Singleton getInstance(){
+      if(instance == null){
+         instance = new Singleton();
+      }
+      return instance;
+   }
+
+}
+
+//饿汉模式
+public class Singleton{
+   private static Singleton instance = new Single();
+   private Singleton(){};
+
+   public static Singleton getInstance(){
+      retrun instance;
+   }
+}
+</code></pre><p>区分饿汉模式和懒汉模式 ：饿汉是一来什么都不说先new对象 很饥渴的样子 懒汉是一来我什么都不干 当需要调用到我的时候我再new对象 以前我容易把他两个搞混<br>懒汉模式对比饿汉模式在一定程度上节约了资源 但是每次加载都需要进入同步锁 一样也会造成同步开销 所以还有个折中的方法是 Double check Lock （DCl）</p>
+<pre><code>public class Singleton{
+   private static Singleton instance = null;
+   private Single(){}
+
+   public Static Singleton getInstance(){
+      if(instance == null){
+        sychronized(Singleton.class){
+           if(instance == null){
+              instance = new Singleton();
+           }
+        }
+
+      }
+      return instance;
+   }
+}
+</code></pre><p>有两次判空 第一次是为了避免不必要的同步 第二次为了确认是null的情况下创建实例。但是DCL在高并发的环境中还是有可能会失效的 原因要从instance = new Singleton()这行代码说起 这行代码可以分解成三个汇编命令：</p>
 <ol>
-<li>打开终端 输入ping asi2012asi.github.io（自己的github repo地址） 复制获取到的ip地址</li>
-<li>打开dnspod 新增两个记录 主机记录分别填@和www 记录类型都填A 线路默认 记录值填刚刚我ping的地址 保存后就ok了 那个CMADE 加不加无所谓 访问域名都能出来 见下图的第一条和第四条的记录 （第一次传图 没控制好大小）<br><img src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fdnspod%E5%9C%B0%E5%9D%80%E8%AE%BE%E7%BD%AE.png" alt="image"></li>
+<li>给Singleton的实例分配内存</li>
+<li>调用Singleton()的构造函数 初始化成员变量 </li>
+<li>将instance对象指向分配的内存空间（此时instance就不是null了）</li>
 </ol>
-<hr>
-<p>使用dnspod来解析域名 都等了2天多了 域名还是ping不通 今天问过客服 说要等够72小时 天呐 今晚再检查了各个绑定域名的步骤有没有弄错 </p>
-<p>希望明天可以弄好 </p>
+<p>java编译器允许处理器乱序执行 也就是执行顺序可能是1-2-3 也可能是1-3-2 如果是1-3-2 譬如A线程在3执行完准备执行2 此时切换到B线程已经发现instance不为空 线程B将instance直接取走 在使用的时候由于该instance未执行过构造函数 （本例中构造函数里的内容为空 实际开发中构造函数会有些赋值之类的操作） 此时就会出错</p>
+<p>在java1.5之后可以在定义instance时加volatile关键字来使DCl生效 也就是<code>private volatile static Singleton instance =null</code></p>
+<p>如果上述的单例模式写法还是不让你满意的话 you may try this</p>
+<pre><code>//静态内部类单例模式
+public class Singleton{
+  private Singleton(){}
+  private static Singleton getInstance{
+     return SingletonHolder.instance;
+  }
+
+  private static class SingletonHolder{
+     private static final Singleton instance = new Instance();
+  }
+}
+</code></pre><p>这种方式既能确保线程安全 也能保证实例对象的唯一性 同时也延迟了单例的实例化 这是最推荐的单例模式写法</p>
+<p>说到 static final 你肯定还会想到enum 枚举 枚举的所有成员变量都是这种声明 </p>
+<pre><code>public enum SingletonEnum{
+    INSTANCE;
+    void doSomething(){
+        System.out.print(&quot;枚举单例模式&quot;);
+    }
+
+    //构造函数(其实也可以不写)
+    SingletonEnum(){
+
+    }
+
+}
+</code></pre><p>单例模式还可以用容器的方式来实现 例如Android源码中view从xml中创建 </p>
+<pre><code>public final View createView(...)
+{
+//从缓存中获取构造函数
+   Constructor&lt;? extends View&gt; construtor = sConstrutorMap.get(name);
+   Class&lt;? extends View&gt; clazz = null;
+   if(construtor == null){
+     clazz = ...
+     construtor = clazz.getConstrutor(...);
+     //创建的构造函数放到缓存中以便下次直接读取
+     sConstrutorMap.put(name,construtor);
+     ...
+     //通过反射来构造view
+     final View view = construtor.newInstance();
+     ...
+     return view；
+   }
+}
+</code></pre><p>单例模式的好处就不说了 我来说他的缺点</p>
+<ol>
+<li>单例模式一般没有接口实现 扩展起来很困难若要扩展 只能修改</li>
+<li>单例对象如果持有Context 那么很容易发生内存泄漏 此时注意传递给单例对象的Context最好是Application Context</li>
+</ol>
 
       
     </div>
@@ -257,18 +349,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/29/Android源码设计模式解析与实践-读书笔记（一）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Android源码设计模式解析与实践--读书笔记（一）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2016/04/29/Android源码设计模式解析与实践-读书笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（一）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -303,7 +386,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hello-asii" data-title="hello asii 使用github pages+hexo 搭建的第一个博客" data-url="http://yoursite.com/2016/04/24/hello-asii/"></div>
+	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践-读书笔记（二）" data-title="Android源码设计模式解析与实践-读书笔记（二）" data-url="http://yoursite.com/2016/04/30/Android源码设计模式解析与实践-读书笔记（二）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
