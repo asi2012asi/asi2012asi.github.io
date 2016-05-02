@@ -4,45 +4,34 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Android源码设计模式解析与实践--读书笔记（二） | Asii Blog</title>
+  <title>Android源码设计模式解析与实践--读书笔记（四） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
-
-   pub">
+对于构建对象类型的模式 一般都用在创建复杂对象上 用new就可以完成创建的对象无需使用这些创建模式
+简单工厂模式先看一下类图不愧为简单工厂 名副其实 相当简单 缺点是当每新建一个产品时 都需要修改SimpleFactory里的判断语句  根据传入的参数不同  生产不同的产品你见到的代码类似于
+publi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android源码设计模式解析与实践--读书笔记（二）">
-<meta property="og:url" content="http://yoursite.com/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/index.html">
+<meta property="og:title" content="Android源码设计模式解析与实践--读书笔记（四）">
+<meta property="og:url" content="http://yoursite.com/2016/05/02/Android源码设计模式解析与实践--读书笔记（四）/index.html">
 <meta property="og:site_name" content="Asii Blog">
 <meta property="og:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
-
-   pub">
-<meta property="og:updated_time" content="2016-05-02T04:20:43.000Z">
+对于构建对象类型的模式 一般都用在创建复杂对象上 用new就可以完成创建的对象无需使用这些创建模式
+简单工厂模式先看一下类图不愧为简单工厂 名副其实 相当简单 缺点是当每新建一个产品时 都需要修改SimpleFactory里的判断语句  根据传入的参数不同  生产不同的产品你见到的代码类似于
+publi">
+<meta property="og:image" content="http://7xteb8.com2.z0.glb.clouddn.com/img%2FSimpleFactory.jpg">
+<meta property="og:image" content="http://7xteb8.com2.z0.glb.clouddn.com/img%2FFactoryMethod.jpg">
+<meta property="og:image" content="http://7xteb8.com2.z0.glb.clouddn.com/img%2FAbstractFactory.jpg">
+<meta property="og:updated_time" content="2016-05-02T12:06:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（二）">
+<meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（四）">
 <meta name="twitter:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
-
-   pub">
+对于构建对象类型的模式 一般都用在创建复杂对象上 用new就可以完成创建的对象无需使用这些创建模式
+简单工厂模式先看一下类图不愧为简单工厂 名副其实 相当简单 缺点是当每新建一个产品时 都需要修改SimpleFactory里的判断语句  根据传入的参数不同  生产不同的产品你见到的代码类似于
+publi">
+<meta name="twitter:image" content="http://7xteb8.com2.z0.glb.clouddn.com/img%2FSimpleFactory.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -210,11 +199,11 @@ public class Singleton{
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践--读书笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践--读书笔记（四）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/" class="article-date">
-  	<time datetime="2016-04-30T07:50:47.000Z" itemprop="datePublished">2016-04-30</time>
+      <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（四）/" class="article-date">
+  	<time datetime="2016-05-02T10:18:24.000Z" itemprop="datePublished">2016-05-02</time>
 </a>
     </div>
   
@@ -227,7 +216,7 @@ public class Singleton{
         
   
     <h1 class="article-title" itemprop="name">
-      Android源码设计模式解析与实践--读书笔记（二）
+      Android源码设计模式解析与实践--读书笔记（四）
     </h1>
   
 
@@ -236,7 +225,7 @@ public class Singleton{
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工厂方法模式/">工厂方法模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抽象工厂模式/">抽象工厂模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/简单工厂模式/">简单工厂模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
         
@@ -250,105 +239,68 @@ public class Singleton{
         <blockquote>
 <p>Android源码设计模式解析与实践 <br>原著：何红辉 关爱民 <br>– –读书笔记 by asii</p>
 </blockquote>
-<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式应该是们使用的第一个 而且是经常使用的模式 </p>
-<p>首先是 周所周知的饿汉模式和懒汉模式</p>
-<pre><code>//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
+<p>对于构建对象类型的模式 一般都用在创建复杂对象上 用new就可以完成创建的对象无需使用这些创建模式</p>
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><p>先看一下类图<br><img src="http://7xteb8.com2.z0.glb.clouddn.com/img%2FSimpleFactory.jpg" alt="image"><br>不愧为简单工厂 名副其实 相当简单 缺点是当每新建一个产品时 都需要修改SimpleFactory里的判断语句  根据传入的参数不同  生产不同的产品<br>你见到的代码类似于</p>
+<pre><code>public class ConcreateFactory{
 
-   public static synchronized Singleton getInstance(){
-      if(instance == null){
-         instance = new Singleton();
-      }
-      return instance;
-   }
+//构造函数
+...
+
+public Product create(String productType){
+    if(&quot;a&quot;.equals(productType)){
+        return new ProductA();
+
+    }else if(&quot;b&quot;.equals(productType)){
+        return new ProductB();
+
+    }else if(&quot;新增产品&quot;.equals(productType)){
+        return new ProductC();
+    }
+
+  }
+}
+</code></pre><p>一个工厂就可以生产多种产品 这些产品应该属于同一系列（继承自同一抽象类或接口）其实这种模式并不符合我们面向对象六大模式中的开放闭合模式 因为他每次新增产品都需要修改工厂类 下面的工厂方法解决这个问题</p>
+<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><p>先看类图<br><img src="http://7xteb8.com2.z0.glb.clouddn.com/img%2FFactoryMethod.jpg" alt="image"><br>相比简单工厂 多了一个抽象的工厂类 当每新增一个产品时 对应的要新增一个具体的工厂来专门生产它 这样就可以避免每次新增产品时修改工厂类了（解决了上面简单工厂的问题）</p>
+<p>然而 随着产品数的增加 工厂类也要增加 关系是一对一的 这种实现方法未免太low了 所以又有了新的方法解决这个问题 答案就是使用反射来作为输入参数决定生产那种产品 这样既可以做到不修改工厂类 也不需要每次新增产品类型时都新建工厂 具体代码如下</p>
+<pre><code>//定义一个抽象工厂类 让类型作为参数传入
+public abstract class Factory{
+
+    public abstract &lt;T extends Product&gt; T create(Class&lt;T&gt; clz);
 
 }
 
-//饿汉模式
-public class Singleton{
-   private static Singleton instance = new Single();
-   private Singleton(){};
+//具体的工厂类 感觉类名生产具体的产品
+public ConcreateFact extends Factory{
 
-   public static Singleton getInstance(){
-      retrun instance;
-   }
-}
-</code></pre><p>区分饿汉模式和懒汉模式 ：饿汉是一来什么都不说先new对象 很饥渴的样子 懒汉是一来我什么都不干 当需要调用到我的时候我再new对象 以前我容易把他两个搞混<br>懒汉模式对比饿汉模式在一定程度上节约了资源 但是每次加载都需要进入同步锁 一样也会造成同步开销 所以还有个折中的方法是 Double check Lock （DCl）</p>
-<pre><code>public class Singleton{
-   private static Singleton instance = null;
-   private Single(){}
-
-   public Static Singleton getInstance(){
-      if(instance == null){
-        sychronized(Singleton.class){
-           if(instance == null){
-              instance = new Singleton();
-           }
+    @override
+    public &lt;T extends Product&gt; T create(Class&lt;T&gt; clz){
+        Product p = null;
+        try{
+            p = (Product)Class.forName(clz.getName()).getInstance();
+        }catch (Exeception e){
+            ...
         }
-
-      }
-      return instance;
-   }
-}
-</code></pre><p>有两次判空 第一次是为了避免不必要的同步 第二次为了确认是null的情况下创建实例。但是DCL在高并发的环境中还是有可能会失效的 原因要从instance = new Singleton()这行代码说起 这行代码可以分解成三个汇编命令：</p>
-<ol>
-<li>给Singleton的实例分配内存</li>
-<li>调用Singleton()的构造函数 初始化成员变量 </li>
-<li>将instance对象指向分配的内存空间（此时instance就不是null了）</li>
-</ol>
-<p>java编译器允许处理器乱序执行 也就是执行顺序可能是1-2-3 也可能是1-3-2 如果是1-3-2 譬如A线程在3执行完准备执行2 此时切换到B线程已经发现instance不为空 线程B将instance直接取走 在使用的时候由于该instance未执行过构造函数 （本例中构造函数里的内容为空 实际开发中构造函数会有些赋值之类的操作） 此时就会出错</p>
-<p>在java1.5之后可以在定义instance时加volatile关键字来使DCl生效 也就是<code>private volatile static Singleton instance =null</code></p>
-<p>如果上述的单例模式写法还是不让你满意的话 you may try this</p>
-<pre><code>//静态内部类单例模式
-public class Singleton{
-  private Singleton(){}
-  private static Singleton getInstance{
-     return SingletonHolder.instance;
-  }
-
-  private static class SingletonHolder{
-     private static final Singleton instance = new Instance();
-  }
-}
-</code></pre><p>这种方式既能确保线程安全 也能保证实例对象的唯一性 同时也延迟了单例的实例化 这是最推荐的单例模式写法</p>
-<p>说到 static final 你肯定还会想到enum 枚举 枚举的所有成员变量都是这种声明 </p>
-<pre><code>public enum SingletonEnum{
-    INSTANCE;
-    void doSomething(){
-        System.out.print(&quot;枚举单例模式&quot;);
-    }
-
-    //构造函数(其实也可以不写)
-    SingletonEnum(){
+        return p;
 
     }
 
 }
-</code></pre><p>单例模式还可以用容器的方式来实现 例如Android源码中view从xml中创建 </p>
-<pre><code>public final View createView(...)
-{
-//从缓存中获取构造函数
-   Constructor&lt;? extends View&gt; construtor = sConstrutorMap.get(name);
-   Class&lt;? extends View&gt; clazz = null;
-   if(construtor == null){
-     clazz = ...
-     construtor = clazz.getConstrutor(...);
-     //创建的构造函数放到缓存中以便下次直接读取
-     sConstrutorMap.put(name,construtor);
-     ...
-     //通过反射来构造view
-     final View view = construtor.newInstance();
-     ...
-     return view；
-   }
+
+//客户端
+public class Client{
+
+    main(...){
+        Factory fact = new ConcreateFact();
+        //生产a
+        Product a = fact.create(ProductA.class);
+        //生产b
+        Product b = fact.create(ProductB.class);        
+
+    }
 }
-</code></pre><p>单例模式的好处就不说了 我来说他的缺点</p>
-<ol>
-<li>单例模式一般没有接口实现 扩展起来很困难若要扩展 只能修改</li>
-<li>单例对象如果持有Context 那么很容易发生内存泄漏 此时注意传递给单例对象的Context最好是Application Context</li>
-</ol>
+</code></pre><p>可以说这是种讨巧的方法 因为我需要在生产之前我已经明确生产什么产品 传入具体的类型 如果我知道产品的id号但不知道具体是哪个类（是哪个类需要根据id号逐个判断）这种方法就行不通了 这时就需要回归简单工厂方法了 或者不嫌麻烦 回归工厂方法的一对一模式了 </p>
+<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><p>他的定义是 为创建一组相关或者相互依赖的对象提供一个接口 而不需要指定他们具体的类（看定义似乎解决了上面工厂方法提到的问题）<br>先上类图<br><img src="http://7xteb8.com2.z0.glb.clouddn.com/img%2FAbstractFactory.jpg" alt="image"><br>从图中可以看到 一个工厂可以创建不同的产品了（我说的不同 是指这些产品可以继承自不同的接口）主要分四个角色 抽象工厂 具体工厂 抽象产品 具体产品 使用抽象工厂让接口和实现做到真正的分离 客户端使用抽象工厂来创建需要的对象 而客户端不知道实现是谁 客户端只是面向了产品的接口编程 使其从具体的产品中解耦</p>
+<p>缺点：很明显又是 在拓展的时候 不符合开放闭合原则 譬如新增产品类型ProductC 需要修改抽象工厂 并修改对应的具体工厂类</p>
 
       
     </div>
@@ -358,18 +310,18 @@ public class Singleton{
     
 <nav id="article-nav">
   
-    <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（五）/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Android源码设计模式解析与实践--读书笔记（三）
+          Android源码设计模式解析与实践--读书笔记（五）
         
       </div>
     </a>
   
   
-    <a href="/2016/04/29/Android源码设计模式解析与实践--读书笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（一）</div>
+    <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（三）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（三）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -404,7 +356,7 @@ public class Singleton{
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践--读书笔记（二）" data-title="Android源码设计模式解析与实践--读书笔记（二）" data-url="http://yoursite.com/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/"></div>
+	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践--读书笔记（四）" data-title="Android源码设计模式解析与实践--读书笔记（四）" data-url="http://yoursite.com/2016/05/02/Android源码设计模式解析与实践--读书笔记（四）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

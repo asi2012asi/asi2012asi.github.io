@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/builder模式/" style="font-size: 10px;">builder模式</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/工厂方法模式/" style="font-size: 10px;">工厂方法模式</a> <a href="/tags/抽象工厂模式/" style="font-size: 10px;">抽象工厂模式</a> <a href="/tags/示例/" style="font-size: 10px;">示例</a> <a href="/tags/简单工厂模式/" style="font-size: 10px;">简单工厂模式</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/面向对象的六大原则/" style="font-size: 10px;">面向对象的六大原则</a>
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/builder模式/" style="font-size: 10px;">builder模式</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/工厂方法模式/" style="font-size: 10px;">工厂方法模式</a> <a href="/tags/抽象工厂模式/" style="font-size: 10px;">抽象工厂模式</a> <a href="/tags/状态模式/" style="font-size: 10px;">状态模式</a> <a href="/tags/示例/" style="font-size: 10px;">示例</a> <a href="/tags/策略模式/" style="font-size: 10px;">策略模式</a> <a href="/tags/简单工厂模式/" style="font-size: 10px;">简单工厂模式</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/面向对象的六大原则/" style="font-size: 10px;">面向对象的六大原则</a>
 					</div>
 				</section>
 				
@@ -184,10 +184,149 @@
 
       <div class="body-wrap">
   
-    <article id="post-Android源码设计模式解析与实践-读书笔记（四）" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android源码设计模式解析与实践--读书笔记（五）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/02/Android源码设计模式解析与实践-读书笔记（四）/" class="article-date">
+      <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（五）/" class="article-date">
+  	<time datetime="2016-05-02T13:56:48.000Z" itemprop="datePublished">2016-05-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（五）/">Android源码设计模式解析与实践--读书笔记（五）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Android源码设计模式解析与实践 <br>原著：何红辉 关爱民 <br>– –读书笔记 by asii</p>
+</blockquote>
+<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>定义：定义一系列的算法 并且将每一个算法都封装起来 而且使他们可以相互替代<br>应用场景：</p>
+<ol>
+<li>针对同一类型问题的多种处理方式 仅仅是具体行为有所差异</li>
+<li>需要安全地封装多种同一类型的操作时</li>
+<li>出现同一个抽象类有多个子类 而又需要使用if-else或者switch-case来选择具体子类时</li>
+</ol>
+<p>下面用一个例子来说明这个模式</p>
+<pre><code>public class PriceCalculator{
+    private static final int BUS =1;
+    private static final int SUBWAY = 2;
+
+    public static void main(String[]  args){
+        PriceCalculator p = new PriceCalculator();
+        p.calculate(16,BUS);
+        P.calculate(16,SUBWAY);
+
+    }
+
+    private int busPrice(int km){
+        ...
+    }
+
+    private int subwayPrice(int km){
+        ...
+    }
+
+    int calculate(int km,int type){
+        if(type == BUS){
+            return busPrice(km);
+        }else if(type == SUBWAY){
+            return subway(km);
+        }
+    }
+
+}
+</code></pre><p>上面的代码 首先 他不符合单一职责模式 第二个 每次新增计算方式 需要新增if-else 不符合开放闭合原则</p>
+<p>下面来修改这些代码</p>
+<pre><code>public interface CalculatorStrategy{
+    int calculatePrice(int km);
+}    
+
+public class BusStratery implements CalculatorStrategy{
+
+    @override
+    public int calculate(int km){
+        ...
+    }
+}
+
+public class SubwayStrategy implements CalculatorStrategy{
+
+@override
+    public int calculate(int km){
+        ...
+    }
+
+}
+
+public class TrafficCalculator{
+    main(){
+        TrafficCalculator traffic = new TrafficCalculator();
+        //直接创建对象的方式来分离开不同的策略
+        traffic.setStrategy(new SubwayStrategy(16));
+        traffic.calculatePrice();
+
+    }
+
+    CalculatorStrategy cal;
+
+    //使用接口的方式传入参数
+    private void setStrategy(CalculatorStrategy c){
+        this.cal = c;
+    }
+
+    private int calculatePrice(){
+        return cal.calculate();
+    }
+
+}
+</code></pre><p>策略模式在Android中也很常见 最简单的例子就是设置点击事件 onClickListener这个接口带有 onClick这个方法 不同的listener可以有不同的实现方式 new 不同的listener来对不同的监听器进行封装 然而我们喜欢写setOnclickListener(this)然后让Activity或者fragment来覆盖onClick这个方法 其实    Activity就是这个策略 只不过他里面有好多if-else 把一个策略当好几个策略来用</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/状态模式/">状态模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/策略模式/">策略模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android源码设计模式解析与实践--读书笔记（四）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（四）/" class="article-date">
   	<time datetime="2016-05-02T10:18:24.000Z" itemprop="datePublished">2016-05-02</time>
 </a>
     </div>
@@ -201,7 +340,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/02/Android源码设计模式解析与实践-读书笔记（四）/">Android源码设计模式解析与实践--读书笔记（四）</a>
+      <a class="article-title" href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（四）/">Android源码设计模式解析与实践--读书笔记（四）</a>
     </h1>
   
 
