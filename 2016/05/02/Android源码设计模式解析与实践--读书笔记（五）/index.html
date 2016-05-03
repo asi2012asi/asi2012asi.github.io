@@ -28,7 +28,7 @@
 出现同一个抽象类有多个子类 而又需要使用if-else或者switch-case来选择具体子类时
 
 下面用一个例子来">
-<meta property="og:updated_time" content="2016-05-02T15:52:43.000Z">
+<meta property="og:updated_time" content="2016-05-03T15:27:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（五）">
 <meta name="twitter:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
@@ -327,6 +327,204 @@ public class TrafficCalculator{
 
 }
 </code></pre><p>策略模式在Android中也很常见 最简单的例子就是设置点击事件 onClickListener这个接口带有 onClick这个方法 不同的listener可以有不同的实现方式 new 不同的listener来对不同的监听器进行封装 然而我们喜欢写setOnclickListener(this)然后让Activity或者fragment来覆盖onClick这个方法 其实    Activity就是这个策略 只不过他里面有好多if-else 把一个策略当好几个策略来用</p>
+<h1 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h1><p>使用场景：</p>
+<ol>
+<li>一个对象的行为取决于它的状态 并且必须在运行时根据状态改变它的行为</li>
+<li>代码中有大量与对象状态有关的条件语句 例如 一个操作中含有庞大的多分支语句（使用if-else） 且这些分支依赖于该对象的状态</li>
+</ol>
+<p>提到拆解if-else 应该都会想到上面提到的策略模式的用法 但是状态模式跟他的不同点在于他的行为是平行的不可替换的 而策略模式是彼此独立的可相互替换的</p>
+<p>举一个常见的出现多if-else的例子</p>
+<pre><code>public class TvControler{
+    private static final int POWER_ON = 1;
+    private static final int POWER_OFF = 2;
+
+    private int state = POWER_OFF;
+
+    public void powerOn(){
+        state = POWER_ON;
+        if(state == POWER_OFF){
+            sys.out.p(&quot;开机&quot;);
+        }
+    } 
+
+    public void powerOff(){
+        state = POWER_OFF;
+        if(state == POWER_ON){
+            sys.out.p(&quot;关机&quot;);
+        }
+    }
+
+    public void nextChanel(){
+        if(state == POWER_ON){
+            sys.out.p(&quot;下一频道&quot;);
+        }else{
+            sys.out.p(&quot;还没开机&quot;);
+        }
+    }
+
+    public void prevChanel(){
+        if(state == POWER_ON){
+            sys.out.p(&quot;上一频道&quot;);
+        }else{
+            sys.out.p(&quot;还没开机&quot;);
+        }
+    }
+
+    public void turnUp(){
+        if(state == POWER_ON){
+            sys.out.p(&quot;调高音量&quot;);
+        }else{
+            sys.out.p(&quot;还没开机&quot;);
+        }
+    }
+
+    public void turnDown(){
+        if(state == POWER_ON){
+            sys.out.p(&quot;调低音量&quot;);
+        }else{
+            sys.out.p(&quot;还没开机&quot;);
+        }
+    }
+
+
+}
+</code></pre><p>缺点好明显 加入新增其他状态 例如休眠状态 那么 就要在nextChanel  prevChanel  turnUp  turnDown四个方法中新增判断条件 很麻烦 状态模式就是为了解决这个问题而存在的 先别看下面的代码 先想想要怎么重构</p>
+<ol>
+<li>首先 把变化的部分抽象出来 nextChanel 这些方法属于变化的部分 因为他需要根据状态来改变写法</li>
+<li>新建不同的状态 继承或实现抽象出来的变化 并且实现这些各自变化的部分</li>
+<li>把这些状态引入到调用类中 只开放一个地方可以改变状态 并使用接口调用方法</li>
+</ol>
+<p>看看具体实现的代码吧</p>
+<pre><code>//1 抽象变化的部分
+public interface TvState{
+    void nextChanel();
+    void prevChanel();
+    void turnOn();
+    void turnDown();
+} 
+
+//2 创建不同的状态
+public class PowerOffState implements TvState{
+
+    @override
+    public void nextChanel(){
+        //未开机转不了台 什么都没做
+    }
+
+    @override
+    public void prevChanel(){
+        //未开机转不了台 什么都没做
+    }
+
+    @override
+    public void turnOn(){
+        //未开机调不了音量 什么都没做
+    }
+
+    @override
+    public void turnDown(){
+        //未开机调不了音量 什么都没做
+    }
+
+}
+
+public class PowerOnState implements TvState{
+
+    @override
+    public void nextChanel(){
+        system.out.print(&quot;下一频道&quot;);
+    }
+
+    @override
+    public void prevChanel(){
+        system.out.print(&quot;上一频道&quot;);
+    }
+
+    @override
+    public void turnOn(){
+        system.out.print(&quot;音量调高&quot;);
+    }
+
+    @override
+    public void turnDown(){
+        system.out.print(&quot;音量调低&quot;);
+    }
+
+
+public interface PowerControler{
+
+    public void powerOn();
+
+    public void powerOff();
+
+}
+
+
+public class TVController implements PowerControler{
+
+    TvState currentState;
+
+    public void setTvState(TvState state){
+        currentState = state;
+    }
+
+    @override
+    public void powerOn(){
+        setTvstate(new PowerOnState());
+        sys.out.p(&quot;开机&quot;);
+    }
+
+    @override
+    public void powerOff(){
+        setTvstate(new PowerOffState());
+        sys.out.p(&quot;关机&quot;);
+    }
+
+    //行为根据状态而改变 
+    public void nextChanel(){
+        currentState.nextChanel();
+    }
+
+    public void prevChanel(){
+        currentState.prevChanel();
+    }
+
+    public void turnUp(){
+        currentState.turnUp();
+    }
+
+    public void turnDown(){    
+        currentState.turnDown();
+    }
+
+}
+
+
+public class Test{
+
+    main(){
+
+        TvController c = new TvController();
+        c.powerOn();
+        c.nextChannel();
+        c.turnUp();
+        c.powerOff();
+        //关机后 在调高音量 调用关机状态的turnUp方法 
+        c.turnUp();
+
+    }
+
+}
+
+//打印结果如下
+//开机
+//下一频道
+//调高音量
+//关机
+
+}
+</code></pre><p>重构的方式跟策略模式大同小异吗 没错 都是利用接口来解耦 所以面向接口编程 可以在很多模式都应用到 所以每次要重构那部分代码时 想想想怎么用接口把他们分离开来 是个好的思想开头</p>
+<p>Android中也有地方可以用到状态模式 例如软件在登录前和登录后可以执行的操作 每加一个操作都要加一次if -else 来判断是否是登录用户 用状态模式就可以避免这个问题</p>
 
       
     </div>
