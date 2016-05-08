@@ -4,35 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>hello asii 使用github pages+hexo 搭建的第一个博客 | Asii Blog</title>
+  <title>Android源码设计模式解析与实践--读书笔记（六） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2016年4月28日22:45 更新
-今天中午还在埋怨怎么dnspod的域名解析这么久 要等3天 其实是自己懵逼了 是自己没有在dnspod填写正确的ip地址导致的 之前看着教程一步一步做 有一步做错了 没发现到 幸好自己反省后重新发现到问题
-解决法案（2步）
+  <meta name="description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-打开终端 输入ping asi2012asi.github.io（自己的github repo地址） 复制获取到的ip地址
-打开dns">
+观察者模式这是一个使用率非常高的模式 常用在订阅-发布系统 他的主要作用就是解耦 对于Android而言 可以使得ui层与业务逻辑解耦
+定义：他是一种一对多的依赖关系 当被观察的对象状态变化时 依赖他的观察者都会受到通知并自动更新
+本身java的api已经自带了Observer和observable 接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello asii 使用github pages+hexo 搭建的第一个博客">
-<meta property="og:url" content="http://yoursite.com/2016/04/24/hello-asii/index.html">
+<meta property="og:title" content="Android源码设计模式解析与实践--读书笔记（六）">
+<meta property="og:url" content="http://yoursite.com/2016/05/08/Android源码设计模式解析与实践--读书笔记（六）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="2016年4月28日22:45 更新
-今天中午还在埋怨怎么dnspod的域名解析这么久 要等3天 其实是自己懵逼了 是自己没有在dnspod填写正确的ip地址导致的 之前看着教程一步一步做 有一步做错了 没发现到 幸好自己反省后重新发现到问题
-解决法案（2步）
+<meta property="og:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-打开终端 输入ping asi2012asi.github.io（自己的github repo地址） 复制获取到的ip地址
-打开dns">
-<meta property="og:image" content="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fdnspod%E5%9C%B0%E5%9D%80%E8%AE%BE%E7%BD%AE.png">
-<meta property="og:updated_time" content="2016-04-28T15:15:14.000Z">
+观察者模式这是一个使用率非常高的模式 常用在订阅-发布系统 他的主要作用就是解耦 对于Android而言 可以使得ui层与业务逻辑解耦
+定义：他是一种一对多的依赖关系 当被观察的对象状态变化时 依赖他的观察者都会受到通知并自动更新
+本身java的api已经自带了Observer和observable 接">
+<meta property="og:updated_time" content="2016-05-08T17:04:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hello asii 使用github pages+hexo 搭建的第一个博客">
-<meta name="twitter:description" content="2016年4月28日22:45 更新
-今天中午还在埋怨怎么dnspod的域名解析这么久 要等3天 其实是自己懵逼了 是自己没有在dnspod填写正确的ip地址导致的 之前看着教程一步一步做 有一步做错了 没发现到 幸好自己反省后重新发现到问题
-解决法案（2步）
+<meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（六）">
+<meta name="twitter:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-打开终端 输入ping asi2012asi.github.io（自己的github repo地址） 复制获取到的ip地址
-打开dns">
-<meta name="twitter:image" content="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fdnspod%E5%9C%B0%E5%9D%80%E8%AE%BE%E7%BD%AE.png">
+观察者模式这是一个使用率非常高的模式 常用在订阅-发布系统 他的主要作用就是解耦 对于Android而言 可以使得ui层与业务逻辑解耦
+定义：他是一种一对多的依赖关系 当被观察的对象状态变化时 依赖他的观察者都会受到通知并自动更新
+本身java的api已经自带了Observer和observable 接">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -200,11 +195,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-hello-asii" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践--读书笔记（六）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/24/hello-asii/" class="article-date">
-  	<time datetime="2016-04-24T07:55:22.000Z" itemprop="datePublished">2016-04-24</time>
+      <a href="/2016/05/08/Android源码设计模式解析与实践--读书笔记（六）/" class="article-date">
+  	<time datetime="2016-05-08T08:41:02.000Z" itemprop="datePublished">2016-05-08</time>
 </a>
     </div>
   
@@ -217,7 +212,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hello asii 使用github pages+hexo 搭建的第一个博客
+      Android源码设计模式解析与实践--读书笔记（六）
     </h1>
   
 
@@ -226,7 +221,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/观察者模式/">观察者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
         
@@ -237,17 +232,144 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>2016年4月28日22:45 更新</p>
-<p>今天中午还在埋怨怎么dnspod的域名解析这么久 要等3天 其实是自己懵逼了 是自己没有在dnspod填写正确的ip地址导致的 之前看着教程一步一步做 有一步做错了 没发现到 幸好自己反省后重新发现到问题</p>
-<p>解决法案（2步）</p>
-<ol>
-<li>打开终端 输入ping asi2012asi.github.io（自己的github repo地址） 复制获取到的ip地址</li>
-<li>打开dnspod 新增两个记录 主机记录分别填@和www 记录类型都填A 线路默认 记录值填刚刚我ping的地址 保存后就ok了 那个CMADE 加不加无所谓 访问域名都能出来 见下图的第一条和第四条的记录 （第一次传图 没控制好大小）<br><img src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fdnspod%E5%9C%B0%E5%9D%80%E8%AE%BE%E7%BD%AE.png" alt="image"></li>
-</ol>
-<hr>
-<p>使用dnspod来解析域名 都等了2天多了 域名还是ping不通 今天问过客服 说要等够72小时 天呐 今晚再检查了各个绑定域名的步骤有没有弄错 </p>
-<p>希望明天可以弄好 </p>
+        <blockquote>
+<p>Android源码设计模式解析与实践 <br>原著：何红辉 关爱民 <br>– –读书笔记 by asii</p>
+</blockquote>
+<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><p>这是一个使用率非常高的模式 常用在订阅-发布系统 他的主要作用就是解耦 对于Android而言 可以使得ui层与业务逻辑解耦</p>
+<p>定义：他是一种一对多的依赖关系 当被观察的对象状态变化时 依赖他的观察者都会受到通知并自动更新</p>
+<p>本身java的api已经自带了Observer和observable 接口 写一个简单的代码流程说下他的使用方式</p>
+<p>用住户订阅报纸的方式来说明</p>
+<pre><code>public class TestNewsPaper {
+
+public static void main(String  args[]){
+   NewsPaperOffice newsPaperOffice = new NewsPaperOffice();
+
+   HouseHolder holderA = new HouseHolder(&quot;我是A&quot;);
+   HouseHolder holderB = new HouseHolder(&quot;我是B&quot;);
+
+   newsPaperOffice.addObserver(holderA);
+   newsPaperOffice.addObserver(holderB);
+
+   newsPaperOffice.postNewsPaper(&quot;这是今天的头条新闻&quot;);
+
+   newsPaperOffice.deleteObserver(holderA);
+   newsPaperOffice.postNewsPaper(&quot;这是第二天的头条新闻&quot;);
+
+}
+
+//报社
+public static class NewsPaperOffice extends Observable {
+
+    public void postNewsPaper(String newsContent){
+        //要打开这个change开关 他才会更新
+        setChanged();
+        //内置的更新方法
+        notifyObservers(newsContent);
+
+    }
+
+}
+
+//住户
+public static class HouseHolder implements Observer {
+
+
+    String name;
+    public HouseHolder(String name) {
+        this.name = name;
+
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        String news = (String) data;
+        System.out.println(name+&quot;,我收到了：&quot;+news);
+
+    }
+ }
+
+}
+</code></pre><p>java的观察者模式相当简单 里面自带了update方法 然而 只包含一个更新方法是不够的 例如用户不止是接收报纸内容 还会接受定期报社派送的礼物 这样一个update方法就不够用了 其实这些Observer和Observable都相当简单 可以自己写 或者采用Android自带的api</p>
+<p>如果java项目里包含Android的api 直接运行是会报错的 所以这里我用一个activity包住</p>
+<pre><code>public class TestNewsPaper2Activity  extends Activity{
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+
+    main(null);
+
+}
+
+public  interface IHouseHolder {
+
+    //获取报纸内容
+    void getNewsPaper(String content);
+
+    //收取报社定期派送的赠品
+    void getPresents(String present);
+}
+
+
+public static class HouseHolder2 implements IHouseHolder{
+
+    private String name;
+
+    public HouseHolder2(String name){this.name  = name;}
+
+    @Override
+    public void getNewsPaper(String content) {
+        System.out.println(name+&quot;,接受的报纸内容：&quot;+content);
+    }
+
+    @Override
+    public void getPresents(String present) {
+        System.out.println(name+&quot;,接受的礼物名称：&quot;+present);
+    }
+}
+
+
+//报社
+public static class NewsPaperOffice2 extends Observable&lt;IHouseHolder&gt; {
+
+
+    public void notifyGetNewPaper(String content){
+
+        synchronized (mObservers){
+            for(int i=mObservers.size()-1;i&gt;0;i--){
+                mObservers.get(i).getNewsPaper(content);
+            }
+        }
+    }
+
+    public void notifyGetPresent(String present){
+
+        synchronized (mObservers){
+            for(int i=mObservers.size()-1;i&gt;0;i--){
+                mObservers.get(i).getPresents(present);
+            }
+        }
+    }
+}
+
+
+public static void main(String args[]){
+
+    NewsPaperOffice2 newsPaperOffice2 = new NewsPaperOffice2();
+
+    HouseHolder2 a = new HouseHolder2(&quot;A&quot;);
+    HouseHolder2 b = new HouseHolder2(&quot;B&quot;);
+
+    newsPaperOffice2.registerObserver(a);
+    newsPaperOffice2.registerObserver(b);
+
+    newsPaperOffice2.notifyGetNewPaper(&quot;这是今天的内容2&quot;);
+    newsPaperOffice2.notifyGetPresent(&quot;赠品乳酸奶&quot;);
+
+}
+}
+</code></pre><p>  在Android中使用观察者模式的额地方相当多 只要符合1对多关系 一处通知 全部更新的这样的场景 都可以用到 例如 listview的adapter recyclerview的recyclerViewAdapter 四大组件中的BroadcastReceiver 还有第三方组件 时间总线 EventBus 和 otto 和结合前两者优势的AndroidEventBus 看看他们的源码实现都是使用观察者模式</p>
 
       
     </div>
@@ -257,18 +379,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/29/Android源码设计模式解析与实践--读书笔记（一）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Android源码设计模式解析与实践--读书笔记（一）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（五）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（五）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -303,7 +416,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hello-asii" data-title="hello asii 使用github pages+hexo 搭建的第一个博客" data-url="http://yoursite.com/2016/04/24/hello-asii/"></div>
+	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践--读书笔记（六）" data-title="Android源码设计模式解析与实践--读书笔记（六）" data-url="http://yoursite.com/2016/05/08/Android源码设计模式解析与实践--读书笔记（六）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
