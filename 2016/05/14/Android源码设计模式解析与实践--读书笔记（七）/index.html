@@ -4,45 +4,39 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Android源码设计模式解析与实践--读书笔记（二） | Asii Blog</title>
+  <title>Android源码设计模式解析与实践--读书笔记（七） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
+访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
 
-   pub">
+对象结构比较稳定 但经常需要在此对象结构上定义新的操作
+需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
+
+怎样理解操作与结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android源码设计模式解析与实践--读书笔记（二）">
-<meta property="og:url" content="http://yoursite.com/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/index.html">
+<meta property="og:title" content="Android源码设计模式解析与实践--读书笔记（七）">
+<meta property="og:url" content="http://yoursite.com/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/index.html">
 <meta property="og:site_name" content="Asii Blog">
 <meta property="og:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
+访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
 
-   pub">
-<meta property="og:updated_time" content="2016-05-02T04:20:43.000Z">
+对象结构比较稳定 但经常需要在此对象结构上定义新的操作
+需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
+
+怎样理解操作与结构">
+<meta property="og:updated_time" content="2016-05-14T10:08:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（二）">
+<meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（七）">
 <meta name="twitter:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
+访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
 
-   pub">
+对象结构比较稳定 但经常需要在此对象结构上定义新的操作
+需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
+
+怎样理解操作与结构">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -210,11 +204,11 @@ public class Singleton{
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践--读书笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践--读书笔记（七）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/" class="article-date">
-  	<time datetime="2016-04-30T07:50:47.000Z" itemprop="datePublished">2016-04-30</time>
+      <a href="/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/" class="article-date">
+  	<time datetime="2016-05-14T08:31:04.000Z" itemprop="datePublished">2016-05-14</time>
 </a>
     </div>
   
@@ -227,7 +221,7 @@ public class Singleton{
         
   
     <h1 class="article-title" itemprop="name">
-      Android源码设计模式解析与实践--读书笔记（二）
+      Android源码设计模式解析与实践--读书笔记（七）
     </h1>
   
 
@@ -236,7 +230,7 @@ public class Singleton{
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/访问者模式/">访问者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
         
@@ -250,105 +244,123 @@ public class Singleton{
         <blockquote>
 <p>Android源码设计模式解析与实践 <br>原著：何红辉 关爱民 <br>– –读书笔记 by asii</p>
 </blockquote>
-<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式应该是们使用的第一个 而且是经常使用的模式 </p>
-<p>首先是 周所周知的饿汉模式和懒汉模式</p>
-<pre><code>//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
+<h1 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h1><p>访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：</p>
+<ol>
+<li>对象结构比较稳定 但经常需要在此对象结构上定义新的操作</li>
+<li>需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类</li>
+</ol>
+<p>怎样理解操作与结构相分离呢</p>
+<pre><code>public class A{
 
-   public static synchronized Singleton getInstance(){
-      if(instance == null){
-         instance = new Singleton();
-      }
-      return instance;
-   }
+    public void doSomething(){
+        ...
+    }
+
+    public accept(B b){
+        b.visit(this);
+    }
 
 }
 
-//饿汉模式
-public class Singleton{
-   private static Singleton instance = new Single();
-   private Singleton(){};
+public class B{
 
-   public static Singleton getInstance(){
-      retrun instance;
-   }
+    public void visit(A a){
+        a.doSomething();
+    }
+
 }
-</code></pre><p>区分饿汉模式和懒汉模式 ：饿汉是一来什么都不说先new对象 很饥渴的样子 懒汉是一来我什么都不干 当需要调用到我的时候我再new对象 以前我容易把他两个搞混<br>懒汉模式对比饿汉模式在一定程度上节约了资源 但是每次加载都需要进入同步锁 一样也会造成同步开销 所以还有个折中的方法是 Double check Lock （DCl）</p>
-<pre><code>public class Singleton{
-   private static Singleton instance = null;
-   private Single(){}
+</code></pre><p>在上面的例子中 B就是一个访问者 一开始会觉得这个B很多余 因为到头来都是在调用A的doSomething()操作 跟B一点关系都没有 但是试想一下 如果对A新增不同的操作 势必会对A产生很多不同的方法 这样对A的操作与A本身的结构就会耦合在一起了 回想一下 在Android开发中 会见到很多叫dataHelper的类 他们的本质就是访问者 他们吧数据的操作封装在外面（helper）了 而数据本身的结构是不变的不轻易修改的 这样才符合单一职责原则 </p>
+<p>而今天所说的访问者模式 是上面的例子的拓展 一讲到拓展 就肯定与接口扯不开了</p>
+<pre><code>abstract class Element {
+    public abstract void accept(IVisitor visitor);
+    public abstract void doSomething();
+}
 
-   public Static Singleton getInstance(){
-      if(instance == null){
-        sychronized(Singleton.class){
-           if(instance == null){
-              instance = new Singleton();
-           }
+interface IVisitor {
+    public void visit(ConcreteElement1 el1);
+    public void visit(ConcreteElement2 el2);
+}
+
+class ConcreteElement1 extends Element {
+    public void doSomething(){
+        System.out.println(&quot;1&quot;);
+    }
+
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+class ConcreteElement2 extends Element {
+    public void doSomething(){
+        System.out.println(&quot;2&quot;);
+    }
+
+    public void accept(IVisitor visitor) {
+        visitor.visit(this);
+    }
+}
+
+class Visitor implements IVisitor {
+
+    public void visit(ConcreteElement1 el1) {
+        el1.doSomething();
+    }
+
+    public void visit(ConcreteElement2 el2) {
+        el2.doSomething();
+    }
+}
+
+class ObjectStruture {
+    public static List&lt;Element&gt; getList(){
+        List&lt;Element&gt; list = new ArrayList&lt;Element&gt;();
+        Random ran = new Random();
+        for(int i=0; i&lt;10; i++){
+            int a = ran.nextInt(100);
+            if(a&gt;50){
+                list.add(new ConcreteElement1());
+            }else{
+                list.add(new ConcreteElement2());
+            }
         }
-
-      }
-      return instance;
-   }
-}
-</code></pre><p>有两次判空 第一次是为了避免不必要的同步 第二次为了确认是null的情况下创建实例。但是DCL在高并发的环境中还是有可能会失效的 原因要从instance = new Singleton()这行代码说起 这行代码可以分解成三个汇编命令：</p>
-<ol>
-<li>给Singleton的实例分配内存</li>
-<li>调用Singleton()的构造函数 初始化成员变量 </li>
-<li>将instance对象指向分配的内存空间（此时instance就不是null了）</li>
-</ol>
-<p>java编译器允许处理器乱序执行 也就是执行顺序可能是1-2-3 也可能是1-3-2 如果是1-3-2 譬如A线程在3执行完准备执行2 此时切换到B线程已经发现instance不为空 线程B将instance直接取走 在使用的时候由于该instance未执行过构造函数 （本例中构造函数里的内容为空 实际开发中构造函数会有些赋值之类的操作） 此时就会出错</p>
-<p>在java1.5之后可以在定义instance时加volatile关键字来使DCl生效 也就是<code>private volatile static Singleton instance =null</code></p>
-<p>如果上述的单例模式写法还是不让你满意的话 you may try this</p>
-<pre><code>//静态内部类单例模式
-public class Singleton{
-  private Singleton(){}
-  private static Singleton getInstance{
-     return SingletonHolder.instance;
-  }
-
-  private static class SingletonHolder{
-     private static final Singleton instance = new Instance();
-  }
-}
-</code></pre><p>这种方式既能确保线程安全 也能保证实例对象的唯一性 同时也延迟了单例的实例化 这是最推荐的单例模式写法</p>
-<p>说到 static final 你肯定还会想到enum 枚举 枚举的所有成员变量都是这种声明 </p>
-<pre><code>public enum SingletonEnum{
-    INSTANCE;
-    void doSomething(){
-        System.out.print(&quot;枚举单例模式&quot;);
+    return list;
     }
+}
 
-    //构造函数(其实也可以不写)
-    SingletonEnum(){
-
+public class Client {
+    public static void main(String[] args){
+        List&lt;Element&gt; list = ObjectStruture.getList();
+        for(Element e: list){
+            e.accept(new Visitor());
+        }
     }
+}
+</code></pre><p>新增了一个元素的抽象类 新增了一个访问者的接口 所谓的拓展 仅此而已 新增元素抽象类 是为了定义必须有的accept(Vistor v)方法来接收访问者 定义访问者接口是为了不需要为每一个vistor在元素类中创建一个accept方法 只需要新增不同的vistor即可（开放闭合原则 对修改关闭 对扩展开放）</p>
+<p>访问者模式在Android的编译期注解所用到 编译期注解的核心是APT （annotation processing tools）就是在某些代码上添加注解 在编译时编译器会检查abstractProcessor的子类并且调用该类型的process函数 然后将添加了注解的所有元素都传递到process函数中 使得开发人员可以在编译期间进行相应的处理 例如根据注解生成java类 这也是butterknife的基本原理</p>
+<p>对于编译器来说 代码中的元素结构是基本不变的 组成代码的基本元素包含包 类 函数 字段 类型参数 变量 那么可以采用访问者模式吧他们的操作放到外面</p>
+<pre><code>public interface Element{
+    ElementKind getkind();
+    Set&lt;Modifier&gt; getModifiers();
+    &lt;R,P&gt; R accept(ElementVistor&lt;R,P&gt; v,P p);
+}
+
+public interface ElementVistor&lt;R,P&gt;{
+    R visit(Element e,P p);
+
+    R visit(PackageElement e,P p);
+
+    R visit(TypeElement e,P p);
+
+    R visit(VariableElement e,P p);
+
+    R visit(ExecutableElement e.P p);
 
 }
-</code></pre><p>单例模式还可以用容器的方式来实现 例如Android源码中view从xml中创建 </p>
-<pre><code>public final View createView(...)
-{
-//从缓存中获取构造函数
-   Constructor&lt;? extends View&gt; construtor = sConstrutorMap.get(name);
-   Class&lt;? extends View&gt; clazz = null;
-   if(construtor == null){
-     clazz = ...
-     construtor = clazz.getConstrutor(...);
-     //创建的构造函数放到缓存中以便下次直接读取
-     sConstrutorMap.put(name,construtor);
-     ...
-     //通过反射来构造view
-     final View view = construtor.newInstance();
-     ...
-     return view；
-   }
-}
-</code></pre><p>单例模式的好处就不说了 我来说他的缺点</p>
-<ol>
-<li>单例模式一般没有接口实现 扩展起来很困难若要扩展 只能修改</li>
-<li>单例对象如果持有Context 那么很容易发生内存泄漏 此时注意传递给单例对象的Context最好是Application Context</li>
-</ol>
+</code></pre><p>具体的实现类没有在这里写了 自行脑补 </p>
+<h1 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h1><p>中介者模式中的中介者包装了一系列对象相互作用的方式 使得这些对象不必相互明显作用 从而使他们松耦合 这个模式使对象之间的多对多关系变成一对多关系 将网状解耦股改成星状结构 降低系统复杂度 提高扩展性</p>
+<p>要理解这个模式并不难 例如想象一台电脑有很多不同的部件组成 有cpu 内存 显卡 io设备 他们之间是有联系的 例如从io设备读取用户的输入数据 把他们放到内存中 cpu对内存的数据进行处理 再经过显卡进行运算 最后通过io设备显示出来 如果每一个组件作为一个类 那么他们之间的联系在各自的组件中添加方法 想想都复杂 于是主板应运而生 他是为了解决连接他们之间的联系而存在 把他们的网状结构瓦解成星状结构</p>
+<p>在Android开发中 activity就是中介者 在他那里处理组件之间的逻辑</p>
 
       
     </div>
@@ -358,18 +370,9 @@ public class Singleton{
     
 <nav id="article-nav">
   
-    <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（三）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Android源码设计模式解析与实践--读书笔记（三）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/29/Android源码设计模式解析与实践--读书笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（一）</div>
+    <a href="/2016/05/08/Android源码设计模式解析与实践--读书笔记（六）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（六）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -404,7 +407,7 @@ public class Singleton{
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践--读书笔记（二）" data-title="Android源码设计模式解析与实践--读书笔记（二）" data-url="http://yoursite.com/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/"></div>
+	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践--读书笔记（七）" data-title="Android源码设计模式解析与实践--读书笔记（七）" data-url="http://yoursite.com/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
