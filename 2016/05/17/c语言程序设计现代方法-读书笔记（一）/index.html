@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>c语言程序设计现代方法-读书笔记（一） | Asii Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基础从java角度看c
+对于c程序 将c代码转变为可执行形式的步骤为1 预处理指令 2 编译 3 链接
+%d 是int类型的占位符 %f是float型的占位符默认小数点后6位 %.2f就是小数点后2位
+int a,b,c=10; 这个声明中 只有c被初始化
+scanf(“%f”,&amp;amp;x) 读取一个float 存入x中 f就是format的意思 printf的f也是scanf(“%d,%f”,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c语言程序设计现代方法-读书笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2016/05/17/c语言程序设计现代方法-读书笔记（一）/index.html">
+<meta property="og:site_name" content="Asii Blog">
+<meta property="og:description" content="基础从java角度看c
+对于c程序 将c代码转变为可执行形式的步骤为1 预处理指令 2 编译 3 链接
+%d 是int类型的占位符 %f是float型的占位符默认小数点后6位 %.2f就是小数点后2位
+int a,b,c=10; 这个声明中 只有c被初始化
+scanf(“%f”,&amp;amp;x) 读取一个float 存入x中 f就是format的意思 printf的f也是scanf(“%d,%f”,">
+<meta property="og:updated_time" content="2016-05-21T11:21:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c语言程序设计现代方法-读书笔记（一）">
+<meta name="twitter:description" content="基础从java角度看c
+对于c程序 将c代码转变为可执行形式的步骤为1 预处理指令 2 编译 3 链接
+%d 是int类型的占位符 %f是float型的占位符默认小数点后6位 %.2f就是小数点后2位
+int a,b,c=10; 这个声明中 只有c被初始化
+scanf(“%f”,&amp;amp;x) 读取一个float 存入x中 f就是format的意思 printf的f也是scanf(“%d,%f”,">
+  
+    <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fmyblog_header.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Asii</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">路漫漫其修远兮 吾将上下而求索</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/asi2012asi" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/asi2012" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 16.67px;">Android</a> <a href="/tags/builder模式/" style="font-size: 10px;">builder模式</a> <a href="/tags/c语言/" style="font-size: 10px;">c语言</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/mvp/" style="font-size: 10px;">mvp</a> <a href="/tags/中介者模式/" style="font-size: 10px;">中介者模式</a> <a href="/tags/代理模式/" style="font-size: 10px;">代理模式</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/吉他/" style="font-size: 13.33px;">吉他</a> <a href="/tags/工厂方法模式/" style="font-size: 10px;">工厂方法模式</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/抽象工厂模式/" style="font-size: 10px;">抽象工厂模式</a> <a href="/tags/桥接模式/" style="font-size: 10px;">桥接模式</a> <a href="/tags/模板模式/" style="font-size: 10px;">模板模式</a> <a href="/tags/状态模式/" style="font-size: 10px;">状态模式</a> <a href="/tags/示例/" style="font-size: 10px;">示例</a> <a href="/tags/策略模式/" style="font-size: 10px;">策略模式</a> <a href="/tags/简单工厂模式/" style="font-size: 10px;">简单工厂模式</a> <a href="/tags/组合模式/" style="font-size: 10px;">组合模式</a> <a href="/tags/装饰模式/" style="font-size: 10px;">装饰模式</a> <a href="/tags/观察者模式/" style="font-size: 10px;">观察者模式</a> <a href="/tags/视频/" style="font-size: 13.33px;">视频</a> <a href="/tags/访问者模式/" style="font-size: 10px;">访问者模式</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/适配器模式/" style="font-size: 10px;">适配器模式</a> <a href="/tags/面向对象的六大原则/" style="font-size: 10px;">面向对象的六大原则</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/asi2012asi">缺朋友</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">一只独来独往的IT狗</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Asii</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fmyblog_header.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Asii</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">路漫漫其修远兮 吾将上下而求索</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/asi2012asi" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/asi2012" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-c语言程序设计现代方法-读书笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/17/c语言程序设计现代方法-读书笔记（一）/" class="article-date">
+  	<time datetime="2016-05-17T13:12:07.000Z" itemprop="datePublished">2016-05-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      c语言程序设计现代方法-读书笔记（一）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c语言/">c语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>从java角度看c</p>
+<p>对于c程序 将c代码转变为可执行形式的步骤为1 预处理指令 2 编译 3 链接</p>
+<p>%d 是int类型的占位符 %f是float型的占位符默认小数点后6位 %.2f就是小数点后2位</p>
+<p>int a,b,c=10; 这个声明中 只有c被初始化</p>
+<p>scanf(“%f”,&amp;x) 读取一个float 存入x中 f就是format的意思 printf的f也是<br>scanf(“%d,%f”,&amp;x,&amp;y) 记得输入时 要输入 1，2 这样的格式 中间不能有空格 格式需与双引号内的格式一致 每一次读取到不正确的字符时 都会保留给下一次读取</p>
+<p>定义常量 #define ABC 10 定义一个常量数值为10 这是一个宏定义 #define是预处理指令 宏定义可以有表达式但是必须用括号 如#define ABC (1+1) 后面没有分号一句完成</p>
+<p>c语言区别大小写 标准c对标记符没有最大长度限制 其实是记住前31个字符 命名时不能使用关键字 列举下jaca中没有的关键字 auto struct register typedef extern union const unsigned signed sizeof 另外最好别使用以下划线开头的标记符 </p>
+<p>printf(“%f %d\n”,i,x)其中i是int型 x是float型 那么输出的记过是一个float型和一个int型 但是因为i和x的位置对调了 所以输出的他们的值都是无意义的 </p>
+<p>%g用于不确定大小或者数字变化范围的情况 %i可以匹配8进制 10进制 16进制 %5d int型占5位 往左边占 %-5d int型占5位 往右边占 %5.3d int型占5位 至少包含三个数字 往左边占 数字右对齐 %10.3f float型占10位 保留3位小数 右对齐 %10.3e 指数型占10位 保留三位小数右对齐 %-10.3g int型占10位 左对齐</p>
+<p>不应该以聪明才智和逻辑分析能力来评判程序员 而要看起分析问题的全面性</p>
+<p>有符号的int的最大整数是2的15次方-1 无符号（unsigned）的最大整数是2的16次方-1 int的取值范围（-32768到32767）unsigned int的取值范围(0到65535) 除非特别说明 默认所有整数都是有符号的 如long signed int和long int是一样的类型 并且 顺序无要求 如long signed int和signed long int是一样的 在16位的机器上short Int和int的取值范围是一样的 在32位的机器上 int和long的取值范围是一样的 所以为了可移植性 对不超过32767的整数采用int 对其他的整数采用long int 进制 u表示10进制 o表示8进制 x表示16进制 “%hd”表示short int “%ld”表示长整型</p>
+<p>使用#included <limits.h>中定义了每种整型的最大值和最小值的宏</limits.h></p>
+<p>浮点常量默认以双精度的形式存储 scanf(“%lf”,&amp;x)读取double类型 注意printf不支持“%lf”的写法 然而 scanf(“%Lf”,&amp;x)读取long double printf(“%Lf”,x)是合法的</p>
+<p>char的无符号取值是（-128到127）有符号的取值范围（0到255）chat可以与int直接运算 把小写转大写 ch = ch - ‘a’ + ‘A’;getchar()和putchar()用来读写字符 while(getchar() != ‘\n’)… 表示直到用户输入换行符位置一直根据用户输入的字符执行循环体</p>
+<p>sizeof()会根据机械的位数不同而不同 表示存储指定类型值所需的空间大小</p>
+<p>typedef 定义一种类型 跟java的类有些相似但是不同 例如typedef double dollars 定义dollars代表double类型 使用double i;和使用dollars i;意义是一样的</p>
+<p>自定义函数如果出现在main函数之后 会无法识别 所以需要声明函数例如<br>float average(float a,float b); 如果函数是放在main函数之前 可以不声明</p>
+<p>c允许形式参数和实际参数的类型不一样 会隐式地自动转型 但是记得要函数声明或者函数前置</p>
+<p>使用函数传递数组时 只能忽略第一维的长度 列的长度不能忽略</p>
+<p>函数中return 可以返回与设定函数时不一样的类型 会以return的类型为准 什么都不返回时可以return;</p>
+<p>退出函数 可以使用exit(0);也可以使用 return 0;</p>
+<p>可以在a函数内声明b函数 但是b函数只能在a函数内有效 到了别的函数要想调用需要先声明 可以倒不如在外面声明函数 但是c的宽松允许第一种做法</p>
+<p>指针变量p存储变量i的地址时 就说p指向i 指针就是地址 指针变量是只存储地址的变量 int *p;表示p是指向int型对象的指针变量</p>
+<p>&amp;是取地址运算符 星号是间接寻址运算符 int i,*p; 然后 p = &amp;i ;就是将i变量的地址给p指针  </p>
+<pre><code>int i,*p = &amp;i;
+相当于做了两步 这是简便写法
+int i,*p;
+p = &amp;i;
+</code></pre><p><strong>下面的写法注意*和※是一样的 md的语法同时出现两个星号会变成注释</strong></p>
+<p>j=*&i;是合法的 i=1;p=&i;※p=2;那么i=2,※p=2；</p>
+<p>注意 不要把间接寻址运算符用于未初始化的指针变量 例如int *p;※p=1;是错的</p>
+<p>可以使用=进行指针的复制 例如 </p>
+<pre><code>//先声明
+int i,j,*p,*q; 
+//初始化指针p的指向
+p=&amp;i;
+//对指针进行复制 此时 p和q指向了相同的地址 都是i的地址
+q=p;
+*p=1；
+</code></pre><p>在未出现指针之前 下面交换两个数的值的写法是错误的</p>
+<pre><code>void swap(int,int);
+main(){
+    int a=1,b=2;
+    swap(a,b);
+    printf(&quot;a:%d,b:%d&quot;,a,b);
+} 
+void swap(int x,int y){
+    int temp;
+    temp =x;
+    y = x;
+    x = temp;
+}
+//上面函数打印得到值是a:1,b:2
+
+//使用指针 就像java中改变引用的值 这样交换才是正确的
+void swap(int *,int *);
+main(){
+    int a=1,b=2;
+    swap(&amp;a,&amp;b);
+    printf(&quot;a:%d,b:%d&quot;,a,b);
+}
+void swap(int *x,int *y){
+    int temp;
+    temp =*x;
+    *x = *y;
+    *y = temp;
+}
+</code></pre><p>注意 *x=※y才是改变x指针指向的值 如果x=y只是让x指向y的指向地址</p>
+<p>const 可以修饰形式参数 就像java中的final一样</p>
+<pre><code>void f(const int *p){
+    int j=1;
+    *p = j;//这样写 编译器会提示不能呢修改
+}
+
+//然而 可以这么写
+void f(const int *p){
+    int j=1;
+    p = &amp;j;//这样写 是合法的
+}
+
+//还有种情况 const放在p前面 保护的是p指针本身 不可以再指向别的地址
+void f(int * const p){
+    int j=1;
+    *p = 0;//合法
+    p = &amp;j;//不合法
+}
+
+//如果两个都需要保护 即既要保护*p也要保护p
+void f(const int * const p){
+    int j=1;
+    *p = 0;//不合法
+    p = &amp;j;//不合法
+}
+</code></pre><p>函数可以返回指针 但是不要返回局部变量产生的指针</p>
+<p>指针不单只可以指向普通变量 还可以指向数据变量 例如int a[10],*p; p = &amp;a[0];可以使用指针的加减法运算代替数组小标的运算 接前面对的p+3表示a[0+3]当然需要该下标存在才能正确表示 两个指针相减表示数组之间的距离 用来计算数组中的元素个数 要注意的是只有指针指向数据元素 他的元素才有意义 而且两个指针必须指向同一数组 </p>
+<p>使用指针代替数组下标进行运算的实例</p>
+<pre><code>int getSum(int a[],int len){
+    int sum = 0;
+    for(int i=&amp;a[0]; i&lt; &amp;a[len];i++){
+        sum += *i;
+    }
+    return sum;
+
+}
+
+//更简便的写法
+int getSum(int a[],int len){
+    int *p = &amp;a[0];
+    while(p &lt; &amp;a[len]){
+        sum += *p++;
+    }
+}
+</code></pre><p>可以用数组的名字作为指向数组第一个元素的指针 例如int a[10]; *a = 1;相当于a[0]=1; 那么※(a+1)=2;相当于a[0+1] = 2;于是有下面的写法</p>
+<pre><code>//求和
+for(p = a;p &lt; a+len; p++){
+    sum += *p;
+}
+
+//但是不能把数组名指向其他地方
+while(*a != 0){
+    a++;//错误 试图将a指向a+1 但是可以吧a赋值给指针变量再改变指针变量
+}
+
+int *p = a;
+while(*p != 0){
+    P++;//合法
+}
+</code></pre><p>指针也可以表示二维数组 例如 int *p = &amp;a[i][0];相当于 p = a[i];指针p指向的是二维数组第i行的第一个元素</p>
+<p>数组和指针之间还没做到完全可以互换 例如使用当p = &amp;a[0];时 sizeof(a)和sizeof(p)得到的结果不一样 </p>
+<p>c中的字符串使用字符数组来存储 例如“abc” 存了4个字符包含最后一个/0 作为结束字符如果定义一个比字符串字符个数多时 如char data[9] = “june 14”;后面将会包含两个/0 所以定义数组来表示字符串时要确保数组的给定长度要大于实际字符串的长度 也可以不定义长度留空 如char date[]=”june 14”;编译器自动计算长度</p>
+<p>注意c中的单个字母的字符串“a”和字符‘a’是不一样的 前者通过数组来存储 字面量“a”用指针来表示 而‘a’是用整数来表示</p>
+<p>未初始化的指针变量不能作为字符串修改值 比较char date[] = “abc”;和char <em>date = “abc”;有什么不同 当声明为指针时不能修改字符串字面量例如 </em>(date+1) = ‘a’不合法 但是date[1] = ‘a’是合法的 第二点：声明为数组时date是数组名 声明为指针时 date是变量 可以改变指向其他字符串</p>
+<p>字符串在printf函数中 用%s来表示 转换说明%m.ps其中m,p都是数字 表示字符串的前p个字符在大小m的域内显示 可以用函数puts(str)来代替printf函数 会自动添加换行符</p>
+<p>比较特别的是scanf(“%s”,str)其中str是数组名 不需要再str前添加&amp; 因为编译器自动把它当成指针来处理 使用gets(str)函数可以达到接受用户输入的效果 需要注意的是gets遇到空白字符不会预留给下一次输入 而是直接把它计入字符串内 知道遇到换行符</p>
+<p>char str1[10]; str1 = “abc”;是错误的 str为数组的指针 这句解析为一个指针对另一个指针的赋值 但是char str1[10] = “abc”;是合法的 在声明中=不是赋值运算符 另外判断if(str1 == str2)会一定得到0 因为比较的是指针 就是内存地址</p>
+<p><string.h>函数库里的string操作包括 </string.h></p>
+<p>strcpy 复制函数 使用：char <em>strcpy(char </em>str1,const char *str2)意思是讲str2的字符复制到str1 str2指向的字符始终不变 现在可以吧“abc”给str1了 strcpy(str1,”abc”);</p>
+<p>strcat函数 char <em>strcat(char </em>s1,const *s2); 把字符串s2的内容追加到字符串s1的末尾 并且返回字符串s1的指针</p>
+<p>strcmp函数 int strcmp(const char <em>s1,const char </em>s2);比较s1和s2的大小 这个跟java的直接比较相似（像if(s1&lt;s2)）对字符串内单词的逐个比较 在 ASCII字符集中 记住所有大写字母都小于小写字母 数字小于字母 空格最小</p>
+<p>size_t strlen(const char *s)求字符串的长度 size_t是无符号整数 可以是int也可以是long int 都是unsigned 使用strlen测量字符串长度时不会考虑数组的大小 而只会返回字符串实际的字符个数</p>
+<p>sprintf(day_str,”%2d”,day);将int类型写入到字符串</p>
+<p>习惯用法 while(*s)s++; 查找字符串结尾的空字符 此时s指向了空字符 </p>
+<p>预处理指令可以放在程序中的任何地方 指令换行要加 \ 符号 注意宏定义 不要添加附加的标点符号 除了开头的#  宏还可以做简单函数的使用 例如带参数的宏 </p>
+<pre><code>#define MAX(x,y)    ((x)&gt;(y)?(x):(y))
+
+main(){
+    int i = MAX(a,b);
+}
+</code></pre><p>宏还可以用来定义一个函数 </p>
+<pre><code>#define GENERIC_MAX(type)         \
+type type##_max(type x,type y) \
+{                                \
+    return x&gt;y ?x:y;            \
+                                \
+}                                \
+</code></pre><p>使用##是粘着符号 当使用 GENERIC_MAX(float)时 预处理器会展开这段代码为<br>float float_max(float x,float y){return x&gt;y?x:y;} </p>
+<p>一个宏可以应用另一个宏 例如#define PI 3.14 #define CIRCLE(r) (PI <em> 2 </em> (r)) 注意每次使用宏参数时 要加圆括号（）</p>
+<p>取消一个宏定义 #undef FUNC 删除FUNC的宏定义 以后可以跟FUNC新的宏定义</p>
+<p>宏就相当于java中的工具类 一处编写 到处使用 一次修改 到处修改</p>
+<p>条件编译 根据预处理器所执行的测试结果来包含或者排除程序的片段例如 #if 和#endif语句</p>
+<pre><code>#define DEBUG 1
+#if DEBUG
+printf(&quot;value of i:%d\n&quot;,i);
+#endif
+</code></pre><p>在上述处理过程中 测试指令会测试DEBUG的值 当DEBUG&gt;0时 预处理器会将这个printf函数保留在程序中 否则会让这些代码都消失（包含if指令）</p>
+<p>defined 运算符用来判断宏是否被定义过 定义过返回1 否则返回0 经常跟#if指令一起使用</p>
+<pre><code>#if defined(DEBUG)
+...
+#endif
+</code></pre><p>仅当DEBUG被定义成宏时 #if和#endif之间的代码会被保留在程序中</p>
+<p>使用#ifdef指令与 使用#if defined指令一样 而#ifndef 等价于#if !defined</p>
+<p>为宏提供默认定义</p>
+<pre><code>#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 256
+#endif
+</code></pre><p>如果BUFFER_SIZE没有被定义过 就将他的定义默认为256</p>
+<p>指令#include “文件名” 用来引入自己编写的文件 c语言自身库的头文件用的是&lt;文件名&gt;</p>
+<p>头文件可以包含另一个头文件 并引用里面的变量或者类型 这是嵌套包含 当嵌套保护遇到类型定义时会发生编译错误 解决方案是添加头文件保护 就是在类型定义前添加个开关#ifndef 这样可以避免重复编译</p>
+<p>带main方法的c文件的文件名就是程序的名字</p>
+<p>unix系统通过makefile，使用make工具构建程序 mac有xcode自动编译程序文件</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/17/Android源码设计模式解析与实践-读书笔记（十）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（十）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="c语言程序设计现代方法-读书笔记（一）" data-title="c语言程序设计现代方法-读书笔记（一）" data-url="http://yoursite.com/2016/05/17/c语言程序设计现代方法-读书笔记（一）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Asii
+    	</div>
+      	<div class="footer-right">
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
