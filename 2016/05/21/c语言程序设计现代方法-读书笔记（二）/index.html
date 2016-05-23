@@ -32,7 +32,7 @@ struct{
 }part1 = {528，“disk driver”,10},part2;
 
 strct{">
-<meta property="og:updated_time" content="2016-05-23T02:30:17.000Z">
+<meta property="og:updated_time" content="2016-05-23T15:58:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c语言程序设计现代方法-读书笔记（二）">
 <meta name="twitter:description" content="c语言程序设计现代方法 原著：K.N.King 翻译：吕秀峰 – –读书笔记 by asii
@@ -105,12 +105,12 @@ strct{">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>Menu</li>
-						<li>Тэги</li>
+						<li>Tags</li>
 						
 						<li>Links</li>
 						
 						
-						<li>О сайте</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -432,6 +432,28 @@ struct node *delete_from_list(struct node *list,n){
 <p>例如<em>在标记符前面 而标记符后面跟着[] 那么标记符是数组而不是指针 如<br>int </em>ap[10] 这是一个存储int型指针的数组</p>
 <p>如果<em>在标记符前面 而后面跟着()那么标记符是函数不是指针 如<br>float </em>fp(float) 表示一个返回float指针的接受float参数的函数fp fp是函数名</p>
 <p>void (*pf)(int) 表示一个返回void 接受int实际参数 标记符是指针的 指针函数 pf是指针名</p>
+<p>c语言中的左移&lt;&lt; 与 右移&gt;&gt;运算符 操作数可以是任意整形或者字符型的<br>i&lt;<j的值是将i中的位左移j位后的结果 i<<2="" 相当于i="" *="" 2的2次方="" i="">&gt; 相当于i/2的2次方（去除小数部分） 移位运算符优先级低于算数运算符</j的值是将i中的位左移j位后的结果></p>
+<p>其他按位运算符 ~是按位求反就是1变0 0变1 &amp;是按位与就是两个都为1才为1 其余都为0 ^是按位异或就是10为1 00为0 11为0 |是按位或就是10为1 00为0 11为1<br>异域运算可用作简单加密</p>
+<p>之前我们知道在宏中 我们可以声明简单的函数 而当我们在真是的函数声明时 出现与宏相同的名字时会优先调用宏的定义  使用undef来取消宏的定义</p>
+<p>简单概述标准库</p>
+<ol>
+<li><assert.h>诊断 仅包含assert宏 通过插入该宏检查程序状态 一旦检查失败程序终止</assert.h></li>
+<li><ctype.h>字符处理 包含用于字符分类以及大小写转换的函数</ctype.h></li>
+<li><error.h>错误 检查错误用的</error.h></li>
+<li><float.h>浮点型的特性 描述浮点类型的宏 包括值得范围和精度</float.h></li>
+<li><limits.h>整形的大小 整数型和字符型特性的宏 包括最大值最小值</limits.h></li>
+<li><locale.h>本地化 与本地化得相关的行为方式如货币格式 日期时间表示形式 字符集等等</locale.h></li>
+<li><math.h>数学计算 提供大量用于数学的计算的函数 包括三角函数 双曲函数 指数函数 对数函数 其中大部分函数使用double型的实际参数 并且返回double的值</math.h></li>
+<li><setjmp.h>非本地跳转 提供setjmp函数和longjmp函数 setjmp函数会标记程序中的一个位置 随后用longjmp返回被标记的位置 这些函数可以用来从一个函数跳转到另一个函数中 绕过正常的函数返回机制</setjmp.h></li>
+<li><signal.h>提供异常情况 信号处理的函数 raise函数产生一个信号 signal函数令信号发送后自动调用signal函数设置的函数</signal.h></li>
+<li><stdarg.h>可变实际参数 提供函数可以处理不定个数个参数的工具就像printf和scanf函数</stdarg.h></li>
+<li><stddef.h>常用定义 提供了经常使用的类型和宏的定义</stddef.h></li>
+<li><stdio.h>输入输出函数 包含顺序读写 随机读写</stdio.h></li>
+<li><stdlib.h>常用实用程序 将字符串转为数 产生伪随机值 执行内存管理任务 与操作系统通信 执行搜索与排序 对多字节字符以及字符串进行操作</stdlib.h></li>
+<li><string.h>字符串处理 对字符串操纵的函数 复制 拼接 比较 搜索等</string.h></li>
+<li><time.h>日期和时间 获取时间与日期 多种方式显示时间</time.h></li>
+</ol>
+<p>看到第22章 未完持续</p>
 
       
     </div>
