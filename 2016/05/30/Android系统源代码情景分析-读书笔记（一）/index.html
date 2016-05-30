@@ -4,17 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: 中介者模式 | Asii Blog</title>
+  <title>Android系统源代码情景分析-读书笔记（一） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录心情与技术心得的部落">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Asii Blog">
-<meta property="og:url" content="http://yoursite.com/tags/中介者模式/index.html">
+  <meta name="description" content="Android系统源代码情景分析 作者 罗升阳– –读书笔记 by asii
+
+智能指针出现的原因：
+Android系统源码中有相当一部分使用c或c++编写 c和c++相对java的一大特点是使用指针 指针使用不当 轻则内存泄漏 重则系统崩溃 Android提供了c++智能指针来避免出现指针使用不恰当的问题
+智能指针是一种能够自动维护对象引用计数的技术 他本身不是指针 他是一个对象 他的使用方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android系统源代码情景分析-读书笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2016/05/30/Android系统源代码情景分析-读书笔记（一）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="记录心情与技术心得的部落">
+<meta property="og:description" content="Android系统源代码情景分析 作者 罗升阳– –读书笔记 by asii
+
+智能指针出现的原因：
+Android系统源码中有相当一部分使用c或c++编写 c和c++相对java的一大特点是使用指针 指针使用不当 轻则内存泄漏 重则系统崩溃 Android提供了c++智能指针来避免出现指针使用不恰当的问题
+智能指针是一种能够自动维护对象引用计数的技术 他本身不是指针 他是一个对象 他的使用方法">
+<meta property="og:updated_time" content="2016-05-30T11:43:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Asii Blog">
-<meta name="twitter:description" content="记录心情与技术心得的部落">
+<meta name="twitter:title" content="Android系统源代码情景分析-读书笔记（一）">
+<meta name="twitter:description" content="Android系统源代码情景分析 作者 罗升阳– –读书笔记 by asii
+
+智能指针出现的原因：
+Android系统源码中有相当一部分使用c或c++编写 c和c++相对java的一大特点是使用指针 指针使用不当 轻则内存泄漏 重则系统崩溃 Android提供了c++智能指针来避免出现指针使用不恰当的问题
+智能指针是一种能够自动维护对象引用计数的技术 他本身不是指针 他是一个对象 他的使用方法">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -182,53 +195,121 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Android系统源代码情景分析-读书笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/" class="archive-article-date">
-  	<time datetime="2016-05-14T08:31:04.000Z" itemprop="datePublished">May 14</time>
+    <div class="article-meta">
+      <a href="/2016/05/30/Android系统源代码情景分析-读书笔记（一）/" class="article-date">
+  	<time datetime="2016-05-30T11:11:26.000Z" itemprop="datePublished">2016-05-30</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/">Android源码设计模式解析与实践--读书笔记（七）</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android系统源代码情景分析-读书笔记（一）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/访问者模式/">访问者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/智能指针/">智能指针</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Android系统源代码情景分析 <br>作者 罗升阳<br>– –读书笔记 by asii</p>
+</blockquote>
+<h1 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h1><p>出现的原因：</p>
+<p>Android系统源码中有相当一部分使用c或c++编写 c和c++相对java的一大特点是使用指针 指针使用不当 轻则内存泄漏 重则系统崩溃 Android提供了c++智能指针来避免出现指针使用不恰当的问题</p>
+<p>智能指针是一种能够自动维护对象引用计数的技术 他本身不是指针 他是一个对象 他的使用方法是 在引用对象构造时 引用计数加1 当引用对象析构时 引用计数减1 </p>
+<p>然而考虑一个经典的引用问题 类似垃圾回收问题 A引用B B也引用A 当A不再使用时就要析构不再引用B 然而A还不能被回收 因为B还在引用A 两个资源互相等待对方释放 就像我们常见的死锁问题 只用这两个对象确定为同时不再使用时才能被两两释放</p>
+<p>引用计数计数解决这个问题 采用强引用和弱引用两种计数方式 利用了一个技巧 对象的生命周期只受强引用计数控制 首先 将两两关联的对象划分为 父子 和 子父 关系 父对象通过强引用来引用子对象 子对象通过弱引用来引用父对象</p>
+<p>回归上面的引用问题 当A不再使用时 需要释放A 由于B是通过弱引计数来引用他的 所以对象A的生命周期不收B的影响 此时A可以安全地被释放 A释放后同时也会释放对B的强引用计数 相反地 加入先要释放B 那么可以直接在A中手动释放对B的强引用计数就可以</p>
+<p>要注意的一点是B对象在使用A时 需要先判断A已经被释放 通过将对A的弱引用升级为强引用的方式成功否来判断A是否已经被释放 如果A已经被释放那么B不能再使用A</p>
+<p>Android系统提供了三种类型的c++智能指针</p>
+<p>轻量级指针 使用简单的引用计数计数 就是加1减1</p>
+<p>强指针和弱指针 使用强引用计数与弱引用计数技术</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/21/c语言程序设计现代方法-读书笔记（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">c语言程序设计现代方法-读书笔记（二）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android系统源代码情景分析-读书笔记（一）" data-title="Android系统源代码情景分析-读书笔记（一）" data-url="http://yoursite.com/2016/05/30/Android系统源代码情景分析-读书笔记（一）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -253,9 +334,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
