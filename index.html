@@ -184,6 +184,100 @@
 
       <div class="body-wrap">
   
+    <article id="post-Android系统源代码情景分析-读书笔记（五）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/05/Android系统源代码情景分析-读书笔记（五）/" class="article-date">
+  	<time datetime="2016-06-05T02:58:23.000Z" itemprop="datePublished">2016-06-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/05/Android系统源代码情景分析-读书笔记（五）/">Android系统源代码情景分析-读书笔记（五）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Android系统源代码情景分析 <br>作者： 罗升阳<br>– –读书笔记 by asii</p>
+</blockquote>
+<p>广播机制是基于消息发布和订阅的事件驱动模型 就是广播发送者负责发布消息 而广播接收者需要先订阅消息 才能接收到消息</p>
+<p>广播与activity和service和contentprovider 都可以进程间通信 都是通过底层的binder的c++代码 只不过在4大组件中封装了调用的过程 他们都是ActivityManagerService作用的 而广播与他们区别的有点在 client和server组件通信之前 必须先获得一个代理对象即Client必须知道server组件的存在 而广播发送者是不需要知道广播接收者是否存在的 这样可以降低广播接受者和发送者的耦合度</p>
+<p>在不同的activity或fragment或service中 我们时常会使用接口来进行函数回调和交互 而广播是另一种解决方案 他的优点在于可以降低发送者与接收者之间的耦合度 接受者不再依赖于发送者的回调接口</p>
+<p>先看广播的注册过程</p>
+<ol>
+<li>Activity.registerReceiver</li>
+<li>ContextWrapper.registerReceiver</li>
+<li>ContextImpl.registerReceiver</li>
+<li>ActivityManagerProxy.registerReceiver</li>
+<li>ActivityManagerService.registerReceiver</li>
+</ol>
+<p>在注册过程中 使用一个hashmap把接收者和注册组件关联在一起 最终proxy中的binder代理对象remote调用transact向ActivityManagerService发送一个REGISTER_RECEIVER_TARNSACTION的进程间通信请求</p>
+<p>广播的发送过程</p>
+<ol>
+<li>广播发送者 即activity或者service组件 将一个特定类型的广播发送给activityManagerService</li>
+<li>activityManagerService接收到广播后 首先找到这个广播对应的广播接收者然后将他添加到广播调度队列中 最后向ActivityManagerService所运行的线程的消息队列发送一个类型为BROADCAST_INTENT_MSG的消息</li>
+<li>当上面那个消息被处理时 ActivityManagerService会从广播调度队列中找到需要广播的广播接收者 并且把对应的广播发送给他们所运行在的应用程序进程</li>
+<li><p>广播接收者所运行在的应用程序进程接收到ActivityManagerService发送过来的广播后 并不是直接将接收到的广播分发给广播接收者来处理 而是将接收到的广播封装成一个消息 并且发送给主线程的消息队列中 当这个消息被处理时 应用程序才会将他所描述的广播发送给相应的广播接收者处理</p>
+</li>
+<li><p>activity.sendBroadcast</p>
+</li>
+<li>ContextWrapper.sendBroadcast</li>
+<li>ContextImpl.sendBroadcast</li>
+<li>ActivityManagerProxy.broadcastIntent</li>
+<li>ActivityManagerService.broadcastIntent</li>
+<li>ActivityManagerService.broadcastIntentLocked</li>
+<li>ActivityManagerService.scheduleBroadcastsLocked</li>
+<li>Handler.handle Message</li>
+<li>ActivityManagerService.processNextBroadcast</li>
+<li>ActivityManagerService.deliverToRegisterReceiverLocked</li>
+<li>ActivityManagerService.performReceiveLocked</li>
+<li>ActivityManagerProxy.scheduleRegisteredReceiver</li>
+<li>ApplicationThread.scheduleRegistereReceiver</li>
+<li>InnerReceiver.performReceive</li>
+<li>ReceiverDispatcher.performReceive</li>
+<li>Args.run</li>
+<li>BroadcastReceiver.onReceive</li>
+</ol>
+<p>可以看到广播的注册和接收都是离不开ActivityManagerService 都通过binder进程间通信来处理消息 广播接收者接收到消息并不是理解处理的 而是先添加到主线程的消息队列中 再由process调度再发送给相应的receiver处理的</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Android系统源代码情景分析-读书笔记（三）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -2050,65 +2144,9 @@ public class VoltAdapter extends implements FiveVolt{
 
 
   
-    <article id="post-吉他练习视频-真的爱你" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/15/吉他练习视频-真的爱你/" class="article-date">
-  	<time datetime="2016-05-15T05:48:42.000Z" itemprop="datePublished">2016-05-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/15/吉他练习视频-真的爱你/">吉他练习视频-真的爱你</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="真的爱你-20150124"><a href="#真的爱你-20150124" class="headerlink" title="真的爱你 20150124"></a>真的爱你 20150124</h1> <video controls="controls"><br><source src="http://7xteb8.com1.z0.glb.clouddn.com/%E5%90%89%E4%BB%96/%E7%9C%9F%E7%9A%84%E7%88%B1%E4%BD%A0150124.mp4" type="video/mp4"><br>换个浏览器吧亲 试试chrome Firefox safari 别再用落后的IE啦<br></video>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/吉他/">吉他</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频/">视频</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
