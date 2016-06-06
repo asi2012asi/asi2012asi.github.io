@@ -4,17 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: 吉他 | Asii Blog</title>
+  <title>Android系统源代码情景分析-读书笔记（四） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录心情与技术心得的部落">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Asii Blog">
-<meta property="og:url" content="http://yoursite.com/tags/吉他/index.html">
+  <meta name="description" content="Android系统源代码情景分析 作者： 罗升阳– –读书笔记 by asii
+
+service在新进程中的启动过程service组件也是通过activity管理服务activityManagerService启动的 service跟activity不同 他没有界面 所以启动新组件之前 不需要让前面的组件进入pause状态 我在这里先把activity称为client service称为serv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android系统源代码情景分析-读书笔记（四）">
+<meta property="og:url" content="http://yoursite.com/2016/06/04/Android系统源代码情景分析-读书笔记（四）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="记录心情与技术心得的部落">
+<meta property="og:description" content="Android系统源代码情景分析 作者： 罗升阳– –读书笔记 by asii
+
+service在新进程中的启动过程service组件也是通过activity管理服务activityManagerService启动的 service跟activity不同 他没有界面 所以启动新组件之前 不需要让前面的组件进入pause状态 我在这里先把activity称为client service称为serv">
+<meta property="og:updated_time" content="2016-06-06T05:42:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Asii Blog">
-<meta name="twitter:description" content="记录心情与技术心得的部落">
+<meta name="twitter:title" content="Android系统源代码情景分析-读书笔记（四）">
+<meta name="twitter:description" content="Android系统源代码情景分析 作者： 罗升阳– –读书笔记 by asii
+
+service在新进程中的启动过程service组件也是通过activity管理服务activityManagerService启动的 service跟activity不同 他没有界面 所以启动新组件之前 不需要让前面的组件进入pause状态 我在这里先把activity称为client service称为serv">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -182,115 +189,149 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Android系统源代码情景分析-读书笔记（四）" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/06/04/Android系统源代码情景分析-读书笔记（四）/" class="article-date">
+  	<time datetime="2016-06-04T08:19:40.000Z" itemprop="datePublished">2016-06-04</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android系统源代码情景分析-读书笔记（四）
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/service/">service</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/15/吉他练习视频-平凡之路/" class="archive-article-date">
-  	<time datetime="2016-05-15T05:50:46.000Z" itemprop="datePublished">May 15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/15/吉他练习视频-平凡之路/">吉他练习视频-平凡之路</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Android系统源代码情景分析 <br>作者： 罗升阳<br>– –读书笔记 by asii</p>
+</blockquote>
+<h1 id="service在新进程中的启动过程"><a href="#service在新进程中的启动过程" class="headerlink" title="service在新进程中的启动过程"></a>service在新进程中的启动过程</h1><p>service组件也是通过activity管理服务activityManagerService启动的 service跟activity不同 他没有界面 所以启动新组件之前 不需要让前面的组件进入pause状态 我在这里先把activity称为client service称为server  大概的步骤有4步</p>
+<ol>
+<li>client组件首先向ActivityManagerService发送一个启动Server组件的进程间通信请求</li>
+<li>ActivityManagerService发现用来运行Server组件的应用程序不存在 因此先把Server组件的信息保存下来 接着再创建一个新的进程</li>
+<li>新的应用程序进程启动完成后 会向ActivityManagerService发送一个启动完成的进程间通信请求 以便ActivityManagerService可以继续执行启动Server组件的操作</li>
+<li>ActivityManagerService会将第二步保存下来的service组件信息发送给新创建的进程 以便他把server启动起来</li>
+</ol>
+<p>下面贴一下19个代码步骤 有很多与activity的启动过程相似</p>
+<ol>
+<li>client.onCreate</li>
+<li>ContextWrapper.startService</li>
+<li>ContextImpl.startService</li>
+<li>ActivityManagerProxy.startService</li>
+<li>ActivityManagerService.startService</li>
+<li>ActivityManagerService.startServiceLocked</li>
+<li>ActivityManagerService.bringUpServiceLocked</li>
+<li>ActivityManagerService.startProcessLocked</li>
+<li>ActivityThread.main</li>
+<li>ActivityManagerProxy.attachApplication</li>
+<li>ActivityManagerService.startApplcation</li>
+<li>ActivityManagerService.attachApplicationLocked</li>
+<li>ActivityManagerService.realStartServiceLocked</li>
+<li>ApplicationThreadProxy.scheduleCreateService</li>
+<li>ApplicationThread.scheduleCreateService</li>
+<li>ActivityThread.queueOrSendMessage</li>
+<li>H.handleMessage</li>
+<li>ActivityThread.handleCreateService</li>
+<li>Server.onCreate</li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/吉他/">吉他</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频/">视频</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/15/吉他练习视频-真的爱你/" class="archive-article-date">
-  	<time datetime="2016-05-15T05:48:42.000Z" itemprop="datePublished">May 15</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/15/吉他练习视频-真的爱你/">吉他练习视频-真的爱你</a>
-    </h1>
+    <a href="/2016/06/05/Android系统源代码情景分析-读书笔记（五）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android系统源代码情景分析-读书笔记（五）
+        
+      </div>
+    </a>
   
+  
+    <a href="/2016/06/02/Android系统源代码情景分析-读书笔记（三）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android系统源代码情景分析-读书笔记（三）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/吉他/">吉他</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频/">视频</a></li></ul>
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/15/吉他练习视频-我是真的受伤了/" class="archive-article-date">
-  	<time datetime="2016-05-15T05:46:25.000Z" itemprop="datePublished">May 15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/15/吉他练习视频-我是真的受伤了/">吉他练习视频-我是真的受伤了</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/吉他/">吉他</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频/">视频</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android系统源代码情景分析-读书笔记（四）" data-title="Android系统源代码情景分析-读书笔记（四）" data-url="http://yoursite.com/2016/06/04/Android系统源代码情景分析-读书笔记（四）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -315,9 +356,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
