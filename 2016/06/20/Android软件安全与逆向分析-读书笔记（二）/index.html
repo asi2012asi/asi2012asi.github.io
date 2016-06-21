@@ -4,39 +4,33 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Android源码设计模式解析与实践--读书笔记（七） | Asii Blog</title>
+  <title>Android软件安全与逆向分析-读书笔记（二） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+  <meta name="description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
 
-访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
+静态分析Android程序何为静态分析 是指在不运行代码的情况下 采用词法分析 语法分析等各种技术手段对程序文件进行扫描从而生成程序的反汇编代码 然后阅读反汇编代码在掌握程序功能的一种技术
+静态分析主要分两种方法
 
-对象结构比较稳定 但经常需要在此对象结构上定义新的操作
-需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
-
-怎样理解操作与结构">
+阅读反汇编生成的dalvik字节码 可以使用IDA PRO分析dex文件 或者使用文本编辑器阅读ba">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android源码设计模式解析与实践--读书笔记（七）">
-<meta property="og:url" content="http://yoursite.com/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/index.html">
+<meta property="og:title" content="Android软件安全与逆向分析-读书笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2016/06/20/Android软件安全与逆向分析-读书笔记（二）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+<meta property="og:description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
 
-访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
+静态分析Android程序何为静态分析 是指在不运行代码的情况下 采用词法分析 语法分析等各种技术手段对程序文件进行扫描从而生成程序的反汇编代码 然后阅读反汇编代码在掌握程序功能的一种技术
+静态分析主要分两种方法
 
-对象结构比较稳定 但经常需要在此对象结构上定义新的操作
-需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
-
-怎样理解操作与结构">
-<meta property="og:updated_time" content="2016-05-14T10:08:29.000Z">
+阅读反汇编生成的dalvik字节码 可以使用IDA PRO分析dex文件 或者使用文本编辑器阅读ba">
+<meta property="og:updated_time" content="2016-06-21T16:30:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（七）">
-<meta name="twitter:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+<meta name="twitter:title" content="Android软件安全与逆向分析-读书笔记（二）">
+<meta name="twitter:description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
 
-访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
+静态分析Android程序何为静态分析 是指在不运行代码的情况下 采用词法分析 语法分析等各种技术手段对程序文件进行扫描从而生成程序的反汇编代码 然后阅读反汇编代码在掌握程序功能的一种技术
+静态分析主要分两种方法
 
-对象结构比较稳定 但经常需要在此对象结构上定义新的操作
-需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
-
-怎样理解操作与结构">
+阅读反汇编生成的dalvik字节码 可以使用IDA PRO分析dex文件 或者使用文本编辑器阅读ba">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -204,11 +198,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践--读书笔记（七）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Android软件安全与逆向分析-读书笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/" class="article-date">
-  	<time datetime="2016-05-14T08:31:04.000Z" itemprop="datePublished">2016-05-14</time>
+      <a href="/2016/06/20/Android软件安全与逆向分析-读书笔记（二）/" class="article-date">
+  	<time datetime="2016-06-20T08:02:16.000Z" itemprop="datePublished">2016-06-20</time>
 </a>
     </div>
   
@@ -221,7 +215,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android源码设计模式解析与实践--读书笔记（七）
+      Android软件安全与逆向分析-读书笔记（二）
     </h1>
   
 
@@ -230,7 +224,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/访问者模式/">访问者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDA-PRO/">IDA PRO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
         
@@ -242,125 +236,43 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Android源码设计模式解析与实践 <br>原著：何红辉 关爱民 <br>– –读书笔记 by asii</p>
+<p>Android软件安全与逆向分析 <br>作者： 丰生强<br>– –读书笔记 by asii</p>
 </blockquote>
-<h1 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h1><p>访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：</p>
+<h1 id="静态分析Android程序"><a href="#静态分析Android程序" class="headerlink" title="静态分析Android程序"></a>静态分析Android程序</h1><p>何为静态分析 是指在不运行代码的情况下 采用词法分析 语法分析等各种技术手段对程序文件进行扫描从而生成程序的反汇编代码 然后阅读反汇编代码在掌握程序功能的一种技术</p>
+<p>静态分析主要分两种方法</p>
 <ol>
-<li>对象结构比较稳定 但经常需要在此对象结构上定义新的操作</li>
-<li>需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类</li>
+<li>阅读反汇编生成的dalvik字节码 可以使用IDA PRO分析dex文件 或者使用文本编辑器阅读baksmali反编译生成的smali文件</li>
+<li>阅读反编译生成的java代码 可以使用dex2jar生成jar文件 然后再使用jd-gui来阅读jar文件的代码</li>
 </ol>
-<p>怎样理解操作与结构相分离呢</p>
-<pre><code>public class A{
-
-    public void doSomething(){
-        ...
-    }
-
-    public accept(B b){
-        b.visit(this);
-    }
-
-}
-
-public class B{
-
-    public void visit(A a){
-        a.doSomething();
-    }
-
-}
-</code></pre><p>在上面的例子中 B就是一个访问者 一开始会觉得这个B很多余 因为到头来都是在调用A的doSomething()操作 跟B一点关系都没有 但是试想一下 如果对A新增不同的操作 势必会对A产生很多不同的方法 这样对A的操作与A本身的结构就会耦合在一起了 回想一下 在Android开发中 会见到很多叫dataHelper的类 他们的本质就是访问者 他们吧数据的操作封装在外面（helper）了 而数据本身的结构是不变的不轻易修改的 这样才符合单一职责原则 </p>
-<p>而今天所说的访问者模式 是上面的例子的拓展 一讲到拓展 就肯定与接口扯不开了</p>
-<pre><code>abstract class Element {
-    public abstract void accept(IVisitor visitor);
-    public abstract void doSomething();
-}
-
-interface IVisitor {
-    public void visit(ConcreteElement1 el1);
-    public void visit(ConcreteElement2 el2);
-}
-
-class ConcreteElement1 extends Element {
-    public void doSomething(){
-        System.out.println(&quot;1&quot;);
-    }
-
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
-}
-
-class ConcreteElement2 extends Element {
-    public void doSomething(){
-        System.out.println(&quot;2&quot;);
-    }
-
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
-}
-
-class Visitor implements IVisitor {
-
-    public void visit(ConcreteElement1 el1) {
-        el1.doSomething();
-    }
-
-    public void visit(ConcreteElement2 el2) {
-        el2.doSomething();
-    }
-}
-
-class ObjectStruture {
-    public static List&lt;Element&gt; getList(){
-        List&lt;Element&gt; list = new ArrayList&lt;Element&gt;();
-        Random ran = new Random();
-        for(int i=0; i&lt;10; i++){
-            int a = ran.nextInt(100);
-            if(a&gt;50){
-                list.add(new ConcreteElement1());
-            }else{
-                list.add(new ConcreteElement2());
-            }
-        }
-    return list;
-    }
-}
-
-public class Client {
-    public static void main(String[] args){
-        List&lt;Element&gt; list = ObjectStruture.getList();
-        for(Element e: list){
-            e.accept(new Visitor());
-        }
-    }
-}
-</code></pre><p>新增了一个元素的抽象类 新增了一个访问者的接口 所谓的拓展 仅此而已 新增元素抽象类 是为了定义必须有的accept(Vistor v)方法来接收访问者 定义访问者接口是为了不需要为每一个vistor在元素类中创建一个accept方法 只需要新增不同的vistor即可（开放闭合原则 对修改关闭 对扩展开放）</p>
-<p>访问者模式在Android的编译期注解所用到 编译期注解的核心是APT （annotation processing tools）就是在某些代码上添加注解 在编译时编译器会检查abstractProcessor的子类并且调用该类型的process函数 然后将添加了注解的所有元素都传递到process函数中 使得开发人员可以在编译期间进行相应的处理 例如根据注解生成java类 这也是butterknife的基本原理</p>
-<p>对于编译器来说 代码中的元素结构是基本不变的 组成代码的基本元素包含包 类 函数 字段 类型参数 变量 那么可以采用访问者模式吧他们的操作放到外面</p>
-<pre><code>public interface Element{
-    ElementKind getkind();
-    Set&lt;Modifier&gt; getModifiers();
-    &lt;R,P&gt; R accept(ElementVistor&lt;R,P&gt; v,P p);
-}
-
-public interface ElementVistor&lt;R,P&gt;{
-    R visit(Element e,P p);
-
-    R visit(PackageElement e,P p);
-
-    R visit(TypeElement e,P p);
-
-    R visit(VariableElement e,P p);
-
-    R visit(ExecutableElement e.P p);
-
-}
-</code></pre><p>具体的实现类没有在这里写了 自行脑补 </p>
-<h1 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h1><p>中介者模式中的中介者包装了一系列对象相互作用的方式 使得这些对象不必相互明显作用 从而使他们松耦合 这个模式使对象之间的多对多关系变成一对多关系 将网状解耦股改成星状结构 降低系统复杂度 提高扩展性</p>
-<p>要理解这个模式并不难 例如想象一台电脑有很多不同的部件组成 有cpu 内存 显卡 io设备 他们之间是有联系的 例如从io设备读取用户的输入数据 把他们放到内存中 cpu对内存的数据进行处理 再经过显卡进行运算 最后通过io设备显示出来 如果每一个组件作为一个类 那么他们之间的联系在各自的组件中添加方法 想想都复杂 于是主板应运而生 他是为了解决连接他们之间的联系而存在 把他们的网状结构瓦解成星状结构</p>
-<p>在Android开发中 activity就是中介者 在他那里处理组件之间的逻辑</p>
+<h3 id="快速定位程序中的关键代码"><a href="#快速定位程序中的关键代码" class="headerlink" title="快速定位程序中的关键代码"></a>快速定位程序中的关键代码</h3><p>先使用apktool反编译apk文件 拿到manifest文件可以查看主activity 分析application类</p>
+<p>作者总结了几种定位关键代码的方法</p>
+<ol>
+<li>信息反馈法 先运行目标程序然后根据程序运行时给出的反馈信息作为突破口寻找关键代码 例如之前说的根据toast查账string中的这段id 再根据id查找到代码调用处</li>
+<li>特征函数法 某一些特别的函数会被调动 然后搜索该函数并进行筛选 </li>
+<li>顺序查看法 根据软件的启动代码开始逐行向下分析 这种方法在病毒分析时经常用</li>
+<li>代码注入法 这是一种动态调试方法 手动修改apk文件的反汇编代码加入log输出 配合logcat查看程序执行到特定点时的状态数据</li>
+<li>栈跟踪法 也是动态分析法 原理是输出运行时的栈跟踪信息 然后查看栈上的函数调用序列来理解方法的执行流程</li>
+<li>method profiling 也是动态分析法 根据函数的占用cpu时间 函数的调用关系等查找关键代码</li>
+</ol>
+<p>对于静态分析工具 IDA PRO和Androguard 都是非常实用的工具 前者是付费版 需要在Linux或者windows系统下安装运行 后者是免费工具 只能在Linux下运行 可以评估apk风险 计算apk相似度 可以与gephi配合 生成图形文件直观地分析</p>
+<p>前面的阅读笔记提及过apktool和baksmali 有很多静态分析工具都是以他们为基础开发的 有款apkInspector由国人开发  </p>
+<p>上面说的都是静态分析的第一种方法 都是直接分析smali来修改代码 下面介绍的是第二种分析方法</p>
+<p>使用dex2jar生成jar文件 再使用jd-gui来查看jar文件的源码</p>
+<p>如果需要一个集成环境专门开研究Android反编译的问题 可以安装一个Ubuntu系统 santoku 他的官网是<a href="https://santoku-linux.com" target="_blank" rel="external">https://santoku-linux.com</a> 里面集成了大量主流的Android程序分析工具 可支持Android iphone等移动设备的取证工作 集成渗透测试工具 集成网络数据分析工具</p>
+<h3 id="提一下Android-ndk"><a href="#提一下Android-ndk" class="headerlink" title="提一下Android ndk"></a>提一下Android ndk</h3><p>作为Android应用开发人员 通常是下面这两种情况下用到Android ndk </p>
+<p>第一种是移植其他平台的c或c++库到Android程序中来 这类程序开发一般分三个阶段 首先需要完成代码的移植 然后编写接口函数来完成原生代码与java代码的通信 在接口中调用功能代码 通过jni接口返回特定类型的数据 最后在java代码中调用这些接口函数</p>
+<p>第二种是为了加强代码保护 防止核心技术被破解 这是一种为了原生代码而编写原生代码的方法</p>
+<h1 id="动态调试Android应用程序"><a href="#动态调试Android应用程序" class="headerlink" title="动态调试Android应用程序"></a>动态调试Android应用程序</h1><p>ddms就是一个常用的动态调试工具 全称是dalvik debugs monitor service 他提供了设备截屏 查看运行的线程信息 文件浏览 logcat method profiling 广播状态信息 模拟电话呼叫 接受sms 虚拟地理坐标等功能</p>
+<p>通过代码注入法 可以在代码关键处 添加toast或者log注入 让注册码打印出来 或者作为是否被调用的根据 当然这些前提都是需要先阅读smali代码并理解关键代码在哪才可以注入</p>
+<p>栈跟踪法 用法类似代码注入法 不过并不是打印日志 而是打印个staceTrace 相应的java代码类似于 new Exception(“print trace”).printStackTrace();而转换为smali代码如下</p>
+<pre><code>new-instance v0, Ljava/lang/Exception;
+const-string v1, &quot;print trace&quot;
+invoke-direct {v0,v1}, Ljava/lang/Exception;-&gt;&lt;init&gt;(Ljava/lang/String;)V
+invoke-virtual {v0}, Ljava/lang/Exception;-&gt;printStackTrace()V
+</code></pre><p>把上面一段代码插入到断点地方 就可以查看运行到断点之前的所有方法运行的路径</p>
+<p>使用ddms的method profiling 可以追踪方法的调用 parent代表该方法被哪个方法调用 children代表该方法调用了哪些方法</p>
+<p>可以在代码段中添加startMethodTracing和stopMethodTracing来追踪方法的调用 生成的trace文件使用traceview来打开</p>
+<p>对于原生代码的分析 可以使用IDA PRO和gdb </p>
 
       
     </div>
@@ -370,18 +282,9 @@ public interface ElementVistor&lt;R,P&gt;{
     
 <nav id="article-nav">
   
-    <a href="/2016/05/15/吉他练习视频-我是真的受伤了/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          吉他练习视频-我是真的受伤了
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/05/08/Android源码设计模式解析与实践--读书笔记（六）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（六）</div>
+    <a href="/2016/06/19/Android软件安全与逆向分析-读书笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android软件安全与逆向分析-读书笔记（一）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -416,7 +319,7 @@ public interface ElementVistor&lt;R,P&gt;{
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践--读书笔记（七）" data-title="Android源码设计模式解析与实践--读书笔记（七）" data-url="http://yoursite.com/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/"></div>
+	<div class="ds-thread" data-thread-key="Android软件安全与逆向分析-读书笔记（二）" data-title="Android软件安全与逆向分析-读书笔记（二）" data-url="http://yoursite.com/2016/06/20/Android软件安全与逆向分析-读书笔记（二）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

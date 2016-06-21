@@ -4,39 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Android源码设计模式解析与实践--读书笔记（七） | Asii Blog</title>
+  <title>Android软件安全与逆向分析-读书笔记（一） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+  <meta name="description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
 
-访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
-
-对象结构比较稳定 但经常需要在此对象结构上定义新的操作
-需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
-
-怎样理解操作与结构">
+破解第一个应用程序一般破解程序可以从错误信息入手  例如toast提示 注册失败！ 那么可以在资源文件中找到该string字段 通过R.java文件找到对应的id 在反编译后的smali文件中查找该id 读dalvik指令集 判断注册成功的地方 修改代码 重新打包dex
+工具 apktool 编译和反编译工具 在w">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android源码设计模式解析与实践--读书笔记（七）">
-<meta property="og:url" content="http://yoursite.com/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/index.html">
+<meta property="og:title" content="Android软件安全与逆向分析-读书笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2016/06/19/Android软件安全与逆向分析-读书笔记（一）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+<meta property="og:description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
 
-访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
-
-对象结构比较稳定 但经常需要在此对象结构上定义新的操作
-需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
-
-怎样理解操作与结构">
-<meta property="og:updated_time" content="2016-05-14T10:08:29.000Z">
+破解第一个应用程序一般破解程序可以从错误信息入手  例如toast提示 注册失败！ 那么可以在资源文件中找到该string字段 通过R.java文件找到对应的id 在反编译后的smali文件中查找该id 读dalvik指令集 判断注册成功的地方 修改代码 重新打包dex
+工具 apktool 编译和反编译工具 在w">
+<meta property="og:updated_time" content="2016-06-20T04:37:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（七）">
-<meta name="twitter:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+<meta name="twitter:title" content="Android软件安全与逆向分析-读书笔记（一）">
+<meta name="twitter:description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
 
-访问者模式访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：
-
-对象结构比较稳定 但经常需要在此对象结构上定义新的操作
-需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类
-
-怎样理解操作与结构">
+破解第一个应用程序一般破解程序可以从错误信息入手  例如toast提示 注册失败！ 那么可以在资源文件中找到该string字段 通过R.java文件找到对应的id 在反编译后的smali文件中查找该id 读dalvik指令集 判断注册成功的地方 修改代码 重新打包dex
+工具 apktool 编译和反编译工具 在w">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -204,11 +192,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践--读书笔记（七）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Android软件安全与逆向分析-读书笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/" class="article-date">
-  	<time datetime="2016-05-14T08:31:04.000Z" itemprop="datePublished">2016-05-14</time>
+      <a href="/2016/06/19/Android软件安全与逆向分析-读书笔记（一）/" class="article-date">
+  	<time datetime="2016-06-19T03:17:27.000Z" itemprop="datePublished">2016-06-19</time>
 </a>
     </div>
   
@@ -221,7 +209,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android源码设计模式解析与实践--读书笔记（七）
+      Android软件安全与逆向分析-读书笔记（一）
     </h1>
   
 
@@ -230,7 +218,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中介者模式/">中介者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/访问者模式/">访问者模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dalvik/">Dalvik</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
         
@@ -242,125 +230,64 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Android源码设计模式解析与实践 <br>原著：何红辉 关爱民 <br>– –读书笔记 by asii</p>
+<p>Android软件安全与逆向分析 <br>作者： 丰生强<br>– –读书笔记 by asii</p>
 </blockquote>
-<h1 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h1><p>访问者模式是一种将数据操作与数据结构分离的模式 现实中使用率不高 他的使用场景在：</p>
+<h1 id="破解第一个应用程序"><a href="#破解第一个应用程序" class="headerlink" title="破解第一个应用程序"></a>破解第一个应用程序</h1><p>一般破解程序可以从错误信息入手  例如toast提示 注册失败！ 那么可以在资源文件中找到该string字段 通过R.java文件找到对应的id 在反编译后的smali文件中查找该id 读dalvik指令集 判断注册成功的地方 修改代码 重新打包dex</p>
+<p>工具 apktool 编译和反编译工具 在windows或者Ubuntu下可用<br> windows下使用方法</p>
 <ol>
-<li>对象结构比较稳定 但经常需要在此对象结构上定义新的操作</li>
-<li>需要对一个对象结构中的对象进行很多不同的并且不相关的操作 而需要避免这些操作‘污染’这些对象的类 也不希望在增加新操作是修改这些类</li>
+<li>反编译 apktool d abc.apk outdir</li>
+<li>编译   apktool b app路径 abc2.apk</li>
 </ol>
-<p>怎样理解操作与结构相分离呢</p>
-<pre><code>public class A{
-
-    public void doSomething(){
-        ...
-    }
-
-    public accept(B b){
-        b.visit(this);
-    }
-
-}
-
-public class B{
-
-    public void visit(A a){
-        a.doSomething();
-    }
-
-}
-</code></pre><p>在上面的例子中 B就是一个访问者 一开始会觉得这个B很多余 因为到头来都是在调用A的doSomething()操作 跟B一点关系都没有 但是试想一下 如果对A新增不同的操作 势必会对A产生很多不同的方法 这样对A的操作与A本身的结构就会耦合在一起了 回想一下 在Android开发中 会见到很多叫dataHelper的类 他们的本质就是访问者 他们吧数据的操作封装在外面（helper）了 而数据本身的结构是不变的不轻易修改的 这样才符合单一职责原则 </p>
-<p>而今天所说的访问者模式 是上面的例子的拓展 一讲到拓展 就肯定与接口扯不开了</p>
-<pre><code>abstract class Element {
-    public abstract void accept(IVisitor visitor);
-    public abstract void doSomething();
-}
-
-interface IVisitor {
-    public void visit(ConcreteElement1 el1);
-    public void visit(ConcreteElement2 el2);
-}
-
-class ConcreteElement1 extends Element {
-    public void doSomething(){
-        System.out.println(&quot;1&quot;);
-    }
-
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
-}
-
-class ConcreteElement2 extends Element {
-    public void doSomething(){
-        System.out.println(&quot;2&quot;);
-    }
-
-    public void accept(IVisitor visitor) {
-        visitor.visit(this);
-    }
-}
-
-class Visitor implements IVisitor {
-
-    public void visit(ConcreteElement1 el1) {
-        el1.doSomething();
-    }
-
-    public void visit(ConcreteElement2 el2) {
-        el2.doSomething();
-    }
-}
-
-class ObjectStruture {
-    public static List&lt;Element&gt; getList(){
-        List&lt;Element&gt; list = new ArrayList&lt;Element&gt;();
-        Random ran = new Random();
-        for(int i=0; i&lt;10; i++){
-            int a = ran.nextInt(100);
-            if(a&gt;50){
-                list.add(new ConcreteElement1());
-            }else{
-                list.add(new ConcreteElement2());
-            }
-        }
-    return list;
-    }
-}
-
-public class Client {
-    public static void main(String[] args){
-        List&lt;Element&gt; list = ObjectStruture.getList();
-        for(Element e: list){
-            e.accept(new Visitor());
-        }
-    }
-}
-</code></pre><p>新增了一个元素的抽象类 新增了一个访问者的接口 所谓的拓展 仅此而已 新增元素抽象类 是为了定义必须有的accept(Vistor v)方法来接收访问者 定义访问者接口是为了不需要为每一个vistor在元素类中创建一个accept方法 只需要新增不同的vistor即可（开放闭合原则 对修改关闭 对扩展开放）</p>
-<p>访问者模式在Android的编译期注解所用到 编译期注解的核心是APT （annotation processing tools）就是在某些代码上添加注解 在编译时编译器会检查abstractProcessor的子类并且调用该类型的process函数 然后将添加了注解的所有元素都传递到process函数中 使得开发人员可以在编译期间进行相应的处理 例如根据注解生成java类 这也是butterknife的基本原理</p>
-<p>对于编译器来说 代码中的元素结构是基本不变的 组成代码的基本元素包含包 类 函数 字段 类型参数 变量 那么可以采用访问者模式吧他们的操作放到外面</p>
-<pre><code>public interface Element{
-    ElementKind getkind();
-    Set&lt;Modifier&gt; getModifiers();
-    &lt;R,P&gt; R accept(ElementVistor&lt;R,P&gt; v,P p);
-}
-
-public interface ElementVistor&lt;R,P&gt;{
-    R visit(Element e,P p);
-
-    R visit(PackageElement e,P p);
-
-    R visit(TypeElement e,P p);
-
-    R visit(VariableElement e,P p);
-
-    R visit(ExecutableElement e.P p);
-
-}
-</code></pre><p>具体的实现类没有在这里写了 自行脑补 </p>
-<h1 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h1><p>中介者模式中的中介者包装了一系列对象相互作用的方式 使得这些对象不必相互明显作用 从而使他们松耦合 这个模式使对象之间的多对多关系变成一对多关系 将网状解耦股改成星状结构 降低系统复杂度 提高扩展性</p>
-<p>要理解这个模式并不难 例如想象一台电脑有很多不同的部件组成 有cpu 内存 显卡 io设备 他们之间是有联系的 例如从io设备读取用户的输入数据 把他们放到内存中 cpu对内存的数据进行处理 再经过显卡进行运算 最后通过io设备显示出来 如果每一个组件作为一个类 那么他们之间的联系在各自的组件中添加方法 想想都复杂 于是主板应运而生 他是为了解决连接他们之间的联系而存在 把他们的网状结构瓦解成星状结构</p>
-<p>在Android开发中 activity就是中介者 在他那里处理组件之间的逻辑</p>
+<p>工具 signapk.jar 签名工具 位于android源码目录下/build/tools/signapk/SignApk.java 可使用Android系统提供的签名文件进行签名testkey.pk8和testkey.x509.pem</p>
+<p>新建批处理文件signapk.bat</p>
+<pre><code>java -jar &quot;%~dp0signapk.jar&quot; &quot;%~dp0testkey.x509.pem&quot; &quot;%~dp0testkey.pk8&quot; %1signed.apk
+</code></pre><p>将testkey.pk8和testkey.x509.pem和signapk.jar,signapk.bat放在同一目录下 cmd进入该目录 运行signapk abc.apk 就会在该目录下生产apk文件</p>
+<p>dex文件反汇编工具 主流的有bakSmali和Dedexer<br>将dex文件反汇编成smali文件 采用baksmali的代码示例为<br>java -jar baksmali.jar -o baksmaliout Hello.dex</p>
+<p>编译smali文件使用smali.jar 示例java -jar smali.jar -o classes.dex HelloWorld.smali</p>
+<h1 id="了解Android-Dalvik虚拟机"><a href="#了解Android-Dalvik虚拟机" class="headerlink" title="了解Android Dalvik虚拟机"></a>了解Android Dalvik虚拟机</h1><p>以下简写java虚拟机为jvm Android dalvik虚拟机为dvm </p>
+<h3 id="jvm和dvm的区别"><a href="#jvm和dvm的区别" class="headerlink" title="jvm和dvm的区别"></a>jvm和dvm的区别</h3><ol>
+<li>jvm运行的是java字节码即class文件 dvm运行的是dalvik字节码 jvm通过解码class文件运行程序 而dvm是通过dx工具将class转为dalvik字节码 </li>
+<li>dalvik可执行文件体积更小 在转换过程中会对class重排列 消除冗余信息减少dalvik可执行文件的体积</li>
+<li>jvm和dvm架构不同 jvm是基于栈架构 运行时jvm需要频繁从栈上读取和写入数据这个过程需要更多指令分派和内存访问 会消耗不少cpu时间 而dvm是基于寄存器架构的 数据访问通过寄存器间直接传递</li>
+</ol>
+<h3 id="dvm是如何执行程序的"><a href="#dvm是如何执行程序的" class="headerlink" title="dvm是如何执行程序的"></a>dvm是如何执行程序的</h3><p>dvm属于Android Runtime层 从Android系统启动开始分析dvm是如何执行程序的</p>
+<ol>
+<li>Android加载完Linux内核后 第一个执行的进程是init进程</li>
+<li>运行init.rc脚本启动zygote进程 zygote进程是进程孵化器</li>
+<li>zygote进程在启动过程中 先初始化dvm 然后启动system_server进入zygote模式</li>
+<li>创建出一个server socket等待activityManagerService向zygote发送一个进程间通信请求 来创建一个新的应用进程</li>
+<li>zygote收到请求后通过fork自身来创建一个dvm实例来执行main函数 fork成功后工作就交给dvm</li>
+</ol>
+<p>下面是dvm的执行过程</p>
+<ol>
+<li>首先通过LoadclassfromDex函数完成类的装载工作</li>
+<li>虚拟机使用gDvm.loadedClasses来存储和查询所有装载进来的类</li>
+<li>字节码验证器使用dvmVerifyCodeFlow对装入的代码进行校验</li>
+<li>虚拟机调用finaClass查找并装载main函数</li>
+<li>调用dvmInterpret初始化解释器并执行字节码流</li>
+</ol>
+<h3 id="关于jit"><a href="#关于jit" class="headerlink" title="关于jit"></a>关于jit</h3><p>即时编译 从Android2.2开始加入 是一种通过在运行时将字节码翻译成机械码的技术 主流jit包含两种字节码编译方式 </p>
+<ol>
+<li>method方式 以函数为单位进行编译</li>
+<li>trace方式 以trace为单位进行编译 trace分热路径和冷路径 很少被执行的称为冷路径 频繁执行的称为热路径</li>
+</ol>
+<p>虚拟机默认trace方式编译代码</p>
+<h3 id="dalvik指令集"><a href="#dalvik指令集" class="headerlink" title="dalvik指令集"></a>dalvik指令集</h3><ol>
+<li>空操作指令 nop</li>
+<li>数据操作指令 例如move vA,vB 就是将vB寄存器的值赋给vA寄存器 两种寄存器都是4位</li>
+<li>返回指令 例如return-void 函数从一个void方法返回</li>
+<li>数据定义指令 例如 const/4 vA,#+B 将数值符号扩展为32位后赋给寄存器vA</li>
+<li>锁指令 例如monitor-enter vAA 为指定的对象获取锁</li>
+<li>实例操作指令 例如new-instance vAA,type@BBBB 构造一个指定类型对象的新实例 并将对象引用赋值给vAA寄存器 类型符type指定的类型不能是数组类</li>
+<li>数据操作指令 例如array-length vA,vB 获取给定vB寄存器中数组的长度并将值赋给vA寄存器 数组长度指的是数组的条目个数</li>
+<li>异常指令 throw vAA 抛出vAA寄存器中指定类型的异常</li>
+<li>跳转指令 goto +AA 无条件跳转到指定偏移处 偏移量AAAA不能为0</li>
+<li>比较指令 cmpl-float 比较两个单精度浮点数 如果vBB寄存器大于vCC寄存器 则结果为-1 相等为0 小于为1</li>
+<li>字段操作指令 普通字段操作指令有iget iget-wide 静态字段操作指令sget sget-wide </li>
+<li>方法调用指令 invoke-virtual 或invoke-virtual/range 调用实例虚方法</li>
+<li>数据转换指令 float-to-int 将单精度浮点型转为整形</li>
+<li>数据运算指令 add-int v1,v2 将v1寄存器与v2寄存器的值相加</li>
+</ol>
 
       
     </div>
@@ -370,18 +297,18 @@ public interface ElementVistor&lt;R,P&gt;{
     
 <nav id="article-nav">
   
-    <a href="/2016/05/15/吉他练习视频-我是真的受伤了/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/06/20/Android软件安全与逆向分析-读书笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          吉他练习视频-我是真的受伤了
+          Android软件安全与逆向分析-读书笔记（二）
         
       </div>
     </a>
   
   
-    <a href="/2016/05/08/Android源码设计模式解析与实践--读书笔记（六）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（六）</div>
+    <a href="/2016/06/17/Android系统源代码情景分析-读书笔记（八）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android系统源代码情景分析-读书笔记（八）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -416,7 +343,7 @@ public interface ElementVistor&lt;R,P&gt;{
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践--读书笔记（七）" data-title="Android源码设计模式解析与实践--读书笔记（七）" data-url="http://yoursite.com/2016/05/14/Android源码设计模式解析与实践--读书笔记（七）/"></div>
+	<div class="ds-thread" data-thread-key="Android软件安全与逆向分析-读书笔记（一）" data-title="Android软件安全与逆向分析-读书笔记（一）" data-url="http://yoursite.com/2016/06/19/Android软件安全与逆向分析-读书笔记（一）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
