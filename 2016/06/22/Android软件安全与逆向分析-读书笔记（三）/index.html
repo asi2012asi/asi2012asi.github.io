@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Android软件安全与逆向分析-读书笔记（三） | Asii Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
+
+Android软件的破解技术android平台的试用版软件大致分为三类 免费试用版 演示版 和限制功能免费版 这三种类别的软件可能只使用同一个软件安装包 通过不同的授权来区别使用权限 又或者使用不同的安装包提供不同的软件功能
+试用版软件下面介绍一种需要安装授权key的apk才能升级为高级版或者专业版的破解 破解的需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android软件安全与逆向分析-读书笔记（三）">
+<meta property="og:url" content="http://yoursite.com/2016/06/22/Android软件安全与逆向分析-读书笔记（三）/index.html">
+<meta property="og:site_name" content="Asii Blog">
+<meta property="og:description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
+
+Android软件的破解技术android平台的试用版软件大致分为三类 免费试用版 演示版 和限制功能免费版 这三种类别的软件可能只使用同一个软件安装包 通过不同的授权来区别使用权限 又或者使用不同的安装包提供不同的软件功能
+试用版软件下面介绍一种需要安装授权key的apk才能升级为高级版或者专业版的破解 破解的需">
+<meta property="og:updated_time" content="2016-06-25T16:08:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android软件安全与逆向分析-读书笔记（三）">
+<meta name="twitter:description" content="Android软件安全与逆向分析 作者： 丰生强– –读书笔记 by asii
+
+Android软件的破解技术android平台的试用版软件大致分为三类 免费试用版 演示版 和限制功能免费版 这三种类别的软件可能只使用同一个软件安装包 通过不同的授权来区别使用权限 又或者使用不同的安装包提供不同的软件功能
+试用版软件下面介绍一种需要安装授权key的apk才能升级为高级版或者专业版的破解 破解的需">
+  
+    <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fmyblog_header.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Asii</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">路漫漫其修远兮 吾将上下而求索</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>A propos</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/asi2012asi" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/asi2012" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 18px;">Android</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Broadcast/" style="font-size: 10px;">Broadcast</a> <a href="/tags/Dalvik/" style="font-size: 10px;">Dalvik</a> <a href="/tags/IDA-PRO/" style="font-size: 10px;">IDA PRO</a> <a href="/tags/android/" style="font-size: 16px;">android</a> <a href="/tags/builder模式/" style="font-size: 10px;">builder模式</a> <a href="/tags/c语言/" style="font-size: 12px;">c语言</a> <a href="/tags/handler/" style="font-size: 10px;">handler</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/mvp/" style="font-size: 10px;">mvp</a> <a href="/tags/packageManagerService/" style="font-size: 10px;">packageManagerService</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/zygote/" style="font-size: 10px;">zygote</a> <a href="/tags/中介者模式/" style="font-size: 10px;">中介者模式</a> <a href="/tags/代理模式/" style="font-size: 10px;">代理模式</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/吉他/" style="font-size: 14px;">吉他</a> <a href="/tags/工厂方法模式/" style="font-size: 10px;">工厂方法模式</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/抽象工厂模式/" style="font-size: 10px;">抽象工厂模式</a> <a href="/tags/智能指针/" style="font-size: 10px;">智能指针</a> <a href="/tags/桥接模式/" style="font-size: 10px;">桥接模式</a> <a href="/tags/模板模式/" style="font-size: 10px;">模板模式</a> <a href="/tags/状态模式/" style="font-size: 10px;">状态模式</a> <a href="/tags/破解/" style="font-size: 10px;">破解</a> <a href="/tags/示例/" style="font-size: 10px;">示例</a> <a href="/tags/策略模式/" style="font-size: 10px;">策略模式</a> <a href="/tags/简单工厂模式/" style="font-size: 10px;">简单工厂模式</a> <a href="/tags/组合模式/" style="font-size: 10px;">组合模式</a> <a href="/tags/装饰模式/" style="font-size: 10px;">装饰模式</a> <a href="/tags/观察者模式/" style="font-size: 10px;">观察者模式</a> <a href="/tags/视频/" style="font-size: 14px;">视频</a> <a href="/tags/访问者模式/" style="font-size: 10px;">访问者模式</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/适配器模式/" style="font-size: 10px;">适配器模式</a> <a href="/tags/面向对象的六大原则/" style="font-size: 10px;">面向对象的六大原则</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/asi2012asi">缺朋友</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">一只独来独往的IT狗</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Asii</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fmyblog_header.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Asii</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">路漫漫其修远兮 吾将上下而求索</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/asi2012asi" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/asi2012" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Android软件安全与逆向分析-读书笔记（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/22/Android软件安全与逆向分析-读书笔记（三）/" class="article-date">
+  	<time datetime="2016-06-22T03:40:15.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android软件安全与逆向分析-读书笔记（三）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/破解/">破解</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Android软件安全与逆向分析 <br>作者： 丰生强<br>– –读书笔记 by asii</p>
+</blockquote>
+<h1 id="Android软件的破解技术"><a href="#Android软件的破解技术" class="headerlink" title="Android软件的破解技术"></a>Android软件的破解技术</h1><p>android平台的试用版软件大致分为三类 免费试用版 演示版 和限制功能免费版 这三种类别的软件可能只使用同一个软件安装包 通过不同的授权来区别使用权限 又或者使用不同的安装包提供不同的软件功能</p>
+<h3 id="试用版软件"><a href="#试用版软件" class="headerlink" title="试用版软件"></a>试用版软件</h3><p>下面介绍一种需要安装授权key的apk才能升级为高级版或者专业版的破解 破解的需求是：不需要安装授权key也可以使用专业版的所有功能</p>
+<p>通过反编译dex文件得到的smali文件 查找判断权限的地方 一般带if条件 查找类似check appkey这类关键字容易找到 使用授权key的原理是目标程序与授权key程序拥有相同的用户id和签名 这样在目标程序就可以访问授权key内的内容信息 从而判断目标程序是免费版还是专业版 基于这种原理 我们只需要在目标程序判断授权key的地方修改条件就可以</p>
+<h3 id="序列号保护"><a href="#序列号保护" class="headerlink" title="序列号保护"></a>序列号保护</h3><p>也称为注册码保护 在购买这种保护方式的软件时 用户需要向软件作者提供注册信息（用户名或者机器码）然后软件作者根据编写好的算法程序计算出注册码发回给用户 用户使用这个注册码完成注册的过程 而软件作者的这种算法技术也称为注册机 在计算可逆机密算法程序的注册码时 通常是软件加密的一个逆过程</p>
+<h3 id="网络验证"><a href="#网络验证" class="headerlink" title="网络验证"></a>网络验证</h3><p>网络抓包工具 fiddler tcpdump wireshark 网络验证是软件在运行时需要联网进行一些验证 链接方式可能是socket或者http 验证的内容可以是软件注册信息验证 代码完整性验证 软件功能解密等 </p>
+<p>静态的网络验证比较容易破解 静态的网络验证就像访问服务器上的某个文件获取内容然后客户端进行校验 在破解时只需要根据地址获取到该内容就可以在本地进行破解 而动态的网络验证比较麻烦 可能需要传递特定的参数访问服务器然后服务器的脚本程序根据不同的参数返回不同的数据</p>
+<h3 id="应用内付费"><a href="#应用内付费" class="headerlink" title="应用内付费"></a>应用内付费</h3><p>一般的应用内付费都是需要google checkout账号 需要发布在google play平台 必须通过访问google play服务器进行交易 由于国内暂时不支持google 所以就不做讨论了</p>
+<h3 id="重启验证保护法"><a href="#重启验证保护法" class="headerlink" title="重启验证保护法"></a>重启验证保护法</h3><p>在软件注册时 不直接提示注册成功与否 而是将注册信息保存下来 然后在软件下次启动时读取并验证 如果失败则软件未注册 成功则开启注册版的功能 一般重启验证的保护模块采用Native代码编写 并且加入网络验证</p>
+<h1 id="Android软件的反破解技术"><a href="#Android软件的反破解技术" class="headerlink" title="Android软件的反破解技术"></a>Android软件的反破解技术</h1><p>一般分4个步骤 反编译 静态分析 动态分析 重编译 那么反破解就要分别对应这4步进行反破解</p>
+<ol>
+<li>对抗反编译 可通过压力测试 阅读反编译工具源码等方式来查找反编译工具的缺陷</li>
+<li>对抗静态分析 因为java代码容易被反编译 native代码是一种好的代码保护手段 毕竟逆向原生比较难懂些 还有一种方式就是使用Proguard混淆技术 可以使用keep class使某些java代码不被混淆</li>
+<li>对抗动态调试 (1)先检测调试器 在AndroidManifest中的application的标签中加入android:debuggable=”false”可以让程序不可调试 再在java代码中检测这个这个值是否被修改 如果被修改克直接退出进程 另外sdk还提供了一个方法检测调试器是否连接 android.os.Debug.isDebuggerConnected()  (2)检测模拟器 可以检测下面几个属性 ro.product.model模拟器为sdk 正常手机为手机型号 ro.build.tags 模拟器为test-key 正常手机为release-keys ro.kernel.qemu 模拟器为1 正常手机没有该属性 可以直接在命令行运行 adb shell getprop ro.kernel.qemu来对比下属性</li>
+<li>对抗重编译 (1)检查签名 getPackageManager().getPackageInfo(…).signatures可以获得签名 比较签名的hashcode就可以判断软件是否被重编译 （2）校验保护 代码每次重编译生成的dex文件的hash值都会发生改变 apk本身是一个zip 可以采用CRC作为classes.dex的校验算法<code>zf = new ZipFile(getApplicationContext().getPackageCodePath()); ZipEntry ze = zf.getEntry(“Classes.dex”);String crc = String.valueOf(ze.getCrc());</code></li>
+</ol>
+<h1 id="Android系统攻击与防范"><a href="#Android系统攻击与防范" class="headerlink" title="Android系统攻击与防范"></a>Android系统攻击与防范</h1><h3 id="关于root手机"><a href="#关于root手机" class="headerlink" title="关于root手机"></a>关于root手机</h3><p>root手机有几种安全隐患 1 系统不稳定 2 病毒侵入 3 隐私数据暴露<br>root手机的原理 可以通过x-ray for Android检查手机的提权漏洞 比较常见的漏洞是Gingerbreak 一键root工具是基于这些漏洞 向手机系统的/system/app目录写入root权限管理软件 Superuser.apk 以及向/system/bin/或者/system/xbin目录写入su程序 这两个软件由ChainsDD在github上维护 作者Zinx就是Android安全之路的先驱</p>
+<p>Android的串谋权限攻击<br>A程序没有声明权限使用功能 B程序具备权限使用功能 A程序可以通过B程序来使用这些权限功能 这就是串谋权限攻击 关于检测权限攻击 可以使用Mercury工具</p>
+<h3 id="Android组件安全"><a href="#Android组件安全" class="headerlink" title="Android组件安全"></a>Android组件安全</h3><p>activity具备在intent过滤器 默认是可以通过外部访问的 这样容易被其他外部程序发起串谋攻击 activity有一个属性 android:exported属性 当该属性声明为false时 外部程序（签名不同 用户id不同的程序）就不能发起调用了 还可以在指定activity中加入android:permission=”com.test.abc”来限定某些加入该权限才能访问的程序</p>
+<p>activity劫持 劫持的原理是当用户安装了带有activity劫持功能的恶意程序后 恶意程序会遍历系统中运行的程序 当检测到需要劫持的activity（通常是网银或者其他网络程序的登录界面）在前台运行时 恶意程序会启动一个带有FLAG_ACTIVITY_NEW_TASK标志的钓鱼式activity覆盖正常的activity 从而欺骗用户输入用户名或者密码信息 当用户输入完信息后 恶意程序会将信息发送到指定的网址或者邮箱 然后切换到正常的activity中去</p>
+<p>下面演示下activity劫持的检测和启动过程 启动定时器检测系统正在运行的进程是否与劫持的进程列表相匹配的 如果有就劫持</p>
+<pre><code>private TimeTask mTask = new TimerTask(){
+    @override
+    public void run(){
+        ActivityManager am=(ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
+        List&lt;RunningAppProcessInfo&gt; infos = am.getRunningAppProcesss();
+        for(RunningAppProcessInfo painfo: infos){
+            if(psinfo.importance == RunningAppProcessInfo.IMPORTANCE_FORGROUND){
+                //检测到是前台进程
+                if(mhijackingList.contains(psinfo.processName)){
+                    Intent intent = new Intent(getBaseContext(),HijackActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(&quot;processName&quot;,psinfo.processName);
+                    getApplication().startActivity(intent);
+                }
+            }
+        }
+    }
+
+}
+</code></pre><p>上面的手法是劫持了进程（可以是多个进程） 想劫持activity可以将getRunningAppProcess换成getRunningTask就可以获取当前的任务列表<br>这种劫持手法透明 一般防病毒软件无法检测 手机用户更是防不胜防 有个比较简单的检测方式是长按home键查看最后运行的程序来判断activity是否被劫持过 然后这种方法并不是时常有效 可以设置属性android:exludeFromRecents的值为true 即使运行过的进程也不会显示最近运行过的列表中</p>
+<h3 id="broadcast-Receiver安全"><a href="#broadcast-Receiver安全" class="headerlink" title="broadcast Receiver安全"></a>broadcast Receiver安全</h3><p>凡是通过intent-filter来接收的都可以通过外部来访问 之前讲过解决方案是组件属性Android:exported属性设置为false 让组件只能接收到同用户id和签名的进程发送的广播 要想指定哪类进程可以发送 也可以配置permission 广播又分有序广播和无序广播两种 sendBroadcast和sendOrderedBroadcast 无序广播可以被所有广播接收者接收并且不能通过abortBroadcast中止广播 有序广播按照优先级度顺序接受 优先度高的广播可以拦截广播调用abortBroadcast中止广播 优先级度通过属性android:priority属性的数值来决定 数值越大 优先度越高 取值范围-1000到1000 我们可以设置接收短信的receiver的值为最大值 就可以拦截短信 短信不回存到收件箱</p>
+<h3 id="service安全"><a href="#service安全" class="headerlink" title="service安全"></a>service安全</h3><p>service一般用作后台任务 由于他没有界面 执行起来更加隐蔽 同样可以使用exported属性为false来阻止其他恶意软件调用 同一作者如果想多个程序共享使用该服务可以定义权限 没有声明该权限下调用该服务会报SecurityException异常</p>
+<h3 id="数据安全"><a href="#数据安全" class="headerlink" title="数据安全"></a>数据安全</h3><p>数据分外部存储和内部存储两种 使用<code>new file(“dir”)</code>这类一般为外部存储 使用<code>openFileOutput(“config.txt”,MODE_PRIVATE)</code>这类为内部存储 注意第二个参数MODE_PRIVATE使其他程序无法访问这个文件 如果改为MODE_WORLD_READABLE就会被其他程序访问到 可以使用如下代码</p>
+<pre><code>Context Context = new createPackageContext(&quot;com.adb.abc&quot;,Context.CONTEXT_IGNORE_SECURITY);
+FileInputStream fis = context.openFileInput(&quot;config.txt&quot;);
+</code></pre><p>其实无论有无设置MODE_PRIVATE 想获取私有内部数据都是有可能的 所以关键在于数据的加密 还要注意的是所有使用intent来传递数据的 尽量不要使用action的方式 而是采用指定目标组件的方式 因为使用action容易被其他程序拦截 当优先级被抢夺后信息就会暴露</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/20/Android软件安全与逆向分析-读书笔记（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android软件安全与逆向分析-读书笔记（二）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android软件安全与逆向分析-读书笔记（三）" data-title="Android软件安全与逆向分析-读书笔记（三）" data-url="http://yoursite.com/2016/06/22/Android软件安全与逆向分析-读书笔记（三）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Asii
+    	</div>
+      	<div class="footer-right">
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
