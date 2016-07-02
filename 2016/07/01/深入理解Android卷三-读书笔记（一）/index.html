@@ -4,45 +4,39 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Android源码设计模式解析与实践--读书笔记（二） | Asii Blog</title>
+  <title>深入理解Android卷三-读书笔记（一） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+  <meta name="description" content="深入理解Android卷三 作者： 张大伟– –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
+windowManagerServicewms主要有两个基础系统 
 
-   pub">
+布局系统 计算和管理窗口的位置和层次
+动画系统 根据布局系统计算窗口位置与层次渲染窗口动画
+
+关于窗口的概念窗口的本质是画布surface 用户看到的窗口实质上是一块块surface通过wms编排后输入到屏幕上展示给用户的 根据对surface的操作类">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android源码设计模式解析与实践--读书笔记（二）">
-<meta property="og:url" content="http://yoursite.com/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/index.html">
+<meta property="og:title" content="深入理解Android卷三-读书笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2016/07/01/深入理解Android卷三-读书笔记（一）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+<meta property="og:description" content="深入理解Android卷三 作者： 张大伟– –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
+windowManagerServicewms主要有两个基础系统 
 
-   pub">
-<meta property="og:updated_time" content="2016-05-02T04:20:43.000Z">
+布局系统 计算和管理窗口的位置和层次
+动画系统 根据布局系统计算窗口位置与层次渲染窗口动画
+
+关于窗口的概念窗口的本质是画布surface 用户看到的窗口实质上是一块块surface通过wms编排后输入到屏幕上展示给用户的 根据对surface的操作类">
+<meta property="og:updated_time" content="2016-07-02T07:26:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android源码设计模式解析与实践--读书笔记（二）">
-<meta name="twitter:description" content="Android源码设计模式解析与实践 原著：何红辉 关爱民 – –读书笔记 by asii
+<meta name="twitter:title" content="深入理解Android卷三-读书笔记（一）">
+<meta name="twitter:description" content="深入理解Android卷三 作者： 张大伟– –读书笔记 by asii
 
-单例模式单例模式应该是们使用的第一个 而且是经常使用的模式 
-首先是 周所周知的饿汉模式和懒汉模式
-//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
+windowManagerServicewms主要有两个基础系统 
 
-   pub">
+布局系统 计算和管理窗口的位置和层次
+动画系统 根据布局系统计算窗口位置与层次渲染窗口动画
+
+关于窗口的概念窗口的本质是画布surface 用户看到的窗口实质上是一块块surface通过wms编排后输入到屏幕上展示给用户的 根据对surface的操作类">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -210,11 +204,11 @@ public class Singleton{
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Android源码设计模式解析与实践--读书笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-深入理解Android卷三-读书笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/" class="article-date">
-  	<time datetime="2016-04-30T07:50:47.000Z" itemprop="datePublished">2016-04-30</time>
+      <a href="/2016/07/01/深入理解Android卷三-读书笔记（一）/" class="article-date">
+  	<time datetime="2016-07-01T09:07:27.000Z" itemprop="datePublished">2016-07-01</time>
 </a>
     </div>
   
@@ -227,7 +221,7 @@ public class Singleton{
         
   
     <h1 class="article-title" itemprop="name">
-      Android源码设计模式解析与实践--读书笔记（二）
+      深入理解Android卷三-读书笔记（一）
     </h1>
   
 
@@ -236,7 +230,7 @@ public class Singleton{
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windowManagerService/">windowManagerService</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
         
@@ -248,107 +242,27 @@ public class Singleton{
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Android源码设计模式解析与实践 <br>原著：何红辉 关爱民 <br>– –读书笔记 by asii</p>
+<p>深入理解Android卷三 <br>作者： 张大伟<br>– –读书笔记 by asii</p>
 </blockquote>
-<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式应该是们使用的第一个 而且是经常使用的模式 </p>
-<p>首先是 周所周知的饿汉模式和懒汉模式</p>
-<pre><code>//懒汉模式 
-public class Singleton{
-   private static Singleton instance;
-   private Singleton(){}
-
-   public static synchronized Singleton getInstance(){
-      if(instance == null){
-         instance = new Singleton();
-      }
-      return instance;
-   }
-
-}
-
-//饿汉模式
-public class Singleton{
-   private static Singleton instance = new Single();
-   private Singleton(){};
-
-   public static Singleton getInstance(){
-      retrun instance;
-   }
-}
-</code></pre><p>区分饿汉模式和懒汉模式 ：饿汉是一来什么都不说先new对象 很饥渴的样子 懒汉是一来我什么都不干 当需要调用到我的时候我再new对象 以前我容易把他两个搞混<br>懒汉模式对比饿汉模式在一定程度上节约了资源 但是每次加载都需要进入同步锁 一样也会造成同步开销 所以还有个折中的方法是 Double check Lock （DCl）</p>
-<pre><code>public class Singleton{
-   private static Singleton instance = null;
-   private Single(){}
-
-   public Static Singleton getInstance(){
-      if(instance == null){
-        sychronized(Singleton.class){
-           if(instance == null){
-              instance = new Singleton();
-           }
-        }
-
-      }
-      return instance;
-   }
-}
-</code></pre><p>有两次判空 第一次是为了避免不必要的同步 第二次为了确认是null的情况下创建实例。但是DCL在高并发的环境中还是有可能会失效的 原因要从instance = new Singleton()这行代码说起 这行代码可以分解成三个汇编命令：</p>
+<h1 id="windowManagerService"><a href="#windowManagerService" class="headerlink" title="windowManagerService"></a>windowManagerService</h1><p>wms主要有两个基础系统 </p>
 <ol>
-<li>给Singleton的实例分配内存</li>
-<li>调用Singleton()的构造函数 初始化成员变量 </li>
-<li>将instance对象指向分配的内存空间（此时instance就不是null了）</li>
+<li>布局系统 计算和管理窗口的位置和层次</li>
+<li>动画系统 根据布局系统计算窗口位置与层次渲染窗口动画</li>
 </ol>
-<p>java编译器允许处理器乱序执行 也就是执行顺序可能是1-2-3 也可能是1-3-2 如果是1-3-2 譬如A线程在3执行完准备执行2 此时切换到B线程已经发现instance不为空 线程B将instance直接取走 在使用的时候由于该instance未执行过构造函数 （本例中构造函数里的内容为空 实际开发中构造函数会有些赋值之类的操作） 此时就会出错</p>
-<p>在java1.5之后可以在定义instance时加volatile关键字来使DCl生效 也就是<code>private volatile static Singleton instance =null</code></p>
-<p>如果上述的单例模式写法还是不让你满意的话 you may try this</p>
-<pre><code>//静态内部类单例模式
-public class Singleton{
-  private Singleton(){}
-  private static Singleton getInstance{
-     return SingletonHolder.instance;
-  }
-
-  private static class SingletonHolder{
-     private static final Singleton instance = new Instance();
-  }
-}
-</code></pre><p>这种方式既能确保线程安全 也能保证实例对象的唯一性 同时也延迟了单例的实例化 这是最推荐的单例模式写法</p>
-<p>说到 static final 你肯定还会想到enum 枚举 枚举的所有成员变量都是这种声明 </p>
-<pre><code>public enum SingletonEnum{
-    INSTANCE;
-    void doSomething(){
-        System.out.print(&quot;枚举单例模式&quot;);
-    }
-
-    //构造函数(其实也可以不写)
-    SingletonEnum(){
-
-    }
-
-}
-</code></pre><p>单例模式还可以用容器的方式来实现 例如Android源码中view从xml中创建 </p>
-<pre><code>public final View createView(...)
-{
-//从缓存中获取构造函数
-   Constructor&lt;? extends View&gt; construtor = sConstrutorMap.get(name);
-   Class&lt;? extends View&gt; clazz = null;
-   if(construtor == null){
-     clazz = ...
-     construtor = clazz.getConstrutor(...);
-     //创建的构造函数放到缓存中以便下次直接读取
-     sConstrutorMap.put(name,construtor);
-     ...
-     //通过反射来构造view
-     final View view = construtor.newInstance();
-     ...
-     return view；
-   }
-}
-</code></pre><p>单例模式的好处就不说了 我来说他的缺点</p>
+<h3 id="关于窗口的概念"><a href="#关于窗口的概念" class="headerlink" title="关于窗口的概念"></a>关于窗口的概念</h3><p>窗口的本质是画布surface 用户看到的窗口实质上是一块块surface通过wms编排后输入到屏幕上展示给用户的 根据对surface的操作类型可以将Android的显示系统分为三个层次</p>
 <ol>
-<li>单例模式一般没有接口实现 扩展起来很困难若要扩展 只能修改</li>
-<li>单例对象如果持有Context 那么很容易发生内存泄漏 此时注意传递给单例对象的Context最好是Application Context</li>
+<li>ui框架层 负责在surface上绘制ui元素以及响应输入事件</li>
+<li>wms 负责管理surface的分配和层级顺序等</li>
+<li>surfaceFlinger 负责将多个surface混合后输出</li>
 </ol>
+<p>在wms在新增窗口addWindow时包含了三个重要的内容 windowToken windowState和DisplayContent</p>
+<h3 id="windowToken"><a href="#windowToken" class="headerlink" title="windowToken"></a>windowToken</h3><p>windowToken将属于同一个应用组件的窗口组织在一起 所谓应用组件包括activity inputMethod wallpaper 和dream 在wms对窗口管理的过程中用windowToken指代一个应用组件 在ZOrder排序时 属于同一个windowToken的会被安排在一起 </p>
+<p>第二点 windowToken具有令牌的作用 应用组件在需要新窗口时 必须提供windowToken表明自己的身份 并且窗口的类型必须与所持有windowToken的类型一致 在创建系统类型的窗口时 不需要提供一个有效的token wms会隐式地为其声明一个windowToken 但是要求客户端必须拥有创建系统窗口的权限</p>
+<h3 id="windowState"><a href="#windowState" class="headerlink" title="windowState"></a>windowState</h3><p>windowState表示一个窗口的所有属性 所以他是wms事实上的窗口 在显示组件一侧也有对应的类型 IWindow.Stub 提供了很多与窗口管理相关通知的回调 例如尺寸变化和焦点变化</p>
+<h3 id="displayContent"><a href="#displayContent" class="headerlink" title="displayContent"></a>displayContent</h3><p>displayContent是根据窗口的显示位置将窗口分组 属于同一个displayContent的窗口将会被显示在同一个屏幕中 </p>
+<p>关于surface的显示次序 窗口根据自己的类型得出其主序以及子序 然后addWindowToListInOrderLocked()根据主序和子序以及所属的Activity的顺序 按照升序排列在在DisplayContent的MWindow列表中 然后assignLayersLocked()为MWindows中所有窗口分配最终的显示次序 之后 wms的动画系统将最终的显示次序通过surface.setLayer()设置进surfaceFlinger</p>
+<h3 id="窗口的布局"><a href="#窗口的布局" class="headerlink" title="窗口的布局"></a>窗口的布局</h3><p>将relayoutWindow作为布局的切入点 先修改了窗口属性 屏幕属性 焦点属性等 标记相关的displayContent为relayoutNeeded 调用performLayoutAndPlaceSurfaceLocked进行全局布局 再对布局结果进行进一步的操作 在布局的过程中 需要连续重新布局多次 最后才能布局完成</p>
+<p>以窗口布局计算为主要任务的布局循环 以performLayoutLockedInner函数为核心 根据屏幕尺寸以及状态栏 导航栏 输入法窗口等系统窗口确定了作为窗口布局准绳的8歌矩形 再从8个矩形中选择4个矩形作为窗口布局的直接参数 并以这4个参数计算出窗口的最终位置 然后根据布局计算设置surface的位置和尺寸 并更新一些由窗口指定的系统属性为目的布局后处理 displayContent的布局其实是窗口的布局 而窗口的布局中又以窗口的布局计算为核心</p>
 
       
     </div>
@@ -358,18 +272,9 @@ public class Singleton{
     
 <nav id="article-nav">
   
-    <a href="/2016/05/02/Android源码设计模式解析与实践--读书笔记（三）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Android源码设计模式解析与实践--读书笔记（三）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/29/Android源码设计模式解析与实践--读书笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android源码设计模式解析与实践--读书笔记（一）</div>
+    <a href="/2016/06/22/Android软件安全与逆向分析-读书笔记（三）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android软件安全与逆向分析-读书笔记（三）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -404,7 +309,7 @@ public class Singleton{
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Android源码设计模式解析与实践--读书笔记（二）" data-title="Android源码设计模式解析与实践--读书笔记（二）" data-url="http://yoursite.com/2016/04/30/Android源码设计模式解析与实践--读书笔记（二）/"></div>
+	<div class="ds-thread" data-thread-key="深入理解Android卷三-读书笔记（一）" data-title="深入理解Android卷三-读书笔记（一）" data-url="http://yoursite.com/2016/07/01/深入理解Android卷三-读书笔记（一）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
