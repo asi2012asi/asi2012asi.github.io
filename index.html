@@ -73,13 +73,13 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
+						<li>Menu</li>
+						<li>Tags</li>
 						
-						<li>友情链接</li>
+						<li>Links</li>
 						
 						
-						<li>关于我</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -234,6 +234,31 @@
 <li>创建FallbackEventHandler 是一个处理未经任何人消费的输入事件的场所</li>
 <li>创建一个依附于当前线程 即主线程的choreographyer 用于通过VSYNC特性安排重绘行为</li>
 </ol>
+<p>下面分析viewrootImpl.setView的过程</p>
+<ol>
+<li>用mView保存控件树的根</li>
+<li>mWindowAttitudes保存窗口对应的layoutparams requestLayout在添加窗口之前 先通过他来在主线程上安排一次遍历</li>
+<li>初始化mInputChanel</li>
+<li>如果mInputChanel不为空 则创建mInputEventReceiver 用于接收输入事件</li>
+</ol>
+<p>第二步指的遍历实际上执行的就是performTraversals方法 viewrootImpl中接收的各种变化 如来自wms窗口属性变化 来自控件树的尺寸变化以及重绘请求等都会引发performTraversals的调用 View类以及其子类中的onMeasure onLayout以及onDraw等回调都是在performTraversals的执行过程中直接或间接地引发</p>
+<h3 id="performTraversals"><a href="#performTraversals" class="headerlink" title="performTraversals"></a>performTraversals</h3><p>这方法是控件系统的心跳 下面总结他的工作阶段大体分5步</p>
+<ol>
+<li>预测量阶段 会计算出控件树为其显示内容所需的尺寸 view的onMeasure方法将会沿着控件树依次被回调</li>
+<li>布局窗口阶段 根据预测量的结果 通过IWindowSession.relayout向wms请求调整窗口的尺寸等属性 这将会引发wms对窗口进行重新布局 并将布局结果返回给viewrootImpl</li>
+<li>最终测量阶段 要注意的是第一步预测量的结果是控件树所期望的窗口尺寸 由于wms中影响窗口布局的因素很多 wms不一定会将窗口准确地布局为控件树所要求的尺寸 在这个阶段 performTraversals将以窗口的实际尺寸对控件进行最终测量 view的onMeasure方法将会沿着控件树依次被回调</li>
+<li>布局控件树阶段 view的layout方法会被回调</li>
+<li>绘制阶段 view的onDraw方法被回调</li>
+</ol>
+<p>第一步的预测量阶段在onMeasure时会接受到父控件的建议尺寸 出现widthSpec和heightSpec 这些参数收到MeasureSpec.UNSPECIFIED Measure.EXACTLY Measure.AT_MOST影响 遵循三个原则 第一次遍历时使用应用可用的最大尺寸作为SPEC_SIZE的候选 此窗口是一个悬浮窗口LayoutParams.width/height其中之一被指定为wrapContent时 使用应用可用的最大尺寸作为SPEC_SIZE的候选 其他情况使用窗口最新尺寸作为SPEC_SIZE的候选</p>
+<p>布局控件树阶段主要分两步 第一个是进行控件树的布局 第二个是设置窗口的透明区域</p>
+<p>performDraw是控件树的绘制入口</p>
+<p>layoutRequested是一个判断标志位 判断控件树是否需要进入测量阶段 如果不需要就直接进入绘制阶段 进入requestLayout的目的是为了确定控件的位置和尺寸 而有时候这些都没有发生改变 只是改变了文字颜色或者背景 那么只需要调用invalidate</p>
+<h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><p>canvas就是一块画布 是一个绘图工具类 他的绘图指令分两类 一类是drawxxx来实现绘制点 线条 圆形 方块等 二类是辅助指令 如变换 剪切区域 save和restore来恢复坐标系等指令</p>
+<p>canvas的绘制目标按软件绘制和硬件加速两种分 软件绘制的目标是建立在surface之上的位图bitmap 当通过Surface.lockCanvas方法获取一个canvas时会以Surface的内存创建一个Bitmap 通过canvas所绘制的内容直接反映到surface中<br>第二种是hardwareLayer绘制目标是displayList displayList不是一块bitmap而是指令序列 displayList会将canvas的绘制指令编译并优化为硬件绘制指令 并且可以在需要时将这些指令回放到一个hardwareLayer上 而不需要重新使用canvas进行绘制</p>
+<p>canvas.translate(x,y)可以进行坐标转换 使用save和restore进行恢复</p>
+<p>view.invalidate会将需要重绘的区域沿着控件树提交给viewrootImpl 并保存在viewrootImpl的mDirty成员中 通过scheduleTraversals引发一次遍历 进而进行重绘工作 这个方法必须在主线程执行 但不会立即开始 主线程的Looper会在处理完其他消息后再处理invalidate 多次调用invalidate会使得viewrootImpl多次接受到设置脏区域的请求 viewRootImpl会将这些区域累加到mDirty中 进而随后的遍历中一次性地完成所有脏区域的重绘 另外postInvalidate用于在子线程开启的重绘</p>
+<p>viewRootImpl.draw方法中产生硬件加速绘制和软件绘制两个分支 如果是硬件加速将会创建一个hardwareRender保存在mAttachInfo中</p>
 
       
     </div>
