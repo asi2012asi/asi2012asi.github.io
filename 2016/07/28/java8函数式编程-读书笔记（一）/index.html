@@ -24,7 +24,7 @@ button.setOnClickListener(
     new View.onClickListener(){
         @override
         public void onClick(View v){">
-<meta property="og:updated_time" content="2016-07-28T13:54:23.000Z">
+<meta property="og:updated_time" content="2016-07-28T14:00:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java8函数式编程-读书笔记（一）">
 <meta name="twitter:description" content="java8函数式编程 作者： Richard Warburton 翻译：王群锋– –读书笔记 by asii
@@ -98,7 +98,7 @@ button.setOnClickListener(
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -268,17 +268,17 @@ button.setonClickListener(v -&gt; v.setText(name));
 </code></pre><h1 id="函数接口"><a href="#函数接口" class="headerlink" title="函数接口"></a>函数接口</h1><p>函数接口是只有一个抽象方法的接口 用作lambda表达式的类型</p>
 <p>下面是java中重要的函数接口</p>
 <pre><code>接口                   参数         返回类型
-Predicate&lt;T&gt;           T            boolean
+Predicate&lt;T&gt;          T               boolean
 
-Consumer&lt;T&gt;               T            void
+Consumer&lt;T&gt;               T           void
 
-Function&lt;T,R&gt;             T            R
+Function&lt;T,R&gt;          T           R
 
-Supplier&lt;T&gt;              None            T
+Supplier&lt;T&gt;              None         T
 
-UnaryOperator&lt;T&gt;       T            T
+UnaryOperator&lt;T&gt;       T           T
 
-BinaryOperator&lt;T&gt;      (T,T)            T
+BinaryOperator&lt;T&gt;     (T,T)            T
 </code></pre><p>javac可以根据上下文自动推断出参数的类型 且用户也可以手动声明类型</p>
 <h1 id="流"><a href="#流" class="headerlink" title="流"></a>流</h1><p>java8引入了流stream 对集合类也进行了改进</p>
 <p>流stream是用函数式编程方式在集合类上进行复杂操作的工具</p>
@@ -295,12 +295,12 @@ while(iterator.hasNext()){
 //使用流后
 long count = allArtist.stream().filter(artist -&gt; artist.isFrom(&quot;london&quot;)).count();
 </code></pre><p>上面的stream操作方式 注意 在没有调用count前他依然是个steam类型  不会产生新的集合 这是一种惰性求值方法 而count是从stream产生值得方法是及早求值方法</p>
-<h3 id="常用的流操作"><a href="#常用的流操作" class="headerlink" title="常用的流操作"></a>常用的流操作</h3><p>collect(Collectors.toList);这个方法是由stream里的值生成一个列表 是一个及早求值操作 例如<code>List<string> collected = Steam.of(“a”,”b”,”c”).collect(Collectors.tolist());</string></code></p>
-<p>map 将一个流中的值转换成一个新的流 例如<code>List<string> collected = Stream.of(“a”,”b”,”c”).map(string -&gt; string.toUpperCase()).collect(Collectors.toList());</string></code> map操作显然使用的是function函数接口</p>
-<p>filter 前面使用过filter了 接受一个predicate来过滤结果 例如<code>List<string> newMembers = Stream.of(“a”,”1b”,”2c”).filter(value -&gt; isDigst(value.chatAt(0))).collect(Collectors.toList());</string></code></p>
-<p>flatMap 可用stream替换值 然后将多个stream连接成一个stream 常见于多层循环 <code>List<integer> together = Stream.of(asList(1,2),asList(3,4)).flatMap(number -&gt; numbers.stream()).collect(Collectors.toList());</integer></code></p>
-<p>max和min 求最大值最小值 在collections可以使用sort接受一个比较器进行排序求出最大值最小值 在stream中也有这样的操作 <code>Track shortestTrack = tracks.stream().min(Compartor.comparing(track -&gt; track.getLength())).get();</code></p>
-<p>reduce 从一组值中生成一个值 cout max min都是reduce操作 例如实现一个累加器 <code>int count = Stream.of(1,2,3).reduce(0,(acc,element) -&gt; acc+element);</code> reduce方法重载了三次对应1 2 3个参数 注意他们的泛型方法参数类型要对应 </p>
+<h3 id="常用的流操作"><a href="#常用的流操作" class="headerlink" title="常用的流操作"></a>常用的流操作</h3><p>collect(Collectors.toList);这个方法是由stream里的值生成一个列表 是一个及早求值操作 例如<pre><code>List<string> collected = Steam.of(“a”,”b”,”c”).collect(Collectors.tolist());</string></code></pre></p>
+<p>map 将一个流中的值转换成一个新的流 例如<pre><code>List<string> collected = Stream.of(“a”,”b”,”c”).map(string -&gt; string.toUpperCase()).collect(Collectors.toList());</string></code></pre> map操作显然使用的是function函数接口</p>
+<p>filter 前面使用过filter了 接受一个predicate来过滤结果 例如<pre><code>List<string> newMembers = Stream.of(“a”,”1b”,”2c”).filter(value -&gt; isDigst(value.chatAt(0))).collect(Collectors.toList());</string></code></pre></p>
+<p>flatMap 可用stream替换值 然后将多个stream连接成一个stream 常见于多层循环 <pre><code>List<integer> together = Stream.of(asList(1,2),asList(3,4)).flatMap(number -&gt; numbers.stream()).collect(Collectors.toList());</integer></code></pre></p>
+<p>max和min 求最大值最小值 在collections可以使用sort接受一个比较器进行排序求出最大值最小值 在stream中也有这样的操作 <pre><code>Track shortestTrack = tracks.stream().min(Compartor.comparing(track -&gt; track.getLength())).get();</code></pre></p>
+<p>reduce 从一组值中生成一个值 cout max min都是reduce操作 例如实现一个累加器 <pre><code>int count = Stream.of(1,2,3).reduce(0,(acc,element) -&gt; acc+element);</code></pre> reduce方法重载了三次对应1 2 3个参数 注意他们的泛型方法参数类型要对应 </p>
 <p>追踪reduce函数 他的回调是在AbstractPipeline类的copyInto方法中进行的 这个回调链我找了好久 很深</p>
 <h1 id="类库"><a href="#类库" class="headerlink" title="类库"></a>类库</h1><p>高阶函数 如果函数的参数列表中包含函数接口 或函数返回一个函数接口 那么该函数就是高阶函数 每个用作函数接口的接口都添加了@FunctionalInterface注释</p>
 <p>默认方法 在方法前声明default 接口中允许有多个默认方法 这些方法可以写实现方式 java允许多重实现 当同时实现的两个接口中具有相同的默认方法时 编译器会强制用户必须实现自己的方法（重载此默认方法）</p>
