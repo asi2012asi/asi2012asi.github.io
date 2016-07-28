@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>java8函数式编程-读书笔记（一） | Asii Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="java8函数式编程 作者： Richard Warburton 翻译：王群锋– –读书笔记 by asii
+
+lambda表达式lambda表达式改写了匿名内部类 如
+button.setOnClickListener(
+    new View.onClickListener(){
+        @override
+        public void onClick(View v){">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8函数式编程-读书笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2016/07/28/java8函数式编程-读书笔记（一）/index.html">
+<meta property="og:site_name" content="Asii Blog">
+<meta property="og:description" content="java8函数式编程 作者： Richard Warburton 翻译：王群锋– –读书笔记 by asii
+
+lambda表达式lambda表达式改写了匿名内部类 如
+button.setOnClickListener(
+    new View.onClickListener(){
+        @override
+        public void onClick(View v){">
+<meta property="og:updated_time" content="2016-07-28T13:54:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java8函数式编程-读书笔记（一）">
+<meta name="twitter:description" content="java8函数式编程 作者： Richard Warburton 翻译：王群锋– –读书笔记 by asii
+
+lambda表达式lambda表达式改写了匿名内部类 如
+button.setOnClickListener(
+    new View.onClickListener(){
+        @override
+        public void onClick(View v){">
+  
+    <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fmyblog_header.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Asii</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">路漫漫其修远兮 吾将上下而求索</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/asi2012asi" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/asi2012" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 18px;">Android</a> <a href="/tags/Ashmem/" style="font-size: 10px;">Ashmem</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Broadcast/" style="font-size: 10px;">Broadcast</a> <a href="/tags/Dalvik/" style="font-size: 10px;">Dalvik</a> <a href="/tags/IDA-PRO/" style="font-size: 10px;">IDA PRO</a> <a href="/tags/android/" style="font-size: 16px;">android</a> <a href="/tags/builder模式/" style="font-size: 10px;">builder模式</a> <a href="/tags/c语言/" style="font-size: 12px;">c语言</a> <a href="/tags/handler/" style="font-size: 10px;">handler</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/mvp/" style="font-size: 10px;">mvp</a> <a href="/tags/packageManagerService/" style="font-size: 10px;">packageManagerService</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/windowManager/" style="font-size: 10px;">windowManager</a> <a href="/tags/windowManagerService/" style="font-size: 10px;">windowManagerService</a> <a href="/tags/zygote/" style="font-size: 10px;">zygote</a> <a href="/tags/中介者模式/" style="font-size: 10px;">中介者模式</a> <a href="/tags/代理模式/" style="font-size: 10px;">代理模式</a> <a href="/tags/函数式/" style="font-size: 10px;">函数式</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/吉他/" style="font-size: 14px;">吉他</a> <a href="/tags/工厂方法模式/" style="font-size: 10px;">工厂方法模式</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/抽象工厂模式/" style="font-size: 10px;">抽象工厂模式</a> <a href="/tags/智能指针/" style="font-size: 10px;">智能指针</a> <a href="/tags/桥接模式/" style="font-size: 10px;">桥接模式</a> <a href="/tags/模板模式/" style="font-size: 10px;">模板模式</a> <a href="/tags/状态模式/" style="font-size: 10px;">状态模式</a> <a href="/tags/破解/" style="font-size: 10px;">破解</a> <a href="/tags/示例/" style="font-size: 10px;">示例</a> <a href="/tags/策略模式/" style="font-size: 10px;">策略模式</a> <a href="/tags/简单工厂模式/" style="font-size: 10px;">简单工厂模式</a> <a href="/tags/组合模式/" style="font-size: 10px;">组合模式</a> <a href="/tags/装饰模式/" style="font-size: 10px;">装饰模式</a> <a href="/tags/观察者模式/" style="font-size: 10px;">观察者模式</a> <a href="/tags/视频/" style="font-size: 14px;">视频</a> <a href="/tags/访问者模式/" style="font-size: 10px;">访问者模式</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/适配器模式/" style="font-size: 10px;">适配器模式</a> <a href="/tags/面向对象的六大原则/" style="font-size: 10px;">面向对象的六大原则</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/asi2012asi">缺朋友</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">一只独来独往的IT狗</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Asii</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fmyblog_header.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Asii</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">路漫漫其修远兮 吾将上下而求索</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/asi2012asi" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/asi2012" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-java8函数式编程-读书笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/28/java8函数式编程-读书笔记（一）/" class="article-date">
+  	<time datetime="2016-07-28T08:33:28.000Z" itemprop="datePublished">2016-07-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java8函数式编程-读书笔记（一）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lambda/">lambda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数式/">函数式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>java8函数式编程 <br>作者： Richard Warburton<br> 翻译：王群锋<br>– –读书笔记 by asii</p>
+</blockquote>
+<h1 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h1><p>lambda表达式改写了匿名内部类 如</p>
+<pre><code>button.setOnClickListener(
+    new View.onClickListener(){
+        @override
+        public void onClick(View v){
+            v.setVisible(View.INVISIBLE);
+        }
+
+    }
+
+);
+
+//运用lambda表达式后 变成
+
+button.setonClickListener(v -&gt; v.setVisible(View.INVISIBLE));
+
+//有两个参数的表达式可以写成这样
+BinaryOperator&lt;long&gt; add = (Long x,Long y) -&gt; x+y;
+//或者
+BinaryOperator&lt;long&gt; add = (x,y) -&gt; x+y;
+</code></pre><p>匿名内部类中使用局部变量时 需要把变量声明为final类型或者直接变为成员变量 在使用lambda表达式时 局部变量可以不写final声明 其实是一种非显式的final 但是一样具有final的效果 例如下面使用局部变量name 然后试图修改他的值 在编译时会报错</p>
+<pre><code>String name = getUserName();
+name = formatUserName();
+button.setonClickListener(v -&gt; v.setText(name));
+</code></pre><h1 id="函数接口"><a href="#函数接口" class="headerlink" title="函数接口"></a>函数接口</h1><p>函数接口是只有一个抽象方法的接口 用作lambda表达式的类型</p>
+<p>下面是java中重要的函数接口</p>
+<pre><code>接口                   参数         返回类型
+Predicate&lt;T&gt;           T            boolean
+
+Consumer&lt;T&gt;               T            void
+
+Function&lt;T,R&gt;             T            R
+
+Supplier&lt;T&gt;              None            T
+
+UnaryOperator&lt;T&gt;       T            T
+
+BinaryOperator&lt;T&gt;      (T,T)            T
+</code></pre><p>javac可以根据上下文自动推断出参数的类型 且用户也可以手动声明类型</p>
+<h1 id="流"><a href="#流" class="headerlink" title="流"></a>流</h1><p>java8引入了流stream 对集合类也进行了改进</p>
+<p>流stream是用函数式编程方式在集合类上进行复杂操作的工具</p>
+<pre><code>//例如 使用迭代器计算来自伦敦艺术家的人数
+int count = 0;
+Iterator&lt;Artist&gt; iterator = allArtists.iterator();
+while(iterator.hasNext()){
+    Artist artist = iterator.next();
+    if(artist.from(&quot;london&quot;)){
+        count++;
+    }
+}
+
+//使用流后
+long count = allArtist.stream().filter(artist -&gt; artist.isFrom(&quot;london&quot;)).count();
+</code></pre><p>上面的stream操作方式 注意 在没有调用count前他依然是个steam类型  不会产生新的集合 这是一种惰性求值方法 而count是从stream产生值得方法是及早求值方法</p>
+<h3 id="常用的流操作"><a href="#常用的流操作" class="headerlink" title="常用的流操作"></a>常用的流操作</h3><p>collect(Collectors.toList);这个方法是由stream里的值生成一个列表 是一个及早求值操作 例如<code>List<string> collected = Steam.of(“a”,”b”,”c”).collect(Collectors.tolist());</string></code></p>
+<p>map 将一个流中的值转换成一个新的流 例如<code>List<string> collected = Stream.of(“a”,”b”,”c”).map(string -&gt; string.toUpperCase()).collect(Collectors.toList());</string></code> map操作显然使用的是function函数接口</p>
+<p>filter 前面使用过filter了 接受一个predicate来过滤结果 例如<code>List<string> newMembers = Stream.of(“a”,”1b”,”2c”).filter(value -&gt; isDigst(value.chatAt(0))).collect(Collectors.toList());</string></code></p>
+<p>flatMap 可用stream替换值 然后将多个stream连接成一个stream 常见于多层循环 <code>List<integer> together = Stream.of(asList(1,2),asList(3,4)).flatMap(number -&gt; numbers.stream()).collect(Collectors.toList());</integer></code></p>
+<p>max和min 求最大值最小值 在collections可以使用sort接受一个比较器进行排序求出最大值最小值 在stream中也有这样的操作 <code>Track shortestTrack = tracks.stream().min(Compartor.comparing(track -&gt; track.getLength())).get();</code></p>
+<p>reduce 从一组值中生成一个值 cout max min都是reduce操作 例如实现一个累加器 <code>int count = Stream.of(1,2,3).reduce(0,(acc,element) -&gt; acc+element);</code> reduce方法重载了三次对应1 2 3个参数 注意他们的泛型方法参数类型要对应 </p>
+<p>追踪reduce函数 他的回调是在AbstractPipeline类的copyInto方法中进行的 这个回调链我找了好久 很深</p>
+<h1 id="类库"><a href="#类库" class="headerlink" title="类库"></a>类库</h1><p>高阶函数 如果函数的参数列表中包含函数接口 或函数返回一个函数接口 那么该函数就是高阶函数 每个用作函数接口的接口都添加了@FunctionalInterface注释</p>
+<p>默认方法 在方法前声明default 接口中允许有多个默认方法 这些方法可以写实现方式 java允许多重实现 当同时实现的两个接口中具有相同的默认方法时 编译器会强制用户必须实现自己的方法（重载此默认方法）</p>
+<p>Optional对象 旨在创建一个代替null的变量 相当于值得容器 可以通过get方法获取里面的值 通过of方法赋值 使用ofNullable判断是否有值 例如<pre><code>Optional<string> aOp = Optional.of(“a”);<br>String value = aOp.get();<br>Optional empty = Optional.ofNullable(aOp);</string></code></pre>当试图避免空值相关的缺陷 如未捕获的异常时可以考虑一下使用它</p>
+<h1 id="高级集合类和收集器"><a href="#高级集合类和收集器" class="headerlink" title="高级集合类和收集器"></a>高级集合类和收集器</h1><p>这章节主要讲java8对集合类的改进</p>
+<p>方法引用 <code>artist -&gt; artist.getName()</code>可以换成<code>Artist::getName</code>的写法 标准语法是<code>ClassName::methodName</code> 另外new表达式可以写成<code>Artist::new</code></p>
+<p>介绍下Collectors这个类 他有很多静态方法 例如常用的toList toMap toSet返回集合类型的 </p>
+<p>也有返回值得例如maxBy averageInt </p>
+<p>还有将一个流分解成两个不同的集合用如Map<boolean,list<artist>&gt;储存的方法 partitionBy 有点像sql中的group by操作</boolean,list<artist></p>
+<p>还有对字符串的操作 Collectors.joining(“,”,”[“,”]”)三个参数分别代表分隔符 前缀 后缀</p>
+<p>组合收集器 如groupingBy可以对stream进行分组 用map来存储 例如<code>albums.collect(Collectors.groupingBy(album -&gt; album.getMainMusician()))</code>按专辑的主唱分组的集合Map<artist,list<album>&gt;而如果想继而统计这样分组后的专辑的数量 那么可以写成<code>albums.collect(Collectors.groupingBy(album -&gt; album.getMainMusician(),Collectors.counting()))</code>加了counting来统计数量</artist,list<album></p>
+<p>java8中map加入了函数接口 例如一个常用的操作是缓存 先试着从map中取值 如果没取到 创建一个新的值并返回 <code>cacheList.computeIfAbsent(name,this::readFromDB)</code></p>
+<h1 id="数据并行化"><a href="#数据并行化" class="headerlink" title="数据并行化"></a>数据并行化</h1><p>从集合中返回流可以采用stream()的写法 但是还有一个parallelStream()的写法是返回一个并行化的流  </p>
+<p>另外Arrays类也加入了parallelPrefix parallelSort的并行化写法</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/06/深入理解Android卷三-读书笔记（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解Android卷三-读书笔记（二）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="java8函数式编程-读书笔记（一）" data-title="java8函数式编程-读书笔记（一）" data-url="http://yoursite.com/2016/07/28/java8函数式编程-读书笔记（一）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Asii
+    	</div>
+      	<div class="footer-right">
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
