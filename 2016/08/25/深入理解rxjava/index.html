@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>深入理解rxjava | Asii Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="深入理解rxjava先感谢两位前辈的文章指导 下面贴图和代码部分来源于他们
+–抛物线http://gank.io/post/560e15be2dca930e00da1083  
+–walfudhttp://android.walfud.com/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-rxjava-%E4%B8%AD%E7%BA%A7%E7%AF%87/  
+本文通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解rxjava">
+<meta property="og:url" content="http://yoursite.com/2016/08/25/深入理解rxjava/index.html">
+<meta property="og:site_name" content="Asii Blog">
+<meta property="og:description" content="深入理解rxjava先感谢两位前辈的文章指导 下面贴图和代码部分来源于他们
+–抛物线http://gank.io/post/560e15be2dca930e00da1083  
+–walfudhttp://android.walfud.com/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-rxjava-%E4%B8%AD%E7%BA%A7%E7%AF%87/  
+本文通">
+<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/refactor.png">
+<meta property="og:updated_time" content="2016-08-25T16:05:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解rxjava">
+<meta name="twitter:description" content="深入理解rxjava先感谢两位前辈的文章指导 下面贴图和代码部分来源于他们
+–抛物线http://gank.io/post/560e15be2dca930e00da1083  
+–walfudhttp://android.walfud.com/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-rxjava-%E4%B8%AD%E7%BA%A7%E7%AF%87/  
+本文通">
+<meta name="twitter:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fmyblog_header.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Asii</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">路漫漫其修远兮 吾将上下而求索</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>A propos</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/asi2012asi" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/asi2012" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/AIDL/" style="font-size: 10px;">AIDL</a> <a href="/tags/Activity/" style="font-size: 10px;">Activity</a> <a href="/tags/Android/" style="font-size: 18px;">Android</a> <a href="/tags/Ashmem/" style="font-size: 10px;">Ashmem</a> <a href="/tags/Binder/" style="font-size: 10px;">Binder</a> <a href="/tags/Broadcast/" style="font-size: 10px;">Broadcast</a> <a href="/tags/Dalvik/" style="font-size: 10px;">Dalvik</a> <a href="/tags/IDA-PRO/" style="font-size: 10px;">IDA PRO</a> <a href="/tags/android/" style="font-size: 16px;">android</a> <a href="/tags/builder模式/" style="font-size: 10px;">builder模式</a> <a href="/tags/c语言/" style="font-size: 12px;">c语言</a> <a href="/tags/handler/" style="font-size: 10px;">handler</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 12px;">java</a> <a href="/tags/jvm/" style="font-size: 10px;">jvm</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/mvp/" style="font-size: 10px;">mvp</a> <a href="/tags/packageManagerService/" style="font-size: 10px;">packageManagerService</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/windowManager/" style="font-size: 10px;">windowManager</a> <a href="/tags/windowManagerService/" style="font-size: 10px;">windowManagerService</a> <a href="/tags/zygote/" style="font-size: 10px;">zygote</a> <a href="/tags/中介者模式/" style="font-size: 10px;">中介者模式</a> <a href="/tags/代理模式/" style="font-size: 10px;">代理模式</a> <a href="/tags/函数式/" style="font-size: 10px;">函数式</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/原型模式/" style="font-size: 10px;">原型模式</a> <a href="/tags/吉他/" style="font-size: 14px;">吉他</a> <a href="/tags/工厂方法模式/" style="font-size: 10px;">工厂方法模式</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/抽象工厂模式/" style="font-size: 10px;">抽象工厂模式</a> <a href="/tags/智能指针/" style="font-size: 10px;">智能指针</a> <a href="/tags/桥接模式/" style="font-size: 10px;">桥接模式</a> <a href="/tags/模板模式/" style="font-size: 10px;">模板模式</a> <a href="/tags/状态模式/" style="font-size: 10px;">状态模式</a> <a href="/tags/破解/" style="font-size: 10px;">破解</a> <a href="/tags/示例/" style="font-size: 10px;">示例</a> <a href="/tags/策略模式/" style="font-size: 10px;">策略模式</a> <a href="/tags/简单工厂模式/" style="font-size: 10px;">简单工厂模式</a> <a href="/tags/组合模式/" style="font-size: 10px;">组合模式</a> <a href="/tags/装饰模式/" style="font-size: 10px;">装饰模式</a> <a href="/tags/观察者模式/" style="font-size: 10px;">观察者模式</a> <a href="/tags/视频/" style="font-size: 14px;">视频</a> <a href="/tags/访问者模式/" style="font-size: 10px;">访问者模式</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/适配器模式/" style="font-size: 10px;">适配器模式</a> <a href="/tags/面向对象的六大原则/" style="font-size: 10px;">面向对象的六大原则</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/asi2012asi">缺朋友</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">一只独来独往的IT狗</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Asii</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xteb8.com2.z0.glb.clouddn.com/img%2Fmyblog_header.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Asii</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">路漫漫其修远兮 吾将上下而求索</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/asi2012asi" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/asi2012" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-深入理解rxjava" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/25/深入理解rxjava/" class="article-date">
+  	<time datetime="2016-08-25T15:25:25.000Z" itemprop="datePublished">2016-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入理解rxjava
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rxjava/">rxjava</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="深入理解rxjava"><a href="#深入理解rxjava" class="headerlink" title="深入理解rxjava"></a>深入理解rxjava</h1><p>先感谢两位前辈的文章指导 下面贴图和代码部分来源于他们</p>
+<p>–抛物线</p><p><br><a href="http://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="external">http://gank.io/post/560e15be2dca930e00da1083</a>  </p>
+<p>–walfud</p><p><br><a href="http://android.walfud.com/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-rxjava-%E4%B8%AD%E7%BA%A7%E7%AF%87/" target="_blank" rel="external">http://android.walfud.com/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82-rxjava-%E4%B8%AD%E7%BA%A7%E7%AF%87/</a>  </p>
+<p>本文通过自己阅读rxjava源码的理解 结合前辈的文章对rxjava的运作流程做一个分析</p>
+<h3 id="什么是subscriber"><a href="#什么是subscriber" class="headerlink" title="什么是subscriber"></a>什么是subscriber</h3><p>Subscriber是特殊的Observer 除了自带的三个方法onNext onComplete onError之外还带有onStart和onUnSubscribe 其中onStart方法是执行在所订阅线程的线程上而不是主线程 所以不能放ui操作</p>
+<h3 id="关于just-from的疑惑"><a href="#关于just-from的疑惑" class="headerlink" title="关于just from的疑惑"></a>关于just from的疑惑</h3><p>使用Observable.just或者Observable.from(数组或集合) 创建的Observable对象 其默认的onSubscribe<t>对象是OnSubscribeFromIterable<t> 其中call方法为</t></t></p>
+<pre>
+@Override
+public void call(final Subscriber<? super T> o) {
+    final Iterator<? extends T> it = is.iterator();
+    if (!it.hasNext() && !o.isUnsubscribed())
+        o.onCompleted();
+    else 
+        o.setProducer(new IterableProducer<t>(o, it));
+} 
+ </t></pre>
+setProducer会调用request方法 来源于IterableProducer<t>的request方法 最后request方法会调用fastpath方法如下
+
+<pre>
+void fastpath() {
+    // fast-path without backpressure
+    final Subscriber<? super T> o = this.o;
+    final Iterator<? extends T> it = this.it;
+
+    while (true) {
+        if (o.isUnsubscribed()) {
+            return;
+        } else if (it.hasNext()) {
+            o.onNext(it.next());
+        } else if (!o.isUnsubscribed()) {
+            o.onCompleted();
+            return;
+        } else {
+            // is unsubscribed
+            return;
+        }
+    }
+}
+</pre>
+现实中可以自定义这些onNext onCompleted的执行顺序 即不使用from或者just接收数组或集合的方法来构建Observable 例如如下 传入自定义的onSubscribe对象
+<pre><code>
+Observable observable = Observable.create(new Observable.OnSubscribe<string>() {
+    @Override
+    public void call(Subscriber<? super String> subscriber) {
+        subscriber.onNext("Hello");
+        subscriber.onNext("Hi");
+        subscriber.onNext("Aloha");
+        subscriber.onCompleted();
+    }
+});
+</string></code></pre>
+
+<h3 id="rxjava是如何运作的"><a href="#rxjava是如何运作的" class="headerlink" title="rxjava是如何运作的"></a>rxjava是如何运作的</h3><p>真正使用中 Observable可能会发生很多操作如map flatMap等变换操作 最后调用subscribe方法完成整个回调链 在未调用subscribe方法之前 表明未有观察者订阅被观察者所以所有的变换等操作不会执行 但是这些操作都在计划表里 只有等subscribe方法调用时 才真正开始执行</p>
+<p>查看subscribe方法的代码 subscribe有多个重载的方法 当最终会调用下面私有方法</p>
+<p><pre><code><br>private static <t> Subscription subscribe(Subscriber&lt;? super T&gt; subscriber, Observable<t> observable) {<br></t></t></code></pre><br>主要的运行语句是</p>
+<p><pre><coded><br>subscriber.onStart();<br>hook.onSubscribeStart(observable, observable.onSubscribe).call(subscriber);<br>return hook.onSubscribeReturn(subscriber);<br></coded></pre><br>上面的语句是先运行传进来的subscriber的onStart方法 再运行onSubscribe对象的call方法 此onSubscribe对象在构建Observable时例如create 构造函数 from等方法传入 而flatMap map等方法的function操作什么时候开始执行呢 下面先看map的代码操作</p>
+<p><pre><code><br>public final <r> Observable<r> map(Func1&lt;? super T, ? extends R&gt; func) {<br>    return lift(new OperatorMap<t, r="">(func));<br>}<br></t,></r></r></code></pre><br>再看lift的代码部分</p>
+<p><pre><code><br>public final <r> Observable<r> lift(final Operator&lt;? extends R, ? super T&gt; operator) {<br>    return new Observable<r>(new OnSubscribe<r>() {<br>        @Override<br>        public void call(Subscriber&lt;? super R&gt; o) {<br>            try {<br>                Subscriber&lt;? super T&gt; st = hook.onLift(operator).call(o);<br>                try {<br>                    // new Subscriber created and being subscribed with so ‘onStart’ it<br>                    st.onStart();<br>                    onSubscribe.call(st);<br>                } catch (Throwable e) {<br>                    // localized capture of errors rather than it skipping all operators<br>                    // and ending up in the try/catch of the subscribe method which then<br>                    // prevents onErrorResumeNext and other similar approaches to error handling<br>                    Exceptions.throwIfFatal(e);<br>                    st.onError(e);<br>                }<br>            } catch (Throwable e) {<br>                Exceptions.throwIfFatal(e);<br>                // if the lift function failed all we can do is pass the error to the final Subscriber<br>                // as we don’t have the operator available to us<br>                o.onError(e);<br>            }<br>        }<br>    });<br>}<br></r></r></r></r></code></pre><br>这些转换操作返回了新的Observable对象 然后再创建新的onSubscribe对象 在call方法里又通过OperaterMap（此对象来自于一开始调用的map方法）创建新的Subscriber对象 如下代码</p>
+<p><pre><code><br>@Override<br>public Subscriber&lt;? super T&gt; call(final Subscriber&lt;? super R&gt; o) {<br>    return new Subscriber<t>(o) {</t></code></pre></p>
+<pre><code>    @Override
+    public void onCompleted() {
+        o.onCompleted();
+    }
+
+    @Override
+    public void onError(Throwable e) {
+        o.onError(e);
+    }
+
+    @Override
+    public void onNext(T t) {
+        try {
+            o.onNext(transformer.call(t));
+        } catch (Throwable e) {
+            Exceptions.throwOrReport(e, this, t);
+        }
+    }
+
+};
+</code></pre><p>}<br><br>此步骤就是将最终目标的subscriber对象封装到一个新的subscriber对象中</p>
+<p>接着讲解lift方法中的onSubscribe.call(st) st为上一步创建的新subscriber对象 传入到父onSubscribe对象中 这里说父onSubscribe对象是因为有可能多个变换操作 该onSubscribe对象由下往上传递 最终传递到Observable通过create函数中创建的onSubscribe对象中并执行call方法（一般会执行onNext onComplete等操作）</p>
+<p>进行到这一步 真正的回调才开始执行 由该onNext开始 调用封装后的Subscriber对象的onNext方法 执行代码o.onNext(transfromer.call(t)); 会先调用这一层进行的变换 再调用onNext方法 再玩下调用下一层的变换 再调用onNext方法 以此类推 最终最终才调用最后的subscriber对象的onNext方法 抽象流程图如下<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="image"><br>代码流程图如下<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/refactor.png" alt="image"></p>
+</t>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/20/深入理解java虚拟机-读书笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解java虚拟机-读书笔记（一）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="深入理解rxjava" data-title="深入理解rxjava" data-url="http://yoursite.com/2016/08/25/深入理解rxjava/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Asii
+    	</div>
+      	<div class="footer-right">
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
