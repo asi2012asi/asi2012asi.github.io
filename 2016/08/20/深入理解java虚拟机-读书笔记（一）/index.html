@@ -6,16 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>深入理解java虚拟机-读书笔记（一） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii">
+  <meta name="description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii
+
+java内存区域与内存溢出异常运行时区域运行时数据区域如下图
+下面逐个分析
+程序计数器可以看做是当前线程所执行的字节码的行号指示器 每条线程都需要独立的程序计数器  线程之间的计数器互不影响 这个是线程私有的内存 此区域是唯一不会outOfMemoryError情况的区域
+java虚拟机栈线程私有 生命周期与线程相同 描述的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解java虚拟机-读书笔记（一）">
 <meta property="og:url" content="http://yoursite.com/2016/08/20/深入理解java虚拟机-读书笔记（一）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii">
-<meta property="og:updated_time" content="2016-08-20T13:20:58.000Z">
+<meta property="og:description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii
+
+java内存区域与内存溢出异常运行时区域运行时数据区域如下图
+下面逐个分析
+程序计数器可以看做是当前线程所执行的字节码的行号指示器 每条线程都需要独立的程序计数器  线程之间的计数器互不影响 这个是线程私有的内存 此区域是唯一不会outOfMemoryError情况的区域
+java虚拟机栈线程私有 生命周期与线程相同 描述的">
+<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png">
+<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%A0%86%E4%B8%AD%E5%88%92%E5%88%86.jpg">
+<meta property="og:updated_time" content="2016-08-28T06:01:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解java虚拟机-读书笔记（一）">
-<meta name="twitter:description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii">
+<meta name="twitter:description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii
+
+java内存区域与内存溢出异常运行时区域运行时数据区域如下图
+下面逐个分析
+程序计数器可以看做是当前线程所执行的字节码的行号指示器 每条线程都需要独立的程序计数器  线程之间的计数器互不影响 这个是线程私有的内存 此区域是唯一不会outOfMemoryError情况的区域
+java虚拟机栈线程私有 生命周期与线程相同 描述的">
+<meta name="twitter:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -80,7 +98,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -223,6 +241,67 @@
         <blockquote>
 <p>深入理解java虚拟机 <br>作者： 周志明<br>– –读书笔记 by asii</p>
 </blockquote>
+<h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时区域"><a href="#运行时区域" class="headerlink" title="运行时区域"></a>运行时区域</h3><p>运行时数据区域如下图<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png" alt="image"></p>
+<p>下面逐个分析</p>
+<h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>可以看做是当前线程所执行的字节码的行号指示器 每条线程都需要独立的程序计数器  线程之间的计数器互不影响 这个是线程私有的内存 此区域是唯一不会outOfMemoryError情况的区域</p>
+<h4 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h4><p>线程私有 生命周期与线程相同 描述的是java方法执行的内存模型：每个方法被执行的时候都会创建一个栈帧用于存储局部变量表 操作数栈 动态链接 方法出口等信息 局部变量表存放编译期可知的基本数据类型 对象引用 返回地址类型</p>
+<p>当线程请求的栈深度大于虚拟机所允许的栈深度会抛出StackOverflowError异常 如果虚拟机栈可以动态扩展 但是当扩展时无法申请到足够的内存时会抛出outOfMemoryError异常</p>
+<h4 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h4><p>与虚拟机栈发挥的作用类似 区别在虚拟机栈为虚拟机执行java方法（字节码）的服务 而本地方法栈则是Native方法服务</p>
+<h4 id="java堆"><a href="#java堆" class="headerlink" title="java堆"></a>java堆</h4><p>所有线程共享此区域 存放的都是对象实例 从内存回收角度看 收集器基本采用分代收集算法 所以java堆可以细分为 新生代老生代 再细致的是Eden空间 fromSurvivor空间和toSurvivor空间 java堆在物理上是不连续的内存空间但逻辑上是连续的 如果堆没有内存完成实例分配并且堆无法再扩展时会抛出outOfmemoryError</p>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><p>所有线程共享此区域 存储已被虚拟机加载的类信息 常量 静态变量 即时编译编译后的代码等数据 别名Non-Heap 这个区域的回收目标是针对常量池的收回和类型的卸载但总是难以令人满意 当方法区无法满足内存分配需求时抛出 OutOfMemoryError</p>
+<p>运行时常量池是方法区的一部分 Class文件中除了有类的版本 字段 方法 接口等描述信息外 还有常量池 用于存放编译期生成的各种字面量和符号引用  这部分内容将在类加载后存放到方法区的运行时常量池中 这个区域也会抛outOfMemoryError</p>
+<h3 id="对象访问"><a href="#对象访问" class="headerlink" title="对象访问"></a>对象访问</h3><p>从Object obj = new Object();这句代码包含三个内存区域的访问 其中“Object obj”反映到java栈帧的本地变量表中 作为一个reference类型数据出现 “new Object()”这部分反映到java堆中 存储了Object类型所有实例数据值 同时方法区中包含能查找到此对象类型数据（如对象类型 父类 实现的接口 方法等）的地址信息</p>
+<p>虚拟机有两种方式去访问java堆中对象的具体位置 1 句柄池 存储对象的句柄地址（包含对象实例数据和类型数据的地址信息）2 直接指针地址访问方式</p>
+<h3 id="OutOfMemoryError异常"><a href="#OutOfMemoryError异常" class="headerlink" title="OutOfMemoryError异常"></a>OutOfMemoryError异常</h3><p>当出现OutOfMemoryError异常时应该怎么做？首先需要根据异常信息判断内存溢出的区域 然后需要知道怎样的代码会导致这个区域的内存溢出 最后如果该异常还是出现该如何处理</p>
+<p>要知道在java运行时内存中 只有使用程序计数器不会报此异常 可以使用Eclipse的MAT工具 或者Android的leaksCanary包跟踪到内存溢出的位置 同时还可以观察那些对象会出现内存泄漏</p>
+<p>要注意通过不断建立新线程的方式造成的内存泄漏跟栈空间分配的内存有关 原因是操作系统分配个每个进程的内存有限制的 总容量减去最大堆容量 减去最大方法区容量 程序计数器内存容量很少可以忽略 剩下的就是虚拟机栈和本地方法栈 所以每个线程分配到的栈空间越大 可以建立的线程数量自然越少 如果建立过多的线程导致内存泄漏 在不能减少线程数或者更换64位虚拟机的情况下 只能通过减少最大堆和减少栈容量来换取更多的线程</p>
+<p>java.lang.outOfMemoryError：permGen space 方法区引起的内存泄漏<br>java.lang.outOfMemoryError：java heap space 堆内存引起的内存泄漏</p>
+<h2 id="垃圾收集器和内存分配策略"><a href="#垃圾收集器和内存分配策略" class="headerlink" title="垃圾收集器和内存分配策略"></a>垃圾收集器和内存分配策略</h2><p>怎样描述一个对象已经“死去”而被垃圾回收器回收呢 引用计数算法可以描述一个对象的进行引用时计数器加一 引用失效时减一 当引用计数为0时证明对象已经“死去”？然而这并不是真正的判断方式 因为他无法解决对象互相循环引用的问题 java虚拟机也不会因为他们相互引用并且他们都置null了而不去回收他们 </p>
+<p>引用算法令我想起了《Android系统源代码情景分析》一书中提到的c++的智能指针 使用的真是引用计数技术 智能指针可以使两个互相引用的指针之间存在“父子”关系 只要父指针对子指针存在强引用关系 而子对父存在弱引用关系 弱引用不会影响引用计数 所以当父失去引用置空时 子不会再限制父被回收</p>
+<p>在java和c#中 根搜索算法GC Roots Tracing是判断对象是否存活的方法 他的思路是通过一系列名为“GC Roots”的对象作为起始点 从这些节点开始向下搜索 搜索走过的路径称为引用链 当一个对象到GC Roots没有任何引用链时即这个对象不可达时 则证明这个对象是不可用的</p>
+<p>当对象不可达时 对象不会立即被垃圾回收器处刑 而是先进行一次标记 然后再进行筛选 筛选的条件是该对象是否有必要执行finalize()方法 当对象没有覆盖此方法或者已经被调用过 则视为没有必要 如果在finalized中 重新与引用链的任何一个对象建立了关联 那么将逃脱被回收的命运 注意一个对象的finalized方法最多只会被系统自动调用一次</p>
+<p>以上垃圾回收都是针对java堆 而方法区回收效率就比较低了 它属于永久代</p>
+<h3 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h3><ol>
+<li>标记-清除算法 首先标记出所有需要回收的对象 在标记完成后统一回收掉所有被标记的对象</li>
+<li>复制算法  内存容量划分为大小相等两份 每次只使用其中一份 当这块的内存用完了 再将存活的对象复制到另一块上面 然后再将使用过的那块内存一次清理掉 确使每次只对其中一块进行内存回收 内存分配时不用再考虑内存碎片等复杂情况  这种算法适合每次存活很小对象的情况</li>
+<li>标记-整理算法 相比复制算法 此算法适合存活很多对象的情况 先标记 然后让所有存活的对象都向一端移动 清理掉端边以外的内存</li>
+<li>分代收集算法 将java堆分为新生代和老年代 根据各个年代的特点采用最适合的收集算法</li>
+</ol>
+<h3 id="内存分配和回收策略"><a href="#内存分配和回收策略" class="headerlink" title="内存分配和回收策略"></a>内存分配和回收策略</h3><p>java堆得各代划分<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%A0%86%E4%B8%AD%E5%88%92%E5%88%86.jpg" alt="image"><br>大多数情况下 对象都在新生代Eden区中分配 当Eden没有足够空间时会发起一次Minor GC 存活的对象会移动到Survivor Space 如果Survivor Space没有足够的空间去存放这些对象 会通过分配担保机制提前移动到老年代中 新生代的可用内存空间包括Eden区+From区 剩余to Survivor Space是空闲的用于复制算法</p>
+<p>老年代也有GC 叫做Major GC或者Full GC 他的回收速度比Minor GC慢很多 在Full GC之前一般伴随一次Minor GC</p>
+<p>对于大对象数据 为了避免在Eden区与两个Survivor区之间发生大量的内存拷贝 可以在虚拟机设置-XX：PretenureSizeThreshould参数设置成大于某个值的大对象数据直接进入老年代</p>
+<p>长期存活的对象会进入老年代 实现的原理是虚拟机给每个对象顶一个对象年龄age计数器 如果对象在Eden出生并经过一次Minor GC后依然存活并且能被Survivor容纳的话会被移动到to Survivor空间并将年龄对象设为1 对象在Survivor空间每熬过一次Minor GC年龄就增加1 当他的年龄增加到一定程度就会晋升到老年代 对象晋升老年代的年龄阈值可以通过参数-XX：MaxTenuringThreshold来设置 还有另外一种策略是Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半 年龄大于或等于该年龄的对象就可以直接进入老年代 无需等到MaxTenuringThreshold达到阈值</p>
+<p>罗列一些虚拟机可以设置的参数</p>
+<pre>
+堆设置  
+-Xms :初始堆大小  
+-Xmx :最大堆大小  
+-XX:NewSize=n :设置年轻代大小  
+-XX:NewRatio=n: 设置年轻代和年老代的比值。如:为3，表示年轻代与年老代比值为1：3，年轻代占整个年轻代年老代和的1/4  
+-XX:SurvivorRatio=n :年轻代中Eden区与两个Survivor区的比值。注意Survivor区有两个。如：3，表示Eden：Survivor=3：2，一个Survivor区占整个年轻代的1/5 
+-XX:MaxPermSize=n :设置持久代大小  
+收集器设置  
+-XX:+UseSerialGC :设置串行收集器  
+-XX:+UseParallelGC :设置并行收集器  
+-XX:+UseParalledlOldGC :设置并行年老代收集器  
+-XX:+UseConcMarkSweepGC :设置并发收集器  
+垃圾回收统计信息  
+-XX:+PrintHeapAtGC GC的heap详情 
+-XX:+PrintGCDetails  GC详情 
+-XX:+PrintGCTimeStamps  打印GC时间信息 
+-XX:+PrintTenuringDistribution    打印年龄信息等
+-XX:+HandlePromotionFailure   老年代分配担保（true  or false）
+并行收集器设置  
+-XX:ParallelGCThreads=n :设置并行收集器收集时使用的CPU数。并行收集线程数。  
+-XX:MaxGCPauseMillis=n :设置并行收集最大暂停时间  
+-XX:GCTimeRatio=n :设置垃圾回收时间占程序运行时间的百分比。公式为1/(1+n)  
+并发收集器设置  
+-XX:+CMSIncrementalMode :设置为增量模式。适用于单CPU情况。  
+-XX:ParallelGCThreads=n :设置并发收集器年轻代收集方式为并行收集时，使用的CPU数。并行收集线程数。
+</pre>
+
+
+
 
       
     </div>
