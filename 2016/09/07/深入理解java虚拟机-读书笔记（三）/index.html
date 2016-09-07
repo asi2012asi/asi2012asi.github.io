@@ -4,39 +4,31 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>深入理解Android卷三-读书笔记（一） | Asii Blog</title>
+  <title>深入理解java虚拟机-读书笔记（三） | Asii Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="深入理解Android卷三 作者： 张大伟– –读书笔记 by asii
+  <meta name="description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii
 
-windowManagerServicewms主要有两个基础系统 
-
-布局系统 计算和管理窗口的位置和层次
-动画系统 根据布局系统计算窗口位置与层次渲染窗口动画
-
-关于窗口的概念窗口的本质是画布surface 用户看到的窗口实质上是一块块surface通过wms编排后输入到屏幕上展示给用户的 根据对surface的操作类">
+java内存模型与线程硬件中的java内存模型运算任务是通过处理器的计算 与内存的读取和吸入数据 一起完成的 但是在真实硬件中 储存设备与处理器之间的速度之前有很大的差别 所以需要加入一个高速缓存cache作为内存与处理器之间的缓冲
+高速缓冲的作用是 将运算需要用到的数据从主内存复制到缓存中 让运算能快速进行 当运算结束后再">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解Android卷三-读书笔记（一）">
-<meta property="og:url" content="http://yoursite.com/2016/07/01/深入理解Android卷三-读书笔记（一）/index.html">
+<meta property="og:title" content="深入理解java虚拟机-读书笔记（三）">
+<meta property="og:url" content="http://yoursite.com/2016/09/07/深入理解java虚拟机-读书笔记（三）/index.html">
 <meta property="og:site_name" content="Asii Blog">
-<meta property="og:description" content="深入理解Android卷三 作者： 张大伟– –读书笔记 by asii
+<meta property="og:description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii
 
-windowManagerServicewms主要有两个基础系统 
-
-布局系统 计算和管理窗口的位置和层次
-动画系统 根据布局系统计算窗口位置与层次渲染窗口动画
-
-关于窗口的概念窗口的本质是画布surface 用户看到的窗口实质上是一块块surface通过wms编排后输入到屏幕上展示给用户的 根据对surface的操作类">
-<meta property="og:updated_time" content="2016-07-02T07:26:59.000Z">
+java内存模型与线程硬件中的java内存模型运算任务是通过处理器的计算 与内存的读取和吸入数据 一起完成的 但是在真实硬件中 储存设备与处理器之间的速度之前有很大的差别 所以需要加入一个高速缓存cache作为内存与处理器之间的缓冲
+高速缓冲的作用是 将运算需要用到的数据从主内存复制到缓存中 让运算能快速进行 当运算结束后再">
+<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E5%A4%84%E7%90%86%E5%99%A8%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%BB%E5%86%85%E5%AD%98%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png">
+<meta property="og:updated_time" content="2016-09-07T09:56:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解Android卷三-读书笔记（一）">
-<meta name="twitter:description" content="深入理解Android卷三 作者： 张大伟– –读书笔记 by asii
+<meta name="twitter:title" content="深入理解java虚拟机-读书笔记（三）">
+<meta name="twitter:description" content="深入理解java虚拟机 作者： 周志明– –读书笔记 by asii
 
-windowManagerServicewms主要有两个基础系统 
-
-布局系统 计算和管理窗口的位置和层次
-动画系统 根据布局系统计算窗口位置与层次渲染窗口动画
-
-关于窗口的概念窗口的本质是画布surface 用户看到的窗口实质上是一块块surface通过wms编排后输入到屏幕上展示给用户的 根据对surface的操作类">
+java内存模型与线程硬件中的java内存模型运算任务是通过处理器的计算 与内存的读取和吸入数据 一起完成的 但是在真实硬件中 储存设备与处理器之间的速度之前有很大的差别 所以需要加入一个高速缓存cache作为内存与处理器之间的缓冲
+高速缓冲的作用是 将运算需要用到的数据从主内存复制到缓存中 让运算能快速进行 当运算结束后再">
+<meta name="twitter:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Asii Blog" type="application/atom+xml">
   
@@ -204,11 +196,11 @@ windowManagerServicewms主要有两个基础系统
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-深入理解Android卷三-读书笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-深入理解java虚拟机-读书笔记（三）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/01/深入理解Android卷三-读书笔记（一）/" class="article-date">
-  	<time datetime="2016-07-01T09:07:27.000Z" itemprop="datePublished">2016-07-01</time>
+      <a href="/2016/09/07/深入理解java虚拟机-读书笔记（三）/" class="article-date">
+  	<time datetime="2016-09-07T06:52:36.000Z" itemprop="datePublished">2016-09-07</time>
 </a>
     </div>
   
@@ -221,7 +213,7 @@ windowManagerServicewms主要有两个基础系统
         
   
     <h1 class="article-title" itemprop="name">
-      深入理解Android卷三-读书笔记（一）
+      深入理解java虚拟机-读书笔记（三）
     </h1>
   
 
@@ -230,7 +222,7 @@ windowManagerServicewms主要有两个基础系统
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/windowManagerService/">windowManagerService</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jvm/">jvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
 	</div>
 
         
@@ -242,27 +234,26 @@ windowManagerServicewms主要有两个基础系统
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>深入理解Android卷三 <br>作者： 张大伟<br>– –读书笔记 by asii</p>
+<p>深入理解java虚拟机 <br>作者： 周志明<br>– –读书笔记 by asii</p>
 </blockquote>
-<h1 id="windowManagerService"><a href="#windowManagerService" class="headerlink" title="windowManagerService"></a>windowManagerService</h1><p>wms主要有两个基础系统 </p>
-<ol>
-<li>布局系统 计算和管理窗口的位置和层次</li>
-<li>动画系统 根据布局系统计算窗口位置与层次渲染窗口动画</li>
-</ol>
-<h3 id="关于窗口的概念"><a href="#关于窗口的概念" class="headerlink" title="关于窗口的概念"></a>关于窗口的概念</h3><p>窗口的本质是画布surface 用户看到的窗口实质上是一块块surface通过wms编排后输入到屏幕上展示给用户的 根据对surface的操作类型可以将Android的显示系统分为三个层次</p>
-<ol>
-<li>ui框架层 负责在surface上绘制ui元素以及响应输入事件</li>
-<li>wms 负责管理surface的分配和层级顺序等</li>
-<li>surfaceFlinger 负责将多个surface混合后输出</li>
-</ol>
-<p>在wms在新增窗口addWindow时包含了三个重要的内容 windowToken windowState和DisplayContent</p>
-<h3 id="windowToken"><a href="#windowToken" class="headerlink" title="windowToken"></a>windowToken</h3><p>windowToken将属于同一个应用组件的窗口组织在一起 所谓应用组件包括activity inputMethod wallpaper 和dream 在wms对窗口管理的过程中用windowToken指代一个应用组件 在ZOrder排序时 属于同一个windowToken的会被安排在一起 </p>
-<p>第二点 windowToken具有令牌的作用 应用组件在需要新窗口时 必须提供windowToken表明自己的身份 并且窗口的类型必须与所持有windowToken的类型一致 在创建系统类型的窗口时 不需要提供一个有效的token wms会隐式地为其声明一个windowToken 但是要求客户端必须拥有创建系统窗口的权限</p>
-<h3 id="windowState"><a href="#windowState" class="headerlink" title="windowState"></a>windowState</h3><p>windowState表示一个窗口的所有属性 所以他是wms事实上的窗口 在显示组件一侧也有对应的类型 IWindow.Stub 提供了很多与窗口管理相关通知的回调 例如尺寸变化和焦点变化</p>
-<h3 id="displayContent"><a href="#displayContent" class="headerlink" title="displayContent"></a>displayContent</h3><p>displayContent是根据窗口的显示位置将窗口分组 属于同一个displayContent的窗口将会被显示在同一个屏幕中 </p>
-<p>关于surface的显示次序 窗口根据自己的类型得出其主序以及子序 然后addWindowToListInOrderLocked()根据主序和子序以及所属的Activity的顺序 按照升序排列在在DisplayContent的MWindow列表中 然后assignLayersLocked()为MWindows中所有窗口分配最终的显示次序 之后 wms的动画系统将最终的显示次序通过surface.setLayer()设置进surfaceFlinger</p>
-<h3 id="窗口的布局"><a href="#窗口的布局" class="headerlink" title="窗口的布局"></a>窗口的布局</h3><p>将relayoutWindow作为布局的切入点 先修改了窗口属性 屏幕属性 焦点属性等 标记相关的displayContent为relayoutNeeded 调用performLayoutAndPlaceSurfaceLocked进行全局布局 再对布局结果进行进一步的操作 在布局的过程中 需要连续重新布局多次 最后才能布局完成</p>
-<p>以窗口布局计算为主要任务的布局循环 以performLayoutLockedInner函数为核心 根据屏幕尺寸以及状态栏 导航栏 输入法窗口等系统窗口确定了作为窗口布局准绳的8歌矩形 再从8个矩形中选择4个矩形作为窗口布局的直接参数 并以这4个参数计算出窗口的最终位置 然后根据布局计算设置surface的位置和尺寸 并更新一些由窗口指定的系统属性为目的布局后处理 displayContent的布局其实是窗口的布局 而窗口的布局中又以窗口的布局计算为核心</p>
+<h1 id="java内存模型与线程"><a href="#java内存模型与线程" class="headerlink" title="java内存模型与线程"></a>java内存模型与线程</h1><h3 id="硬件中的java内存模型"><a href="#硬件中的java内存模型" class="headerlink" title="硬件中的java内存模型"></a>硬件中的java内存模型</h3><p>运算任务是通过处理器的计算 与内存的读取和吸入数据 一起完成的 但是在真实硬件中 储存设备与处理器之间的速度之前有很大的差别 所以需要加入一个高速缓存cache作为内存与处理器之间的缓冲</p>
+<p>高速缓冲的作用是 将运算需要用到的数据从主内存复制到缓存中 让运算能快速进行 当运算结束后再从缓存同步到内存中 这样处理器就无需等待缓慢的内存读写了</p>
+<p>在多处理器系统中 每个处理器都有自己的高速缓存而且他们共享一个主内存 在读写过程中将可能导致各自的缓存数据不一致 当同步回到主内存时以谁的缓存数据为准？ ‘缓存一致性协议’就是为了解决这个问题而存在的 这类协议有 MSI MESI MOSI Synapse等<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg" alt="image"></p>
+<h3 id="乱序执行"><a href="#乱序执行" class="headerlink" title="乱序执行"></a>乱序执行</h3><p>为了处理器内存的运算单元能尽量充分利用 处理器可能会对输入代码进行乱序执行优化 out of order execution 处理器会在计算后将乱序执行的结果重组 保证该结果与顺序执行的结果一致 但不保证程序中各个语句计算的先后顺序与输入代码的顺序一致 因此如果存在一个计算任务依赖另外一个计算任务的中间结果 那么顺序性并不能靠代码的先后顺序来保证 java虚拟机的即时编译也有类似的指令重排序 Instruction Recorder</p>
+<h3 id="软件中的java内存模型"><a href="#软件中的java内存模型" class="headerlink" title="软件中的java内存模型"></a>软件中的java内存模型</h3><p><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/%E5%A4%84%E7%90%86%E5%99%A8%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%BB%E5%86%85%E5%AD%98%E5%85%B3%E7%B3%BB.jpg" alt="image"><br>与硬件中的java内存模型有类比性 每条线程还有自己的工作内存 线程的工作内存中保存了该线程使用到的变量的主内存副本拷贝 线程对变量的所有操作都必须在工作内存中进行 而不能直接读写主内存中的变量 不同线程之间不能相互访问对方工作内存中的变量 线程间的变量值传递均需要通过主内存来完成</p>
+<p>内存模型中还定义了8中交互操作 分别是lock unlock read load use assign store write 根据字面理解 主要是工作内存和主内存之间的交互</p>
+<h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><p>volatile关键字是java虚拟机提供的最轻量级的同步机制 他有两个特性 第一 保证此变量都所有线程的可见性 如何理解？ 当一条线程修改了这个变量的值 新值对于其他线程来说是立即得知的 普通变量不能做到这点 因为线程间的变量传递需要通过主内存来完成 例如 线程1修改了一个普通变量的值 然后向主内存进行回写 另外线程2必须要在线程1完成回写之后再从主内存读取才能读到修改后的值 否则是未修改的值</p>
+<p>第二个特性是 禁止指令重排序 可以保证变量的赋值顺序与程序代码的执行顺序一致</p>
+<p>volatile的性能比synchronized关键字和concurrent里面的锁性能要高 总开销低 除long和double类型的变量外 那8个内存交互操作都具有原子性</p>
+<p>java内存模型具有 原子性 可见性和有序性三个特性</p>
+<h3 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h3><p>协同式调度 线程的执行时间由本身来控制 线程自己的工作执行完了之后 要主动通知系统切换到另外一个线程上去<br>抢占式调度 执行时间不由自己控制 又系统来控制执行时间 不会有由于一个线程阻塞而导致整个进行阻塞的问题</p>
+<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><p><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png" alt="image">插图来源于网络</p>
+<p>调用thread的isAlived 只有在新建和死亡这两种状态下才会为false 其他都是true</p>
+<p>不能对已经在死亡状态的线程调用start方法</p>
+<p>关于线程的join方法的例子 a线程在执行 b线程在a线程里调用join()方法时 a线程会进入阻塞状态 b线程执行完成后 a线程进入就绪状态参与资源竞争</p>
+<p>调用yield会让线程进入就绪状态 与sleep不一样 sleep进入的是阻塞状态 yield是让步的意思 有可能线程调用yield后 又马上获得了处理器资源进入运行状态</p>
+<p>在执行同步代码时 监视器（被同步的对象）调用wait方法才会释放同步锁 在当前线程调用sleep或者yield都不会释放同步锁</p>
+<p>BlockingQueue是控制线程同步的集合 他继承Queue 通过put放元素 take取元素 放元素时如果队列已满则堵塞线程 取元素时如果队列为空则堵塞线程 使用BlockingQueue可以应用在一放一取交替进行的线程</p>
 
       
     </div>
@@ -272,18 +263,9 @@ windowManagerServicewms主要有两个基础系统
     
 <nav id="article-nav">
   
-    <a href="/2016/07/06/深入理解Android卷三-读书笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          深入理解Android卷三-读书笔记（二）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/22/Android软件安全与逆向分析-读书笔记（三）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Android软件安全与逆向分析-读书笔记（三）</div>
+    <a href="/2016/08/28/深入理解java虚拟机-读书笔记（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解java虚拟机-读书笔记（二）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -318,7 +300,7 @@ windowManagerServicewms主要有两个基础系统
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="深入理解Android卷三-读书笔记（一）" data-title="深入理解Android卷三-读书笔记（一）" data-url="http://yoursite.com/2016/07/01/深入理解Android卷三-读书笔记（一）/"></div>
+	<div class="ds-thread" data-thread-key="深入理解java虚拟机-读书笔记（三）" data-title="深入理解java虚拟机-读书笔记（三）" data-url="http://yoursite.com/2016/09/07/深入理解java虚拟机-读书笔记（三）/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
