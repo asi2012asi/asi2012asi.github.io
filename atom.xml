@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asiiblog.com/"/>
-  <updated>2016-10-24T14:26:13.000Z</updated>
+  <updated>2016-10-25T06:00:16.000Z</updated>
   <id>http://asiiblog.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://asiiblog.com/2016/10/24/%E6%96%B0%E4%B8%BB%E9%A2%98maupassant/"/>
     <id>http://asiiblog.com/2016/10/24/新主题maupassant/</id>
     <published>2016-10-24T10:21:34.000Z</published>
-    <updated>2016-10-24T14:26:13.000Z</updated>
+    <updated>2016-10-25T06:00:16.000Z</updated>
     
     <content type="html"><![CDATA[<a id="more"></a>
 <h2 id="主题安装"><a href="#主题安装" class="headerlink" title="主题安装"></a>主题安装</h2><p>安装主题和渲染器：</p>
@@ -73,6 +73,7 @@
 <li>检查一下终端当前的目录是否为Hexo的根目录，并包含<code>source/</code>和<code>themes/</code>。</li>
 <li>使用过程中遇到问题欢迎提交<a href="https://github.com/tufu9441/maupassant-hexo/issues" target="_blank" rel="external">issue</a>。</li>
 </ul>
+<p><strong>此博客主题fork自<a href="https://github.com/tufu9441/maupassant-hexo" target="_blank" rel="external">屠夫</a></strong></p>
 ]]></content>
     
     <summary type="html">
