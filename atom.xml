@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asiiblog.com/"/>
-  <updated>2016-10-25T06:00:16.000Z</updated>
+  <updated>2016-11-01T10:38:17.000Z</updated>
   <id>http://asiiblog.com/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>鸟哥的Linux私房菜基础学习篇-读书笔记（一）</title>
+    <link href="http://asiiblog.com/2016/10/31/%E9%B8%9F%E5%93%A5%E7%9A%84Linux%E7%A7%81%E6%88%BF%E8%8F%9C%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AF%87-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://asiiblog.com/2016/10/31/鸟哥的Linux私房菜基础学习篇-读书笔记（一）/</id>
+    <published>2016-10-31T05:13:01.000Z</published>
+    <updated>2016-11-01T10:38:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Linux的规划与安装</p>
+<a id="more"></a>
+<blockquote>
+<p>鸟哥的Linux私房菜基础学习篇 <br>作者： 鸟哥<br>– –读书笔记 by asii</p>
+</blockquote>
+<h1 id="Linux的规划与安装"><a href="#Linux的规划与安装" class="headerlink" title="Linux的规划与安装"></a>Linux的规划与安装</h1><h2 id="计算机概论"><a href="#计算机概论" class="headerlink" title="计算机概论"></a>计算机概论</h2><p>计算机主要有5大单元组成：输入单元 输出单元 cpu内部的控制单元和算术逻辑单元 内存</p>
+<h3 id="cpu"><a href="#cpu" class="headerlink" title="cpu"></a>cpu</h3><p>cpu的种类分两种：精简指令集（RISC） 复杂指令集（CISC）</p>
+<p>精简指令集包含如ARM架构的cpu 用于手机 pda 导航设备 还有ps3的cell处理器等</p>
+<p>复杂指令集包含如AMD和Intel的x86架构的cpu 用于个人计算机 后来cpu的位数升到64位 于是新的cpu统称为x86_64架构cpu</p>
+<p>计算机的运作流程可以用人体去理解 如cpu=人脑 内存=人脑中的记录区域 接口设备=手脚 显卡=影像 电源=心脏 主板=神经系统</p>
+<p>主板上面最重要的就是芯片组了 分南桥和北桥 北桥负责连接速度较快的cpu 内存 显卡等组件 南桥负责连接速度较慢的周边接口如硬盘 显示器 usb等</p>
+<p>AMD与intel的不同在于内存是直接与cpu通讯而不通过北桥 AMD为了加速这两者的通讯 将内存控制组件集成到cpu当中</p>
+<p>频率是cpu每秒钟进行的工作次数 如3.0GHZ表示cpu一秒钟进行3x10^9次工作 但是不同指令集的cpu不能只比较频率 只能比较同款的cpu速度 频率=外频x倍频 外频是指cpu与外部组件进行数据传输运算的速度 倍频是cpu内部用来加速工作性能的一个倍数 倍频一般是厂家规定死的 超频一般超外频 内存与北桥的频宽（每秒钟可以传输的数据量）=外频x总线宽度（32/64位） 总线宽度通常为cpu每次能够处理的数据量的字组大小</p>
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>我们平时用到的内存条就是DRAM动态随机访问内存 内存容量很重要 因为所有的数据都要加载到内存当中才会被cpu读取 如果内存不够大会导致大容量数据无法被完整加载 此时已存在内存中但暂时没有使用到的数据必须先要释放 使得可用内存容量大于该数据 那份新数据才能被加载</p>
+<p>双通道设计是用来提升内存的数据宽度 例如一条内存64位 那么两条一样内存使用双通道可以达到128位  cpu与内存的外频一致可以提升性能</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Linux的规划与安装&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://asiiblog.com/categories/Linux/"/>
+    
+    
+      <category term="读书笔记" scheme="http://asiiblog.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Linux" scheme="http://asiiblog.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>新主题maupassant</title>
@@ -1354,47 +1393,6 @@
       <category term="AIDL" scheme="http://asiiblog.com/tags/AIDL/"/>
     
       <category term="Ashmem" scheme="http://asiiblog.com/tags/Ashmem/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android系统源代码情景分析-读书笔记（一）</title>
-    <link href="http://asiiblog.com/2016/05/30/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E4%BB%A3%E7%A0%81%E6%83%85%E6%99%AF%E5%88%86%E6%9E%90-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://asiiblog.com/2016/05/30/Android系统源代码情景分析-读书笔记（一）/</id>
-    <published>2016-05-30T11:11:26.000Z</published>
-    <updated>2016-10-24T12:58:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>从今天开始啃这本超厚的书 第一篇想写下智能指针</p>
-<a id="more"></a>
-<blockquote>
-<p>Android系统源代码情景分析 <br>作者： 罗升阳<br>– –读书笔记 by asii</p>
-</blockquote>
-<h1 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h1><p>出现的原因：</p>
-<p>Android系统源码中有相当一部分使用c或c++编写 c和c++相对java的一大特点是使用指针 指针使用不当 轻则内存泄漏 重则系统崩溃 Android提供了c++智能指针来避免出现指针使用不恰当的问题</p>
-<p>智能指针是一种能够自动维护对象引用计数的技术 他本身不是指针 他是一个对象 他的使用方法是 在引用对象构造时 引用计数加1 当引用对象析构时 引用计数减1 当引用计数变为0时表明该对象不再被引用可以释放掉</p>
-<p>然而考虑一个经典的引用问题 类似垃圾回收问题 A引用B B也引用A 当A不再使用时就要析构不再引用B （析构就是c中的free和置空） 然而A还不能被回收 因为B还在引用A 两个资源互相等待对方释放 就像我们常见的死锁问题 只用这两个对象确定为同时不再使用时才能被两两释放</p>
-<p>引用计数计数解决这个问题 采用强引用和弱引用两种计数方式 利用了一个技巧 对象的生命周期只受强引用计数控制 首先 将两两关联的对象划分为 父子 和 子父 关系 父对象通过强引用来引用子对象 子对象通过弱引用来引用父对象</p>
-<p>回归上面的引用问题 当A不再使用时 需要释放A 由于B是通过弱引计数来引用他的 所以对象A的生命周期不收B的影响 此时A可以安全地被释放 A释放后同时也会释放对B的强引用计数 相反地 加入先要释放B 那么可以直接在A中手动释放对B的强引用计数就可以</p>
-<p>要注意的一点是B对象在使用A时 需要先判断A已经被释放 通过将对A的弱引用升级为强引用的方式成功否来判断A是否已经被释放 如果A已经被释放那么B不能再使用A</p>
-<p>Android系统提供了三种类型的c++智能指针</p>
-<p>轻量级指针 使用简单的引用计数计数 就是加1减1</p>
-<p>强指针和弱指针 使用强引用计数与弱引用计数技术</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;从今天开始啃这本超厚的书 第一篇想写下智能指针&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://asiiblog.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://asiiblog.com/tags/Android/"/>
-    
-      <category term="读书笔记" scheme="http://asiiblog.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="智能指针" scheme="http://asiiblog.com/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"/>
     
   </entry>
   
