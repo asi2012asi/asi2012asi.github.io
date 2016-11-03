@@ -1,0 +1,392 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一只独来独往的IT狗"><title>Android代码风格导向 | Asii</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Android代码风格导向</h1><a id="logo" href="/.">Asii</a><p class="description">路漫漫其修远兮 吾将上下而求索</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Android代码风格导向</h1><div class="post-meta">Nov 2, 2016<span> | </span><span class="category"><a href="/categories/Android/">Android</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-thread-key="2016/11/02/Android代码风格导向/" href="/2016/11/02/Android代码风格导向/#comments" class="ds-thread-count"></a><div class="clear"><div id="toc" class="toc-article"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#code-style"><span class="toc-number">1.</span> <span class="toc-text">code style</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java语言规则"><span class="toc-number">1.1.</span> <span class="toc-text">java语言规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不要忽略异常"><span class="toc-number">1.1.1.</span> <span class="toc-text">不要忽略异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不要捕捉大异常"><span class="toc-number">1.1.2.</span> <span class="toc-text">不要捕捉大异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不要使用Finalizers"><span class="toc-number">1.1.3.</span> <span class="toc-text">不要使用Finalizers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高质imports"><span class="toc-number">1.1.4.</span> <span class="toc-text">高质imports</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java风格规则"><span class="toc-number">1.2.</span> <span class="toc-text">java风格规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用javadoc-标准注解"><span class="toc-number">1.2.1.</span> <span class="toc-text">使用javadoc 标准注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写简短的方法"><span class="toc-number">1.2.2.</span> <span class="toc-text">写简短的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在适当的位置定义成员变量"><span class="toc-number">1.2.3.</span> <span class="toc-text">在适当的位置定义成员变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制局部变量的使用访问"><span class="toc-number">1.2.4.</span> <span class="toc-text">限制局部变量的使用访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#import的顺序"><span class="toc-number">1.2.5.</span> <span class="toc-text">import的顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成员变量的命名"><span class="toc-number">1.2.6.</span> <span class="toc-text">成员变量的命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用标准支架风格"><span class="toc-number">1.2.7.</span> <span class="toc-text">使用标准支架风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用标准的java注解"><span class="toc-number">1.2.8.</span> <span class="toc-text">使用标准的java注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些缩写单词的最佳写法"><span class="toc-number">1.2.9.</span> <span class="toc-text">一些缩写单词的最佳写法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Project-guidelines"><span class="toc-number">2.</span> <span class="toc-text">Project guidelines</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#项目结构"><span class="toc-number">2.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件命名"><span class="toc-number">2.2.</span> <span class="toc-text">文件命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类名命名"><span class="toc-number">2.2.1.</span> <span class="toc-text">类名命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源命名"><span class="toc-number">2.2.2.</span> <span class="toc-text">资源命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String常量命名"><span class="toc-number">2.2.3.</span> <span class="toc-text">String常量命名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#callback参数的位置"><span class="toc-number">2.3.</span> <span class="toc-text">callback参数的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用静态方法跳转Activity和fragment"><span class="toc-number">2.4.</span> <span class="toc-text">使用静态方法跳转Activity和fragment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表达式的长度"><span class="toc-number">2.5.</span> <span class="toc-text">表达式的长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml风格规则"><span class="toc-number">2.6.</span> <span class="toc-text">xml风格规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用自关闭tag"><span class="toc-number">2.6.1.</span> <span class="toc-text">使用自关闭tag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xml资源中的id命名"><span class="toc-number">2.6.2.</span> <span class="toc-text">xml资源中的id命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xml资源中Strings的命名"><span class="toc-number">2.6.3.</span> <span class="toc-text">xml资源中Strings的命名</span></a></li></ol></li></ol></li></ol></div></div><div class="post-content"><p>代码风格 项目导向指引</p>
+<a id="more"></a>
+<h1 id="code-style"><a href="#code-style" class="headerlink" title="code style"></a>code style</h1><h2 id="java语言规则"><a href="#java语言规则" class="headerlink" title="java语言规则"></a>java语言规则</h2><h3 id="不要忽略异常"><a href="#不要忽略异常" class="headerlink" title="不要忽略异常"></a>不要忽略异常</h3><p>写代码时 有时候图方便 加了try catch 但是没有在catch里处理 像下面的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以接受的处理异常的方式如</p>
+<ol>
+<li>把异常抛给调用该方法的人</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> <span class="keyword">throws</span> NumberFormatException </span>&#123;</span><br><span class="line">    serverPort = Integer.parseInt(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>抛出一个新建的适合我们理解的异常</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> <span class="keyword">throws</span> ConfigurationException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ConfigurationException(<span class="string">"Port "</span> + value + <span class="string">" is not valid."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>直接在catch里处理掉这个异常</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Set port. If value is not a valid number, 80 is substituted. */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        serverPort = <span class="number">80</span>;  <span class="comment">// default port for server</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>抛出运行时异常 这种方式有点危险 仅在你确定这种错误会引起程序崩溃时使用</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Set port. If value is not a valid number, die. */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"port "</span> + value <span class="string">" is invalid, "</span>, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>最后一种 自信不处理 但是需要加comment</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** If value is not a valid number, original port number is used. */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        <span class="comment">// Method is documented to just ignore invalid user input.</span></span><br><span class="line">        <span class="comment">// serverPort will just be unchanged.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="不要捕捉大异常"><a href="#不要捕捉大异常" class="headerlink" title="不要捕捉大异常"></a>不要捕捉大异常</h3><p>这是一种偷懒的方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** If value is not a valid number, original port number is used. */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        <span class="comment">// Method is documented to just ignore invalid user input.</span></span><br><span class="line">        <span class="comment">// serverPort will just be unchanged.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这很危险 因为这么做意味着你不期待任何异常发生（包括像ClassCastException这种运行时异常）不要用同一种方式来处理所有异常 就算你需要这么做也要加适当的注解 Remember: exceptions are your friends! </p>
+<h3 id="不要使用Finalizers"><a href="#不要使用Finalizers" class="headerlink" title="不要使用Finalizers"></a>不要使用Finalizers</h3><p>gc在对象有不可达路径时不会立即清除该对象 而是先访问该对象的finalized方法 这是该对象生还的最后稻草线 人们通常在这方法加入一大块代码处理清除外部资源等 但是不保证这个方法会被执行 Android不使用finalizers 如果确实需要这种清除操作 可以像InputSteam那样提供一个close方法来进行资源回收 finalizers只配打印下log</p>
+<h3 id="高质imports"><a href="#高质imports" class="headerlink" title="高质imports"></a>高质imports</h3><p>当你确定只需要使用bar组件时<code>import foo.Bar</code> 不要使用<code>import foo.*</code></p>
+<h2 id="java风格规则"><a href="#java风格规则" class="headerlink" title="java风格规则"></a>java风格规则</h2><h3 id="使用javadoc-标准注解"><a href="#使用javadoc-标准注解" class="headerlink" title="使用javadoc 标准注解"></a>使用javadoc 标准注解</h3><p>使用如下的标准方式 顶部有copyright 接着包名 imports 类名（接口名）记得在类前注解这个类的用途或用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> * Copyright (C) 2015 The Android Open Source Project</span><br><span class="line"> *</span><br><span class="line"> * Licensed under the Apache License, Version 2.0 (the "License");</span><br><span class="line"> * you may not use this file except in compliance with the License.</span><br><span class="line"> * You may obtain a copy of the License at</span><br><span class="line"> *</span><br><span class="line"> *      http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"> *</span><br><span class="line"> * Unless required by applicable law or agreed to in writing, software</span><br><span class="line"> * distributed under the License is distributed on an "AS IS" BASIS,</span><br><span class="line"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line"> * See the License for the specific language governing permissions and</span><br><span class="line"> * limitations under the License.</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.android.internal.foo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Blah;</span><br><span class="line"><span class="keyword">import</span> android.view.Yada;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Does X and Y and provides an abstraction for Z.</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="写简短的方法"><a href="#写简短的方法" class="headerlink" title="写简短的方法"></a>写简短的方法</h3><p>根据面向对象的设计原则 单一职责原则 一个方法内应该包含强相关性的东西 加入一个方法超过40行 可以考虑下拆分</p>
+<h3 id="在适当的位置定义成员变量"><a href="#在适当的位置定义成员变量" class="headerlink" title="在适当的位置定义成员变量"></a>在适当的位置定义成员变量</h3><p>要么在文件的头部 要么在使用该变量的方法前</p>
+<h3 id="限制局部变量的使用访问"><a href="#限制局部变量的使用访问" class="headerlink" title="限制局部变量的使用访问"></a>限制局部变量的使用访问</h3><p>使局部变量的范围最小化 所有局部变量都应该有一个初始化 如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Instantiate class cl, which represents some sort of Set</span></span><br><span class="line">Set s = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    s = (Set) cl.newInstance();</span><br><span class="line">&#125; <span class="keyword">catch</span>(IllegalAccessException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(cl + <span class="string">" not accessible"</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span>(InstantiationException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(cl + <span class="string">" not instantiable"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise the set</span></span><br><span class="line">s.addAll(Arrays.asList(args));</span><br></pre></td></tr></table></figure>
+<p>即使用一个方法包住了try catch 在使用前也应该初始化s 如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Set <span class="title">createSet</span><span class="params">(Class cl)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Instantiate class cl, which represents some sort of Set</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (Set) cl.newInstance();</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IllegalAccessException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(cl + <span class="string">" not accessible"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(InstantiationException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(cl + <span class="string">" not instantiable"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exercise the set</span></span><br><span class="line">Set s = createSet(cl);</span><br><span class="line">s.addAll(Arrays.asList(args));</span><br></pre></td></tr></table></figure>
+<h3 id="import的顺序"><a href="#import的顺序" class="headerlink" title="import的顺序"></a>import的顺序</h3><ol>
+<li>Android imports</li>
+<li>第三方（com junit net org）</li>
+<li>java 和 javax</li>
+<li>同一个项目的imports</li>
+</ol>
+<h3 id="成员变量的命名"><a href="#成员变量的命名" class="headerlink" title="成员变量的命名"></a>成员变量的命名</h3><ul>
+<li>非public 非static的成员变量开头使用m</li>
+<li>静态成员变量开头使用s</li>
+<li>其他成员变量开头使用小写</li>
+<li>public static final变量（常量）使用大写连接</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SOME_CONSTANT = <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> publicField;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> MyClass sSingleton;</span><br><span class="line">    <span class="keyword">int</span> mPackagePrivate;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mPrivate;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">int</span> mProtected;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用标准支架风格"><a href="#使用标准支架风格" class="headerlink" title="使用标准支架风格"></a>使用标准支架风格</h3><p>日常使用的if else最多</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//你可以这么写</span></span><br><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    body();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者这么写</span></span><br><span class="line"><span class="keyword">if</span> (condition) body();</span><br><span class="line"></span><br><span class="line"><span class="comment">//但 不要这么写</span></span><br><span class="line"><span class="keyword">if</span> (condition)</span><br><span class="line">    body();  <span class="comment">// bad!</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用标准的java注解"><a href="#使用标准的java注解" class="headerlink" title="使用标准的java注解"></a>使用标准的java注解</h3><p>常用的java注解有@Deprecated @Override @SuppressWarnings 使用抑制警告时 最好前面加个TODO</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// <span class="doctag">TODO:</span> The third-party class com.third.useful.Utility.rotate() needs generics</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"generic-cast"</span>)</span><br><span class="line">List&lt;String&gt; blix = Utility.rotate(blax);</span><br></pre></td></tr></table></figure>
+<h3 id="一些缩写单词的最佳写法"><a href="#一些缩写单词的最佳写法" class="headerlink" title="一些缩写单词的最佳写法"></a>一些缩写单词的最佳写法</h3><table>
+<thead>
+<tr>
+<th>Good</th>
+<th>Bad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XmlHttpRequest</td>
+<td>XMLHTTPRequest</td>
+</tr>
+<tr>
+<td>getCustomerId</td>
+<td>getCustomerID</td>
+</tr>
+<tr>
+<td>class Html</td>
+<td>class HTML</td>
+</tr>
+<tr>
+<td>String url</td>
+<td>String URL</td>
+</tr>
+<tr>
+<td>long id</td>
+<td>long ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>上述观点参考文章 <a href="https://source.android.com/source/code-style.html" target="_blank" rel="external">Code Style for Contributors</a></strong></p>
+<h1 id="Project-guidelines"><a href="#Project-guidelines" class="headerlink" title="Project guidelines"></a>Project guidelines</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>在Android studio的项目代码结构与eclipse的不一样</p>
+<p>主要包含两大目录</p>
+<ul>
+<li>src/main/</li>
+<li>src/androidTest/</li>
+</ul>
+<p>两个目录下又包含</p>
+<ul>
+<li>java/</li>
+<li>resources/</li>
+</ul>
+<p>java代码应该分布在<code>src/main/java</code>目录下 manifest分布在<code>src/main/AndroidManifest.xml</code></p>
+<p>注意<code>src/androidTest/AndroidManifest.xml</code>并不是必须的 他只是自动生成的</p>
+<p>加入项目时从eclipse迁移过来的 可以修改gradle目录结构 如</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    sourceSets &#123;</span><br><span class="line">        main &#123;</span><br><span class="line">            manifest.srcFile 'AndroidManifest.xml'</span><br><span class="line">            java.srcDirs = ['src']</span><br><span class="line">            resources.srcDirs = ['src']</span><br><span class="line">            aidl.srcDirs = ['src']</span><br><span class="line">            renderscript.srcDirs = ['src']</span><br><span class="line">            res.srcDirs = ['res']</span><br><span class="line">            assets.srcDirs = ['assets']</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        androidTest.setRoot('tests')</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>gradle的设置可以参考<a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure" target="_blank" rel="external">Gradle Plugin User Guide</a></p>
+<h2 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h2><h3 id="类名命名"><a href="#类名命名" class="headerlink" title="类名命名"></a>类名命名</h3><p>应该遵循驼峰结构 如<code>SignInActivity</code>, <code>SignInFragment</code>, <code>ImageUploaderService</code>, <code>ChangePasswordDialog</code></p>
+<h3 id="资源命名"><a href="#资源命名" class="headerlink" title="资源命名"></a>资源命名</h3><p>资源命名使用小写和 _ 下划线分隔符 例如Drawable文件的命名规则</p>
+<table>
+<thead>
+<tr>
+<th>Asset Type</th>
+<th>Prefix</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Action bar</td>
+<td><code>ab_</code></td>
+<td><code>ab_stacked.9.png</code></td>
+</tr>
+<tr>
+<td>Button</td>
+<td><code>btn_</code></td>
+<td><code>btn_send_pressed.9.png</code></td>
+</tr>
+<tr>
+<td>Dialog</td>
+<td><code>dialog_</code></td>
+<td><code>dialog_top.9.png</code></td>
+</tr>
+<tr>
+<td>Divider</td>
+<td><code>divider_</code></td>
+<td><code>divider_horizontal.9.png</code></td>
+</tr>
+<tr>
+<td>Icon</td>
+<td><code>ic_</code></td>
+<td><code>ic_star.png</code></td>
+</tr>
+<tr>
+<td>Menu</td>
+<td><code>menu_</code></td>
+<td><code>menu_submenu_bg.9.png</code></td>
+</tr>
+<tr>
+<td>Notification</td>
+<td><code>notification_</code></td>
+<td><code>notification_bg.9.png</code></td>
+</tr>
+<tr>
+<td>Tabs</td>
+<td><code>tab_</code></td>
+<td><code>tab_pressed.9.png</code></td>
+</tr>
+</tbody>
+</table>
+<p>icon的命名</p>
+<table>
+<thead>
+<tr>
+<th>Asset Type</th>
+<th>Prefix</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Icons</td>
+<td><code>ic_</code></td>
+<td><code>ic_star.png</code></td>
+</tr>
+<tr>
+<td>Launcher icons</td>
+<td><code>ic_launcher</code></td>
+<td><code>ic_launcher_calendar.png</code></td>
+</tr>
+<tr>
+<td>Menu icons and Action Bar icons</td>
+<td><code>ic_menu</code></td>
+<td><code>ic_menu_archive.png</code></td>
+</tr>
+<tr>
+<td>Status bar icons</td>
+<td><code>ic_stat_notify</code></td>
+<td><code>ic_stat_notify_msg.png</code></td>
+</tr>
+<tr>
+<td>Tab icons</td>
+<td><code>ic_tab</code></td>
+<td><code>ic_tab_recent.png</code></td>
+</tr>
+<tr>
+<td>Dialog icons</td>
+<td><code>ic_dialog</code></td>
+<td><code>ic_dialog_info.png</code></td>
+</tr>
+</tbody>
+</table>
+<p>selector的命名</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Suffix</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal</td>
+<td><code>_normal</code></td>
+<td><code>btn_order_normal.9.png</code></td>
+</tr>
+<tr>
+<td>Pressed</td>
+<td><code>_pressed</code></td>
+<td><code>btn_order_pressed.9.png</code></td>
+</tr>
+<tr>
+<td>Focused</td>
+<td><code>_focused</code></td>
+<td><code>btn_order_focused.9.png</code></td>
+</tr>
+<tr>
+<td>Disabled</td>
+<td><code>_disabled</code></td>
+<td><code>btn_order_disabled.9.png</code></td>
+</tr>
+<tr>
+<td>Selected</td>
+<td><code>_selected</code></td>
+<td><code>btn_order_selected.9.png</code></td>
+</tr>
+</tbody>
+</table>
+<p>layout命名 一般类型放前面 逻辑放后面</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Class Name</th>
+<th>Layout Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activity</td>
+<td><code>UserProfileActivity</code></td>
+<td><code>activity_user_profile.xml</code></td>
+</tr>
+<tr>
+<td>Fragment</td>
+<td><code>SignUpFragment</code></td>
+<td><code>fragment_sign_up.xml</code></td>
+</tr>
+<tr>
+<td>Dialog</td>
+<td><code>ChangePasswordDialog</code></td>
+<td><code>dialog_change_password.xml</code></td>
+</tr>
+<tr>
+<td>AdapterView item</td>
+<td>—</td>
+<td><code>item_person.xml</code></td>
+</tr>
+<tr>
+<td>Partial layout</td>
+<td>—</td>
+<td><code>partial_stats_bar.xml</code></td>
+</tr>
+</tbody>
+</table>
+<p>values文件的命名 应该都是复数的 例如</p>
+<p><code>strings.xml</code>, <code>styles.xml</code>, <code>colors.xml</code>, <code>dimens.xml</code>, <code>attrs.xml</code></p>
+<h3 id="String常量命名"><a href="#String常量命名" class="headerlink" title="String常量命名"></a>String常量命名</h3><p>列举Android中常用到的String常量命名 带的前缀</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Field Name Prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SharedPreferences</td>
+<td><code>PREF_</code></td>
+</tr>
+<tr>
+<td>Bundle</td>
+<td><code>BUNDLE_</code></td>
+</tr>
+<tr>
+<td>Fragment Arguments</td>
+<td><code>ARGUMENT_</code></td>
+</tr>
+<tr>
+<td>Intent Extra</td>
+<td><code>EXTRA_</code></td>
+</tr>
+<tr>
+<td>Intent Action</td>
+<td><code>ACTION_</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Note the value of the field is the same as the name to avoid duplication issues</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String PREF_EMAIL = <span class="string">"PREF_EMAIL"</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String BUNDLE_AGE = <span class="string">"BUNDLE_AGE"</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String ARGUMENT_USER_ID = <span class="string">"ARGUMENT_USER_ID"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Intent-related items use full package name as value</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String EXTRA_SURNAME = <span class="string">"com.myapp.extras.EXTRA_SURNAME"</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String ACTION_OPEN_USER = <span class="string">"com.myapp.action.ACTION_OPEN_USER"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="callback参数的位置"><a href="#callback参数的位置" class="headerlink" title="callback参数的位置"></a>callback参数的位置</h2><p>callback一般作为最后的参数加入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Context always goes first</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">loadUser</span><span class="params">(Context context, <span class="keyword">int</span> userId)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Callbacks always go last</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadUserAsync</span><span class="params">(Context context, <span class="keyword">int</span> userId, UserCallback callback)</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="使用静态方法跳转Activity和fragment"><a href="#使用静态方法跳转Activity和fragment" class="headerlink" title="使用静态方法跳转Activity和fragment"></a>使用静态方法跳转Activity和fragment</h2><p>例如在Activity中使用以下方法快速构建intent</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Intent <span class="title">getStartIntent</span><span class="params">(Context context, User user)</span> </span>&#123;</span><br><span class="line">    Intent intent = <span class="keyword">new</span> Intent(context, ThisActivity.class);</span><br><span class="line">    intent.putParcelableExtra(EXTRA_USER, user);</span><br><span class="line">    <span class="keyword">return</span> intent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用fragment时使用单例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> UserFragment <span class="title">newInstance</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    UserFragment fragment = <span class="keyword">new</span> UserFragment;</span><br><span class="line">    Bundle args = <span class="keyword">new</span> Bundle();</span><br><span class="line">    args.putParcelable(ARGUMENT_USER, user);</span><br><span class="line">    fragment.setArguments(args)</span><br><span class="line">    <span class="keyword">return</span> fragment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意上述方法应该放在onCreate方法前面 EXTRA变量和argument设置成private就行了 无需公开</p>
+<h2 id="表达式的长度"><a href="#表达式的长度" class="headerlink" title="表达式的长度"></a>表达式的长度</h2><p>一般一行不超过100个字符 如果超过可以考虑以下的分割策略</p>
+<p>使用符号分割</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> longName = anotherVeryLongVariable + anEvenLongerOne - thisRidiculousLongOne</span><br><span class="line">        + theFinalOne;</span><br></pre></td></tr></table></figure>
+<p>使用builder调用链时 使用. 分割</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Picasso.with(context)</span><br><span class="line">        .load(<span class="string">"http://ribot.co.uk/images/sexyjoe.jpg"</span>)</span><br><span class="line">        .into(imageView);</span><br></pre></td></tr></table></figure>
+<p>一些太长的方法参数 使用,分割</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">loadPicture(context,</span><br><span class="line">        <span class="string">"http://ribot.co.uk/images/sexyjoe.jpg"</span>,</span><br><span class="line">        mImageViewProfilePicture,</span><br><span class="line">        clickListener,</span><br><span class="line">        <span class="string">"Title of the picture"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="xml风格规则"><a href="#xml风格规则" class="headerlink" title="xml风格规则"></a>xml风格规则</h2><h3 id="使用自关闭tag"><a href="#使用自关闭tag" class="headerlink" title="使用自关闭tag"></a>使用自关闭tag</h3><p>如果只有一个元素没有内容 使用自关闭tag</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:id=<span class="string">"@+id/text_view_profile"</span></span><br><span class="line">    android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">    android:layout_height=<span class="string">"wrap_content"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="xml资源中的id命名"><a href="#xml资源中的id命名" class="headerlink" title="xml资源中的id命名"></a>xml资源中的id命名</h3><p>一般使用类型作为前缀 下滑线分隔符</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TextView</code></td>
+<td><code>text_</code></td>
+</tr>
+<tr>
+<td><code>ImageView</code></td>
+<td><code>image_</code></td>
+</tr>
+<tr>
+<td><code>Button</code></td>
+<td><code>button_</code></td>
+</tr>
+<tr>
+<td><code>Menu</code></td>
+<td><code>menu_</code></td>
+</tr>
+</tbody>
+</table>
+<p>像这种</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ImageView</span></span><br><span class="line">    <span class="attr">android:id</span>=<span class="string">"@+id/image_profile"</span></span><br><span class="line">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span><br><span class="line">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="xml资源中Strings的命名"><a href="#xml资源中Strings的命名" class="headerlink" title="xml资源中Strings的命名"></a>xml资源中Strings的命名</h3><p>一般先考虑以下前缀 后面再加相应逻辑</p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error_</code></td>
+<td>An error message</td>
+</tr>
+<tr>
+<td><code>msg_</code></td>
+<td>A regular information message</td>
+</tr>
+<tr>
+<td><code>title_</code></td>
+<td>A title, i.e. a dialog title</td>
+</tr>
+<tr>
+<td><code>action_</code></td>
+<td>An action such as “Save” or “Create”</td>
+</tr>
+</tbody>
+</table>
+<p><strong>上述观点参考文章<a href="https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md" target="_blank" rel="external">Project guidelines</a></strong></p>
+<p>以上有关命名的同一规律：what_where_description 或者 what_where_description_size</p>
+<p>参考文章<a href="http://jeroenmols.com/blog/2016/03/07/resourcenaming/" target="_blank" rel="external">A SUCCESSFUL XML NAMING CONVENTION</a></p>
+<p><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/resourcenaming_cheatsheet.png" alt="命名规则"></p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://asiiblog.com/2016/11/02/Android代码风格导向/" data-id="civ1uthvq00004i4x4i993re0" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Android/">Android</a><a href="/tags/翻译/">翻译</a></div><div class="post-nav"><a href="/2016/10/31/鸟哥的Linux私房菜基础学习篇-读书笔记（一）/" class="next">鸟哥的Linux私房菜基础学习篇-读书笔记（一）</a></div><div data-thread-key="2016/11/02/Android代码风格导向/" data-title="Android代码风格导向" data-url="http://asiiblog.com/2016/11/02/Android代码风格导向/" class="ds-share flat"><div class="ds-share-inline"><ul class="ds-share-icons-16"><li data-toggle="ds-share-icons-more"><a href="javascript:void(0);" class="ds-more">分享到：</a></li><li><a href="javascript:void(0);" data-service="weibo" class="ds-weibo">微博</a></li><li><a href="javascript:void(0);" data-service="qzone" class="ds-qzone">QQ空间</a></li><li><a href="javascript:void(0);" data-service="qqt" class="ds-qqt">腾讯微博</a></li><li><a href="javascript:void(0);" data-service="wechat" class="ds-wechat">微信</a></li></ul><div class="ds-share-icons-more"></div></div></div><div data-thread-key="2016/11/02/Android代码风格导向/" data-title="Android代码风格导向" data-url="http://asiiblog.com/2016/11/02/Android代码风格导向/" data-author-key="1" class="ds-thread"></div></div></div></div><div class="pure-u-1 pure-u-md-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://asiiblog.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design-Patterns/">Design Patterns</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Music/">Music</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/handler/" style="font-size: 15px;">handler</a> <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/面向对象的六大原则/" style="font-size: 15px;">面向对象的六大原则</a> <a href="/tags/builder模式/" style="font-size: 15px;">builder模式</a> <a href="/tags/原型模式/" style="font-size: 15px;">原型模式</a> <a href="/tags/访问者模式/" style="font-size: 15px;">访问者模式</a> <a href="/tags/中介者模式/" style="font-size: 15px;">中介者模式</a> <a href="/tags/装饰模式/" style="font-size: 15px;">装饰模式</a> <a href="/tags/桥接模式/" style="font-size: 15px;">桥接模式</a> <a href="/tags/享元模式/" style="font-size: 15px;">享元模式</a> <a href="/tags/单例模式/" style="font-size: 15px;">单例模式</a> <a href="/tags/策略模式/" style="font-size: 15px;">策略模式</a> <a href="/tags/状态模式/" style="font-size: 15px;">状态模式</a> <a href="/tags/代理模式/" style="font-size: 15px;">代理模式</a> <a href="/tags/组合模式/" style="font-size: 15px;">组合模式</a> <a href="/tags/适配器模式/" style="font-size: 15px;">适配器模式</a> <a href="/tags/观察者模式/" style="font-size: 15px;">观察者模式</a> <a href="/tags/模板模式/" style="font-size: 15px;">模板模式</a> <a href="/tags/抽象工厂模式/" style="font-size: 15px;">抽象工厂模式</a> <a href="/tags/工厂方法模式/" style="font-size: 15px;">工厂方法模式</a> <a href="/tags/简单工厂模式/" style="font-size: 15px;">简单工厂模式</a> <a href="/tags/智能指针/" style="font-size: 15px;">智能指针</a> <a href="/tags/Activity/" style="font-size: 15px;">Activity</a> <a href="/tags/mvp/" style="font-size: 15px;">mvp</a> <a href="/tags/总结/" style="font-size: 15px;">总结</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/读书笔记/" style="font-size: 15px;">读书笔记</a> <a href="/tags/packageManagerService/" style="font-size: 15px;">packageManagerService</a> <a href="/tags/Binder/" style="font-size: 15px;">Binder</a> <a href="/tags/AIDL/" style="font-size: 15px;">AIDL</a> <a href="/tags/Ashmem/" style="font-size: 15px;">Ashmem</a> <a href="/tags/Broadcast/" style="font-size: 15px;">Broadcast</a> <a href="/tags/zygote/" style="font-size: 15px;">zygote</a> <a href="/tags/Dalvik/" style="font-size: 15px;">Dalvik</a> <a href="/tags/service/" style="font-size: 15px;">service</a> <a href="/tags/IDA-PRO/" style="font-size: 15px;">IDA PRO</a> <a href="/tags/破解/" style="font-size: 15px;">破解</a> <a href="/tags/c语言/" style="font-size: 15px;">c语言</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/优化/" style="font-size: 15px;">优化</a> <a href="/tags/吉他/" style="font-size: 15px;">吉他</a> <a href="/tags/视频/" style="font-size: 15px;">视频</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/函数式/" style="font-size: 15px;">函数式</a> <a href="/tags/lambda/" style="font-size: 15px;">lambda</a> <a href="/tags/windowManagerService/" style="font-size: 15px;">windowManagerService</a> <a href="/tags/主题/" style="font-size: 15px;">主题</a> <a href="/tags/windowManager/" style="font-size: 15px;">windowManager</a> <a href="/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/rxjava/" style="font-size: 15px;">rxjava</a> <a href="/tags/翻译/" style="font-size: 15px;">翻译</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/02/Android代码风格导向/">Android代码风格导向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/31/鸟哥的Linux私房菜基础学习篇-读书笔记（一）/">鸟哥的Linux私房菜基础学习篇-读书笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/新主题maupassant/">新主题maupassant</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/android优化总结/">android优化总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/深入理解java虚拟机-读书笔记（三）/">深入理解java虚拟机-读书笔记（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/28/深入理解java虚拟机-读书笔记（二）/">深入理解java虚拟机-读书笔记（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/深入理解rxjava/">深入理解rxjava</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/20/深入理解java虚拟机-读书笔记（一）/">深入理解java虚拟机-读书笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/28/java8函数式编程-读书笔记（一）/">java8函数式编程-读书笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/深入理解Android卷三-读书笔记（二）/">深入理解Android卷三-读书笔记（二）</a></li></ul></div><div class="widget"><div class="comments-title"><i class="fa fa-comment-o"> 最近评论</i></div><div data-num-items="5" data-show-avatars="0" data-show-time="1" data-show-admin="0" data-excerpt-length="32" data-show-title="1" class="ds-recent-comments"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://asiiblog.com" title="no friends" target="_blank">no friends</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">Asii.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script>var duoshuoQuery = {short_name:'asiiblog'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
