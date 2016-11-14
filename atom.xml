@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asiiblog.com/"/>
-  <updated>2016-11-03T04:30:22.000Z</updated>
+  <updated>2016-11-14T14:30:26.000Z</updated>
   <id>http://asiiblog.com/</id>
   
   <author>
@@ -16,36 +16,65 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>是时候学一波ios开发</title>
+    <link href="http://asiiblog.com/2016/11/14/%E6%98%AF%E6%97%B6%E5%80%99%E5%AD%A6%E4%B8%80%E6%B3%A2ios%E5%BC%80%E5%8F%91/"/>
+    <id>http://asiiblog.com/2016/11/14/是时候学一波ios开发/</id>
+    <published>2016-11-14T13:56:57.000Z</published>
+    <updated>2016-11-14T14:30:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xteb8.com1.z0.glb.clouddn.com/eb2bcb5a5fac3dd99998ff6d64d14d8a.jpg" alt="ios开发"></p>
+<p>曾几何时有过这么一个念头 </p>
+<a id="more"></a>
+<p>但是一直没有时间入坑 与其所没时间 不如说自己懒</p>
+<p>最近入职的公司 开会时 高级经理问我会不会ios开发 我尴尬一笑 不会</p>
+<p>某次跟同事吃饭 我跟他讲了很多Android相关的东西 他偶尔一问我 会不会ios开发 我尴尬一笑  不会</p>
+<p>公司需要一个ios端的应用 不需要上app store 满足需求即可 经理说到时需要招个搞ios 实习生级别的</p>
+<p>我想如果我会ios 我把这个也搞了算了 所以我下定了决心 搞起</p>
+<p>至于怎么搞 网上的教程铺天盖地 多亏了达内 北大青鸟等培训机构 培养了那么多“互联网创业者” 学习资料都可以在网上有完整的下载 </p>
+<p>有个旧同事 以前搞ios的 给了我一套比较完善的学习方案 而且提供了两种选择 oc or swift</p>
+<p>我的想法是 都学 </p>
+<p>基于我对Android系统的理解 和 多年开发的经验 估计上手难度不会太难 而且学习设备已经齐全 就差一股学习的劲头</p>
+<p>突然想起 近年来 fb公司推出了一个很热的跨平台开发reactive native 只要是精通前端搞web的人 都可以搞移动开发了 是不是我们这行都该转行？</p>
+<p>我的想法是 不至于 跨平台是好 learn once write anywhere 但是很多公司目前还是需要原生开发的 再者 学移动开发的 再去学rn 学js 写css 也不能说转行 只不过是扩充下知识面而已 举一反三 触类旁通</p>
+<p>剁手节一件衣服没买 买了300多块钱的书 </p>
+<p>不说了 学习去~</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xteb8.com1.z0.glb.clouddn.com/eb2bcb5a5fac3dd99998ff6d64d14d8a.jpg&quot; alt=&quot;ios开发&quot;&gt;&lt;/p&gt;
+&lt;p&gt;曾几何时有过这么一个念头 &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="IOS" scheme="http://asiiblog.com/categories/IOS/"/>
+    
+    
+      <category term="ios" scheme="http://asiiblog.com/tags/ios/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android代码风格导向</title>
     <link href="http://asiiblog.com/2016/11/02/Android%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E5%AF%BC%E5%90%91/"/>
     <id>http://asiiblog.com/2016/11/02/Android代码风格导向/</id>
     <published>2016-11-02T14:06:17.000Z</published>
-    <updated>2016-11-03T04:30:22.000Z</updated>
+    <updated>2016-11-03T04:44:09.000Z</updated>
     
     <content type="html"><![CDATA[<p>代码风格 项目导向指引</p>
 <a id="more"></a>
 <h1 id="code-style"><a href="#code-style" class="headerlink" title="code style"></a>code style</h1><h2 id="java语言规则"><a href="#java语言规则" class="headerlink" title="java语言规则"></a>java语言规则</h2><h3 id="不要忽略异常"><a href="#不要忽略异常" class="headerlink" title="不要忽略异常"></a>不要忽略异常</h3><p>写代码时 有时候图方便 加了try catch 但是没有在catch里处理 像下面的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以接受的处理异常的方式如</p>
-<ol>
-<li>把异常抛给调用该方法的人</li>
-</ol>
+<p>把异常抛给调用该方法的人</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> <span class="keyword">throws</span> NumberFormatException </span>&#123;</span><br><span class="line">    serverPort = Integer.parseInt(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>抛出一个新建的适合我们理解的异常</li>
-</ol>
+<p>抛出一个新建的适合我们理解的异常</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> <span class="keyword">throws</span> ConfigurationException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ConfigurationException(<span class="string">"Port "</span> + value + <span class="string">" is not valid."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>直接在catch里处理掉这个异常</li>
-</ol>
+<p>直接在catch里处理掉这个异常</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Set port. If value is not a valid number, 80 is substituted. */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        serverPort = <span class="number">80</span>;  <span class="comment">// default port for server</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>抛出运行时异常 这种方式有点危险 仅在你确定这种错误会引起程序崩溃时使用</li>
-</ol>
+<p>抛出运行时异常 这种方式有点危险 仅在你确定这种错误会引起程序崩溃时使用</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Set port. If value is not a valid number, die. */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"port "</span> + value <span class="string">" is invalid, "</span>, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>最后一种 自信不处理 但是需要加comment</li>
-</ol>
+<p>最后一种 自信不处理 但是需要加comment</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** If value is not a valid number, original port number is used. */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        <span class="comment">// Method is documented to just ignore invalid user input.</span></span><br><span class="line">        <span class="comment">// serverPort will just be unchanged.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="不要捕捉大异常"><a href="#不要捕捉大异常" class="headerlink" title="不要捕捉大异常"></a>不要捕捉大异常</h3><p>这是一种偷懒的方式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** If value is not a valid number, original port number is used. */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        serverPort = Integer.parseInt(value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">        <span class="comment">// Method is documented to just ignore invalid user input.</span></span><br><span class="line">        <span class="comment">// serverPort will just be unchanged.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1631,94 +1660,6 @@
       <category term="读书笔记" scheme="http://asiiblog.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="service" scheme="http://asiiblog.com/tags/service/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android系统源代码情景分析-读书笔记（三）</title>
-    <link href="http://asiiblog.com/2016/06/02/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E4%BB%A3%E7%A0%81%E6%83%85%E6%99%AF%E5%88%86%E6%9E%90-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
-    <id>http://asiiblog.com/2016/06/02/Android系统源代码情景分析-读书笔记（三）/</id>
-    <published>2016-06-02T04:11:24.000Z</published>
-    <updated>2016-10-24T13:03:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>主要介绍Activity组件的启动流程 包括从launcher点开和从另一个页面点开两种</p>
-<a id="more"></a>
-<blockquote>
-<p>Android系统源代码情景分析 <br>作者： 罗升阳<br>– –读书笔记 by asii</p>
-</blockquote>
-<h1 id="Activity组件的启动过程"><a href="#Activity组件的启动过程" class="headerlink" title="Activity组件的启动过程"></a>Activity组件的启动过程</h1><p>怎么把其中一个Activity运行在另一个进程里 只需要在manifest中为activity配置属性process:”abcd” 注意其他activity的process属性要跟他不一样  这样这个独特的activity就运行在名为“abcd”的进程里</p>
-<p>使用命令行查看activity的task信息 adb shell dumpsys activity 引用程序在启动时 会先启动launcher组件 再启动activity组件</p>
-<h3 id="根activity的启动过程"><a href="#根activity的启动过程" class="headerlink" title="根activity的启动过程"></a>根activity的启动过程</h3><ol>
-<li>launcher组件向activityManagerService发送一个启动MainActivity组件的进程间通信请求</li>
-<li>activityManagerService首先将要启动的MainActivity组件的信息保存下来 然后再向Launcher组件发送一个进入中止状态的进程间通信请求</li>
-<li>Launcher组件进入到中止状态后 就会向ActivityManagerService发送一个已进入中止状态的进程间通信请求</li>
-<li>ActivityManagerService发现用来运行MainActivity组件的应用程序不存在 因此 他会先启动新的应用程序</li>
-<li>新的应用程序进程启动完成后 就会向ActivityManagerService发送一个启动完成的进程间通信请求</li>
-<li>ActivityManagerService将第二步保存下来的MainActivity组件的信息发送给第四步创建的应用程序进程 以便MainActivity组件启动起来</li>
-</ol>
-<p>上面的过程要追踪代码的话 要分35步</p>
-<ol>
-<li>Launcher.startActivitySafely 根Activity是由Launcher启动起来的 Launcher.startActivitySafely会接受一个intent参数 里面包含MainActivity的组件信息 这个组件信息是在系统启动时 会启动一个PackageManagerService来安装系统中的应用程序 在安装过程中 会对配置文件AndroidManifest.xml进行解析 从而得到里面的组件信息</li>
-<li>Activity.startActivity 第一步的Launcher.startActivitySafely函数直接调用父类的startActivity</li>
-<li>Activity.startActivityForResult 第二步调用第三步的函数 requestcode为-1 <code>mInstrumentation.execStartActivity(this,mMainThread.getApplicationThread(),mToken,this,intent,requestCode)</code> mInstrumentation是监控应用程序和系统之间的交互操作的组件 调用execStartActivity是代为启动Activity组件的操作 里面的参数：mMainThread是一个ActivityThread类实例 用来描述一个应用程序进程 通过mMainThread.getApplicationThread获取Binder本地对象这个对象就是给ActivityManagerService用来进程间通信的 mToken是一个binder代理对象 他是一个类型为ActivityRecord的Binder本地对象 这个对象用来维护对应的activity的活动状态和信息</li>
-<li>Instrumention.execStartActivity 通过ActivityManagerNative来获得ActivityManagerService的代理对象</li>
-<li>ActivityManagerProxy.startActity ActivityManagerNative类包含ActivityManagerProxy 里面调用mRemote.transact 就是向ActivityManagerService发送一个类型为START_ACTIVITY_TRANSACTION进程间通信请求</li>
-<li>ActivityManagerService.startActivity ActivityManagerService实质是ActivityManagerNative的子类 里面包含一个ActivityStack 用来描述Activity组件堆栈 ActivityManagerService通过处理类型为START_ACTIVITY_TRANSACTION的进程间通信请求来执行启动Activity组件的操作</li>
-<li>ActivityStack.startActivityMayWait 通过packageManagerService解析intent的内容并且保存到ResolveInfo中 传递到startActivityLocked继续执行</li>
-<li>ActivityStack.startActivityLocked 在ActivityManagerService中每一个应用程序都使用一个ProcessRecord对象来描述 他会通过函数getRecordForAppLocked来获得 而每一个Activity组件是用ActivityRecord对象来描述 先通过堆栈mHistory获取launcher组件的ActivityRecord 再创建出目标对象mainActivity的ActivityRecord</li>
-<li>ActivityStack.startActivityUnCheckedLocked 这一步是检查启动的目标Activity的flag标志位 并且运行addtotask添加到组件堆栈中</li>
-<li>ActivityStack.resumeTopActivityLocked 检查当前activity组件是否处于task最顶层并且处于非结束状态 activityStack会包含三种组件：当前激活的组件 上一次被中止的组件 正在被中止的组件 由于当前激活的是launcher组件 所以调用startPausingLocked来通知他进入中止状态 以便将焦点让给即将启动的mainActivity组件</li>
-<li>ActivityStack.startPausingLocked </li>
-<li>ApplicationThreadProxy.schedulePauseActivity</li>
-<li>ApplicationThread.schedulePauseActivity 第11 12 13步都在传递这个pause的消息</li>
-<li>ActivityThread.queueOrSendMessage </li>
-<li>H.handleMessage</li>
-<li>ActivityThread.handlePauseActivity 第14 15 16步就是launcher的ActivityThread处理ActivityManagerService发送给他的中止launcher组件的进程间通信请求</li>
-<li>ActivityManagerProxy.activityPaused</li>
-<li>ActivityManagerService.activityPause</li>
-<li>ActivityStack.activityPaused</li>
-<li>ActivityStack.completePauseLocked 第17到20步是确定launcher组件进入中止状态 同时检查当前系统是否处于睡眠或者关闭状态 接着处理activity组件堆栈顶层的activity组件</li>
-<li>ActivityStack.resumeTopActivityLocked 开始启动activity堆栈顶层组件</li>
-<li>ActivityStack.startSpecificActivtyLocked </li>
-<li>ActivityManagerService.startProcessLocked  在ActivityManagerService中 每一个Activity组件都有一个用户id和进程名称 他在启动activity之前会检查id和进程名称是否存在对应的一个应用程序进程 无则创建 然后再通知新进程将activity组件启动起来</li>
-<li>ActivityThread.main 新的应用程序在启动时主要做了两件事 第一件是在进程中创建一个ActivityThread对象 调用attach先activityManagerService发送启动完成的通知 第二件事 使当前进程进入到MainLoop消息循环中去</li>
-<li>ActivityManagerProxy.attachApplication</li>
-<li>ActivityManagerService.attachApplication</li>
-<li>ActivityManagerService.attachApplicationLocked 第25 26 27 是binder代理对象向ActivityManagerService发送一个ATTACH_APPLICATION_TRANSACTION的进程间通信请求</li>
-<li>ActivityStack.realStartActivityLocked</li>
-<li>ApplicationThreadProxy.scheduleLaunchActivity</li>
-<li>ApplicationThread.scheduleLaunchActivity 第28到30是在处理ActivityManagerService发出的SCHEDULE_LAUNCH_ACTIVITY_TRANSACTION进程间通信请求</li>
-<li>ActivityThread.queueOrSendMessage </li>
-<li>H.handleMessage  LAUNCH_ACTIVITY消息传递到ActivityThread层 将接收到的额obj转为ActivityClientRecord对象 他描述的就是Activity组件</li>
-<li>ActivityThread.handleLaunchActivity</li>
-<li>ActivityThread.performLaunchActivity 创建上下文Context 调用callActivityOnCreate</li>
-<li>MainActivity.onCreate</li>
-</ol>
-<p>上面的35步通过代码一步一步追踪 描述了根Activity的启动过程 其实也就是应用程序的启动过程</p>
-<h3 id="子Activity组件在进程内的启动过程"><a href="#子Activity组件在进程内的启动过程" class="headerlink" title="子Activity组件在进程内的启动过程"></a>子Activity组件在进程内的启动过程</h3><p>意思是通过mainActivity跳转到到subActivityInProcess 在Androidmanifest中声明process属性是同一个名称 所以他们属于同一进程 总的流程分四步</p>
-<ol>
-<li>MainActivity组件先向ActivityManagerService发送一个启动SubActivityInProcess组件的进程间通信请求</li>
-<li>ActivityManagerService首先将要启动的SubActivityInProcess组件的信息保存下来 然后再向mainActivity组件发送一个进入中止状态的进程间通信请求</li>
-<li>MainActivity组件进入中止状态后 就会向ActivityManagerServices发送一个已进入中止状态的进程间通信请求</li>
-<li>ActivityManagerService发现用来运行SubActivityInProcess的引用程序进程已经存在 就会将第2步保存下来的 SubActivityInProcess组件信息发送给该应用程序进程</li>
-</ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>子Activity组件在另一个进程启动的过程与在同一进程内启动的过程相类似 只不过多了一个创建新进程的通信请求 他们都围绕着ActivityManagerService做消息处理 共同点都是先保存要启动的组件的信息 然后向前边组件(launcher或者activity)发送中止状态的进程间通信请求  然后判断打开该组件的process是否存在 没有则发送创建的请求 创建完成后将前面保存的组件信息放到新启动的进程内 在这些过程中 activityManagerService ActivityThread ActivityStack 还有各种代理对象 出镜率最高 进程间通信的组件都是binder</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;主要介绍Activity组件的启动流程 包括从launcher点开和从另一个页面点开两种&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://asiiblog.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://asiiblog.com/tags/Android/"/>
-    
-      <category term="读书笔记" scheme="http://asiiblog.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="Activity" scheme="http://asiiblog.com/tags/Activity/"/>
     
   </entry>
   
