@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asiiblog.com/"/>
-  <updated>2016-11-14T14:30:26.000Z</updated>
+  <updated>2017-02-15T14:03:16.000Z</updated>
   <id>http://asiiblog.com/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux命令行大全-读书笔记（一）</title>
+    <link href="http://asiiblog.com/2017/02/15/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%A4%A7%E5%85%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://asiiblog.com/2017/02/15/Linux命令行大全-读书笔记（一）/</id>
+    <published>2017-02-15T13:58:54.000Z</published>
+    <updated>2017-02-15T14:03:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录下自己学习加复习Linux命令行的过程</p>
+<p>这部分笔记也记录在代码工具snippets中 奈何未开通分享功能 只保留在mac中 所以上传到此</p>
+<a id="more"></a>
+<h1 id="Linux基础命令"><a href="#Linux基础命令" class="headerlink" title="Linux基础命令"></a>Linux基础命令</h1><p>有什么不懂可以 命令符号 –help查看如何使用 也可以help 命令</p>
+<p>less 打开文本<br>less file</p>
+<p>mv 移动或者重命名<br>mv file1 file2 </p>
+<p>ls 列出文件列表<br>ls -l 文件列表详情<br>ls -F 文件格式（是否文件夹）<br>ls -t 按时间排序<br>ls -r 反向排序 （默认按字母 加上-t就是按时间反向排序）</p>
+<p>cd 打开目录<br>cd dir<br>cd .. 父目录（相对路径）</p>
+<p>mkdir 创建文件<br>mkdir dir1</p>
+<p>cp 复制文件<br>cp file1 file2 dir</p>
+<p>file 参看文件类型<br>file filename</p>
+<p>ln 创建硬链接<br>ln file file-link 创建硬链接 （无法指向文件）<br>ln -s dir dir-link 创建符号链接 （可以指向文件）</p>
+<p>type 参看命令的类型<br>type cd</p>
+<p>which 显示可执行程序的位置<br>which ls</p>
+<p>man 显示程序的手册页<br>man ls</p>
+<p>apropos 显示合适的命令（按关键字搜索）<br>apropos sym</p>
+<p>whatis 显示命令的重要描述<br>whatis ls</p>
+<p>info 显示程序的info条目<br>info ls</p>
+<p>alias 为命令添加别名 (直接输入alias 可以查看所有定义过的别名)<br>alias foo=’cd /usr; ls; cd -‘ </p>
+<p>unalias 删除别名<br>unalias foo</p>
+<blockquote>
+<p>重定向符号 可以重定向标准输出和标准错误<br>ls -l /usr/bin &gt; ls-output.txt (把ls -l /usr/bin 命令执行的结果输出到该txt文本中)<br>执行ls命令失败会清空ls-output.txt的内容 相当于把空白覆盖到之前的内容<br>使用&gt; testClear.txt 重定向命令可以创建 testClear.txt文件或清空该文件的内容<br>使用ls -l /usr/bin &gt;&gt; ls-output.txt 注意&gt;&gt; 符号表示在ls-output.txt内容的末尾最佳内容而不是覆盖</p>
+</blockquote>
+<p>2&gt; 标准错误重定向<br>ls -l /bin/usr 2&gt; ls-error.txt (把ls -l /bin/usr 命令执行错误时 错误信息输出到该txt文本中)<br>注意0代表标准输入文件 1代表标准输出文件 2代表标准错误文件</p>
+<p>2&gt;&amp;1 重定向到同一个文件<br>ls -l /usr/bin &gt; ls-out.txt 2&gt;&amp;1 (把标准输出和标准错误到输出到ls-out.txt文件中)<br>或者ls -l /usr/bin &amp;&gt; ls-out.txt 也可以达到同样的效果</p>
+<p>dev/null 位桶 接收输入但不对输入做任何处理</p>
+<p>cat 标准输入重定向<br>cat ls-output.txt 显示txt文本内容<br>cat movie.mpeg.0* &gt; movie.mpeg 接收多个file并且合并成一个<br>cat &lt; ls-output.txt 把标准输入的源从键盘变成ls-output.txt文件</p>
+<p>| 管道符号 把一个命令的标准输出 传送到 另一个命令的标准输入中<br>ls -l /usr/bin | less 把|前面的结果传送到less命令的标准输入中<br>（就是说把一个命令的结果通过分页(文本)形式显示）</p>
+<p>管道过滤 sort<br>ls -l /usr /usr/bin | sort | less 把这两个目录执行一次排序后 通过分页方式显示出来<br>uniq 显示重复行或去除重复行<br>ls -l /usr /usr/bin | sort | uniq | less 使用uniq去除重复行 使用uniq -d 显示重复行</p>
+<p>wc 打印行数 字数 字节数<br>wc ls-output.txt<br>wc 直接打此命令后return 会接收键盘标准输入 按ctrl+d结束输入<br>wc -l ls-output.txt 只显示行数</p>
+<p>grep 搜索匹配字符的过滤<br>ls -l /bin /usr/bin | sort | uniq | grep bin | less  这段代码列出匹配包含“bin”字符的文件或文件夹<br>grep -i bin 选项可以忽略大小写</p>
+<p>head / tail 过滤前10行或者后10行<br>head ls-output.txt<br>head -n 5 ls-output.txt 只输出前5行<br>tail -f /var/messages 使用-f可以持续监控这个文件 一旦添加新行 就显示在屏幕上 ctrl+c结束</p>
+<p>tee 从标准输入读取数据 并同时输出到标准输出和文件中<br>ls -l /usr/bin | tee ls-output.txt | grep bin tee相当于一个T型管道 分流到tee中的文件 又继续向下传递下去</p>
+<p>echo 输出一行文本<br>echo * 输出该目录下所有文件名<br>echo $((3+4)) 输出7 使用echo加表达式 这种叫算术扩展 只支持整数<br>echo fontstr{a,b,c}backstr 将打印三个字符串<br>echo {1..5} 将打印1到5个数字<br>echo {Z..A} 将打印Z到A倒序的字母<br>参数扩展用在shell脚本中比直接用在命令行中更为有用</p>
+<p>$ (命令) 代替命令 把一个命令的输出作为另一个命令的输入<br>ls -l $(which cp) 把cp命令的路径作为ls的入参 输出cp的详细信息</p>
+<p>使用双引号去除不想要的扩展 空格<br>ls -l “tes 1.txt” 例如tes 1.txt是一个带空格的文件名<br>ls -l “$((9+3)) $(cal) {1..6}” 双引号下算术扩展 参数扩展 命令替换 依然生效</p>
+<p>使用单引号可以去除所有的扩展<br>echo -l ‘$(ls)’ 将只会输出$(ls)</p>
+<p>反斜杠作为转义字符<br>echo “the pen is \$3.00” 可以成功输出$<br>echo -e “dada \ndada” \n是换行转义字符 加上参数e才可生效 -r回车 -t 制表</p>
+<p>history<br>显示输入过的命令历史</p>
+<p>几个常用的移动光标的快捷键<br>ctrl+A 移动光标到行首<br>ctrl+E 移动光标到行尾<br>ctrl+L 清屏并把光标移动到左上角 和clear相似</p>
+<p>修改命令行文本快捷键<br>ctrl+D 删除光标处的字符<br>ctrl+K 剪切从光标开始到行尾的文本<br>ctrl+U 剪切从光标开始到行首的文本</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录下自己学习加复习Linux命令行的过程&lt;/p&gt;
+&lt;p&gt;这部分笔记也记录在代码工具snippets中 奈何未开通分享功能 只保留在mac中 所以上传到此&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://asiiblog.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://asiiblog.com/tags/Linux/"/>
+    
+      <category term="shell" scheme="http://asiiblog.com/tags/shell/"/>
+    
+  </entry>
   
   <entry>
     <title>是时候学一波ios开发</title>
@@ -1600,66 +1666,6 @@
       <category term="读书笔记" scheme="http://asiiblog.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="Broadcast" scheme="http://asiiblog.com/tags/Broadcast/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android系统源代码情景分析-读书笔记（四）</title>
-    <link href="http://asiiblog.com/2016/06/04/Android%E7%B3%BB%E7%BB%9F%E6%BA%90%E4%BB%A3%E7%A0%81%E6%83%85%E6%99%AF%E5%88%86%E6%9E%90-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
-    <id>http://asiiblog.com/2016/06/04/Android系统源代码情景分析-读书笔记（四）/</id>
-    <published>2016-06-04T08:19:40.000Z</published>
-    <updated>2016-10-24T13:01:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>主要介绍Android的service在新进程中的启动过程</p>
-<a id="more"></a>
-<blockquote>
-<p>Android系统源代码情景分析 <br>作者： 罗升阳<br>– –读书笔记 by asii</p>
-</blockquote>
-<h1 id="service在新进程中的启动过程"><a href="#service在新进程中的启动过程" class="headerlink" title="service在新进程中的启动过程"></a>service在新进程中的启动过程</h1><p>service组件也是通过activity管理服务activityManagerService启动的 service跟activity不同 他没有界面 所以启动新组件之前 不需要让前面的组件进入pause状态 我在这里先把activity称为client service称为server  大概的步骤有4步</p>
-<ol>
-<li>client组件首先向ActivityManagerService发送一个启动Server组件的进程间通信请求</li>
-<li>ActivityManagerService发现用来运行Server组件的应用程序不存在 因此先把Server组件的信息保存下来 接着再创建一个新的进程</li>
-<li>新的应用程序进程启动完成后 会向ActivityManagerService发送一个启动完成的进程间通信请求 以便ActivityManagerService可以继续执行启动Server组件的操作</li>
-<li>ActivityManagerService会将第二步保存下来的service组件信息发送给新创建的进程 以便他把server启动起来</li>
-</ol>
-<p>下面贴一下19个代码步骤 有很多与activity的启动过程相似</p>
-<ol>
-<li>client.onCreate</li>
-<li>ContextWrapper.startService</li>
-<li>ContextImpl.startService</li>
-<li>ActivityManagerProxy.startService</li>
-<li>ActivityManagerService.startService</li>
-<li>ActivityManagerService.startServiceLocked</li>
-<li>ActivityManagerService.bringUpServiceLocked</li>
-<li>ActivityManagerService.startProcessLocked</li>
-<li>ActivityThread.main</li>
-<li>ActivityManagerProxy.attachApplication</li>
-<li>ActivityManagerService.startApplcation</li>
-<li>ActivityManagerService.attachApplicationLocked</li>
-<li>ActivityManagerService.realStartServiceLocked</li>
-<li>ApplicationThreadProxy.scheduleCreateService</li>
-<li>ApplicationThread.scheduleCreateService</li>
-<li>ActivityThread.queueOrSendMessage</li>
-<li>H.handleMessage</li>
-<li>ActivityThread.handleCreateService</li>
-<li>Server.onCreate</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;主要介绍Android的service在新进程中的启动过程&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://asiiblog.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://asiiblog.com/tags/Android/"/>
-    
-      <category term="读书笔记" scheme="http://asiiblog.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="service" scheme="http://asiiblog.com/tags/service/"/>
     
   </entry>
   
