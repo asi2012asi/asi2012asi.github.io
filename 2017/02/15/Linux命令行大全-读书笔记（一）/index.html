@@ -18,9 +18,8 @@
 <p>info 显示程序的info条目<br>info ls</p>
 <p>alias 为命令添加别名 (直接输入alias 可以查看所有定义过的别名)<br>alias foo=’cd /usr; ls; cd -‘ </p>
 <p>unalias 删除别名<br>unalias foo</p>
-<blockquote>
-<p>重定向符号 可以重定向标准输出和标准错误<br>ls -l /usr/bin &gt; ls-output.txt (把ls -l /usr/bin 命令执行的结果输出到该txt文本中)<br>执行ls命令失败会清空ls-output.txt的内容 相当于把空白覆盖到之前的内容<br>使用&gt; testClear.txt 重定向命令可以创建 testClear.txt文件或清空该文件的内容<br>使用ls -l /usr/bin &gt;&gt; ls-output.txt 注意&gt;&gt; 符号表示在ls-output.txt内容的末尾最佳内容而不是覆盖</p>
-</blockquote>
+<p>>重定向符号 可以重定向标准输出和标准错误</p>
+<p>ls -l /usr/bin &gt; ls-output.txt (把ls -l /usr/bin 命令执行的结果输出到该txt文本中)<br>执行ls命令失败会清空ls-output.txt的内容 相当于把空白覆盖到之前的内容<br>使用&gt; testClear.txt 重定向命令可以创建 testClear.txt文件或清空该文件的内容<br>使用ls -l /usr/bin &gt;&gt; ls-output.txt 注意&gt;&gt; 符号表示在ls-output.txt内容的末尾最佳内容而不是覆盖</p>
 <p>2&gt; 标准错误重定向<br>ls -l /bin/usr 2&gt; ls-error.txt (把ls -l /bin/usr 命令执行错误时 错误信息输出到该txt文本中)<br>注意0代表标准输入文件 1代表标准输出文件 2代表标准错误文件</p>
 <p>2&gt;&amp;1 重定向到同一个文件<br>ls -l /usr/bin &gt; ls-out.txt 2&gt;&amp;1 (把标准输出和标准错误到输出到ls-out.txt文件中)<br>或者ls -l /usr/bin &amp;&gt; ls-out.txt 也可以达到同样的效果</p>
 <p>dev/null 位桶 接收输入但不对输入做任何处理</p>

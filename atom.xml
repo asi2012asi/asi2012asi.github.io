@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asiiblog.com/"/>
-  <updated>2017-02-15T14:03:16.000Z</updated>
+  <updated>2017-02-16T02:22:58.000Z</updated>
   <id>http://asiiblog.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://asiiblog.com/2017/02/15/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%A4%A7%E5%85%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://asiiblog.com/2017/02/15/Linux命令行大全-读书笔记（一）/</id>
     <published>2017-02-15T13:58:54.000Z</published>
-    <updated>2017-02-15T14:03:16.000Z</updated>
+    <updated>2017-02-16T02:22:58.000Z</updated>
     
     <content type="html"><![CDATA[<p>记录下自己学习加复习Linux命令行的过程</p>
 <p>这部分笔记也记录在代码工具snippets中 奈何未开通分享功能 只保留在mac中 所以上传到此</p>
@@ -42,9 +42,8 @@
 <p>info 显示程序的info条目<br>info ls</p>
 <p>alias 为命令添加别名 (直接输入alias 可以查看所有定义过的别名)<br>alias foo=’cd /usr; ls; cd -‘ </p>
 <p>unalias 删除别名<br>unalias foo</p>
-<blockquote>
-<p>重定向符号 可以重定向标准输出和标准错误<br>ls -l /usr/bin &gt; ls-output.txt (把ls -l /usr/bin 命令执行的结果输出到该txt文本中)<br>执行ls命令失败会清空ls-output.txt的内容 相当于把空白覆盖到之前的内容<br>使用&gt; testClear.txt 重定向命令可以创建 testClear.txt文件或清空该文件的内容<br>使用ls -l /usr/bin &gt;&gt; ls-output.txt 注意&gt;&gt; 符号表示在ls-output.txt内容的末尾最佳内容而不是覆盖</p>
-</blockquote>
+<p>>重定向符号 可以重定向标准输出和标准错误</p>
+<p>ls -l /usr/bin &gt; ls-output.txt (把ls -l /usr/bin 命令执行的结果输出到该txt文本中)<br>执行ls命令失败会清空ls-output.txt的内容 相当于把空白覆盖到之前的内容<br>使用&gt; testClear.txt 重定向命令可以创建 testClear.txt文件或清空该文件的内容<br>使用ls -l /usr/bin &gt;&gt; ls-output.txt 注意&gt;&gt; 符号表示在ls-output.txt内容的末尾最佳内容而不是覆盖</p>
 <p>2&gt; 标准错误重定向<br>ls -l /bin/usr 2&gt; ls-error.txt (把ls -l /bin/usr 命令执行错误时 错误信息输出到该txt文本中)<br>注意0代表标准输入文件 1代表标准输出文件 2代表标准错误文件</p>
 <p>2&gt;&amp;1 重定向到同一个文件<br>ls -l /usr/bin &gt; ls-out.txt 2&gt;&amp;1 (把标准输出和标准错误到输出到ls-out.txt文件中)<br>或者ls -l /usr/bin &amp;&gt; ls-out.txt 也可以达到同样的效果</p>
 <p>dev/null 位桶 接收输入但不对输入做任何处理</p>
