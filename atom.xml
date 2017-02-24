@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asiiblog.com/"/>
-  <updated>2017-02-16T02:22:58.000Z</updated>
+  <updated>2017-02-24T12:58:36.000Z</updated>
   <id>http://asiiblog.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://asiiblog.com/2017/02/15/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%A4%A7%E5%85%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://asiiblog.com/2017/02/15/Linux命令行大全-读书笔记（一）/</id>
     <published>2017-02-15T13:58:54.000Z</published>
-    <updated>2017-02-16T02:22:58.000Z</updated>
+    <updated>2017-02-24T12:58:36.000Z</updated>
     
     <content type="html"><![CDATA[<p>记录下自己学习加复习Linux命令行的过程</p>
 <p>这部分笔记也记录在代码工具snippets中 奈何未开通分享功能 只保留在mac中 所以上传到此</p>
@@ -42,7 +42,7 @@
 <p>info 显示程序的info条目<br>info ls</p>
 <p>alias 为命令添加别名 (直接输入alias 可以查看所有定义过的别名)<br>alias foo=’cd /usr; ls; cd -‘ </p>
 <p>unalias 删除别名<br>unalias foo</p>
-<p>>重定向符号 可以重定向标准输出和标准错误</p>
+<p> 重定向符号 可以重定向标准输出和标准错误</p>
 <p>ls -l /usr/bin &gt; ls-output.txt (把ls -l /usr/bin 命令执行的结果输出到该txt文本中)<br>执行ls命令失败会清空ls-output.txt的内容 相当于把空白覆盖到之前的内容<br>使用&gt; testClear.txt 重定向命令可以创建 testClear.txt文件或清空该文件的内容<br>使用ls -l /usr/bin &gt;&gt; ls-output.txt 注意&gt;&gt; 符号表示在ls-output.txt内容的末尾最佳内容而不是覆盖</p>
 <p>2&gt; 标准错误重定向<br>ls -l /bin/usr 2&gt; ls-error.txt (把ls -l /bin/usr 命令执行错误时 错误信息输出到该txt文本中)<br>注意0代表标准输入文件 1代表标准输出文件 2代表标准错误文件</p>
 <p>2&gt;&amp;1 重定向到同一个文件<br>ls -l /usr/bin &gt; ls-out.txt 2&gt;&amp;1 (把标准输出和标准错误到输出到ls-out.txt文件中)<br>或者ls -l /usr/bin &amp;&gt; ls-out.txt 也可以达到同样的效果</p>
@@ -61,7 +61,25 @@
 <p>反斜杠作为转义字符<br>echo “the pen is \$3.00” 可以成功输出$<br>echo -e “dada \ndada” \n是换行转义字符 加上参数e才可生效 -r回车 -t 制表</p>
 <p>history<br>显示输入过的命令历史</p>
 <p>几个常用的移动光标的快捷键<br>ctrl+A 移动光标到行首<br>ctrl+E 移动光标到行尾<br>ctrl+L 清屏并把光标移动到左上角 和clear相似</p>
-<p>修改命令行文本快捷键<br>ctrl+D 删除光标处的字符<br>ctrl+K 剪切从光标开始到行尾的文本<br>ctrl+U 剪切从光标开始到行首的文本</p>
+<p>修改命令行文本快捷键<br>ctrl+D 删除光标处的字符<br>ctrl+K 剪切从光标开始到行尾的文本<br>ctrl+U 剪切从光标开始到行首的文本<br>ctrl+Y 把kill-ring缓冲区中的文本黏贴到光标位置<br>tab 自动补齐功能</p>
+<p>history 查看命令的使用历史</p>
+<p>文件属性 r (read) ：运行打开和读取  w(write): 允许写入和截短文件 x：允许文件当作程序来执行<br>使用ls -l test.txt 就可以看到文件属性 组成格式：文件类型 所有者权限 组权限 其他用户权限</p>
+<p>chmod 更改文件模式 只有超级用户和文件所有者才有权更改</p>
+<p>可以用8进制数字来表示文件的属性 例如文件模式rwx 二进制位111 8进制为7  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmode 600 foo.txt 表示把该txt文件的权限改为 rw- --- --- </span><br><span class="line">常用的二进制和8进制的映射是这几个：7(rwx) 6(rw-) 5(r-x) 4(r--) 0(---)</span><br></pre></td></tr></table></figure>
+<p>用户权限 符号表示法：u表示user g表示群组 o表示其他人 a表示所有如果没有指定字符默认是a 而+表示增加一种权限 -表示删除权限 =表示只有指定权限可用 其他所有权限被删除<br>u+x 为文件所有者添加可执行权限<br>u-x 删除文件所有者的可执行权限<br>+x 为所有用户添加可执行权限 相当于a+x<br>o-rw 删除其他所有用户的读写权限<br>go=rw 除了文件所有者之外 设置所属群组和其他用户具有读写权限<br>u+x,go=rx  指定多种权限时 用 , 分割</p>
+<p>umask 设置默认权限 例如 umask 0022 就是去除群组和其他用户的w权限 理解下mask就是遮盖的意思 0022实际是由三个二进制组成像这样 000 000 010 010 对应的是<code>--- rw- r-- r--</code></p>
+<p>su 用另一个用户的身份来启动shell 可以用su -l 或者su - 启动 执行命令的格式是su -c ‘ls -l’<br> 默认是没有设置root密码的  sudo passwd root 来设置密码<br>sudo 不需要输入超级用户密码 不需要进入启动新的shell环境 命令不需要用单引号</p>
+<p>chown 更改文件所有者和所属群组<br>sudo chown tony: ~tony/myfile.txt  把myfile.txt文件的文件所有者改为tony</p>
+<p>chgrp 更改文件所属群组 与chown使用方式相似</p>
+<p>passwd 更改用户密码<br>sudo passwd asii 可以指定更改asii用户的密码 直接passwd就是更改用户自己的密码</p>
+<p>ps 当前所有进程的运行情况<br>ps x 显示所有进程</p>
+<p>top 动态查看进程信息 相当于window的任务管理器</p>
+<p>ctrl+c 终端进程 ctrl+z 暂停进程 </p>
+<p>vim &amp; 在后台运行vim进程</p>
+<p>jobs 查看作业中的进程</p>
+<p>fg %1 把后台进程还原到前台<br>可以先jobs查看作业中的进程 然后bg %[作业编号] 把进程已到后台运行 也可以fg %1移动到前台进行<br>如果忘记使用&amp;来运行后台进程 那么可以先ctrl+z暂停当前进程 再bg %1让他运行于后台</p>
+<p>kill 进程pid 中止进程 killall 进程名称 ：中止多个进程</p>
 ]]></content>
     
     <summary type="html">
