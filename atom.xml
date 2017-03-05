@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asiiblog.com/"/>
-  <updated>2017-02-27T14:27:19.000Z</updated>
+  <updated>2017-03-05T15:39:53.000Z</updated>
   <id>http://asiiblog.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://asiiblog.com/2017/02/24/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%A4%A7%E5%85%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://asiiblog.com/2017/02/24/Linux命令行大全-读书笔记（二）/</id>
     <published>2017-02-24T13:07:47.000Z</published>
-    <updated>2017-02-27T14:27:19.000Z</updated>
+    <updated>2017-03-05T15:39:53.000Z</updated>
     
     <content type="html"><![CDATA[<p>配置与环境 主要涉及一些环境变量 vi操作 定制提示符 常见任务和主要工具</p>
 <a id="more"></a>
@@ -50,6 +50,18 @@
 <p>如果是从网上下载的软件包 可以使用低级工具安装 此时不会安装依赖包 dpkg - -install packagefile.deb<br>或者rpm -i package_file.rpm</p>
 <p>卸载软件包可以高级也可以用低级 如apt-get remove package_name 或者yum erase package_name</p>
 <p>更新软件包 可以让系统一条命令更新从库源中获取到的所有更新包 apt-get update;apt-get upgrade</p>
+<p>dpkg - -list 可以列出已经安装的软件包  dpkg - -status package_name 查看安装情况 apt-cache show package_name 查看已经安装的的软件包信息 dpkg - -search file_name 查看具体某个文件由哪个软件包安装得到</p>
+<h2 id="存储介质"><a href="#存储介质" class="headerlink" title="存储介质"></a>存储介质</h2><p>less /etc/fstab 文件内容列出系统启动时挂载的设备 信息包含设备名 挂载节点 文件系统类型 等</p>
+<p>sudo mount /dev/sdb1 /mnt/flash 将‘/dev/sdb1’文件设备挂载到‘/mnt/flash’目录下</p>
+<p>mount 查看已经挂载的文件系统列表 on前面的设备名 on后面跟着的是挂载节点<br>如果要改这个挂载节点即文件的路径位置 要怎么改呢 要先卸载设备使用umount 设备名称<br>这个操作需要先获取超级用户sudo su -  然后cd到想要挂载节点的路径下 调用mount -t 设备类型 设备名 . 即可 调用ls即可查看挂载的设备文件内容 如果此时调动umount卸载会提示busy 需要先把工作目录切换到其他地方再调用 就ok了</p>
+<p>sudo tail -f /var/log/messages 如果使用的系统不可以自动挂载设备 那么查看这个文件的最后几行可以查看到设备的文件名</p>
+<p>sudo fdisk /dev/sdb 磁盘分区命令 输入m查看更多命令</p>
+<p>sudo mkfs -t ext3 /dev/sdb1 为/dev/sdb1设备创建新的文件系统 格式为ext3<br>可配合格式化使用 如sudo fdformat /dev/fd0 格式化/dev/fd0这个设备 然后再创建新的文件系统 sudo mkfs -t vfat /dev/fd0</p>
+<p>sudo fsck /dev/sdb1 检测设备问题 </p>
+<p>dd命令可用于设备间转移数据 例如 dd if=/dev/sdb of=/dev/sdc  将sdb的文件内容转移到sdc设备 又或者转移到电脑 dd if=/dev/sdb of=flash.img 如果你要从一个光盘中创建一个iso镜像 可以这样dd if=/dev/cdrom of=ubuntu.iso </p>
+<p>enisoimage命令允许我们从一个文件夹创建成一个iso镜像文件 如genisoimage -o cd-rom.iso -R -J  ~/cd-rom-file  就是把~/cd-rom-file这个文件夹以及包含的内容提取成cd-rom.iso 镜像 其中-R -J命令指在linux和window中可以使用较长文件名  这时我们已经可以把iso存在于一个光盘中  接着 就可以把该镜像文件挂载到硬盘的文件目录下 mount -t iso9660 -o loop cd-rom.iso /mnt/iso_image  但不需要时可以随时umount</p>
+<p>wodim dev=/dev/cdrw blank=fast 擦除cd-rom 擦除类型为fast类型<br>wodim dev=/dev/cdrw image.iso 把/dev/cdrw文件目录写入到iso镜像文件中</p>
+<p>md5sum image.iso 得到一个16位的字符串 校验iso镜像文件的完整性</p>
 ]]></content>
     
     <summary type="html">
