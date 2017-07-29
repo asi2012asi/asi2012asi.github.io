@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://asiiblog.com/"/>
-  <updated>2017-03-05T15:39:53.000Z</updated>
+  <updated>2017-07-29T11:36:09.000Z</updated>
   <id>http://asiiblog.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://asiiblog.com/2017/02/24/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%A4%A7%E5%85%A8-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://asiiblog.com/2017/02/24/Linux命令行大全-读书笔记（二）/</id>
     <published>2017-02-24T13:07:47.000Z</published>
-    <updated>2017-03-05T15:39:53.000Z</updated>
+    <updated>2017-07-29T11:36:09.000Z</updated>
     
     <content type="html"><![CDATA[<p>配置与环境 主要涉及一些环境变量 vi操作 定制提示符 常见任务和主要工具</p>
 <a id="more"></a>
@@ -62,6 +62,80 @@
 <p>enisoimage命令允许我们从一个文件夹创建成一个iso镜像文件 如genisoimage -o cd-rom.iso -R -J  ~/cd-rom-file  就是把~/cd-rom-file这个文件夹以及包含的内容提取成cd-rom.iso 镜像 其中-R -J命令指在linux和window中可以使用较长文件名  这时我们已经可以把iso存在于一个光盘中  接着 就可以把该镜像文件挂载到硬盘的文件目录下 mount -t iso9660 -o loop cd-rom.iso /mnt/iso_image  但不需要时可以随时umount</p>
 <p>wodim dev=/dev/cdrw blank=fast 擦除cd-rom 擦除类型为fast类型<br>wodim dev=/dev/cdrw image.iso 把/dev/cdrw文件目录写入到iso镜像文件中</p>
 <p>md5sum image.iso 得到一个16位的字符串 校验iso镜像文件的完整性</p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><p>ping baidu.com 向网络主机发送IMCP ECHO_REQUEST 数据包 验证网络是否接收正常 防火墙经常用来阻止IMCP通信 用ctrl+C来停止ping</p>
+<p>traceroute baidu.com 跟踪网络数据包的传输路径 会显示文件通过网络从本地系统传输到指定主机过程中所有停靠点的列表</p>
+<p>netstat -ie 检查网络数据</p>
+<p>ftp fileserver_name  连接文件服务器 lftp 更好的ftp（支持下载重连 后台进程）</p>
+<p>wget url   非交互式网络下载工具</p>
+<p>ssh  remote-sys  安全登录远程计算机</p>
+<p>scp remote-sys:document.txt .   使用ssh加密隧道进行网络间文件复制 不过不是本地系统的用户 需要在remote-sys前加用户名@    sftp则为安全的ftp版本 使用的不是ftp服务器而是ssh服务器</p>
+<h2 id="文件搜索"><a href="#文件搜索" class="headerlink" title="文件搜索"></a>文件搜索</h2><p>locate<br>较简单的方式查找文件 以寻找指定路径名与给定字符串相匹配的文件 例如查找bin路径下zip开头的文件 如 locate bin/zip<br>注意在macOs中 如果提示数据库没生成 需要输入<br><code>sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist</code><br><code>sudo /usr/libexec/locate.updatedb</code></p>
+<p>find<br>find可以根据文件的属性 在既定的目录（及其子目录）中查找 最简单的用户如 find ~<br>可以把标准形式输出的结果作为其他程序的输入 如 find ~ | wc -l<br>find 有test选项 action选项和options选项 先说test选项 使用-type可以指定文件类型 如find ~ -type f | wc -l<br>find支持的文件类型有b 块设备文件 c 字符设备文件 d 目录 f 普通文件 l 符号链接<br>可以查找所有符合<em>.jpg 通配符格式以及大小超过1mb的普通文件<br>`find ~ -type f -name “</em>.jpg” -size +1M | wc -l`<br>size支持的计量单位有b 512字节的块 c 字节 w两个字节的字 k M G<br>列出find命令常用的test参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">test参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-cmin n</td>
+<td style="text-align:left">匹配n分钟前改变状态内容或属性的文件或目录 不到 -n 超过 +n</td>
+</tr>
+<tr>
+<td style="text-align:left">-cnewer file</td>
+<td style="text-align:left">匹配内容和属性的修改时间比文件file更晚的文件或目录</td>
+</tr>
+<tr>
+<td style="text-align:left">-empty</td>
+<td style="text-align:left">匹配空文件以及空目录</td>
+</tr>
+<tr>
+<td style="text-align:left">-group name</td>
+<td style="text-align:left">匹配属于name组的文件或者目录</td>
+</tr>
+<tr>
+<td style="text-align:left">-iname pattern</td>
+<td style="text-align:left">与-name test选项功能类似 只是不区分大小写</td>
+</tr>
+<tr>
+<td style="text-align:left">-newer file</td>
+<td style="text-align:left">匹配内容的修改时间比file文件更近的文件和目录 例如备份后修改了文件可以使用此命令</td>
+</tr>
+<tr>
+<td style="text-align:left">-size n</td>
+<td style="text-align:left">匹配n大小的文件 不到-n 超过+n</td>
+</tr>
+<tr>
+<td style="text-align:left">-type c</td>
+<td style="text-align:left">匹配c文件类型的文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-user name</td>
+<td style="text-align:left">匹配属于name用户的文件或者目录</td>
+</tr>
+</tbody>
+</table>
+<p>find命令还支持逻辑操作符 如我需要查找那些访问权限不是0600的文件和访问权限不是0700的子目录<br><code>find ~ \( -type f -not -perm 0600 \ ) -or \( -type d -not -perm 0700 \)</code><br>其中\是转义字符 逻辑操作符包括 -and -or -not </p>
+<p>action选项<br>test选项用来查找那些文件那么action就是用来对找到的文件进行处理的 例如 -delete -ls -print -quit<br>也可以使用用户自定义操作 格式为 -exec command {} ;  例如 使用-exec完成-delete操作 -exec rm ‘{}’’;’ 这里使用引号为了避免在shell里直接编译 使用+结尾可以只执行一次命令 如<br><code>find ~ -type f -name &#39;foo*&#39; -exec ls -l &#39;{}&#39; +</code><br>使用xargs可以达到相同的效果 他是把前面的搜索结果作为 后面的命令的参数 如<br><code>find ~ -type f -name &#39;foo*&#39; | xargs ls -l</code></p>
+<p>option选项<br>option选项用于控制find命令的搜索范围 如 -depth -maxdepth levels  -mount</p>
+<h2 id="备份与归档"><a href="#备份与归档" class="headerlink" title="备份与归档"></a>备份与归档</h2><p>gzip -文件压缩<br>最简单的用法就是gzip ~/test/foo.txt  而解压就是gunzip  ~/text/foo.txt   加入-r参数可以递归压缩 gzip -d 相当于gunzip<br>bzip2 -以牺牲压缩速度来换取高质量的数据压缩<br>bzip2 ~/test/foo.txt  解压 bunzip2 ~/test/foo.txt</p>
+<p>tar -磁带归档工具<br>创建归档文件tar cf test.tar testdir   而查看tar文件有什么内容 tar tf test.tar</p>
+<p>zip - 打包压缩工具<br>zip程序即是文件压缩工具也是文件归档工具 常用zip -r test.zip test  加了-r是为了递归压缩子目录内容 unzip ../test.zip</p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>grep -文本搜索<br>grep命令通常的格式是 grep [options] regex [file…]<br> grep bzip dirlist<em>.txt  在指定文件集合中搜索包含bzip字符的行<br>正则表达式的元字符包含^ $ . [ ]  { } - ? </em> + ( ) | \<br>grep包含很多选项 -i 忽略大小写 -v不匹配 -c输出匹配数目 -l输出匹配项文件名 -n 在匹配行前面加上该行在文件内的行号<br>-h 进行多文件搜索时 抑制多文件输出</p>
+<p>任意字符 . 点<br>点表示任意的单个字符 必定存在一个占位符 例如 grep -h ‘.zip’ dist*.txt 输出结果不会只包含zip的文件</p>
+<p>锚<br>在正则表达式里插入符^表示开头 $表示结尾<br>例如 grep -h ‘^zip’ dist<em>.txt 表示查找以zip开头的匹配项 grep -h ‘^zip$’ dist</em>.zip 查找以zip为单独一行的匹配符</p>
+<p>中括号表达式和字符类<br>中括号用于匹配括号内的表示字符集的单个字符 例如 grep [abc] 表示查找的字符串可以包含a或者b或者c中一个<br>插入符^在括号内开头表示否定 例如grep -h  ‘’[ ^ bg]zip’ dir<em>.txt  表示匹配不以b或者g结合zip的字符串<br>中括号内的-表示字符范围 例如grep -h ‘^ [ A-Za-z0-9 ]’ dir</em>.txt 表示匹配以字母或数字开头的字符串</p>
+<p>? 匹配前面的元素0次或1次  * 匹配某元素多次或0次  + 匹配某元素一次或者多次  {n}指定重复出现n次</p>
+<p>举例：电话号码的出现形式 (nnn)nnn-nnnn  和 nnn nnn-nnnn 中的一种 可以使用以下两种方式匹配<br>第一种： <code>^\(?[0-9][0-9][0-9]\)?  [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$</code><br>第二种：<code>^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$</code><br>如果想验证上面正则表达式的有效性 可以使用如：<br><code>echo &quot;(555) 123-4567&quot; | grep -E ^\(?[0-9]{3}\)? [0-9]{3}-[0-9]{4}$</code>  如果有结果打印出来证明有效</p>
+<p>vim和less都支持正则表达式 在底部输入 / 符号后开始输入正则表达式 匹配的内容会自动标注 zgrep命令可以对压缩文件进行搜索</p>
+<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><p>cat 进行文件之间的拼接 并且输出到标准输出<br>如： cat &gt; ff.txt  然后输入一段文字后 按ctrl+D 结束输入 那么输入的文字会输出到文件末尾<br>将两个文件合并成一个文件 如果两个都是字符串内容就直接进行拼接 cat foo1.txt foo2.txt &gt; foo3.txt<br>cat的一些选项<br>-n 对行编号 -s 禁止输出多个空白行  用法如 cat -ns foo.txt   也可以不加任何选项 使用cat foo.txt输出</p>
+<p>sort 对文本进行排序 如sort &gt; foo.txt 将等下输入的内容进行排序并且输出到foo.txt文件内<br>sort 直接对一个文件进行排序 sort foo.txt<br>sort的选项 -f 排序时不区分大小写 -r 逆序排序  -n按字符串的长度排序而不是按字母表顺序<br>可以排序多个文件的内容并进行拼接 如sort foo1.txt foo2.txt foo3.txt &gt; foo4.txt<br>sort命令还可以配合du命令进行使用 du命令是用来显示文件或者目录所占的磁盘空间大小的命令<br>例如 du -ha ~/hexo | sort -nr | head 输出hexo目录下前10个按内容大小从大到小排序的文件名称和大小</p>
+<p>uniq 通知或者省略重复的行 注意uniq只对排序好的行起作用 一般配合sort命令使用<br>如 sort -r foo.txt | uniq<br>uniq的选项 -c 输出重复行 并且前面加上出现的次数 -d只输出重复行而不包含单独行</p>
+<p>comm 逐行比较两个已经排序的文件<br>如 comm 1.txt 2.txt   然后会输出三列内容 第一列表示第一个文件独有的行 第二列表示第二个文件独有的行 第三行表示两个文件所共有的行   可以使用选项省略这三列内容的哪些列 如 comm -12 1.txt 2.txt 省略第1 2列的内容 </p>
+<p>tr 替换或者删除字符<br>如 cat foo.txt | tr a-z  A-Z  将foo.txt里的内容 小写转为大写<br>echo “dadadaaaa”  | tr aaaa bbbb 将字符串里的aaaa替换成bbbb<br>cat foo.txt | tr -d ‘da’ 将foo.txt里的内容删除da</p>
+<p>sed 用于文本过滤和转换的流编辑器<br>如 echo ‘front’ | sed ‘s/front/back’ 输出为back 意义是将front转换成back 斜杠是分隔符也可以使用其他分隔符如下划线<br>可以指定只替换第几行 如 echo “front” | sed ‘1s_front_back’ 只替换第一行的front </p>
 ]]></content>
     
     <summary type="html">
