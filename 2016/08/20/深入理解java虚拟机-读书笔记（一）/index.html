@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="Asii">
 <meta property="og:description" content="主要介绍java的内存区域和内存溢出异常  垃圾收集器和内存分配策略">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%A0%86%E4%B8%AD%E5%88%92%E5%88%86.jpg">
-<meta property="og:updated_time" content="2021-06-15T01:08:34.827Z">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/java%E5%A0%86%E4%B8%AD%E5%88%92%E5%88%86.jpg">
+<meta property="og:updated_time" content="2021-06-16T01:30:35.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解java虚拟机-读书笔记（一）">
 <meta name="twitter:description" content="主要介绍java的内存区域和内存溢出异常  垃圾收集器和内存分配策略">
-<meta name="twitter:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png">
+<meta name="twitter:image" content="http://quqnn25zc.bkt.gdipper.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png">
   
     <link rel="alternative" href="/atom.xml" title="Asii" type="application/atom+xml">
   
@@ -187,7 +187,7 @@
 <blockquote>
 <p>深入理解java虚拟机 <br>作者： 周志明<br>– –读书笔记 by asii</p>
 </blockquote>
-<h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时区域"><a href="#运行时区域" class="headerlink" title="运行时区域"></a>运行时区域</h3><p>运行时数据区域如下图<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png" alt="image"></p>
+<h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时区域"><a href="#运行时区域" class="headerlink" title="运行时区域"></a>运行时区域</h3><p>运行时数据区域如下图<br><img src="http://quqnn25zc.bkt.gdipper.com/img/java%E5%86%85%E5%AD%98%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8C%BA%E5%9F%9F.png" alt="image"></p>
 <p>下面逐个分析</p>
 <h4 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h4><p>可以看做是当前线程所执行的字节码的行号指示器 每条线程都需要独立的程序计数器  线程之间的计数器互不影响 这个是线程私有的内存 此区域是唯一不会outOfMemoryError情况的区域</p>
 <h4 id="java虚拟机栈"><a href="#java虚拟机栈" class="headerlink" title="java虚拟机栈"></a>java虚拟机栈</h4><p>线程私有 生命周期与线程相同 描述的是java方法执行的内存模型：每个方法被执行的时候都会创建一个栈帧用于存储局部变量表 操作数栈 动态链接 方法出口等信息 局部变量表存放编译期可知的基本数据类型 对象引用 返回地址类型</p>
@@ -213,7 +213,7 @@
 <li>标记-整理算法 相比复制算法 此算法适合存活很多对象的情况 先标记 然后让所有存活的对象都向一端移动 清理掉端边以外的内存</li>
 <li>分代收集算法 将java堆分为新生代和老年代 根据各个年代的特点采用最适合的收集算法</li>
 </ol>
-<h3 id="内存分配和回收策略"><a href="#内存分配和回收策略" class="headerlink" title="内存分配和回收策略"></a>内存分配和回收策略</h3><p>java堆得各代划分<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/java%E5%A0%86%E4%B8%AD%E5%88%92%E5%88%86.jpg" alt="image"><br>大多数情况下 对象都在新生代Eden区中分配 当Eden没有足够空间时会发起一次Minor GC 存活的对象会移动到Survivor Space 如果Survivor Space没有足够的空间去存放这些对象 会通过分配担保机制提前移动到老年代中 新生代的可用内存空间包括Eden区+From区 剩余to Survivor Space是空闲的用于复制算法</p>
+<h3 id="内存分配和回收策略"><a href="#内存分配和回收策略" class="headerlink" title="内存分配和回收策略"></a>内存分配和回收策略</h3><p>java堆得各代划分<br><img src="http://quqnn25zc.bkt.gdipper.com/img/java%E5%A0%86%E4%B8%AD%E5%88%92%E5%88%86.jpg" alt="image"><br>大多数情况下 对象都在新生代Eden区中分配 当Eden没有足够空间时会发起一次Minor GC 存活的对象会移动到Survivor Space 如果Survivor Space没有足够的空间去存放这些对象 会通过分配担保机制提前移动到老年代中 新生代的可用内存空间包括Eden区+From区 剩余to Survivor Space是空闲的用于复制算法</p>
 <p>老年代也有GC 叫做Major GC或者Full GC 他的回收速度比Minor GC慢很多 在Full GC之前一般伴随一次Minor GC</p>
 <p>对于大对象数据 为了避免在Eden区与两个Survivor区之间发生大量的内存拷贝 可以在虚拟机设置-XX：PretenureSizeThreshould参数设置成大于某个值的大对象数据直接进入老年代</p>
 <p>长期存活的对象会进入老年代 实现的原理是虚拟机给每个对象顶一个对象年龄age计数器 如果对象在Eden出生并经过一次Minor GC后依然存活并且能被Survivor容纳的话会被移动到to Survivor空间并将年龄对象设为1 对象在Survivor空间每熬过一次Minor GC年龄就增加1 当他的年龄增加到一定程度就会晋升到老年代 对象晋升老年代的年龄阈值可以通过参数-XX：MaxTenuringThreshold来设置 还有另外一种策略是Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半 年龄大于或等于该年龄的对象就可以直接进入老年代 无需等到MaxTenuringThreshold达到阈值</p>

@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://luyaoming.com">
   <title>测试迁移hexo到另一台主机 | Asii</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="把hexo备份到https://gitee.com/asii2020/myhexo 目录下  重新执行sudo cnpm install –force 如果出现hexo-rederer-sass 安装失败 执行  sudo rm -rf node_moudles sudo cnpm install –save node-sass sudo cnpm install –force 接着测试hexo">
+  <meta name="description" content="最近买了台新电脑 默认win10系统 为了开发方便 装了wsl2 捣鼓编译环境 之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新  下面简单记录下迁移hexo到另一台电脑遇到的一些问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="测试迁移hexo到另一台主机">
 <meta property="og:url" content="http://luyaoming.com/2021/06/15/测试迁移hexo到另一台主机/index.html">
 <meta property="og:site_name" content="Asii">
-<meta property="og:description" content="把hexo备份到https://gitee.com/asii2020/myhexo 目录下  重新执行sudo cnpm install –force 如果出现hexo-rederer-sass 安装失败 执行  sudo rm -rf node_moudles sudo cnpm install –save node-sass sudo cnpm install –force 接着测试hexo">
+<meta property="og:description" content="最近买了台新电脑 默认win10系统 为了开发方便 装了wsl2 捣鼓编译环境 之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新  下面简单记录下迁移hexo到另一台电脑遇到的一些问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-06-15T02:59:08.809Z">
+<meta property="og:updated_time" content="2021-06-15T09:46:42.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="测试迁移hexo到另一台主机">
-<meta name="twitter:description" content="把hexo备份到https://gitee.com/asii2020/myhexo 目录下  重新执行sudo cnpm install –force 如果出现hexo-rederer-sass 安装失败 执行  sudo rm -rf node_moudles sudo cnpm install –save node-sass sudo cnpm install –force 接着测试hexo">
+<meta name="twitter:description" content="最近买了台新电脑 默认win10系统 为了开发方便 装了wsl2 捣鼓编译环境 之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新  下面简单记录下迁移hexo到另一台电脑遇到的一些问题">
   
     <link rel="alternative" href="/atom.xml" title="Asii" type="application/atom+xml">
   
@@ -178,14 +178,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>把hexo备份到<a href="https://gitee.com/asii2020/myhexo" target="_blank" rel="noopener">https://gitee.com/asii2020/myhexo</a> 目录下 </p>
+        <p>最近买了台新电脑 默认win10系统 为了开发方便 装了wsl2 捣鼓编译环境</p>
+<p>之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新 </p>
+<p>下面简单记录下迁移hexo到另一台电脑遇到的一些问题</p>
+<a id="more"></a>
+<p>思路很简单：备份mac上的hexo文件到gitee 另一台电脑下载下来 然后通过npm 安装软件</p>
+<p>顺便说说这样做得好处：上传数据而非u盘拷贝 是为了每次更新方便  不用u盘考来考去 gitee是国内的 比github快 且区分一个发布用 一个备份用比较清晰</p>
+<p>把hexo备份到<a href="https://gitee.com/asii2020/myhexo" target="_blank" rel="noopener">https://gitee.com/asii2020/myhexo</a> 目录下 </p>
+<p>记得上传之前 把.gitignore文件的内容删除或注释掉 把所有文件先上传</p>
+<p>换电脑 切换到新建的hexo目录下 git clone <a href="https://gitee.com/asii2020/myhexo" target="_blank" rel="noopener">https://gitee.com/asii2020/myhexo</a> </p>
+<p>下面是在wsl2的环境下安装</p>
 <p>重新执行sudo cnpm install –force</p>
 <p>如果出现hexo-rederer-sass 安装失败 执行 </p>
 <p>sudo rm -rf node_moudles</p>
 <p>sudo cnpm install –save node-sass</p>
 <p>sudo cnpm install –force</p>
-<p>接着测试hexo new “测试迁移hexo到另一台主机”</p>
-<p>hexo d -g</p>
+<p>接着测试</p>
+<p>hexo new “测试迁移hexo到另一台主机”</p>
+<p>hexo g</p>
+<p>hexo d</p>
 
       
 

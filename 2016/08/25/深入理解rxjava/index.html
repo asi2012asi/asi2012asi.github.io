@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="Asii">
 <meta property="og:description" content="深入分析下rxjava在源码中的运行过程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/refactor.png">
-<meta property="og:updated_time" content="2021-06-15T01:08:34.833Z">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/refactor.png">
+<meta property="og:updated_time" content="2021-06-16T01:30:35.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解rxjava">
 <meta name="twitter:description" content="深入分析下rxjava在源码中的运行过程">
-<meta name="twitter:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta name="twitter:image" content="http://quqnn25zc.bkt.gdipper.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
   
     <link rel="alternative" href="/atom.xml" title="Asii" type="application/atom+xml">
   
@@ -201,7 +201,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> Subscriber&lt;? <span class="keyword">super</span> T&gt; call(<span class="keyword">final</span> Subscriber&lt;? <span class="keyword">super</span> R&gt; o) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Subscriber&lt;T&gt;(o) &#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        o.onCompleted();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">        o.onError(e);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(T t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            o.onNext(transformer.call(t));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            Exceptions.throwOrReport(e, <span class="keyword">this</span>, t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此步骤就是将最终目标的subscriber对象封装到一个新的subscriber对象中</p>
 <p>接着讲解lift方法中的onSubscribe.call(st) st为上一步创建的新subscriber对象 传入到父onSubscribe对象中 这里说父onSubscribe对象是因为有可能多个变换操作 该onSubscribe对象由下往上传递 最终传递到Observable通过create函数中创建的onSubscribe对象中并执行call方法（一般会执行onNext onComplete等操作）</p>
-<p>进行到这一步 真正的回调才开始执行 由该onNext开始 调用封装后的Subscriber对象的onNext方法 执行代码o.onNext(transfromer.call(t)); 会先调用这一层进行的变换 再调用onNext方法 再玩下调用下一层的变换 再调用onNext方法 以此类推 最终最终才调用最后的subscriber对象的onNext方法 抽象流程图如下<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="image"><br>代码流程图如下<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/refactor.png" alt="image"></p>
+<p>进行到这一步 真正的回调才开始执行 由该onNext开始 调用封装后的Subscriber对象的onNext方法 执行代码o.onNext(transfromer.call(t)); 会先调用这一层进行的变换 再调用onNext方法 再玩下调用下一层的变换 再调用onNext方法 以此类推 最终最终才调用最后的subscriber对象的onNext方法 抽象流程图如下<br><img src="http://quqnn25zc.bkt.gdipper.com/img/rxjava%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="image"><br>代码流程图如下<br><img src="http://quqnn25zc.bkt.gdipper.com/img/refactor.png" alt="image"></p>
 
       
 

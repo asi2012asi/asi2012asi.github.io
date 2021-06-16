@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="Asii">
 <meta property="og:description" content="主要介绍jvm的类加载机制">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.gif">
-<meta property="og:updated_time" content="2021-06-15T01:08:34.831Z">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.gif">
+<meta property="og:updated_time" content="2021-06-16T01:30:35.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解java虚拟机-读书笔记（二）">
 <meta name="twitter:description" content="主要介绍jvm的类加载机制">
-<meta name="twitter:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.gif">
+<meta name="twitter:image" content="http://quqnn25zc.bkt.gdipper.com/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.gif">
   
     <link rel="alternative" href="/atom.xml" title="Asii" type="application/atom+xml">
   
@@ -201,7 +201,7 @@
 <li>扩展类加载器 Extension ClassLoader 将JAVA_HOME\lib\ext下面的类库加载到虚拟机内存中 可以被java程序直接引用</li>
 <li>应用程序类加载器 Application ClassLoader 使用getSystemClassLoader的返回值也称为系统类加载器 将用户类路径下的类库加载到内存中 若用户没有指定自己的类加载器 他就是默认的</li>
 </ol>
-<p>类加载器双亲委派模型如下图<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.gif" alt="image"><br>双亲委派模型的工作过程是：如果一个类加载器收到了类加载的请求 他首先不会自己去尝试加载这个类 而是把这个请求委派给父类加载器去完成 每一个层次的类加载器都是如此 因此所有的加载请求最终都会传送到顶层的启动类加载器中 只有父类加载器反馈自己无法完成这个加载请求时 子加载器才会尝试自己去加载</p>
+<p>类加载器双亲委派模型如下图<br><img src="http://quqnn25zc.bkt.gdipper.com/img/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.gif" alt="image"><br>双亲委派模型的工作过程是：如果一个类加载器收到了类加载的请求 他首先不会自己去尝试加载这个类 而是把这个请求委派给父类加载器去完成 每一个层次的类加载器都是如此 因此所有的加载请求最终都会传送到顶层的启动类加载器中 只有父类加载器反馈自己无法完成这个加载请求时 子加载器才会尝试自己去加载</p>
 <p>这个模型的好处是java类随着类加载器拥有优先级的层次关系 例如自己写一个Object类放在rt.jar包并放在ClassPath中 虚拟机加载时时会从父类加载器中找 找到了就会无视自己写的那个Object类 但是此类依然可以通过编译 只不过不会被加载运行</p>
 
       

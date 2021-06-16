@@ -16,14 +16,14 @@
 <meta property="og:site_name" content="Asii">
 <meta property="og:description" content="主要介绍java的内存模型和线程调度">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E5%A4%84%E7%90%86%E5%99%A8%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%BB%E5%86%85%E5%AD%98%E5%85%B3%E7%B3%BB.jpg">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png">
-<meta property="og:updated_time" content="2021-06-15T01:08:34.829Z">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/%E5%A4%84%E7%90%86%E5%99%A8%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%BB%E5%86%85%E5%AD%98%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png">
+<meta property="og:updated_time" content="2021-06-16T01:30:35.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解java虚拟机-读书笔记（三）">
 <meta name="twitter:description" content="主要介绍java的内存模型和线程调度">
-<meta name="twitter:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg">
+<meta name="twitter:image" content="http://quqnn25zc.bkt.gdipper.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Asii" type="application/atom+xml">
   
@@ -190,9 +190,9 @@
 </blockquote>
 <h1 id="java内存模型与线程"><a href="#java内存模型与线程" class="headerlink" title="java内存模型与线程"></a>java内存模型与线程</h1><h3 id="硬件中的java内存模型"><a href="#硬件中的java内存模型" class="headerlink" title="硬件中的java内存模型"></a>硬件中的java内存模型</h3><p>运算任务是通过处理器的计算 与内存的读取和吸入数据 一起完成的 但是在真实硬件中 储存设备与处理器之间的速度之前有很大的差别 所以需要加入一个高速缓存cache作为内存与处理器之间的缓冲</p>
 <p>高速缓冲的作用是 将运算需要用到的数据从主内存复制到缓存中 让运算能快速进行 当运算结束后再从缓存同步到内存中 这样处理器就无需等待缓慢的内存读写了</p>
-<p>在多处理器系统中 每个处理器都有自己的高速缓存而且他们共享一个主内存 在读写过程中将可能导致各自的缓存数据不一致 当同步回到主内存时以谁的缓存数据为准？ ‘缓存一致性协议’就是为了解决这个问题而存在的 这类协议有 MSI MESI MOSI Synapse等<br><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg" alt="image"></p>
+<p>在多处理器系统中 每个处理器都有自己的高速缓存而且他们共享一个主内存 在读写过程中将可能导致各自的缓存数据不一致 当同步回到主内存时以谁的缓存数据为准？ ‘缓存一致性协议’就是为了解决这个问题而存在的 这类协议有 MSI MESI MOSI Synapse等<br><img src="http://quqnn25zc.bkt.gdipper.com/img/%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.jpg" alt="image"></p>
 <h3 id="乱序执行"><a href="#乱序执行" class="headerlink" title="乱序执行"></a>乱序执行</h3><p>为了处理器内存的运算单元能尽量充分利用 处理器可能会对输入代码进行乱序执行优化 out of order execution 处理器会在计算后将乱序执行的结果重组 保证该结果与顺序执行的结果一致 但不保证程序中各个语句计算的先后顺序与输入代码的顺序一致 因此如果存在一个计算任务依赖另外一个计算任务的中间结果 那么顺序性并不能靠代码的先后顺序来保证 java虚拟机的即时编译也有类似的指令重排序 Instruction Recorder</p>
-<h3 id="软件中的java内存模型"><a href="#软件中的java内存模型" class="headerlink" title="软件中的java内存模型"></a>软件中的java内存模型</h3><p><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/%E5%A4%84%E7%90%86%E5%99%A8%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%BB%E5%86%85%E5%AD%98%E5%85%B3%E7%B3%BB.jpg" alt="image"><br>与硬件中的java内存模型有类比性 每条线程还有自己的工作内存 线程的工作内存中保存了该线程使用到的变量的主内存副本拷贝 线程对变量的所有操作都必须在工作内存中进行 而不能直接读写主内存中的变量 不同线程之间不能相互访问对方工作内存中的变量 线程间的变量值传递均需要通过主内存来完成</p>
+<h3 id="软件中的java内存模型"><a href="#软件中的java内存模型" class="headerlink" title="软件中的java内存模型"></a>软件中的java内存模型</h3><p><img src="http://quqnn25zc.bkt.gdipper.com/img/%E5%A4%84%E7%90%86%E5%99%A8%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%BB%E5%86%85%E5%AD%98%E5%85%B3%E7%B3%BB.jpg" alt="image"><br>与硬件中的java内存模型有类比性 每条线程还有自己的工作内存 线程的工作内存中保存了该线程使用到的变量的主内存副本拷贝 线程对变量的所有操作都必须在工作内存中进行 而不能直接读写主内存中的变量 不同线程之间不能相互访问对方工作内存中的变量 线程间的变量值传递均需要通过主内存来完成</p>
 <p>内存模型中还定义了8中交互操作 分别是lock unlock read load use assign store write 根据字面理解 主要是工作内存和主内存之间的交互</p>
 <h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><p>volatile关键字是java虚拟机提供的最轻量级的同步机制 他有两个特性 第一 保证此变量都所有线程的可见性 如何理解？ 当一条线程修改了这个变量的值 新值对于其他线程来说是立即得知的 普通变量不能做到这点 因为线程间的变量传递需要通过主内存来完成 例如 线程1修改了一个普通变量的值 然后向主内存进行回写 另外线程2必须要在线程1完成回写之后再从主内存读取才能读到修改后的值 否则是未修改的值</p>
 <p>注意在使用volatile时在对该变量写操作时不适合依赖于变量本身如i++相当于i=i+1这种依赖于本身的写操作 所以不具备操作的原子性</p>
@@ -201,7 +201,7 @@
 <p>java内存模型具有 原子性 可见性和有序性三个特性</p>
 <p>有关原子性操作 java还提供如AutomicInteger AutomicLong等类型来进行原子性操作 在多线程并发操作同一资源 使用lock-free算法来代替锁 开销更小速度更快 所谓原子性操作可以举例i++原来分三步 原子性操作作为一步仅限单一线程修改</p>
 <h3 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h3><p>协同式调度 线程的执行时间由本身来控制 线程自己的工作执行完了之后 要主动通知系统切换到另外一个线程上去<br>抢占式调度 执行时间不由自己控制 又系统来控制执行时间 不会有由于一个线程阻塞而导致整个进行阻塞的问题</p>
-<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><p><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png" alt="image">插图来源于网络</p>
+<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><p><img src="http://quqnn25zc.bkt.gdipper.com/img/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png" alt="image">插图来源于网络</p>
 <p>调用thread的isAlived 只有在新建和死亡这两种状态下才会为false 其他都是true</p>
 <p>不能对已经在死亡状态的线程调用start方法</p>
 <p>关于线程的join方法的例子 a线程在执行 b线程在a线程里调用join()方法时 a线程会进入阻塞状态 b线程执行完成后 a线程进入就绪状态参与资源竞争</p>

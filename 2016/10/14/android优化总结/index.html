@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="Asii">
 <meta property="og:description" content="主要从UI 内存 代码 电量 等几个方面介绍Android优化">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/mobile_radio_state_machine.png">
-<meta property="og:updated_time" content="2021-06-15T01:08:34.793Z">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/mobile_radio_state_machine.png">
+<meta property="og:updated_time" content="2021-06-16T01:30:35.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android优化总结">
 <meta name="twitter:description" content="主要从UI 内存 代码 电量 等几个方面介绍Android优化">
-<meta name="twitter:image" content="http://7xteb8.com1.z0.glb.clouddn.com/img/mobile_radio_state_machine.png">
+<meta name="twitter:image" content="http://quqnn25zc.bkt.gdipper.com/img/mobile_radio_state_machine.png">
   
     <link rel="alternative" href="/atom.xml" title="Asii" type="application/atom+xml">
   
@@ -252,7 +252,7 @@
 </ul>
 <h2 id="电量优化"><a href="#电量优化" class="headerlink" title="电量优化"></a>电量优化</h2><p>这个优化往往会排到最后来做但是依然重要</p>
 <p>无线电波状态机有三种能量状态 full power（无线连接被激活 允许设备以最大的传输速率进行）low power（中间状态 电量消耗是full power的一半）standby（最小能量状态 没有激活或者没有网络连接） 能量状态转换需要耗费时间 如下图</p>
-<p><img src="http://7xteb8.com1.z0.glb.clouddn.com/img/mobile_radio_state_machine.png" alt="能量状态转换图"></p>
+<p><img src="http://quqnn25zc.bkt.gdipper.com/img/mobile_radio_state_machine.png" alt="能量状态转换图"></p>
 <p>如何查看电量消耗图呢 可使用Android5.0新引入的api：battery historian 参考胡凯的<a href="http://hukai.me/android-performance-battery/" target="_blank" rel="noopener">Android性能优化之电量篇</a> 观察网络唤醒和等待时的电量变化</p>
 <p>一台Android设备平均只要30%的电量用来绘制图片摆放布局等操作 剩下70%的电量是用来上报数据 检查位置信息 定时检索后台广告等 对比起来网络访问更加消耗电量 以下操作可以减少电量的消耗</p>
 <ul>
