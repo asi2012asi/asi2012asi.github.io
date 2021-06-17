@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://luyaoming.com/2021/05/08/Primer-cpp-第五版读书笔记（二）/index.html">
 <meta property="og:site_name" content="Asii">
 <meta property="og:description" content="主要记录c++的字符串向量和数组 表达式和语句">
-<meta property="og:updated_time" content="2021-06-15T01:08:34.785Z">
+<meta property="og:updated_time" content="2021-06-17T04:01:14.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Primer cpp 第五版读书笔记（二）">
 <meta name="twitter:description" content="主要记录c++的字符串向量和数组 表达式和语句">
@@ -64,12 +64,6 @@
 	        
 				<li><a href="/categories/C/">C</a></li>
 	        
-				<li><a href="/categories/Design-Patterns/">Design-Patterns</a></li>
-	        
-				<li><a href="/categories/Hexo/">Hexo</a></li>
-	        
-				<li><a href="/categories/JVM/">JVM</a></li>
-	        
 				<li><a href="/categories/Linux/">Linux</a></li>
 	        
 			</ul>
@@ -90,7 +84,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="http://quqnn25zc.bkt.gdipper.com/" target="_blank" href="https://http://quqnn25zc.bkt.gdipper.com/.com/asi2012asi" title="http://quqnn25zc.bkt.gdipper.com/"><i class="icon-http://quqnn25zc.bkt.gdipper.com/"></i></a>
+					<a class="github" target="_blank" href="https://gitee.com/asii2020" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="https://weibo.com/asi2012" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -132,18 +126,12 @@
 			
 				
 			
-				
-			
-				
-			
-				
-			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="http://quqnn25zc.bkt.gdipper.com/" target="_blank" href="https://http://quqnn25zc.bkt.gdipper.com/.com/asi2012asi" title="http://quqnn25zc.bkt.gdipper.com/"><i class="icon-http://quqnn25zc.bkt.gdipper.com/"></i></a>
+						<a class="github" target="_blank" href="https://gitee.com/asii2020" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="https://weibo.com/asi2012" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -158,19 +146,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 14.285714285714286%"><a href="/">Home</a></li>
+					<li style="width: 25%"><a href="/">Home</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Android/">Android</a></li>
+					<li style="width: 25%"><a href="/categories/Android/">Android</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/C/">C</a></li>
+					<li style="width: 25%"><a href="/categories/C/">C</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Design-Patterns/">Design-Patterns</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Hexo/">Hexo</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/JVM/">JVM</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Linux/">Linux</a></li>
+					<li style="width: 25%"><a href="/categories/Linux/">Linux</a></li>
 		        
 				</ul>
 			</nav>
@@ -214,7 +196,7 @@
 <h2 id="三，字符串、-向量和数组"><a href="#三，字符串、-向量和数组" class="headerlink" title="三，字符串、 向量和数组"></a>三，字符串、 向量和数组</h2><p>前面讲到使用库函数时 c++需要标明命名空间 </p>
 <p>利用using关键字 可以一次声明后 后面的使用中不再标明命名空间 类似于java的import</p>
 <p>格式为<code>using namespace::name;</code> 例如声明之前我们经常用到的输入输出cin</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; i;<span class="comment">//正确</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; i;<span class="comment">//错误 未声明cout 还不能这么用</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i;<span class="comment">//正确</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  <span class="built_in">cin</span> &gt;&gt; i;<span class="comment">//正确</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; i;<span class="comment">//错误 未声明cout 还不能这么用</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i;<span class="comment">//正确</span></span><br><span class="line">  return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>using关键字不仅可以命名类型别名 也充当声明命名空间变量作用</p>
 <p>注意 头文件中不应该包含using 关键字 因为头文件被多个文件引用 使用using可能会导致始料未及的名字冲突</p>
 <p>定义和初始化string对象</p>
@@ -232,7 +214,7 @@
 <p>在使用vector之前 先要引入vector标准库</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include &lt;<span class="built_in">vector</span>&gt;</span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">vector</span>;</span><br></pre></td></tr></table></figure>
 <p>初始化vector集合</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">ivec2</span><span class="params">(ivec)</span> </span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; articles&#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; article = &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; <span class="title">svec</span><span class="params">(<span class="number">10</span>,<span class="string">"c"</span>)</span></span>;<span class="comment">//</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">ivec</span><span class="params">(<span class="number">10</span>,<span class="number">-1</span>)</span></span>; <span class="comment">//10个int类型的元素 每个都被初始化-1</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">ivec2</span><span class="params">(<span class="number">10</span>)</span></span>; <span class="comment">//初始化10个元素的vector 元素的初始值默认都为0</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec3&#123;<span class="number">10</span>&#125;;<span class="comment">//初始化有一个元素10的vector</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec2(ivec) ;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; articles&#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; article = &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; svec(<span class="number">10</span>,<span class="string">"c"</span>);<span class="comment">//</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec(<span class="number">10</span>,<span class="number">-1</span>); <span class="comment">//10个int类型的元素 每个都被初始化-1</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec2(<span class="number">10</span>); <span class="comment">//初始化10个元素的vector 元素的初始值默认都为0</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ivec3&#123;<span class="number">10</span>&#125;;<span class="comment">//初始化有一个元素10的vector</span></span><br></pre></td></tr></table></figure>
 <p>vector使用push_back函数添加元素</p>
 <p>注意不能使用for循环改变容器本身的大小 包括增加或删除元素 应该使用迭代器</p>
 <p>下面罗列下vector的主要函数和运算符 与string相类似</p>
@@ -260,7 +242,7 @@
 <p>数组的下标运算符所用的索引值不是无符号类型 这点与vector和string不一样 即允许负数</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p = &amp;a[<span class="number">2</span>]; <span class="comment">//p指针指向a的第三个元素</span></span><br><span class="line"><span class="keyword">int</span> k = p[<span class="number">-2</span>];<span class="comment">//p指针往后退两步 k表示a[0]的元素</span></span><br></pre></td></tr></table></figure>
 <p>允许使用数组初始化vector集合 但是不允许使用vector初始化数组</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v</span><span class="params">(begin(a),end(a))</span></span>;<span class="comment">//使用数组的首尾指针来初始化vector集合</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(begin(a),end(a));<span class="comment">//使用数组的首尾指针来初始化vector集合</span></span><br></pre></td></tr></table></figure>
 <p>建议：现代的c++程序应当尽量使用vector和迭代器 避免使用内置数组和指针 尽量使用string 避免使用c风格的基于数组的字符串</p>
 <p>多维数组</p>
 <p>严格来说 c++没有多维数组 通常所说的多维数组其实是数组的数组 </p>
@@ -283,7 +265,7 @@
 <p>常量类型转换为非常量类型 const_cast 常常用于函数重载的上下文中</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *pr;</span><br><span class="line"><span class="keyword">char</span> *p = <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>*&gt;(pr);<span class="comment">//去掉底层const</span></span><br></pre></td></tr></table></figure>
 <p>两个冒号的::的运算符优先级最高 属于左结合律</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">::name <span class="comment">// 全局作用域</span></span><br><span class="line">class::name <span class="comment">//类作用域</span></span><br><span class="line"><span class="keyword">namespace</span>::name<span class="comment">// 命名空间作用域</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">::name <span class="comment">// 全局作用域</span></span><br><span class="line"><span class="keyword">class</span>::name <span class="comment">//类作用域</span></span><br><span class="line"><span class="keyword">namespace</span>::name<span class="comment">// 命名空间作用域</span></span><br></pre></td></tr></table></figure>
 <h2 id="五，语句"><a href="#五，语句" class="headerlink" title="五，语句"></a>五，语句</h2><p>c++中的while for do while语句 if switch条件分支结构  continue语句 break语句 goto语句 try catch异常捕捉 throw语句 return语句 与java一样 可以无缝转换理解</p>
 <p>略</p>
 
@@ -336,6 +318,17 @@
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C//" class="article-tag-list-link color2">C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -456,7 +449,7 @@
     		&copy; 2021 Asii
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://http://quqnn25zc.bkt.gdipper.com/.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>

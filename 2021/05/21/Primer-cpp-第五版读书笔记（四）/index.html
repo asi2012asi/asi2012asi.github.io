@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://luyaoming.com/2021/05/21/Primer-cpp-第五版读书笔记（四）/index.html">
 <meta property="og:site_name" content="Asii">
 <meta property="og:description" content="主要记录c++的常用标准库 包括IO库和顺序容器">
-<meta property="og:updated_time" content="2021-06-15T01:08:34.791Z">
+<meta property="og:updated_time" content="2021-06-17T04:01:32.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Primer cpp 第五版读书笔记（四）">
 <meta name="twitter:description" content="主要记录c++的常用标准库 包括IO库和顺序容器">
@@ -64,12 +64,6 @@
 	        
 				<li><a href="/categories/C/">C</a></li>
 	        
-				<li><a href="/categories/Design-Patterns/">Design-Patterns</a></li>
-	        
-				<li><a href="/categories/Hexo/">Hexo</a></li>
-	        
-				<li><a href="/categories/JVM/">JVM</a></li>
-	        
 				<li><a href="/categories/Linux/">Linux</a></li>
 	        
 			</ul>
@@ -90,7 +84,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="http://quqnn25zc.bkt.gdipper.com/" target="_blank" href="https://http://quqnn25zc.bkt.gdipper.com/.com/asi2012asi" title="http://quqnn25zc.bkt.gdipper.com/"><i class="icon-http://quqnn25zc.bkt.gdipper.com/"></i></a>
+					<a class="github" target="_blank" href="https://gitee.com/asii2020" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="https://weibo.com/asi2012" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -132,18 +126,12 @@
 			
 				
 			
-				
-			
-				
-			
-				
-			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="http://quqnn25zc.bkt.gdipper.com/" target="_blank" href="https://http://quqnn25zc.bkt.gdipper.com/.com/asi2012asi" title="http://quqnn25zc.bkt.gdipper.com/"><i class="icon-http://quqnn25zc.bkt.gdipper.com/"></i></a>
+						<a class="github" target="_blank" href="https://gitee.com/asii2020" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="https://weibo.com/asi2012" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -158,19 +146,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 14.285714285714286%"><a href="/">Home</a></li>
+					<li style="width: 25%"><a href="/">Home</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Android/">Android</a></li>
+					<li style="width: 25%"><a href="/categories/Android/">Android</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/C/">C</a></li>
+					<li style="width: 25%"><a href="/categories/C/">C</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Design-Patterns/">Design-Patterns</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Hexo/">Hexo</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/JVM/">JVM</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Linux/">Linux</a></li>
+					<li style="width: 25%"><a href="/categories/Linux/">Linux</a></li>
 		        
 				</ul>
 			</nav>
@@ -236,7 +218,7 @@
 <p>比如有一个需求 从文件中录入一些人员信息 然后组建成对象输出 文件内容如</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前面是人员名称 后面是电话号码(个人，家庭等电话号码)</span></span><br><span class="line">morgan <span class="number">201341345</span> <span class="number">987434463</span></span><br><span class="line">drew <span class="number">97674632</span></span><br><span class="line">lee <span class="number">6735548</span> <span class="number">98265524</span> <span class="number">89366263</span></span><br></pre></td></tr></table></figure>
 <p>下面开始使用istringstream来对这些文本进行处理</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先创建一个类来封装这些人员数据</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PersonInfo</span>&#123;</span></span><br><span class="line">  <span class="built_in">string</span> name;</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; phones;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接下来使用一个方法将这些文本数据转换成对象集合</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;PersonInfo&gt; <span class="title">parseData</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="built_in">string</span> line,word;</span><br><span class="line">  Vector&lt;PersonInfo&gt; people;</span><br><span class="line">  <span class="keyword">while</span>(getline(<span class="built_in">cin</span>,line))&#123; <span class="comment">//遍历每行字符串 赋值给line</span></span><br><span class="line">    PersonInfo info;<span class="comment">//每行对应一个对象 先声明类型</span></span><br><span class="line">    <span class="function"><span class="built_in">istringstream</span> <span class="title">record</span><span class="params">(line)</span></span>;<span class="comment">//创建istringstream对象record 使用line字符串直接构造该对象</span></span><br><span class="line">    record &gt;&gt; info.name;<span class="comment">// istringstream的操作符&gt;&gt;来自于basic_isteam的操作符&gt;&gt; 用法同熟悉的cin&gt;&gt;都是遇到空格结束 意思从record字符串输入流读取下一个空格前的字符串保存到info.name中</span></span><br><span class="line">    <span class="keyword">while</span>(record &gt;&gt; word)&#123;<span class="comment">//如法炮制 读取名字后面的号码 传入info对象的vector中</span></span><br><span class="line">      info.phones.push_back(word);<span class="comment">//顺序添加到末尾</span></span><br><span class="line">    &#125;</span><br><span class="line">    people.push_back(info);<span class="comment">//保存对象</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> people;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先创建一个类来封装这些人员数据</span></span><br><span class="line"><span class="keyword">struct</span> PersonInfo&#123;</span><br><span class="line">  <span class="built_in">string</span> name;</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; phones;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接下来使用一个方法将这些文本数据转换成对象集合</span></span><br><span class="line"><span class="built_in">vector</span>&lt;PersonInfo&gt; parseData()&#123;</span><br><span class="line">  <span class="built_in">string</span> line,word;</span><br><span class="line">  Vector&lt;PersonInfo&gt; people;</span><br><span class="line">  <span class="keyword">while</span>(getline(cin,line))&#123; <span class="comment">//遍历每行字符串 赋值给line</span></span><br><span class="line">    PersonInfo info;<span class="comment">//每行对应一个对象 先声明类型</span></span><br><span class="line">    <span class="function"><span class="built_in">istringstream</span> <span class="title">record</span><span class="params">(line)</span></span>;<span class="comment">//创建istringstream对象record 使用line字符串直接构造该对象</span></span><br><span class="line">    record &gt;&gt; info.name;<span class="comment">// istringstream的操作符&gt;&gt;来自于basic_isteam的操作符&gt;&gt; 用法同熟悉的cin&gt;&gt;都是遇到空格结束 意思从record字符串输入流读取下一个空格前的字符串保存到info.name中</span></span><br><span class="line">    <span class="keyword">while</span>(record &gt;&gt; word)&#123;<span class="comment">//如法炮制 读取名字后面的号码 传入info对象的vector中</span></span><br><span class="line">      info.phones.push_back(word);<span class="comment">//顺序添加到末尾</span></span><br><span class="line">    &#125;</span><br><span class="line">    people.push_back(info);<span class="comment">//保存对象</span></span><br><span class="line">  &#125;</span><br><span class="line">  return people;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用ostringstream 分别输出有效和无效的电话号码</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry: people)&#123;</span><br><span class="line">  ostringsteam formatted,badNums;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> &amp;nums:entry.phones)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!valid(nums))&#123;</span><br><span class="line">      badNums &lt;&lt; <span class="string">" "</span> &lt;&lt; nums;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      formatted &lt;&lt; <span class="string">" "</span> &lt;&lt; format(nums);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(badNums.str().empty())&#123;</span><br><span class="line">    os &lt;&lt; entry.name &lt;&lt; <span class="string">" "</span> &lt;&lt; formatted.str() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">cerr</span> &lt;&lt; <span class="string">"input err:"</span> &lt;&lt;entry.name &lt;&lt; <span class="string">"invalid nums "</span> &lt;&lt; badNums.str() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="九，顺序容器"><a href="#九，顺序容器" class="headerlink" title="九，顺序容器"></a>九，顺序容器</h2><p>不同容器需要考虑以下的性能折中：</p>
@@ -254,7 +236,7 @@
 <p>新标准的容器比旧版本的快得多 现代c++程序应该使用标准库容器  而非原始的数据结构如内置数组</p>
 <p>在选择容器方面 有一些基本原则 其中一个是：除非你有很好的理由选择其他容器 否则应该使用vector  </p>
 <p>如果程序中既需要随机访问元素 又需要在容器中间插入元素 选择容器时 就要看取决于在list或forward_list 中访问元素与vector 或deque中插入/删除元素的相对性能 看哪一种操作作主导地位 是访问元素的操作更多还是插入删除的操作更多 必要时需要对容器的选择做测试工作</p>
-<p>容器都定义为模板类 以便提供信息给编译器是特定的容器的类型 参考之前的vector<double> 也有list&lt;Sales_data&gt; 容器中包含容器也是常见的vector&lt;vector<string>&gt; 如果容器内的元素类没有默认构造函数 那么创建一个容器初始化时需要制定元素类的初始化器 如<code>vector&lt;NoDefaultClass&gt; v1(10, init) ;</code></string></double></p>
+<p>容器都定义为模板类 以便提供信息给编译器是特定的容器的类型 参考之前的vector<double> 也有list<sales_data> 容器中包含容器也是常见的vector<vector<string>&gt; 如果容器内的元素类没有默认构造函数 那么创建一个容器初始化时需要制定元素类的初始化器 如<code>vector&lt;NoDefaultClass&gt; v1(10, init) ;</code></vector<string></sales_data></double></p>
 <p>下面列举容器中常用操作</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类型别名</span></span><br><span class="line">iterator <span class="comment">// 迭代器</span></span><br><span class="line">const_iterator <span class="comment">//可以读取元素 但不能修改元素的迭代器</span></span><br><span class="line">size_type <span class="comment">//无符号整数类型 足够保存容器类型的大小</span></span><br><span class="line">difference_type <span class="comment">//带符号的整数类型 足够保存两个迭代器之间的距离</span></span><br><span class="line">value_type <span class="comment">//元素类型</span></span><br><span class="line">reference <span class="comment">//元素的左值类型 与value_type&amp;含义相同</span></span><br><span class="line">const_reference <span class="comment">//元素的const左值类型 即 const value_type&amp;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//构造函数</span></span><br><span class="line">C c;</span><br><span class="line"><span class="function">C <span class="title">c1</span><span class="params">(c2)</span></span>; <span class="comment">//构造c2的拷贝c1</span></span><br><span class="line"><span class="function">C <span class="title">c</span><span class="params">(b,e)</span></span>; <span class="comment">//构造c 将迭代器b和e的指定范围内元素拷贝到c</span></span><br><span class="line">C c&#123;a,b,d...&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//赋值与交换</span></span><br><span class="line">c1 = c2;<span class="comment">//把c1的元素替换为c2的元素</span></span><br><span class="line">c1 = &#123;a,b,c...&#125;</span><br><span class="line">a.swap(b);<span class="comment">//ab交换元素</span></span><br><span class="line">swap(a,b);</span><br><span class="line"></span><br><span class="line"><span class="comment">//大小</span></span><br><span class="line">c.size();</span><br><span class="line">c.max_size();</span><br><span class="line">c.empty(); <span class="comment">//是否有元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//添加或删除元素</span></span><br><span class="line">c.insert(args); <span class="comment">//将args中的元素插入到c</span></span><br><span class="line">c.emplace(inits); <span class="comment">//使用inits构造c中的一个元素</span></span><br><span class="line">c.erase(args);<span class="comment">//删除c中args指定的元素</span></span><br><span class="line">c.clear(); <span class="comment">//删除c的所有元素 返回void</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//关系运算符</span></span><br><span class="line">== , != <span class="comment">//所有容器都支持</span></span><br><span class="line">&lt; &lt;= &gt; &gt;= <span class="comment">//除无序关联容器外 所有容器都支持</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取迭代器</span></span><br><span class="line">c.begin(), c.end() <span class="comment">//返回指向c的首元素和尾元素之后位置的迭代器</span></span><br><span class="line">c.cbegin(),c.cend() <span class="comment">//返回const_iterator</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//反向容器的额外成员 不支持forward_list</span></span><br><span class="line">reverse_iterator <span class="comment">//按逆序寻址元素的迭代器 使用递增元素符会得到上一个元素</span></span><br><span class="line">const_reverse_iterator <span class="comment">//不能修改的 按逆序寻址元素的迭代器</span></span><br><span class="line">c.rbegin(),c.rend() <span class="comment">//返回指向c的尾元素和首元素之前位置的迭代器</span></span><br><span class="line">c.crbegin(),c.crend()</span><br></pre></td></tr></table></figure>
 <p>容器的迭代器</p>
@@ -262,7 +244,7 @@
 <p>使用迭代器 我们经常这样来遍历一个容器</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(begin != end)&#123;</span><br><span class="line">  *begin = val;</span><br><span class="line">  ++begin;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>关于拷贝元素 一般要求容器类别和元素类型一样才能拷贝 但是也有例外 如果当迭代器参数是迭代器范围时 拷贝过来的元素类型能转换成接纳元素的类型 而且容器的类型不一样 也是可以的 例如</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; authors = &#123;<span class="string">"xiaohong"</span>,<span class="string">"xiaoming"</span>,<span class="string">"xiaoguang"</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">const</span> <span class="keyword">char</span>*&gt; articles = &#123;<span class="string">"a"</span>,<span class="string">"an"</span>,<span class="string">"the"</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; <span class="title">list2</span><span class="params">(authors)</span></span>; <span class="comment">//正确</span></span><br><span class="line"><span class="function"><span class="built_in">deque</span>&lt;<span class="built_in">string</span>&gt; <span class="title">deque1</span><span class="params">(authors)</span> <span class="comment">//错误 容器类型不匹配</span></span></span><br><span class="line"><span class="function">forword_list&lt;<span class="built_in">string</span>&gt; <span class="title">words</span><span class="params">(articles.begin(),articles.end())</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; authors = &#123;<span class="string">"xiaohong"</span>,<span class="string">"xiaoming"</span>,<span class="string">"xiaoguang"</span>&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">const</span> <span class="keyword">char</span>*&gt; articles = &#123;<span class="string">"a"</span>,<span class="string">"an"</span>,<span class="string">"the"</span>&#125;;</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="built_in">string</span>&gt; list2(authors); <span class="comment">//正确</span></span><br><span class="line"><span class="built_in">deque</span>&lt;<span class="built_in">string</span>&gt; deque1(authors) <span class="comment">//错误 容器类型不匹配</span></span><br><span class="line">forword_list&lt;<span class="built_in">string</span>&gt; words(articles.begin(),articles.end());</span><br></pre></td></tr></table></figure>
 <p>显式指定容器中的元素初始值<code>vector&lt;int&gt; v1(10,-1)</code> 包含10个元素 每个初始化为-1</p>
 <p>array容器的初始化需要包含元素个数 例如<code>array&lt;int,10&gt; a1 = {42};</code> 指定了包含10个元素的array容器 指定了第一个元素的值为42 其他元素被默认初始为0</p>
 <p>注意 不能对c++内置数组类型进行拷贝或对象赋值操作 但是array无此限制</p>
@@ -336,6 +318,17 @@
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C//" class="article-tag-list-link color2">C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -456,7 +449,7 @@
     		&copy; 2021 Asii
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://http://quqnn25zc.bkt.gdipper.com/.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
