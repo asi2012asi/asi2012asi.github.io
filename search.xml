@@ -2811,15 +2811,6 @@
       </tags>
   </entry>
   <entry>
-    <title>弃用七牛图床，使用hexo-asset-image插件添加图片</title>
-    <url>/2021/06/16/%E5%BC%83%E7%94%A8%E4%B8%83%E7%89%9B%E5%9B%BE%E5%BA%8A%EF%BC%8C%E4%BD%BF%E7%94%A8hexo-asset-image%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/</url>
-    <content><![CDATA[<p>测试图片</p>
-<p><img src="/.com//hexo_ico.png"></p>
-
-<img src="/.com//06/16/弃用七牛图床，使用hexo-asset-image插件添加图片/hexo_ico.png" alt="hexo_ico" title="hexo_ico">
-]]></content>
-  </entry>
-  <entry>
     <title>是时候学一波ios开发</title>
     <url>/2016/11/14/%E6%98%AF%E6%97%B6%E5%80%99%E5%AD%A6%E4%B8%80%E6%B3%A2ios%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<p><img src="http://quqnn25zc.bkt.gdipper.com/eb2bcb5a5fac3dd99998ff6d64d14d8a.jpg" alt="ios开发"></p>
@@ -2890,7 +2881,7 @@
 <p>之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新 </p>
 <p>下面简单记录下迁移hexo到另一台电脑遇到的一些问题</p>
 <a id="more"></a>
-<p>思路很简单：备份mac上的hexo文件到gitee 另一台电脑下载下来 然后通过npm 安装软件</p>
+<h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>思路很简单：备份mac上的hexo文件到gitee 另一台电脑下载下来 然后通过npm 安装软件</p>
 <p>顺便说说这样做得好处：上传数据而非u盘拷贝 是为了每次更新方便  不用u盘考来考去 gitee是国内的 比github快 且区分一个发布用 一个备份用比较清晰</p>
 <p>把hexo备份到<a href="https://gitee.com/asii2020/myhexo" target="_blank" rel="external">https://gitee.com/asii2020/myhexo</a> 目录下 </p>
 <p>记得上传之前 把.gitignore文件的内容删除或注释掉 把所有文件先上传</p>
@@ -2900,17 +2891,35 @@
 <p>如果出现hexo-rederer-sass 安装失败 执行 </p>
 <p>sudo rm -rf node_moudles</p>
 <p>cnpm install –save node-sass</p>
-<p>cnpm install –force</p>
+<p>cnpm install </p>
 <p>接着测试</p>
 <p>hexo new “测试迁移hexo到另一台主机”</p>
 <p>hexo g</p>
 <p>hexo d</p>
-<p>测试插入图片啊</p>
+<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>最近发现七牛提供的图床服务不好使了 我之前写的文章里带图片都不显示了  </p>
+<p>发现原来现在他内部改革了 国内的域名需要备案才可以上传和浏览图像</p>
+<p>我在16年搞建站的时候 没有这回事 很简单地就生成了图片链接了 </p>
+<p>之前的空间划分在华东 由于我的域名是godaddy申请的 属于美国地区 内容空间提供商是github也在美国  没办法在国内备案</p>
+<p>没办法 只能在七牛上新建一个北美地区的空间 迁移华东的图片到北美的空间 使用他们提供的脚本 发现不同区域的不能迁移</p>
+<p>还好站点的图片我有备份在上一台电脑上 只能重新上传了 这时候七牛给我分配了一个图片服务的测试地址quqnn25zc.bkt.gdipper.com</p>
+<p>期间我一直纠结 是否继续使用七牛 因为他们提供的北美空间是有回收期限的 30天后自动回收 </p>
+<p>为应对这个机制 可以在七牛新建空间（同区域） 并且迁移内容到新的空间 然后替换博客内容的图片地址 具体操作看这个链接</p>
+<p>[]: <a href="https://segmentfault.com/a/1190000018196548" target="_blank" rel="external">https://segmentfault.com/a/1190000018196548</a>    “七牛测试地址被回收了怎么办”</p>
+<p>如果不使用图床  可以使用hexo-asset-image或者hexo-image-link等插件来插入图片 个人尝试了一下 发现不好使 图片依然不显示</p>
+<p>下面介绍使用typora和picgo的方式插入图片的方法</p>
+<p>首先 使用typora的文件–偏好设置–图像  设置如图所示</p>
+<p><img src="http://quqnn25zc.bkt.gdipper.com/img/typora的偏好设置picgo.jpg" alt></p>
+<p>这里 上传服务我选择了picgo app 可以直接使用gui进行配置</p>
+<p><img src="http://quqnn25zc.bkt.gdipper.com/img/图床设置.jpg" alt></p>
+<p>然后进入格式-图像-插入图片时-上传图像</p>
+<p><img src="http://quqnn25zc.bkt.gdipper.com/img/image-20210617181200571.png" alt="image-20210617181200571"></p>
+<p>这样可以很方便在typora上右键插入图片或者复制粘贴粘贴板的图像到文章里都可以了 也不需要自己按照固定路径放置图片等操作</p>
+<p>只要插入操作 就会触发上传了  相当无脑 我喜欢</p>
+<p>有时候插入后 hexo d -g 没有显示图片立马出来 不用担心  只要确认七牛上传的地址能够在浏览器上load到图片就可以了 网页会稍后才生效 还有网站和图片部署在美国 也可能是导致图片出来慢的原因吧</p>
+<p>测试插入图片</p>
 <p><img src="http://quqnn25zc.bkt.gdipper.com/lushi1.jpg" alt></p>
 <p><img src="http://quqnn25zc.bkt.gdipper.com/lushi2.jpg" alt></p>
 <p><img src="http://quqnn25zc.bkt.gdipper.com/lushi3.jpg" alt></p>
-<p>插入 vsomeip</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/vsomeip_helloworld.png" alt></p>
 ]]></content>
   </entry>
   <entry>
