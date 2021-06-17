@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://luyaoming.com/"/>
-  <updated>2021-06-17T01:26:35.198Z</updated>
+  <updated>2021-06-17T06:43:53.393Z</updated>
   <id>http://luyaoming.com/</id>
   
   <author>
@@ -21,17 +21,18 @@
     <link href="http://luyaoming.com/2021/06/16/%E5%BC%83%E7%94%A8%E4%B8%83%E7%89%9B%E5%9B%BE%E5%BA%8A%EF%BC%8C%E4%BD%BF%E7%94%A8hexo-asset-image%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/"/>
     <id>http://luyaoming.com/2021/06/16/弃用七牛图床，使用hexo-asset-image插件添加图片/</id>
     <published>2021-06-16T02:33:28.000Z</published>
-    <updated>2021-06-17T01:26:35.198Z</updated>
+    <updated>2021-06-17T06:43:53.393Z</updated>
     
-    <content type="html"><![CDATA[<p>测试图片</p>]]></content>
+    <content type="html"><![CDATA[<p>测试图片</p><p><img src="/.com//hexo_ico.png"></p><img src="/.com//06/16/弃用七牛图床，使用hexo-asset-image插件添加图片/hexo_ico.png" alt="hexo_ico" title="hexo_ico">]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;测试图片&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/.com//hexo_ico.png&quot;&gt;&lt;/p&gt;
 
-
+&lt;img src=&quot;/.com//06/16/弃用七牛图床，使用hexo-asset-image插件添加图片/hexo_ico.png&quot; alt=&quot;hexo_ico&quot; titl
       
     
     </summary>
