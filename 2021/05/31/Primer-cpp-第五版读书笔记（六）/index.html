@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://luyaoming.com/2021/05/31/Primer-cpp-第五版读书笔记（六）/index.html">
 <meta property="og:site_name" content="Asii">
 <meta property="og:description" content="主要记录c++的动态内存">
-<meta property="og:updated_time" content="2021-06-17T04:01:22.135Z">
+<meta property="og:updated_time" content="2021-06-24T10:13:35.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Primer cpp 第五版读书笔记（六）">
 <meta name="twitter:description" content="主要记录c++的动态内存">
@@ -202,8 +202,7 @@
 <blockquote>
 <p>Primer c++ 第五版 <br>原著：Stanley B. Lippman, Josee Lajoie, Barbara E. Moo <br>翻译：王刚 杨巨峰 <br>– –读书笔记 by asii</p>
 </blockquote>
-<p>##十二，动态内存</p>
-<p>动态内存和智能指针</p>
+<h2 id="十二，动态内存"><a href="#十二，动态内存" class="headerlink" title="十二，动态内存"></a>十二，动态内存</h2><p>动态内存和智能指针</p>
 <p>我们之前介绍了静态内存和栈内存 静态内存用来保存局部static对象 类static的数据成员以及定义在任何函数之外的变量 栈内存用来保存定义在函数内的非static对象 分配在静态或栈内存中的对象由编译器自动创建和销毁 对于栈对象 仅在其定义的程序块运行时才存在 static对象在使用前被分配 在程序结束时销毁</p>
 <p>在c++中 使用new分配空间并返回一个指向该对象的指针 使用delete来销毁对象并释放与之关联的内存</p>
 <p>新的标准库采用智能指针来管理动态对象 类似于常规指针 重要的区别是负责自动释放所指向的对象 使用shared_ptr允许多个指针指向同一个对象 使用unique_ptr来独占所指向的对象 使用weak_ptr作为弱引用 指向shared_ptr所指向的对象 这些类型都定义在memory头文件中</p>
@@ -211,6 +210,49 @@
 <p>使用make_shared是最安全的分配和使用动态内存的方式<code>shared_ptr&lt;int&gt; p3=make_shared&lt;int&gt;(42);</code> 更简单地 使用auto来保存<code>auto p6=make_shared&lt;vector&lt;string&gt;&gt;();</code></p>
 <p>当进行拷贝和赋值操作时 每个shared_ptr都会记录有多少个shared_ptr指向相同的对象 当拷贝一个shared_ptr时计数器会递增 一旦shared_ptr的计数器为0 他就会释放自己所管理的对象 举例</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">auto</span> r = make_shared&lt;<span class="keyword">int</span>&gt;(<span class="number">42</span>);<span class="comment">//r指向的int只有一个引用</span></span><br><span class="line">r = q;<span class="comment">//给r赋值 他指向另一个地址 递增q指向的对象的引用计数 递减r原来指向的对象的引用计数 r原来指向的对象已经没有引用者 会自动释放</span></span><br></pre></td></tr></table></figure>
+<p>一般在方法内创建的智能指针 会随着函数调用结束被回收 引用计数自动清零 但是有种情况例外 使用return返回指针的拷贝时 如下代码</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">shared_ptr</span>&lt;Foo&gt; useFactory(T arg)&#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;Foo&gt; p = factory(arg);</span><br><span class="line">    return p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要注意的一点是 如果智能指针放置在容器内 当不再需要全部元素 只保留一部分的时候 确保eraser那些不需要的shared_ptr元素</p>
+<p>程序使用动态内存的三个原因：</p>
+<ol>
+<li>程序不知道自己需要使用多少对象</li>
+<li>程序不知道所需对象的准确类型</li>
+<li>程序需要在多个对象间共享数据</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Blob&lt;<span class="built_in">string</span>&gt; b1;</span><br><span class="line">&#123;</span><br><span class="line">	Blob&lt;<span class="built_in">string</span>&gt; b2 = &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"cdefg"</span>&#125;;</span><br><span class="line">	b1 = b2; <span class="comment">//b1和b2共享相同的元素 b2离开作用域时 他所引用的元素需要被保留 因为b1还在引用他们</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用new分配动态内存</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> *pr = new <span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = new <span class="keyword">int</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用列表初始化</span></span><br><span class="line"><span class="keyword">int</span> *p1 = new <span class="keyword">int</span>(<span class="number">1024</span>);</span><br><span class="line"><span class="built_in">string</span> *pr = new <span class="built_in">string</span>(<span class="string">"ac"</span>,<span class="string">"bd"</span>);</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *pv = new <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>也可以用auto让编译器根据初始化器的类型来推断要分配的类型</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">auto</span> p1 = new <span class="keyword">auto</span>(obj); <span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">auto</span> p2 = new <span class="keyword">auto</span>&#123;obj1,obj2,obj3&#125;; <span class="comment">// 错误 只能有一个初始化器</span></span><br></pre></td></tr></table></figure>
+<p>动态分配const对象</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *pi = new <span class="keyword">const</span> <span class="keyword">int</span>(<span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
+<p>使用delete来释放动态内存 delete pi；代表两个动作 释放给定的指针指向的对象 释放对应的内存</p>
+<p>内存耗尽时 使用new分配内存会默认抛出bad_alloc异常 </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *p1 = new <span class="keyword">int</span>(<span class="number">1024</span>); <span class="comment">// 如果分配失败 抛出std::bad_alloc异常</span></span><br><span class="line"><span class="keyword">int</span> *p2 = new (nothrow) <span class="keyword">int</span>(<span class="number">1024</span>); <span class="comment">// 加入nothrow参数 失败时不会抛出异常 会返回一个空指针 这些参数定义在头文件new中</span></span><br></pre></td></tr></table></figure>
+<p>由内置指针 而不是智能指针管理的动态内存在显式释放前会一直都存在 例如</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">Foo *<span class="title">factory</span><span class="params">(T arg)</span></span>&#123;</span><br><span class="line">	return new Foo(arg); <span class="comment">// 调用者负责释放此内存</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">use_factory</span><span class="params">(T arg)</span></span>&#123;</span><br><span class="line">    Foo *p = factory(arg); <span class="comment">// 使用 没有delete p就算在use_factory运行结束 离开作用域 也不会被释放</span></span><br><span class="line">    <span class="keyword">delete</span> p; <span class="comment">// 没有这一行 方法运行结束 p不会被释放 正确方法是使用delete释放此内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>shared_ptr和new结合使用</p>
+<p>使用new构造一个shared_ptr</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shared_ptr&lt;int&gt; pr = new int(1024);//错误 </span><br><span class="line">shared_ptr&lt;int&gt; pr(new int(1024));//正确 </span><br><span class="line">shared_ptr&lt;int&gt; clone(int p)&#123;</span><br><span class="line">	return new int(p); // 错误 智能指针的构造函数是explicit的 不能使用隐式转换</span><br><span class="line">	return shared_ptr&lt;int&gt;(new int(p));//正确</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不要混合使用普通指针和智能指针 也不要使用get来给另一个智能指针赋值</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p(new <span class="keyword">int</span>(<span class="number">1024</span>));</span><br><span class="line"><span class="keyword">int</span> *q = p.get();<span class="comment">//正确 但是要注意 不要让q管理的内存被释放 </span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt;(q); <span class="comment">// 两个独立的shared_ptr指向了相同的内存</span></span><br><span class="line">&#125;<span class="comment">//程序块运行结束 q被销毁  他指向的内存会被释放</span></span><br><span class="line"><span class="keyword">int</span> foo = *p; <span class="comment">// 未定义 p指向的内存已经被释放</span></span><br></pre></td></tr></table></figure>
+<p>使用智能指针还有另一个好处 当遇到异常情况时  不再使用的对象的内存会被释放 但是直接管理的动态内存不会</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt;p(new <span class="keyword">int</span>(<span class="number">1</span>));</span><br><span class="line">    <span class="comment">//发生异常 且在f中未捕获</span></span><br><span class="line">&#125;<span class="comment">//函数结束 p指向的内存会被释放</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = new <span class="keyword">int</span>(<span class="number">1024</span>);</span><br><span class="line">    <span class="comment">//发生异常 且在f中未捕获</span></span><br><span class="line">    <span class="keyword">delete</span> p;<span class="comment">//想正常释放内存</span></span><br><span class="line">&#125;<span class="comment">//当异常发生在释放p之前 delete p没有被正常调用 那么p所指内存不会被释放</span></span><br></pre></td></tr></table></figure>
+<p>智能指针虽好  但是建立在正确使用的前提下 下面是使用智能指针应该要注意的部分</p>
+<ol>
+<li>不使用相同内置指针值初始化（或者reset）多个智能指针</li>
+<li>不delete get()获得的指针</li>
+<li>不使用get()初始化或者reset()另一个智能指针</li>
+<li>如果使用了get()获取了指针 要记住这个指针被释放后就无效了</li>
+<li>如果智能指针管理的内存不是通过new分配的 要记得传递给他一个删除器</li>
+</ol>
+<p>unique_ptr 指针</p>
+<p>与智能指针不一样 某个时刻只能有一个unique_ptr指向一个给定的对象 当unique_ptr被销毁时 他指定的对象也会被销毁</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">unique_ptr p1(new int(1024));//初始化</span><br><span class="line">unique_ptr p2(p1);//错误 不支持拷贝</span><br><span class="line">unique_ptr p3;</span><br><span class="line">p3 = p1;//错误 不支持赋值</span><br><span class="line">unique_ptr&lt;T&gt; u1;//u1指向T类型的对象 没有指定删除器 可以使用delete释放对应对象内存</span><br><span class="line">unique_ptr&lt;T,D&gt; u2;//u2指向T类型的对象 指定删除器D 使用D代替delete释放对应对象内存</span><br><span class="line">p1 = nullptr;</span><br><span class="line">p1.reset();</span><br><span class="line">p1.release();//这三个都是释放对象的方法</span><br><span class="line"></span><br><span class="line">//unique_ptr虽然不能拷贝和赋值 但是可以转移</span><br><span class="line">unique_ptr&lt;string&gt; p2(p1.release());//将所有权从p1 转移到p2</span><br><span class="line">unique_ptr&lt;string&gt; p3(new string("hello"));</span><br><span class="line">p2.reset(p3.release());//reset释放原来指向的内存 指向p3原来指向的内存 p3置空</span><br></pre></td></tr></table></figure>
+<p>weak_ptr 弱指针</p>
+<p>弱指针的特点是不增加引用计数 当弱指针指向的shared_ptr的引用计数为0时 即使还有弱指针指向 对象一样会被释放</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">weak_ptr&lt;<span class="keyword">int</span>&gt; w;</span><br><span class="line">weak_ptr&lt;<span class="keyword">int</span>&gt; w(p); <span class="comment">// 与shared_ptr p指向相同对象的弱指针</span></span><br><span class="line">w = p; <span class="comment">// 正确 共享shared_ptr指向的对象</span></span><br><span class="line">w.reset();<span class="comment">//w置空</span></span><br><span class="line">w.use_count();<span class="comment">//与他指向的shared_ptr使用use_count的值一样</span></span><br><span class="line">w.expired();<span class="comment">//若w.use_count为0，返回true 否则返回false</span></span><br><span class="line">w.lock();<span class="comment">//若w.use_count为0 返回空指针 否则返回一个指向w的对象的shared_ptr</span></span><br></pre></td></tr></table></figure>
+<p>447</p>
 
       
 
@@ -476,6 +518,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">翻译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
@@ -484,15 +530,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">翻译</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">访问者模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">中介者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">builder模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">原型模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,18 +559,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">享元模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单例模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">builder模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">原型模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,6 +582,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">模板模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">抽象工厂模式</a>
               </li>
              
@@ -560,11 +610,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">模板模式</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,7 +622,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能指针</a>
+                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Broadcast</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">packageManagerService</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,27 +646,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Broadcast</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Activity</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">packageManagerService</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">zygote</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Dalvik</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IDA PRO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,7 +654,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Dalvik</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">破解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IDA PRO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,19 +678,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">优化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">c语言</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">someip</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,11 +702,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">测试工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">aosp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">dos</a>
+                <a href="javascript:void(0)" class="js-tag color2">someip</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">测试工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -677,6 +719,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">selenium</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">dos</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -720,15 +766,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">追风筝的人</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">运动</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">记录</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">追风筝的人</a>
               </li>
              
               <li class="article-tag-list-item">

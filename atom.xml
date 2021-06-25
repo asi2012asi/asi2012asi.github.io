@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://luyaoming.com/"/>
-  <updated>2021-06-22T10:07:05.995Z</updated>
+  <updated>2021-06-25T05:39:34.804Z</updated>
   <id>http://luyaoming.com/</id>
   
   <author>
@@ -14,6 +14,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>wsl2下下载与编译AOSP</title>
+    <link href="http://luyaoming.com/2021/06/23/wsl2%E4%B8%8B%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%BC%96%E8%AF%91AOSP/"/>
+    <id>http://luyaoming.com/2021/06/23/wsl2下下载与编译AOSP/</id>
+    <published>2021-06-23T07:38:51.000Z</published>
+    <updated>2021-06-25T05:39:34.804Z</updated>
+    
+    <content type="html"><![CDATA[<p>总结在wsl2下下载与安装aosp遇到的坑和解决方案</p>
+<a id="more"></a>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载aosp-latest.tar 压缩包</p>
+<p>使用官方的repo下载太慢 直接迅雷下载 清华的镜像 下了两个晚上 压缩包119g 解压又100多g repo sync之后又400多g 所以配备硬盘500g或以上再下载吧</p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/aosp-monthly/aosp-latest.tar" target="_blank" rel="external">https://mirrors.tuna.tsinghua.edu.cn/aosp-monthly/aosp-latest.tar</a></p>
+<p>下载完开始解压aosp-latest.tar  解压需要等一段时间</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xf  aosp-latest.tar</span><br></pre></td></tr></table></figure>
+<p>解压完可查看解压是否成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $? <span class="comment">#输出0代表解压成功</span></span><br></pre></td></tr></table></figure>
+<p>取消根目录aosp文件只读属性  直接右键文件夹取消即可</p>
+<p>设置根目录aosp文件及子文件大小写敏感 windows下使用cmd终端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fsutil.exe file SetCaseSensitiveInfo D:\path\aosp enable</span><br></pre></td></tr></table></figure>
+<p>设置根目录“完全控制”</p>
+<p><img src="http://quqnn25zc.bkt.gdipper.com/img/image-20210623160618008.png" alt="image-20210623160618008"></p>
+<p>下载repo工具  可能需要搭一下梯子</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#先配置下载路径 并加入环境变量中 如果已具备~/bin 可忽略此步骤</span><br><span class="line">mkdir ~/bin</span><br><span class="line">PATH=~/bin:$PATH</span><br><span class="line"></span><br><span class="line">#下载repo</span><br><span class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line">chmod a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
+<p>下载后测试repo可用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">repo --help</span><br></pre></td></tr></table></figure>
+<p>下载android源码目录树 </p>
+<p>最简单的使用repo sync命令下载 但是由于网络原因可能会执行失败 可使用以下脚本循环下载直至成功</p>
+<p>aosp根目录下新建reposync.sh文件</p>
+<p>加入以下代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">repo sync -j4 </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> [ $? = 1 ]; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"======sync failed ,re-sync again======"</span></span><br><span class="line">    sleep 3</span><br><span class="line">    repo sync -j4</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"finish download!!!"</span> </span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>赋能执行权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+x reposync.sh</span><br></pre></td></tr></table></figure>
+<p>进入.repo目录执行此脚本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> .repo</span><br><span class="line">../reposync.sh</span><br></pre></td></tr></table></figure>
+<p>见到下载进度后 可以先去沏杯咖啡 慢慢等候 这里展示下载成功的进度</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  .repo repo sync</span><br><span class="line">Fetching: 100% (1023/1023), <span class="keyword">done</span> <span class="keyword">in</span> 1h11m8.434s</span><br><span class="line">Garbage collecting: 100% (1023/1023), <span class="keyword">done</span> <span class="keyword">in</span> 13.784s</span><br><span class="line">Checking out: 100% (1023/1023), <span class="keyword">done</span> <span class="keyword">in</span> 10m24.574s</span><br><span class="line">repo sync has finished successfully.</span><br></pre></td></tr></table></figure>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>在aosp根目录下执行 source build/envsetup.sh</p>
+<p>然后lunch 会得到一个菜单</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  aosp <span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">➜  aosp lunch</span><br><span class="line"></span><br><span class="line">You<span class="string">'re building on Linux</span><br><span class="line"></span><br><span class="line">Lunch menu... pick a combo:</span><br><span class="line">     1. aosp_arm-eng</span><br><span class="line">     2. aosp_arm64-eng</span><br><span class="line">     3. aosp_blueline-userdebug</span><br><span class="line">     4. aosp_blueline_car-userdebug</span><br><span class="line">     5. aosp_bonito-userdebug</span><br><span class="line">     6. aosp_bonito_car-userdebug</span><br><span class="line">     7. aosp_bramble-userdebug</span><br><span class="line">     8. aosp_car_arm-userdebug</span><br><span class="line">     9. aosp_car_arm64-userdebug</span><br><span class="line">     10. aosp_car_x86-userdebug</span><br><span class="line">     11. aosp_car_x86_64-userdebug</span><br><span class="line">     12. aosp_cf_arm64_auto-userdebug</span><br><span class="line">     13. aosp_cf_arm64_phone-userdebug</span><br><span class="line">     14. aosp_cf_x86_64_pc-userdebug</span><br><span class="line">     15. aosp_cf_x86_64_phone-userdebug</span><br><span class="line">     16. aosp_cf_x86_auto-userdebug</span><br><span class="line">     17. aosp_cf_x86_phone-userdebug</span><br><span class="line">     18. aosp_cf_x86_tv-userdebug</span><br><span class="line">     19. aosp_coral-userdebug</span><br><span class="line">     20. aosp_coral_car-userdebug</span><br><span class="line">     21. aosp_crosshatch-userdebug</span><br><span class="line">     22. aosp_crosshatch_car-userdebug</span><br><span class="line">     23. aosp_flame-userdebug</span><br><span class="line">     24. aosp_flame_car-userdebug</span><br><span class="line">     25. aosp_redfin-userdebug</span><br><span class="line">     26. aosp_sargo-userdebug</span><br><span class="line">     27. aosp_sunfish-userdebug</span><br><span class="line">     28. aosp_trout_arm64-userdebug</span><br><span class="line">     29. aosp_trout_x86-userdebug</span><br><span class="line">     30. aosp_x86-eng</span><br><span class="line">     31. aosp_x86_64-eng</span><br><span class="line">     32. arm_krait-eng</span><br><span class="line">     33. arm_v7_v8-eng</span><br><span class="line">     34. armv8-eng</span><br><span class="line">     35. armv8_cortex_a55-eng</span><br><span class="line">     36. armv8_kryo385-eng</span><br><span class="line">     37. beagle_x15-userdebug</span><br><span class="line">     38. beagle_x15_auto-userdebug</span><br><span class="line">     39. car_x86_64-userdebug</span><br><span class="line">     40. db845c-userdebug</span><br><span class="line">     41. fuchsia_arm64-eng</span><br><span class="line">     42. fuchsia_x86_64-eng</span><br><span class="line">     43. hikey-userdebug</span><br><span class="line">     44. hikey64_only-userdebug</span><br><span class="line">     45. hikey960-userdebug</span><br><span class="line">     46. hikey960_tv-userdebug</span><br><span class="line">     47. hikey_tv-userdebug</span><br><span class="line">     48. pixel3_mainline-userdebug</span><br><span class="line">     49. poplar-eng</span><br><span class="line">     50. poplar-user</span><br><span class="line">     51. poplar-userdebug</span><br><span class="line">     52. qemu_trusty_arm64-userdebug</span><br><span class="line">     53. silvermont-eng</span><br><span class="line">     54. uml-userdebug</span><br><span class="line">     55. yukawa-userdebug</span><br><span class="line">     56. yukawa_sei510-userdebug</span><br><span class="line"></span><br><span class="line">Which would you like? [aosp_arm-eng] 31</span></span><br></pre></td></tr></table></figure>
+<p>我这里填入31 选择 31. aosp_x86_64-eng </p>
+<p>开始编译 make -j8</p>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h4 id="1-错误："><a href="#1-错误：" class="headerlink" title="1.错误："></a>1.错误：</h4><p>prebuilts/clang/host/linux-x86/clang-3289846/bin/clang.real: error while loading shared libraries: libncurses.so.5: cannot open shared object file: No such file or directory<br>10:04:12 ninja failed with: exit status 1</p>
+<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4><p>缺省库 先安装一批库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">aosp sudo apt-get install git-core gnupg flex bison gperf build-essential</span><br><span class="line">  zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386</span><br><span class="line">  lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache</span><br><span class="line">  libgl1-mesa-dev libxml2-utils xsltproc unzip</span><br></pre></td></tr></table></figure>
+<p>如果出现某些库没找到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh: <span class="built_in">command</span> not found: lib32ncurses5-dev</span><br><span class="line">zsh: <span class="built_in">command</span> not found: libgl1-mesa-dev</span><br></pre></td></tr></table></figure>
+<p>先执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br></pre></td></tr></table></figure>
+<p>再次安装即可成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install libncurses5</span><br><span class="line">sudo apt install libgl1-mesa-dev</span><br></pre></td></tr></table></figure>
+<h4 id="2-错误"><a href="#2-错误" class="headerlink" title="2.错误"></a>2.错误</h4><p><img src="http://quqnn25zc.bkt.gdipper.com/img/编译错误1.jpg" alt></p>
+<p>编译进度89%遇到这个错误 心塞！！ 没有明显的提示信息 于是又开始重新编译</p>
+<p><img src="http://quqnn25zc.bkt.gdipper.com/img/image-20210624211950416.png" alt="image-20210624211950416"></p>
+<p>再次进入后 发现有提示12.4GB ram不够 要16g 略过不管他 查看系统进程占有 发现vmmem这个进程消耗内存和cpu奇高 上面的错误估计来源于内存不足 网上有资料提示是wsl2的虚拟内存最大可占用默认80% 可通过.wslconfig配置修改限制 但是限制会影响我们的系统编译效率 所以我这里没有设置限制</p>
+<h4 id="解决：-1"><a href="#解决：-1" class="headerlink" title="解决："></a>解决：</h4><p>我笔记本电脑默认设置的性能模式是均衡模式 效率太低了 毕竟是8个线程并发跑 改成野兽模式（游戏模式）提供笔记本性能 提供风扇转速和功耗 make -j8 改成make -j4 稳一点 让内存不要溢出了  最后编译成功 耗时1.5小时 比之前低速模式编译8.5小时快6倍</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Missing class org.jetbrains.annotations.NotNull (referenced from: com.android.settingslib.fuelgauge.Estimate<span class="variable">$Companion</span> com.android.settingslib.fuelgauge.Estimate.Companion and 36 other contexts)</span><br><span class="line">Missing class org.jetbrains.annotations.Nullable (referenced from: com.android.settingslib.fuelgauge.Estimate com.android.settingslib.fuelgauge.Estimate<span class="variable">$Companion</span>.getCachedEstimateIfAvailable(android.content.Context) and 3 other contexts)</span><br><span class="line">[100% 3917/3917] Target vbmeta image: out/target/product/generic_x86_64/vbmeta.img</span><br><span class="line"></span><br><span class="line"><span class="comment">#### build completed successfully (01:32:43 (hh:mm:ss)) ####</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;总结在wsl2下下载与安装aosp遇到的坑和解决方案&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="aosp" scheme="http://luyaoming.com/tags/aosp/"/>
+    
+  </entry>
   
   <entry>
     <title>wsl2下编译vsomeip的HelloWorld</title>
@@ -191,15 +260,14 @@
     <link href="http://luyaoming.com/2021/05/31/Primer-cpp-%E7%AC%AC%E4%BA%94%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/"/>
     <id>http://luyaoming.com/2021/05/31/Primer-cpp-第五版读书笔记（六）/</id>
     <published>2021-05-31T06:49:18.000Z</published>
-    <updated>2021-06-17T04:01:22.135Z</updated>
+    <updated>2021-06-24T10:13:35.150Z</updated>
     
     <content type="html"><![CDATA[<p>主要记录c++的动态内存</p>
 <a id="more"></a>
 <blockquote>
 <p>Primer c++ 第五版 <br>原著：Stanley B. Lippman, Josee Lajoie, Barbara E. Moo <br>翻译：王刚 杨巨峰 <br>– –读书笔记 by asii</p>
 </blockquote>
-<p>##十二，动态内存</p>
-<p>动态内存和智能指针</p>
+<h2 id="十二，动态内存"><a href="#十二，动态内存" class="headerlink" title="十二，动态内存"></a>十二，动态内存</h2><p>动态内存和智能指针</p>
 <p>我们之前介绍了静态内存和栈内存 静态内存用来保存局部static对象 类static的数据成员以及定义在任何函数之外的变量 栈内存用来保存定义在函数内的非static对象 分配在静态或栈内存中的对象由编译器自动创建和销毁 对于栈对象 仅在其定义的程序块运行时才存在 static对象在使用前被分配 在程序结束时销毁</p>
 <p>在c++中 使用new分配空间并返回一个指向该对象的指针 使用delete来销毁对象并释放与之关联的内存</p>
 <p>新的标准库采用智能指针来管理动态对象 类似于常规指针 重要的区别是负责自动释放所指向的对象 使用shared_ptr允许多个指针指向同一个对象 使用unique_ptr来独占所指向的对象 使用weak_ptr作为弱引用 指向shared_ptr所指向的对象 这些类型都定义在memory头文件中</p>
@@ -207,6 +275,49 @@
 <p>使用make_shared是最安全的分配和使用动态内存的方式<code>shared_ptr&lt;int&gt; p3=make_shared&lt;int&gt;(42);</code> 更简单地 使用auto来保存<code>auto p6=make_shared&lt;vector&lt;string&gt;&gt;();</code></p>
 <p>当进行拷贝和赋值操作时 每个shared_ptr都会记录有多少个shared_ptr指向相同的对象 当拷贝一个shared_ptr时计数器会递增 一旦shared_ptr的计数器为0 他就会释放自己所管理的对象 举例</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">auto</span> r = make_shared&lt;<span class="keyword">int</span>&gt;(<span class="number">42</span>);<span class="comment">//r指向的int只有一个引用</span></span><br><span class="line">r = q;<span class="comment">//给r赋值 他指向另一个地址 递增q指向的对象的引用计数 递减r原来指向的对象的引用计数 r原来指向的对象已经没有引用者 会自动释放</span></span><br></pre></td></tr></table></figure>
+<p>一般在方法内创建的智能指针 会随着函数调用结束被回收 引用计数自动清零 但是有种情况例外 使用return返回指针的拷贝时 如下代码</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">shared_ptr</span>&lt;Foo&gt; useFactory(T arg)&#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;Foo&gt; p = factory(arg);</span><br><span class="line">    return p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要注意的一点是 如果智能指针放置在容器内 当不再需要全部元素 只保留一部分的时候 确保eraser那些不需要的shared_ptr元素</p>
+<p>程序使用动态内存的三个原因：</p>
+<ol>
+<li>程序不知道自己需要使用多少对象</li>
+<li>程序不知道所需对象的准确类型</li>
+<li>程序需要在多个对象间共享数据</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Blob&lt;<span class="built_in">string</span>&gt; b1;</span><br><span class="line">&#123;</span><br><span class="line">	Blob&lt;<span class="built_in">string</span>&gt; b2 = &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"cdefg"</span>&#125;;</span><br><span class="line">	b1 = b2; <span class="comment">//b1和b2共享相同的元素 b2离开作用域时 他所引用的元素需要被保留 因为b1还在引用他们</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用new分配动态内存</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> *pr = new <span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = new <span class="keyword">int</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用列表初始化</span></span><br><span class="line"><span class="keyword">int</span> *p1 = new <span class="keyword">int</span>(<span class="number">1024</span>);</span><br><span class="line"><span class="built_in">string</span> *pr = new <span class="built_in">string</span>(<span class="string">"ac"</span>,<span class="string">"bd"</span>);</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; *pv = new <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>也可以用auto让编译器根据初始化器的类型来推断要分配的类型</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">auto</span> p1 = new <span class="keyword">auto</span>(obj); <span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">auto</span> p2 = new <span class="keyword">auto</span>&#123;obj1,obj2,obj3&#125;; <span class="comment">// 错误 只能有一个初始化器</span></span><br></pre></td></tr></table></figure>
+<p>动态分配const对象</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *pi = new <span class="keyword">const</span> <span class="keyword">int</span>(<span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
+<p>使用delete来释放动态内存 delete pi；代表两个动作 释放给定的指针指向的对象 释放对应的内存</p>
+<p>内存耗尽时 使用new分配内存会默认抛出bad_alloc异常 </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *p1 = new <span class="keyword">int</span>(<span class="number">1024</span>); <span class="comment">// 如果分配失败 抛出std::bad_alloc异常</span></span><br><span class="line"><span class="keyword">int</span> *p2 = new (nothrow) <span class="keyword">int</span>(<span class="number">1024</span>); <span class="comment">// 加入nothrow参数 失败时不会抛出异常 会返回一个空指针 这些参数定义在头文件new中</span></span><br></pre></td></tr></table></figure>
+<p>由内置指针 而不是智能指针管理的动态内存在显式释放前会一直都存在 例如</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">Foo *<span class="title">factory</span><span class="params">(T arg)</span></span>&#123;</span><br><span class="line">	return new Foo(arg); <span class="comment">// 调用者负责释放此内存</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">use_factory</span><span class="params">(T arg)</span></span>&#123;</span><br><span class="line">    Foo *p = factory(arg); <span class="comment">// 使用 没有delete p就算在use_factory运行结束 离开作用域 也不会被释放</span></span><br><span class="line">    <span class="keyword">delete</span> p; <span class="comment">// 没有这一行 方法运行结束 p不会被释放 正确方法是使用delete释放此内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>shared_ptr和new结合使用</p>
+<p>使用new构造一个shared_ptr</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">shared_ptr&lt;int&gt; pr = new int(1024);//错误 </span><br><span class="line">shared_ptr&lt;int&gt; pr(new int(1024));//正确 </span><br><span class="line">shared_ptr&lt;int&gt; clone(int p)&#123;</span><br><span class="line">	return new int(p); // 错误 智能指针的构造函数是explicit的 不能使用隐式转换</span><br><span class="line">	return shared_ptr&lt;int&gt;(new int(p));//正确</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不要混合使用普通指针和智能指针 也不要使用get来给另一个智能指针赋值</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p(new <span class="keyword">int</span>(<span class="number">1024</span>));</span><br><span class="line"><span class="keyword">int</span> *q = p.get();<span class="comment">//正确 但是要注意 不要让q管理的内存被释放 </span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt;(q); <span class="comment">// 两个独立的shared_ptr指向了相同的内存</span></span><br><span class="line">&#125;<span class="comment">//程序块运行结束 q被销毁  他指向的内存会被释放</span></span><br><span class="line"><span class="keyword">int</span> foo = *p; <span class="comment">// 未定义 p指向的内存已经被释放</span></span><br></pre></td></tr></table></figure>
+<p>使用智能指针还有另一个好处 当遇到异常情况时  不再使用的对象的内存会被释放 但是直接管理的动态内存不会</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt;p(new <span class="keyword">int</span>(<span class="number">1</span>));</span><br><span class="line">    <span class="comment">//发生异常 且在f中未捕获</span></span><br><span class="line">&#125;<span class="comment">//函数结束 p指向的内存会被释放</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = new <span class="keyword">int</span>(<span class="number">1024</span>);</span><br><span class="line">    <span class="comment">//发生异常 且在f中未捕获</span></span><br><span class="line">    <span class="keyword">delete</span> p;<span class="comment">//想正常释放内存</span></span><br><span class="line">&#125;<span class="comment">//当异常发生在释放p之前 delete p没有被正常调用 那么p所指内存不会被释放</span></span><br></pre></td></tr></table></figure>
+<p>智能指针虽好  但是建立在正确使用的前提下 下面是使用智能指针应该要注意的部分</p>
+<ol>
+<li>不使用相同内置指针值初始化（或者reset）多个智能指针</li>
+<li>不delete get()获得的指针</li>
+<li>不使用get()初始化或者reset()另一个智能指针</li>
+<li>如果使用了get()获取了指针 要记住这个指针被释放后就无效了</li>
+<li>如果智能指针管理的内存不是通过new分配的 要记得传递给他一个删除器</li>
+</ol>
+<p>unique_ptr 指针</p>
+<p>与智能指针不一样 某个时刻只能有一个unique_ptr指向一个给定的对象 当unique_ptr被销毁时 他指定的对象也会被销毁</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">unique_ptr p1(new int(1024));//初始化</span><br><span class="line">unique_ptr p2(p1);//错误 不支持拷贝</span><br><span class="line">unique_ptr p3;</span><br><span class="line">p3 = p1;//错误 不支持赋值</span><br><span class="line">unique_ptr&lt;T&gt; u1;//u1指向T类型的对象 没有指定删除器 可以使用delete释放对应对象内存</span><br><span class="line">unique_ptr&lt;T,D&gt; u2;//u2指向T类型的对象 指定删除器D 使用D代替delete释放对应对象内存</span><br><span class="line">p1 = nullptr;</span><br><span class="line">p1.reset();</span><br><span class="line">p1.release();//这三个都是释放对象的方法</span><br><span class="line"></span><br><span class="line">//unique_ptr虽然不能拷贝和赋值 但是可以转移</span><br><span class="line">unique_ptr&lt;string&gt; p2(p1.release());//将所有权从p1 转移到p2</span><br><span class="line">unique_ptr&lt;string&gt; p3(new string("hello"));</span><br><span class="line">p2.reset(p3.release());//reset释放原来指向的内存 指向p3原来指向的内存 p3置空</span><br></pre></td></tr></table></figure>
+<p>weak_ptr 弱指针</p>
+<p>弱指针的特点是不增加引用计数 当弱指针指向的shared_ptr的引用计数为0时 即使还有弱指针指向 对象一样会被释放</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">weak_ptr&lt;<span class="keyword">int</span>&gt; w;</span><br><span class="line">weak_ptr&lt;<span class="keyword">int</span>&gt; w(p); <span class="comment">// 与shared_ptr p指向相同对象的弱指针</span></span><br><span class="line">w = p; <span class="comment">// 正确 共享shared_ptr指向的对象</span></span><br><span class="line">w.reset();<span class="comment">//w置空</span></span><br><span class="line">w.use_count();<span class="comment">//与他指向的shared_ptr使用use_count的值一样</span></span><br><span class="line">w.expired();<span class="comment">//若w.use_count为0，返回true 否则返回false</span></span><br><span class="line">w.lock();<span class="comment">//若w.use_count为0 返回空指针 否则返回一个指向w的对象的shared_ptr</span></span><br></pre></td></tr></table></figure>
+<p>447</p>
 ]]></content>
     
     <summary type="html">
@@ -462,7 +573,7 @@
     <link href="http://luyaoming.com/2021/05/10/Primer-cpp-%E7%AC%AC%E4%BA%94%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://luyaoming.com/2021/05/10/Primer-cpp-第五版读书笔记（三）/</id>
     <published>2021-05-10T09:47:55.000Z</published>
-    <updated>2021-06-17T04:01:27.688Z</updated>
+    <updated>2021-06-24T10:22:52.221Z</updated>
     
     <content type="html"><![CDATA[<p>主要记录c++的函数和类基础</p>
 <a id="more"></a>
@@ -1421,45 +1532,6 @@
       <category term="Linux" scheme="http://luyaoming.com/tags/Linux/"/>
     
       <category term="shell" scheme="http://luyaoming.com/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>是时候学一波ios开发</title>
-    <link href="http://luyaoming.com/2016/11/14/%E6%98%AF%E6%97%B6%E5%80%99%E5%AD%A6%E4%B8%80%E6%B3%A2ios%E5%BC%80%E5%8F%91/"/>
-    <id>http://luyaoming.com/2016/11/14/是时候学一波ios开发/</id>
-    <published>2016-11-14T13:56:57.000Z</published>
-    <updated>2021-06-16T01:30:35.951Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://quqnn25zc.bkt.gdipper.com/eb2bcb5a5fac3dd99998ff6d64d14d8a.jpg" alt="ios开发"></p>
-<p>曾几何时有过这么一个念头 </p>
-<a id="more"></a>
-<p>但是一直没有时间入坑 与其所没时间 不如说自己懒</p>
-<p>最近入职的公司 开会时 高级经理问我会不会ios开发 我尴尬一笑 不会</p>
-<p>某次跟同事吃饭 我跟他讲了很多Android相关的东西 他偶尔一问我 会不会ios开发 我尴尬一笑  不会</p>
-<p>公司需要一个ios端的应用 不需要上app store 满足需求即可 经理说到时需要招个搞ios 实习生级别的</p>
-<p>我想如果我会ios 我把这个也搞了算了 所以我下定了决心 搞起</p>
-<p>至于怎么搞 网上的教程铺天盖地 多亏了达内 北大青鸟等培训机构 培养了那么多“互联网创业者” 学习资料都可以在网上有完整的下载 </p>
-<p>有个旧同事 以前搞ios的 给了我一套比较完善的学习方案 而且提供了两种选择 oc or swift</p>
-<p>我的想法是 都学 </p>
-<p>基于我对Android系统的理解 和 多年开发的经验 估计上手难度不会太难 而且学习设备已经齐全 就差一股学习的劲头</p>
-<p>突然想起 近年来 fb公司推出了一个很热的跨平台开发reactive native 只要是精通前端搞web的人 都可以搞移动开发了 是不是我们这行都该转行？</p>
-<p>我的想法是 不至于 跨平台是好 learn once write anywhere 但是很多公司目前还是需要原生开发的 再者 学移动开发的 再去学rn 学js 写css 也不能说转行 只不过是扩充下知识面而已 举一反三 触类旁通</p>
-<p>剁手节一件衣服没买 买了300多块钱的书 </p>
-<p>不说了 学习去~</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://quqnn25zc.bkt.gdipper.com/eb2bcb5a5fac3dd99998ff6d64d14d8a.jpg&quot; alt=&quot;ios开发&quot;&gt;&lt;/p&gt;
-&lt;p&gt;曾几何时有过这么一个念头 &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="IOS" scheme="http://luyaoming.com/categories/IOS/"/>
-    
-    
-      <category term="ios" scheme="http://luyaoming.com/tags/ios/"/>
     
   </entry>
   

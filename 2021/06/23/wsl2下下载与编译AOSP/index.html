@@ -6,21 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://luyaoming.com">
-  <title>吉他练习视频-平凡之路 | Asii</title>
+  <title>wsl2下下载与编译AOSP | Asii</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初学者水平 进步中">
+  <meta name="description" content="总结在wsl2下下载与安装aosp遇到的坑和解决方案">
 <meta property="og:type" content="article">
-<meta property="og:title" content="吉他练习视频-平凡之路">
-<meta property="og:url" content="http://luyaoming.com/2016/05/15/吉他练习视频-平凡之路/index.html">
+<meta property="og:title" content="wsl2下下载与编译AOSP">
+<meta property="og:url" content="http://luyaoming.com/2021/06/23/wsl2下下载与编译AOSP/index.html">
 <meta property="og:site_name" content="Asii">
-<meta property="og:description" content="初学者水平 进步中">
-<meta property="og:image" content="http://luyaoming.com/.com//image-20210616185402305-1623840857347.png">
-<meta property="og:image" content="http://luyaoming.com/.com//image-20210616190537507-1623841539357.png">
-<meta property="og:updated_time" content="2021-06-16T11:05:45.931Z">
+<meta property="og:description" content="总结在wsl2下下载与安装aosp遇到的坑和解决方案">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/image-20210623160618008.png">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/编译错误1.jpg">
+<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/image-20210624211950416.png">
+<meta property="og:updated_time" content="2021-06-25T05:39:34.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吉他练习视频-平凡之路">
-<meta name="twitter:description" content="初学者水平 进步中">
-<meta name="twitter:image" content="http://luyaoming.com/.com//image-20210616185402305-1623840857347.png">
+<meta name="twitter:title" content="wsl2下下载与编译AOSP">
+<meta name="twitter:description" content="总结在wsl2下下载与安装aosp遇到的坑和解决方案">
+<meta name="twitter:image" content="http://quqnn25zc.bkt.gdipper.com/img/image-20210623160618008.png">
   
     <link rel="alternative" href="/atom.xml" title="Asii" type="application/atom+xml">
   
@@ -170,14 +171,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-吉他练习视频-平凡之路" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-wsl2下下载与编译AOSP" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      吉他练习视频-平凡之路
+      wsl2下下载与编译AOSP
     </h1>
   
 
@@ -192,20 +193,63 @@
   </a>
 
         
-        <a href="/2016/05/15/吉他练习视频-平凡之路/" class="archive-article-date">
-  	<time datetime="2016-05-15T05:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-15</time>
+        <a href="/2021/06/23/wsl2下下载与编译AOSP/" class="archive-article-date">
+  	<time datetime="2021-06-23T07:38:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>初学者水平 进步中</p>
+        <p>总结在wsl2下下载与安装aosp遇到的坑和解决方案</p>
 <a id="more"></a>
-<h1 id="平凡之路-20150304"><a href="#平凡之路-20150304" class="headerlink" title="平凡之路 20150304"></a>平凡之路 20150304</h1><video controls="controls" width="680" height="600" align="middle"><br><source src="http://quqnn25zc.bkt.gdipper.com/%E5%90%89%E4%BB%96/%E5%B9%B3%E5%87%A1%E4%B9%8B%E8%B7%AF150304.mp4" type="video/mp4"><br><br><br><br>换个浏览器吧亲 试试chrome Firefox safari 别再用落后的IE啦<br><br></video>
-
-<p><img src="/.com//image-20210616185402305-1623840857347.png" alt="image-20210616185402305"></p>
-<p><img src="/.com//image-20210616190537507-1623841539357.png" alt="image-20210616190537507"></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载aosp-latest.tar 压缩包</p>
+<p>使用官方的repo下载太慢 直接迅雷下载 清华的镜像 下了两个晚上 压缩包119g 解压又100多g repo sync之后又400多g 所以配备硬盘500g或以上再下载吧</p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/aosp-monthly/aosp-latest.tar" target="_blank" rel="external">https://mirrors.tuna.tsinghua.edu.cn/aosp-monthly/aosp-latest.tar</a></p>
+<p>下载完开始解压aosp-latest.tar  解压需要等一段时间</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xf  aosp-latest.tar</span><br></pre></td></tr></table></figure>
+<p>解压完可查看解压是否成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $? <span class="comment">#输出0代表解压成功</span></span><br></pre></td></tr></table></figure>
+<p>取消根目录aosp文件只读属性  直接右键文件夹取消即可</p>
+<p>设置根目录aosp文件及子文件大小写敏感 windows下使用cmd终端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fsutil.exe file SetCaseSensitiveInfo D:\path\aosp enable</span><br></pre></td></tr></table></figure>
+<p>设置根目录“完全控制”</p>
+<p><img src="http://quqnn25zc.bkt.gdipper.com/img/image-20210623160618008.png" alt="image-20210623160618008"></p>
+<p>下载repo工具  可能需要搭一下梯子</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#先配置下载路径 并加入环境变量中 如果已具备~/bin 可忽略此步骤</span><br><span class="line">mkdir ~/bin</span><br><span class="line">PATH=~/bin:$PATH</span><br><span class="line"></span><br><span class="line">#下载repo</span><br><span class="line">curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo</span><br><span class="line">chmod a+x ~/bin/repo</span><br></pre></td></tr></table></figure>
+<p>下载后测试repo可用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">repo --help</span><br></pre></td></tr></table></figure>
+<p>下载android源码目录树 </p>
+<p>最简单的使用repo sync命令下载 但是由于网络原因可能会执行失败 可使用以下脚本循环下载直至成功</p>
+<p>aosp根目录下新建reposync.sh文件</p>
+<p>加入以下代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">repo sync -j4 </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> [ $? = 1 ]; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"======sync failed ,re-sync again======"</span></span><br><span class="line">    sleep 3</span><br><span class="line">    repo sync -j4</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"finish download!!!"</span> </span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>赋能执行权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+x reposync.sh</span><br></pre></td></tr></table></figure>
+<p>进入.repo目录执行此脚本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> .repo</span><br><span class="line">../reposync.sh</span><br></pre></td></tr></table></figure>
+<p>见到下载进度后 可以先去沏杯咖啡 慢慢等候 这里展示下载成功的进度</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  .repo repo sync</span><br><span class="line">Fetching: 100% (1023/1023), <span class="keyword">done</span> <span class="keyword">in</span> 1h11m8.434s</span><br><span class="line">Garbage collecting: 100% (1023/1023), <span class="keyword">done</span> <span class="keyword">in</span> 13.784s</span><br><span class="line">Checking out: 100% (1023/1023), <span class="keyword">done</span> <span class="keyword">in</span> 10m24.574s</span><br><span class="line">repo sync has finished successfully.</span><br></pre></td></tr></table></figure>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>在aosp根目录下执行 source build/envsetup.sh</p>
+<p>然后lunch 会得到一个菜单</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  aosp <span class="built_in">source</span> build/envsetup.sh</span><br><span class="line">➜  aosp lunch</span><br><span class="line"></span><br><span class="line">You<span class="string">'re building on Linux</span><br><span class="line"></span><br><span class="line">Lunch menu... pick a combo:</span><br><span class="line">     1. aosp_arm-eng</span><br><span class="line">     2. aosp_arm64-eng</span><br><span class="line">     3. aosp_blueline-userdebug</span><br><span class="line">     4. aosp_blueline_car-userdebug</span><br><span class="line">     5. aosp_bonito-userdebug</span><br><span class="line">     6. aosp_bonito_car-userdebug</span><br><span class="line">     7. aosp_bramble-userdebug</span><br><span class="line">     8. aosp_car_arm-userdebug</span><br><span class="line">     9. aosp_car_arm64-userdebug</span><br><span class="line">     10. aosp_car_x86-userdebug</span><br><span class="line">     11. aosp_car_x86_64-userdebug</span><br><span class="line">     12. aosp_cf_arm64_auto-userdebug</span><br><span class="line">     13. aosp_cf_arm64_phone-userdebug</span><br><span class="line">     14. aosp_cf_x86_64_pc-userdebug</span><br><span class="line">     15. aosp_cf_x86_64_phone-userdebug</span><br><span class="line">     16. aosp_cf_x86_auto-userdebug</span><br><span class="line">     17. aosp_cf_x86_phone-userdebug</span><br><span class="line">     18. aosp_cf_x86_tv-userdebug</span><br><span class="line">     19. aosp_coral-userdebug</span><br><span class="line">     20. aosp_coral_car-userdebug</span><br><span class="line">     21. aosp_crosshatch-userdebug</span><br><span class="line">     22. aosp_crosshatch_car-userdebug</span><br><span class="line">     23. aosp_flame-userdebug</span><br><span class="line">     24. aosp_flame_car-userdebug</span><br><span class="line">     25. aosp_redfin-userdebug</span><br><span class="line">     26. aosp_sargo-userdebug</span><br><span class="line">     27. aosp_sunfish-userdebug</span><br><span class="line">     28. aosp_trout_arm64-userdebug</span><br><span class="line">     29. aosp_trout_x86-userdebug</span><br><span class="line">     30. aosp_x86-eng</span><br><span class="line">     31. aosp_x86_64-eng</span><br><span class="line">     32. arm_krait-eng</span><br><span class="line">     33. arm_v7_v8-eng</span><br><span class="line">     34. armv8-eng</span><br><span class="line">     35. armv8_cortex_a55-eng</span><br><span class="line">     36. armv8_kryo385-eng</span><br><span class="line">     37. beagle_x15-userdebug</span><br><span class="line">     38. beagle_x15_auto-userdebug</span><br><span class="line">     39. car_x86_64-userdebug</span><br><span class="line">     40. db845c-userdebug</span><br><span class="line">     41. fuchsia_arm64-eng</span><br><span class="line">     42. fuchsia_x86_64-eng</span><br><span class="line">     43. hikey-userdebug</span><br><span class="line">     44. hikey64_only-userdebug</span><br><span class="line">     45. hikey960-userdebug</span><br><span class="line">     46. hikey960_tv-userdebug</span><br><span class="line">     47. hikey_tv-userdebug</span><br><span class="line">     48. pixel3_mainline-userdebug</span><br><span class="line">     49. poplar-eng</span><br><span class="line">     50. poplar-user</span><br><span class="line">     51. poplar-userdebug</span><br><span class="line">     52. qemu_trusty_arm64-userdebug</span><br><span class="line">     53. silvermont-eng</span><br><span class="line">     54. uml-userdebug</span><br><span class="line">     55. yukawa-userdebug</span><br><span class="line">     56. yukawa_sei510-userdebug</span><br><span class="line"></span><br><span class="line">Which would you like? [aosp_arm-eng] 31</span></span><br></pre></td></tr></table></figure>
+<p>我这里填入31 选择 31. aosp_x86_64-eng </p>
+<p>开始编译 make -j8</p>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h4 id="1-错误："><a href="#1-错误：" class="headerlink" title="1.错误："></a>1.错误：</h4><p>prebuilts/clang/host/linux-x86/clang-3289846/bin/clang.real: error while loading shared libraries: libncurses.so.5: cannot open shared object file: No such file or directory<br>10:04:12 ninja failed with: exit status 1</p>
+<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4><p>缺省库 先安装一批库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">aosp sudo apt-get install git-core gnupg flex bison gperf build-essential</span><br><span class="line">  zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386</span><br><span class="line">  lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache</span><br><span class="line">  libgl1-mesa-dev libxml2-utils xsltproc unzip</span><br></pre></td></tr></table></figure>
+<p>如果出现某些库没找到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">zsh: <span class="built_in">command</span> not found: lib32ncurses5-dev</span><br><span class="line">zsh: <span class="built_in">command</span> not found: libgl1-mesa-dev</span><br></pre></td></tr></table></figure>
+<p>先执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br></pre></td></tr></table></figure>
+<p>再次安装即可成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install libncurses5</span><br><span class="line">sudo apt install libgl1-mesa-dev</span><br></pre></td></tr></table></figure>
+<h4 id="2-错误"><a href="#2-错误" class="headerlink" title="2.错误"></a>2.错误</h4><p><img src="http://quqnn25zc.bkt.gdipper.com/img/编译错误1.jpg" alt></p>
+<p>编译进度89%遇到这个错误 心塞！！ 没有明显的提示信息 于是又开始重新编译</p>
+<p><img src="http://quqnn25zc.bkt.gdipper.com/img/image-20210624211950416.png" alt="image-20210624211950416"></p>
+<p>再次进入后 发现有提示12.4GB ram不够 要16g 略过不管他 查看系统进程占有 发现vmmem这个进程消耗内存和cpu奇高 上面的错误估计来源于内存不足 网上有资料提示是wsl2的虚拟内存最大可占用默认80% 可通过.wslconfig配置修改限制 但是限制会影响我们的系统编译效率 所以我这里没有设置限制</p>
+<h4 id="解决：-1"><a href="#解决：-1" class="headerlink" title="解决："></a>解决：</h4><p>我笔记本电脑默认设置的性能模式是均衡模式 效率太低了 毕竟是8个线程并发跑 改成野兽模式（游戏模式）提供笔记本性能 提供风扇转速和功耗 make -j8 改成make -j4 稳一点 让内存不要溢出了  最后编译成功 耗时1.5小时 比之前低速模式编译8.5小时快6倍</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Missing class org.jetbrains.annotations.NotNull (referenced from: com.android.settingslib.fuelgauge.Estimate<span class="variable">$Companion</span> com.android.settingslib.fuelgauge.Estimate.Companion and 36 other contexts)</span><br><span class="line">Missing class org.jetbrains.annotations.Nullable (referenced from: com.android.settingslib.fuelgauge.Estimate com.android.settingslib.fuelgauge.Estimate<span class="variable">$Companion</span>.getCachedEstimateIfAvailable(android.content.Context) and 3 other contexts)</span><br><span class="line">[100% 3917/3917] Target vbmeta image: out/target/product/generic_x86_64/vbmeta.img</span><br><span class="line"></span><br><span class="line"><span class="comment">#### build completed successfully (01:32:43 (hh:mm:ss)) ####</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -245,28 +289,13 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">吉他</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">视频</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">aosp</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Music//" class="article-tag-list-link color1">Music</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -316,7 +345,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://luyaoming.com/2016/05/15/吉他练习视频-平凡之路/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://luyaoming.com/2021/06/23/wsl2下下载与编译AOSP/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -330,18 +359,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/05/15/Android源码设计模式解析与实践--读书笔记（八）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android源码设计模式解析与实践--读书笔记（八）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/05/15/吉他练习视频-真的爱你/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">吉他练习视频-真的爱你</div>
+    <a href="/2021/06/22/wsl2下编译vsomeip的HelloWorld/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">wsl2下编译vsomeip的HelloWorld</div>
       <i class="icon-circle-right"></i>
     </a>
   
