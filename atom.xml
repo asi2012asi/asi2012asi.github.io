@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://luyaoming.com/"/>
-  <updated>2021-07-07T14:57:37.169Z</updated>
+  <updated>2021-07-22T09:01:28.528Z</updated>
   <id>http://luyaoming.com/</id>
   
   <author>
@@ -14,6 +14,77 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Primer cpp 第五版读书笔记（八）</title>
+    <link href="http://luyaoming.com/2021/07/14/Primer-cpp-%E7%AC%AC%E4%BA%94%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89/"/>
+    <id>http://luyaoming.com/2021/07/14/Primer-cpp-第五版读书笔记（八）/</id>
+    <published>2021-07-14T06:46:55.000Z</published>
+    <updated>2021-07-22T09:01:28.528Z</updated>
+    
+    <content type="html"><![CDATA[<p>主要介绍面向对象的程序设计，模板和泛型编程</p>
+<a id="more"></a>
+<blockquote>
+<p>Primer c++ 第五版 <br>原著：Stanley B. Lippman, Josee Lajoie, Barbara E. Moo <br>翻译：王刚 杨巨峰 <br>– –读书笔记 by asii</p>
+</blockquote>
+<h2 id="十五，面向对象的程序设计"><a href="#十五，面向对象的程序设计" class="headerlink" title="十五，面向对象的程序设计"></a>十五，面向对象的程序设计</h2><p>得益于java的面向对象思想  要理解c++的面向对象并不难 举一反三 触类旁通</p>
+<p>c++ 面向对象核心思想是 数据抽象 继承 动态绑定 类比java的封装 继承 多态</p>
+<p>基类</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> Quote&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	Quote() = <span class="keyword">default</span>;</span><br><span class="line">    	Quote(<span class="keyword">const</span> <span class="built_in">string</span> &amp;book, <span class="keyword">double</span> sales_price):</span><br><span class="line">    	bookNo(book),price(sales_price)&#123;&#125;</span><br><span class="line">    	<span class="function"><span class="built_in">string</span> <span class="title">isBn</span><span class="params">()</span> </span>&#123;return bookNo;&#125;</span><br><span class="line">    	<span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">net_price</span><span class="params">(<span class="built_in">std</span>::size_t n)</span></span>&#123;return n * sales_price; &#125;</span><br><span class="line">    	<span class="keyword">virtual</span> ~Quote() = <span class="keyword">default</span>; <span class="comment">//析构函数一般带虚函数定义</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="built_in">string</span> bookNo;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    	<span class="keyword">double</span> price = <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>virtual指虚函数 用来标记将要被派生类（子类）重写的方法 virtual关键字只能在类内部声明 不能在类外部声明 被virtual声明的虚函数执行是发生在运行时 由他的调用对象所决定 而其他函数是编译时就已经决定了  派生类中覆盖重写的函数也是虚函数 但是可以忽略virtual限定符</p>
+<p>protected指只允许被派生类访问的 不能被外部类访问的 与java的一样 很容易理解</p>
+<p>派生类</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> Bulk_Quote : <span class="keyword">public</span> Quote&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	Bulk_Quote() = <span class="keyword">default</span>;</span><br><span class="line">    	Bulk_Quote(<span class="keyword">const</span> <span class="built_in">string</span>&amp;,<span class="keyword">double</span>,<span class="built_in">std</span>::<span class="keyword">size_t</span>,<span class="keyword">double</span>);</span><br><span class="line">    	<span class="function"><span class="keyword">double</span> <span class="title">net_price</span><span class="params">(<span class="built_in">std</span>::size_t)</span> <span class="keyword">const</span> override</span>;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="built_in">std</span>::<span class="keyword">size_t</span> min_qty;</span><br><span class="line">    	<span class="keyword">double</span> discount = <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到他继承自Quote类 前面有个public限定符 表明从基类继承而来的成员对派生类可见 net_price是重写的方法 后面跟override限定符</p>
+<p>派生类对象可以向基类对象转换 包含隐式转换 但是基类不可以向派生类转换 对象之间也是不能直接转换的</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Quote item;</span><br><span class="line">Bulk_Quote bulk;</span><br><span class="line">Quote *p = &amp;item;</span><br><span class="line">p = &amp; bulk;<span class="comment">//p指针定义为基类的指针 他既可以指向基类 也可以指向派生类</span></span><br><span class="line">Quote &amp;r = bulk;<span class="comment">//引用也一样</span></span><br></pre></td></tr></table></figure>
+<p>如果想一个类不能被继承 使用final关键字 class MyClass final {}</p>
+<p>使用多态可以让虚函数在运行时（实际调用时）才决定使用哪个函数发起调用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Quote item;</span><br><span class="line">Bulk_Quote bulk;</span><br><span class="line">Quote *p = &amp;bulk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> p1 = bulk.net_price(<span class="number">2</span>);<span class="comment">//由于是非引用或指针类型发起的函数调用 所以必定是bulk所属类型的函数调用即Bulk_Quote</span></span><br><span class="line"><span class="keyword">double</span> p2 = p-&gt;net_price();<span class="comment">//运行时绑定的函数调用 由于p指向的是实际的Bulk_Quote类型 所以调用Bulk_Quote的函数</span></span><br></pre></td></tr></table></figure>
+<p>可以阻止运行时绑定的函数调用 方法是在调用时加入命名空间</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> p2 = p-&gt;Quote::net_price(); <span class="comment">// 加入命名空间 表明这个函数是调用基类的函数 这时候这个函数就变成编译时的了</span></span><br></pre></td></tr></table></figure>
+<p>抽象基类</p>
+<p>想象一下 java有抽象类的存在 其实c++也有 java抽象类中有抽象方法  方法并没有被实现而是留个子类实现 c++中一样 不提供定义(实现) 希望派生类来定义 c++中定义的这种抽象方法叫做纯虚函数 使用方式如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">net_price</span><span class="params">(<span class="built_in">std</span>::size_t n)</span> <span class="keyword">const</span> </span>= <span class="number">0</span>; <span class="comment">// 添加=0表示纯虚函数 不在该类实现 留个子类</span></span><br></pre></td></tr></table></figure>
+<p>其实要实现这个纯虚函数也是可以的 不过需要在类的外部实现 </p>
+<p>含有纯虚函数的类叫做抽象基类 抽象基类负责定义接口 由他的派生类去实现 不能直接创建抽象基类的对象</p>
+<p>访问控制和继承</p>
+<p><code>class Pub_dev : public Base{...}</code> 这里的public访问限定符只会约束派生类对象访问基类成员的权限 不影响在派生类中直接调用基类的权限 下面的代码说明这个例子</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> Base&#123;</span><br><span class="line">    <span class="keyword">public</span> :</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">pub_meb</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    	<span class="keyword">int</span> pro_mem;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="keyword">int</span> pri_mem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Pub_dev : <span class="keyword">public</span> Base&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">()</span></span>&#123;return pro_mem;&#125;<span class="comment">//正确 pro_mem的限定符为protected 可以在派生类中访问</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">g</span><span class="params">()</span></span>&#123;return pri_mem;&#125;<span class="comment">//错误 pri_mem的限定符为private 不可以在派生类中直接访问</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> Pri_dev : <span class="keyword">private</span> Base&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Pub_dev d1;</span><br><span class="line">Pri_dev d2;</span><br><span class="line">d1.pub_meb();<span class="comment">//正确 继承自public的Base 可以访问基类的共有函数</span></span><br><span class="line">d2.pub_meb();<span class="comment">//错误 继承自private的Base 无法访问基类的共有函数 除此之外 d2的派生类又不能访问pub_meb函数</span></span><br></pre></td></tr></table></figure>
+<p>不考虑继承时 一个类用两种不同的用户：普通调用用户和类的实现者 普通用户编写的代码使用类的对象 只能访问类的公有（接口）成员 类的实现者则负责编写类的成员和友元的代码 成员和友元既能访问类的公有部分 也能访问类的私有（实现）部分</p>
+<p>友元关系不能传递和继承 派生类的友元不能随意访问基类的成员</p>
+<p>在定义类时 使用using type:: 成员名称 可以改变 成员的访问权限 跟随在外部定义的访问权限</p>
+<p>class默认私有继承 struct 默认公有继承</p>
+<p>派生类可以定义与基类同样的成员名称 类内默认调用派生类的成员 如要要调用基类的成员 需要使用命名空间标记 如Base::pro_mem</p>
+<h2 id="十六，模板和泛型编程"><a href="#十六，模板和泛型编程" class="headerlink" title="十六，模板和泛型编程"></a>十六，模板和泛型编程</h2><p>之前使用过的vector就是模板类 允许传递不同类型的参数进行保存 同一时间只能同一种类型 泛型编程可以让编译器在编译期间就知道具体的类型 因为该类型是用户定义的  这里的模板非常好理解 回想一下java的集合类同样也可以在定义时指定不同的类型 也就是为了让编译器提前知道 当我们传入不正确的类型对象时 IDE也会相应提示我们错误</p>
+<p>假如我们需要实现比较两个数返回他们的关系用数字表示 这两个数的类型不定 如果没有模板 有多少个类型 就需要建立多少个函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> &amp;v1,<span class="keyword">const</span> <span class="built_in">string</span> &amp;v2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(v1 &lt; v2)return <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(v1 == v2) return <span class="number">0</span>;</span><br><span class="line">    return <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> &amp;v1,<span class="keyword">const</span> <span class="keyword">double</span> &amp;v2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(v1 &lt; v2)return <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(v1 == v2) return <span class="number">0</span>;</span><br><span class="line">    return <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面代码可以看到函数的函数主体一样 区别是传递的参数类型 使用函数模板可以很容易地解决这个问题</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">const</span> T &amp;v1,<span class="keyword">const</span> T &amp;v2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(v1 &lt; v2)return <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(v1 == v2) return <span class="number">0</span>;</span><br><span class="line">    return <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们实例化模板的特定版本时 编译器才会生成对应的代码 模板的头文件一般已经包含声明和函数定义 以上的代码在编写时无法检测类型T是否有重载小于和大于符号 因此编写代码时不会报错 但在链接时如果没有重载就会报错  </p>
+<p>保证传递给模板的实际参数支持模板所要求的的操作 以及这些操作在模板中能够正确工作 是调用者的责任</p>
+<p>类模板</p>
+<p>与函数模板相似</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">class</span> Blob&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="keyword">typedef</span> T type_value;</span><br><span class="line">    	<span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;::size_type size_type;</span><br><span class="line">    	<span class="function">T&amp; <span class="title">back</span><span class="params">()</span></span>;</span><br><span class="line">    	T&amp; operate[](size_type i);</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&gt; data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可定义Blob的构造函数</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; Blob&lt;T&gt;::Blob(<span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;T&gt; <span class="built_in">list</span>) : </span><br><span class="line">data(<span class="built_in">std</span>::make_shared&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt;&gt;(list)) &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>有了上面构造函数后 可以这样创建对象 <code>Blob&lt;string&gt; item = {&quot;ab&quot;,&quot;cd&quot;};</code></p>
+<p>允许用类型别名来定义一个类模板</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> twin = pair&lt;T,T&gt;;</span><br><span class="line">twin&lt;<span class="built_in">string</span>&gt; strtwin;<span class="comment">//相当于pari&lt;string,string&gt;;</span></span><br><span class="line">twin&lt;<span class="keyword">int</span>&gt; inttwin;</span><br><span class="line">twin&lt;<span class="keyword">float</span>&gt; floattwin;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以改变一个或多个模板参数</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> twin2 = pair&lt;T,<span class="keyword">unsigned</span>&gt;;</span><br><span class="line">twin2&lt;<span class="built_in">string</span>&gt; strwin2; <span class="comment">// 相当于pari&lt;string,unsigned&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义可变参数模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T,<span class="keyword">typename</span> ...Args&gt; <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">const</span> T&amp;,<span class="keyword">const</span> Args&amp; ... rest)</span></span>;</span><br><span class="line">foo(new <span class="built_in">string</span>(<span class="string">"abc"</span>),<span class="number">42</span>,<span class="number">6.7f</span>,<span class="string">"aaa"</span>);<span class="comment">//使用模板函数</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;主要介绍面向对象的程序设计，模板和泛型编程&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C" scheme="http://luyaoming.com/categories/C/"/>
+    
+    
+      <category term="读书笔记" scheme="http://luyaoming.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="c++" scheme="http://luyaoming.com/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>编译与执行TDA4平台vision apps过程总结</title>
@@ -75,11 +146,11 @@
   </entry>
   
   <entry>
-    <title></title>
+    <title>Primer cpp 第五版读书笔记（七）</title>
     <link href="http://luyaoming.com/2021/07/06/Primer-cpp-%E7%AC%AC%E4%BA%94%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89/"/>
     <id>http://luyaoming.com/2021/07/06/Primer-cpp-第五版读书笔记（七）/</id>
     <published>2021-07-06T00:13:17.000Z</published>
-    <updated>2021-07-13T09:42:25.186Z</updated>
+    <updated>2021-07-14T01:50:27.865Z</updated>
     
     <content type="html"><![CDATA[<p>主要记录c++的拷贝控制</p>
 <a id="more"></a>
@@ -1413,38 +1484,6 @@
       <category term="运动" scheme="http://luyaoming.com/tags/%E8%BF%90%E5%8A%A8/"/>
     
       <category term="记录" scheme="http://luyaoming.com/tags/%E8%AE%B0%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>鬼吹灯-读书笔记</title>
-    <link href="http://luyaoming.com/2017/10/08/%E9%AC%BC%E5%90%B9%E7%81%AF-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    <id>http://luyaoming.com/2017/10/08/鬼吹灯-读书笔记/</id>
-    <published>2017-10-08T08:21:49.000Z</published>
-    <updated>2021-06-15T01:08:34.839Z</updated>
-    
-    <content type="html"><![CDATA[<p>上学的时候 看过几部武侠小说 发觉自己都忘记了内容 看起电视的时候 叔叔和婶婶都回忆起故事情节 我却哑口无言 所以打算写点笔记 记下来看过的故事 情节也好 心得也好 好记性不如烂笔头 </p>
-<a id="more"></a>
-<blockquote>
-<p>鬼吹灯 <br>原著：天下霸唱 <br>— — 读书笔记 by asii</p>
-</blockquote>
-<h2 id="精绝古城"><a href="#精绝古城" class="headerlink" title="精绝古城"></a>精绝古城</h2><p>胡八一的书《十六字阴阳风水秘术》从他祖父那辈得来 还是个残缺版 他祖父生前是个纨绔子弟 抽鸦片 卖了所有东西 抽鸦片 买个白纸当老婆 白纸变女鬼 祖父没钱用去挖掘坟墓 被女鬼挖了心肝 女鬼要他带人来给他吃心肝 途中遇到个道士 道士帮他消灭了女鬼 道士死前把这本《十六字阴阳风水秘术》传给了祖父 后来这书传到了胡八一手上 然后开始讲胡八一 在当兵的时候 胡八一和他的战友就遇到过火瓢虫 九层妖塔和霸王蝾螈   胡八一当兵的时候 在对战越南战役的时候 越南兵用妇女假装孕妇携带炸弹来做人肉炸弹 杀死了不少胡八一的战友 胡八一愤怒之下射杀俘虏 幸好没有上军事法庭 被撤职了  后来回到老家 见到了好友胖子王凯旋 两人和燕子进的第一个墓就遇到了大粽子 红吼 后来发现了日本的关东军地下要塞 还遇到了草原大地赖 他们打不死红吼 让大地赖和红毛互相残杀 最后拿走了两块玉 给大金牙帮忙卖了 大金牙介绍胡八一去沙漠探险队当领队 开始认识Shirley杨 找了个活地图 安力满 带着陈教授和他的一些学生开始去沙漠寻找精绝古城 两次被白骆驼救 找到了遗址 黑蛇杀人 胡八一破解石阵 找到了密道 找到了水源 找到了个大眼玉可惜被胡八一摔了 遇到了尸香魔芋 迷惑学生自相残杀 见到了很多黑蛇 最后五人逃进了密室 密室有图 预言家语言了进来5个人 然后4个人 其中一个打开二层石匣 暗示他们之中有魔鬼 绑了Shirley 真真假假 原来被尸香魔芋迷惑他们自相残杀 最后靠尸骨的食指指了一条明路 逃生</p>
-<h2 id="龙岭迷窟"><a href="#龙岭迷窟" class="headerlink" title="龙岭迷窟"></a>龙岭迷窟</h2><p>由一只古老的鞋子做引子 这次是胡八一 胖子 大金牙三人的冒险 找到了鱼骨庙 鱼骨庙下面就是墓 他们找到了洞穴的虚位 要爬着进去 发现里面是唐代的墓穴 有唐代的壁画 但是又有西周的大脸鼎 后来不小心进入了悬魂梯 最后三人排成一排 避开了月牙的提示 才出得来 大金牙被人脸蜘蛛拖走了 胡八一和胖子救他 脱光了衣服 烧死蜘蛛 偶遇到稀有的闻香玉 巧克力味 没有淘到名器  就带着这玉出去了 然后开始说雪莉杨的前人鹧鸪哨 原来是搬山道人 为了找雮尘珠拜一个皈依佛教的人为师 该人之前是摸金校尉 进入了一个墓穴 带着一个途中遇到的神父 最后了尘师傅死了 鹧鸪哨没了只手臂 掏出来一块甲骨文的石头 胡八一和胖子身上长了红色的眼睛 追问了另一个教授 教授什么都不肯说 最后带着雪梨杨再去找他 期间认识了个算命瞎子 原来是个卸岭力士 他去过云南虫窟 没进去之前就被毒雾弄瞎了眼睛 但是倒出了一个描绘着云南虫窟的地图 根据那位教授提供的猜测 那个雮尘珠应该就在这里面 于是开始到云南的旅程</p>
-<h2 id="云南虫谷"><a href="#云南虫谷" class="headerlink" title="云南虫谷"></a>云南虫谷</h2><p>这故事比较长 也是我认为一路看下来写得最精彩的一部 下面开始回忆 胡八一和雪莉杨和王胖子根据算命瞎子给的地图来到了云南 目标是献王墓 坐车去的期间在途中遇到个石人俑 破了 里面装满了恶心的虫子 然后他们乔装成博物馆抓蝴蝶的 来到了彩云客栈过一夜就出发 做了个竹筏就出发 一路上见到很多倒挂的石人俑 不知道触发了什么开关石人俑一个个掉进了水里 里面很多虫子会游泳追着他们的竹筏 遇到了青麟大蛇 这大蛇吃这些虫子 吃完后还要袭击他们的竹筏 胡八一他们的装备不好啊 差点打不过这凶猛的大蛇  后来出现了一堆刀齿蝰鱼 这鱼牙齿异常锋利 他们没有眼睛 哪里有血就去哪里 这大蛇被胡八一他们弄出了血 于是被这些吃人鱼围殴 吃人鱼搞点了大蛇后又来进攻竹筏 幸好他们找到了上岸的地方 到目前为止还没找到献王墓的入口 就一连受到了几波攻击 上岸后快到夜晚了 找到了两棵大树的地方过夜 三人约定轮流睡觉 忽然间从大树上传来了鬼信号 于是上树查看究竟 上面有一架飞机残骸 树下面还有个水晶棺 棺材里面还有个大祭司 红色肉线依靠吸附丢下来的生物的生命养分提供给水晶棺内的大祭司 三人在树上还受到了大鸟的攻击 他们把大祭司的身体拔出来还拿了里面的名器 次日出发寻找献王墓入口 找到入口后看见里面的蜻蜓虫子 蟾蜍都很大只 再遇到了很多漂浮的女尸 这女尸也是用身体养虫子 给带着面具的霍氏不死虫当零食 霍氏不死虫战斗力强大 将虫子的尸毒转化为毒瘴大雾封锁盗墓者进来 后来还是被王胖子用炸药炸死了 其实它只是暂时行动不了 霍氏不死虫吐出了一个箱子有三格 最后一格是一只蓝色三脚青蛙 其实是一个影响飞行航线的陨石 没有了霍氏不死虫吐出来的红色气体 那些女尸身上的胎儿开始脱落形成怪婴 三人慌忙逃脱 胡八一掉进了深潭 里面有飞机残骸 进入凌云宫殿 进去后发现非常华丽的装修 他们撬开一个煮尸鼎后听到诡异的笑声 发现红色衣服传过来的 胡八一让胖子去烧衣服 胖子贪心摸到了一块玉还舔了一下 被蛊附身 胡八一冒着被水银淹没的危险在墙壁里找到了玉函 胖子被蛊迷惑想吃尸体 被胡八一发现被挑出舌头肉刺 后来发现献王墓的墓道入口就在潭里 终于到了了献王墓的主墓室 里面三口棺材 其中一个还吊在空中 这三个棺材里装的都是献王的影骨 是他的前世骨头 后来发现了献王的老婆 尸体里还有飞蛾 飞蛾有毒 三人最后找到了最后的墓室 这墓室就是万年太岁化成的 里面有很多人手在不断拉人进去（脑补下） 胡八一找到了献王的棺材 割下了包含雮尘珠的献王人头 开始跑路 太岁发生尸洞效应 开始吞噬一切 三人逃出来一直被尸洞追着 雪莉杨还中了尸毒 幸好中途找到了个植物解毒 痋人（怪婴）与尸洞大战 痋人都被吸进去了 胡八一毁掉那个三脚青蛙 搭着霍氏不死虫的顺风车走出来 这尸洞一直追着献王的人头 胡八一几次想把人头还他了 最后把尸洞引到谷口 用“青龙顿笔”的风水毁了尸洞 三人终于得救 接着开始回忆胡八一当兵时候的支线剧情</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;上学的时候 看过几部武侠小说 发觉自己都忘记了内容 看起电视的时候 叔叔和婶婶都回忆起故事情节 我却哑口无言 所以打算写点笔记 记下来看过的故事 情节也好 心得也好 好记性不如烂笔头 &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="novel" scheme="http://luyaoming.com/categories/novel/"/>
-    
-    
-      <category term="读书笔记" scheme="http://luyaoming.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="鬼吹灯" scheme="http://luyaoming.com/tags/%E9%AC%BC%E5%90%B9%E7%81%AF/"/>
     
   </entry>
   
