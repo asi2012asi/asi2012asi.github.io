@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://luyaoming.com/"/>
-  <updated>2021-07-22T09:01:28.528Z</updated>
+  <updated>2021-07-28T09:18:46.242Z</updated>
   <id>http://luyaoming.com/</id>
   
   <author>
@@ -14,6 +14,83 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Primer cpp 第五版读书笔记（九）</title>
+    <link href="http://luyaoming.com/2021/07/21/Primer-cpp-%E7%AC%AC%E4%BA%94%E7%89%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89/"/>
+    <id>http://luyaoming.com/2021/07/21/Primer-cpp-第五版读书笔记（九）/</id>
+    <published>2021-07-21T13:17:31.000Z</published>
+    <updated>2021-07-28T09:18:46.242Z</updated>
+    
+    <content type="html"><![CDATA[<p>主要介绍标准库特殊设施和用于大型程序的工具</p>
+<a id="more"></a>
+<blockquote>
+<p>Primer c++ 第五版 <br>原著：Stanley B. Lippman, Josee Lajoie, Barbara E. Moo <br>翻译：王刚 杨巨峰 <br>– –读书笔记 by asii</p>
+</blockquote>
+<p>tuple类型</p>
+<p>类似于pair的模板 但他允许有不同的类型参数 大于2个的参数数量</p>
+<p>定义和初始化tuple</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">tuple&lt;<span class="keyword">size_t</span>,<span class="keyword">size_t</span>,<span class="keyword">size_t</span>&gt; t1;</span><br><span class="line">tuple&lt;<span class="built_in">string</span>,<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;,<span class="keyword">int</span>,<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt; t2(<span class="string">"aa"</span>,&#123;<span class="number">1.1</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,<span class="number">2</span>,&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>tuple是explicit的 只能直接初始化</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">tuple&lt;<span class="keyword">size_t</span>,<span class="keyword">size_t</span>,<span class="keyword">size_t</span>&gt; t1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>&#125;;<span class="comment">//wrong </span></span><br><span class="line">tuple&lt;<span class="keyword">size_t</span>,<span class="keyword">size_t</span>,<span class="keyword">size_t</span>&gt; t2&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>&#125;;<span class="comment">//right</span></span><br></pre></td></tr></table></figure>
+<p>标准库还定义了make_tuple函数来生成tuple <code>auto t1 = make_tuple(&quot;aaa&quot;,2,56.4f);</code> 推断t1类型为tuple<const char*,int,double> </const></p>
+<p>访问tuple的成员</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">tuple&lt;<span class="keyword">size_t</span>,<span class="keyword">size_t</span>,<span class="keyword">size_t</span>&gt; t2&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">auto</span> temp = get&lt;<span class="number">0</span>&gt;(t2); <span class="comment">// 返回t2的第一个成员</span></span><br><span class="line"><span class="keyword">auto</span> temp = get&lt;<span class="number">1</span>&gt;(t2); <span class="comment">// 返回t2的第二个成员</span></span><br></pre></td></tr></table></figure>
+<p>使用tuple_size和tuple_element来表示tuple的大小和元素</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">decltype</span><span class="params">(t2)</span> trans</span>;<span class="comment">//trans是t2的类型</span></span><br><span class="line"><span class="keyword">size_t</span> s = tuple_size&lt;trans&gt;::value; <span class="comment">// 返回s = 3</span></span><br><span class="line">tuple_element&lt;<span class="number">1</span>,trans&gt;::type cnt = get&lt;<span class="number">2</span>&gt;(t2); <span class="comment">// 返回t2的第三个成员 代替了auto</span></span><br></pre></td></tr></table></figure>
+<p>tuple特别适合用在那种不想组装bean类对象 有想在函数中返回多个数据的结构类型</p>
+<p>noexcept 指某个函数不会抛出异常</p>
+<p>将某个函数声明为noexcept 有助于编译器简化调用该函数的代码 </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">recpy</span><span class="params">(<span class="keyword">int</span>)</span> <span class="keyword">noexcept</span></span>;</span><br></pre></td></tr></table></figure>
+<p>noexcept主要用在两种情况 一是我们确认函数不会抛出异常 二是我们根本不知道该如何处理异常</p>
+<p>命名空间 namespace</p>
+<p>只要出现在全局作用域中的声明就能置于命名空间内 可以包含类 变量 函数 模板 其他命名空间</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">myNameSpace&#123;</span><br><span class="line">    <span class="keyword">class</span> A;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    Sales_data <span class="keyword">operator</span>+(<span class="keyword">const</span> Sales_data&amp;,c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要区分全局的还是命名空间内的变量声明</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> blip&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;<span class="comment">//定义全局i 可以与namespace内的变量同名</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mainip</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> blip;</span><br><span class="line">    ++i; <span class="comment">// 错误 不知道是全局的i还是命名空间的i </span></span><br><span class="line">    ++::i;<span class="comment">//是全局的i 得到2</span></span><br><span class="line">    ++blip::i;<span class="comment">//是命名空间的额i 得到1</span></span><br><span class="line">    j++;<span class="comment">//正确 只有一个命名空间的j 不用在前面加命名空间的名字也可以找到 得到1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要避免上面的using指示 因为当引入一个新的库时使用using指示 容易引起变量的二义性 最好是对命名空间内的每个变量进行指示或声明 </p>
+<p>多重继承和虚继承</p>
+<p>要注意当一个类继承多于1个类时 而被继承的类又继承自同一个基类时 多副本的数据存储和二义性</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">IBase() : n(<span class="number">0</span>) &#123;&#125;</span><br><span class="line"><span class="keyword">virtual</span> ~IBase() &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123; <span class="built_in">printf</span>(<span class="string">"%dn"</span>, n); &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inc</span><span class="params">()</span> </span>&#123; return ++n; &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dec</span><span class="params">()</span> </span>&#123; return --n; &#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> IA : <span class="keyword">public</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~IA() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> IB : <span class="keyword">public</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~IB() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> CImpl : <span class="keyword">public</span> IA, <span class="keyword">public</span> IB</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~CImpl() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">CImpl o;</span><br><span class="line">IA *pA = &amp;o;</span><br><span class="line">IB *pB = &amp;o;</span><br><span class="line">pA-&gt;inc();</span><br><span class="line">pA-&gt;show();</span><br><span class="line">pB-&gt;dec();</span><br><span class="line">pB-&gt;show();</span><br><span class="line">return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后输出1和-1 这是由于多副本的数据存储 要想得到1和0的结果 可以引入virtual虚函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> IA : <span class="keyword">virtual</span> <span class="keyword">public</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~IA() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> IB : <span class="keyword">virtual</span> <span class="keyword">public</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~IB() &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在继承符号：后面加上virtual关键字 这个就是虚继承 他的目的是令某个类作出声明 承诺愿意共享他的基类 其中共享的基类子对象叫做虚基类 之后不论虚基类在继承体系中出现多少次 在派生类中都只包含唯一一个虚基类子对象</p>
+<p>重载new和delete</p>
+<p>需要使用malloc和free函数来配合使用 控制内存分配 下面是一些例子</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="keyword">operator</span> <span class="title">new</span><span class="params">(size_t size)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">void</span> *mem = <span class="built_in">malloc</span>(size))&#123;</span><br><span class="line">        return mem;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        throw bad_alloc();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="keyword">void</span> *mem)</span> <span class="keyword">noexcept</span></span>&#123;</span><br><span class="line">    <span class="built_in">free</span>(mem);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行时类型识别 rtti</p>
+<p>typeid 运算符 ：用于返回表达式的类型</p>
+<p>dynamic_cast 运算符: 用于将基类的指针和引用安全转换为派生类的指针和引用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cast_ptr</span><span class="params">(Base *bp)</span></span>&#123;<span class="comment">//Derived是Base的派生类</span></span><br><span class="line">    <span class="keyword">if</span>(Derived * dd = <span class="keyword">dynamic_cast</span>&lt;Derived *&gt;(bp))&#123; </span><br><span class="line">        <span class="comment">//使用dd指向的对象 Derived类型</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//使用bp指向的对象 Base类型</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> cast_ref(Base &amp;bp2)&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> Derived&amp; dd2 = <span class="keyword">dynamic_cast</span>&lt;Derived&amp;&gt;(bp);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(bad_cast)&#123;</span><br><span class="line">        <span class="comment">//处理类型转换失败的情况</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>typeid的使用有点类似于java的instanceof</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Derived *dd = new Derived;</span><br><span class="line">Base *bp = dd; <span class="comment">// bp dd两个指针都指向Derived类型对象</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeid</span>(*bp) == <span class="keyword">typeid</span>(*dd))&#123;</span><br><span class="line">    <span class="comment">//bp和dd是指向同一类型的对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检查运行时类型是否是指定的类型</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeid</span>(*bp) == <span class="keyword">typeid</span>(Derived))&#123;</span><br><span class="line">    <span class="comment">//同java的instanceof</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面是错误的写法 不能直接比较指针的类型 括号内应该是指针指向的对象而不是指针本身</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeid</span>(bp) == <span class="keyword">typeid</span>(dd))&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虚equal函数 派生类继承基类后要做的第一件事都是相同的 就是派生类中定义自己的equal函数 好将实参类型替换成派生类型</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span> Derived::equal(<span class="keyword">const</span> Base &amp;rhs)&#123;</span><br><span class="line">    <span class="keyword">auto</span> r = <span class="keyword">dynamic_cast</span>&lt;Derived&amp;&gt;(rhs);<span class="comment">//因为是派生类 所以转型肯定不会抛出异常</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>枚举类型</p>
+<p>枚举类型属于字面值常量类型 c++中包括限定作用域和不限定作用域的枚举类型</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//限定作用域 带class</span></span><br><span class="line"><span class="keyword">enum</span> <span class="keyword">class</span> open_modes&#123;input,output,append&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//非限定作用域 不带class</span></span><br><span class="line"><span class="keyword">enum</span> color&#123;red,green,yellow&#125;;</span><br><span class="line"><span class="comment">//未命名 不限定的</span></span><br><span class="line"><span class="keyword">enum</span>&#123;a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>enum默认情况下是用整型类型来表示的 但是允许改变其类型 方法是冒号后面加类型</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定enum是unsigned long long类型</span></span><br><span class="line"><span class="keyword">enum</span> longlongValue : <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> &#123;</span><br><span class="line">    longtype = <span class="number">1234567U</span>L;</span><br><span class="line">    chartype = <span class="number">123</span>;</span><br><span class="line">    longlongtype = <span class="number">12345678901234U</span>LL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>union</p>
+<p>与c中的union用途一样 不过它还可以表示带有构造或析构函数的类对象 成员是public的 union是一种节省内存空间的类</p>
+<p>union表示任意时刻 只有一个数据有值 一般用作包含一组类型不同的互斥值 </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//表示Token对象只有一个数据成员 是下面成员中的其中一个</span></span><br><span class="line"><span class="keyword">union</span> Token&#123;</span><br><span class="line">    <span class="keyword">char</span> cval;</span><br><span class="line">    <span class="keyword">int</span> ival;</span><br><span class="line">    <span class="keyword">double</span> dval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;主要介绍标准库特殊设施和用于大型程序的工具&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="C" scheme="http://luyaoming.com/categories/C/"/>
+    
+    
+      <category term="读书笔记" scheme="http://luyaoming.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="c++" scheme="http://luyaoming.com/tags/c/"/>
+    
+  </entry>
   
   <entry>
     <title>Primer cpp 第五版读书笔记（八）</title>
@@ -1426,64 +1503,6 @@
       <category term="读书笔记" scheme="http://luyaoming.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
       <category term="死了七次的男人" scheme="http://luyaoming.com/tags/%E6%AD%BB%E4%BA%86%E4%B8%83%E6%AC%A1%E7%9A%84%E7%94%B7%E4%BA%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>运动记录10月份</title>
-    <link href="http://luyaoming.com/2017/10/11/%E8%BF%90%E5%8A%A8%E8%AE%B0%E5%BD%95/"/>
-    <id>http://luyaoming.com/2017/10/11/运动记录/</id>
-    <published>2017-10-11T03:10:25.000Z</published>
-    <updated>2021-06-16T01:30:35.994Z</updated>
-    
-    <content type="html"><![CDATA[<p>我想要一个好的身体 但是不是说说了事 打算写个记录贴监督下自己  记录日常的运动 </p>
-<a id="more"></a>
-<blockquote>
-<p>只要有恒心 铁杵磨成针</p>
-</blockquote>
-<p>2017年10月11日</p>
-<p>感受：跑的过程有点想呕吐的感觉 可能长期没运动的原因 起初先快步走 然后慢跑 然后在同一路段重复来回 设立短期目标 运动完后脚裸以上小腿有疼痛迹象 怀疑是热身运动没做够的后果  但是小腹明显感觉轻松 不再有鼓腹的感觉</p>
-<p>明天继续 务必运动前做好热身 减少身体伤害</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/20171011.jpg" alt="20171011快步走和慢跑"></p>
-<p>2017年10月12日</p>
-<p>感受：小腿看来是慢慢适应这种运动状态了 第一天疼痛感强烈 第二天继续锻炼 已经不怎么疼了 今天的天气很舒服啊 有点凉风 选择了我昨天来回跑的路段 半走半跑 keep住啊！</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/20171012日.jpg" alt="keep2017年10月12日"></p>
-<p>2017年10月13日</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/%E8%BF%90%E5%8A%A820171013.jpg" alt="运动201710月13日"></p>
-<p>感受：天气开始变凉 慢慢有点感觉 继续keep</p>
-<p>2017年10月14日</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/%E8%BF%90%E5%8A%A820171014.jpg" alt="2017年10月14日"></p>
-<p>感受：今天的运动量稍微大啊 刚开始小腿大腿比较酸痛 跑了几个来回后 腿开始适应 习惯跑步的时候思考一些东西 使自己忘记了疲劳 明天是周日 也要keep住啊！ </p>
-<p>10月18日</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/20171018.jpg" alt></p>
-<p>10月20日</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/20171020.jpg" alt></p>
-<p>10月23日</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/20171023.jpg" alt></p>
-<p>感受：今天开始 全程没有再停下来 现在基本上不会喘气 只是脚有点疼 但是坚持下来后 跑完整个人感觉很爽 明天继续</p>
-<p>2017年10月25日</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/20171025.jpg" alt></p>
-<p>感受：全程没有停下来 右脚有点小疼 自从上星期去跟啊叔去完公园后 感觉右脚有点疼 双臂也有点疼 不应该一次性做过多剧烈运动 伤身体 以后注意</p>
-<p>2017年10月31日</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/20171031.jpg" alt></p>
-<p>感受：用了一个小时运动 跑到后面基本上不觉得累了 呼吸也很顺畅 第一次在微信运动里拿了第一名 高兴了一会 右脚脚裸附近关节有些许疼痛感 注意热身</p>
-<p>2017年11月3日</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/20171103.jpg" alt></p>
-<p>感受：隔了两天没运动 感觉浑身不自在 这次也是跑了一个小时 基本没停过 感觉跑完很爽 </p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我想要一个好的身体 但是不是说说了事 打算写个记录贴监督下自己  记录日常的运动 &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Sport" scheme="http://luyaoming.com/categories/Sport/"/>
-    
-    
-      <category term="运动" scheme="http://luyaoming.com/tags/%E8%BF%90%E5%8A%A8/"/>
-    
-      <category term="记录" scheme="http://luyaoming.com/tags/%E8%AE%B0%E5%BD%95/"/>
     
   </entry>
   

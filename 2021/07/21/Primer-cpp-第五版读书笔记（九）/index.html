@@ -6,31 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://luyaoming.com">
-  <title>测试迁移hexo到另一台主机 | Asii</title>
+  <title>Primer cpp 第五版读书笔记（九） | Asii</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近买了台新电脑 默认win10系统 为了开发方便 装了wsl2 捣鼓编译环境
-之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新 
-下面简单记录下迁移hexo到另一台电脑遇到的一些问题">
+  <meta name="description" content="主要介绍标准库特殊设施和用于大型程序的工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试迁移hexo到另一台主机">
-<meta property="og:url" content="http://luyaoming.com/2021/06/15/测试迁移hexo到另一台主机/index.html">
+<meta property="og:title" content="Primer cpp 第五版读书笔记（九）">
+<meta property="og:url" content="http://luyaoming.com/2021/07/21/Primer-cpp-第五版读书笔记（九）/index.html">
 <meta property="og:site_name" content="Asii">
-<meta property="og:description" content="最近买了台新电脑 默认win10系统 为了开发方便 装了wsl2 捣鼓编译环境
-之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新 
-下面简单记录下迁移hexo到另一台电脑遇到的一些问题">
-<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/typora的偏好设置picgo.jpg">
-<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/图床设置.jpg">
-<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/img/image-20210617181200571.png">
-<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/lushi1.jpg">
-<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/lushi2.jpg">
-<meta property="og:image" content="http://quqnn25zc.bkt.gdipper.com/lushi3.jpg">
-<meta property="og:updated_time" content="2021-06-17T10:23:35.035Z">
+<meta property="og:description" content="主要介绍标准库特殊设施和用于大型程序的工具">
+<meta property="og:updated_time" content="2021-07-28T09:18:46.242Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试迁移hexo到另一台主机">
-<meta name="twitter:description" content="最近买了台新电脑 默认win10系统 为了开发方便 装了wsl2 捣鼓编译环境
-之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新 
-下面简单记录下迁移hexo到另一台电脑遇到的一些问题">
-<meta name="twitter:image" content="http://quqnn25zc.bkt.gdipper.com/img/typora的偏好设置picgo.jpg">
+<meta name="twitter:title" content="Primer cpp 第五版读书笔记（九）">
+<meta name="twitter:description" content="主要介绍标准库特殊设施和用于大型程序的工具">
   
     <link rel="alternative" href="/atom.xml" title="Asii" type="application/atom+xml">
   
@@ -180,14 +167,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-测试迁移hexo到另一台主机" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Primer-cpp-第五版读书笔记（九）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      测试迁移hexo到另一台主机
+      Primer cpp 第五版读书笔记（九）
     </h1>
   
 
@@ -202,57 +189,67 @@
   </a>
 
         
-        <a href="/2021/06/15/测试迁移hexo到另一台主机/" class="archive-article-date">
-  	<time datetime="2021-06-15T01:14:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-15</time>
+        <a href="/2021/07/21/Primer-cpp-第五版读书笔记（九）/" class="archive-article-date">
+  	<time datetime="2021-07-21T13:17:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近买了台新电脑 默认win10系统 为了开发方便 装了wsl2 捣鼓编译环境</p>
-<p>之前在mac Os上写日记更新hexo 买了新电脑图新鲜 想使用windows继续更新 </p>
-<p>下面简单记录下迁移hexo到另一台电脑遇到的一些问题</p>
+        <p>主要介绍标准库特殊设施和用于大型程序的工具</p>
 <a id="more"></a>
-<h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>思路很简单：备份mac上的hexo文件到gitee 另一台电脑下载下来 然后通过npm 安装软件</p>
-<p>顺便说说这样做得好处：上传数据而非u盘拷贝 是为了每次更新方便  不用u盘考来考去 gitee是国内的 比github快 且区分一个发布用 一个备份用比较清晰</p>
-<p>把hexo备份到<a href="https://gitee.com/asii2020/myhexo" target="_blank" rel="external">https://gitee.com/asii2020/myhexo</a> 目录下 </p>
-<p>记得上传之前 把.gitignore文件的内容删除或注释掉 把所有文件先上传</p>
-<p>换电脑 切换到新建的hexo目录下 git clone <a href="https://gitee.com/asii2020/myhexo" target="_blank" rel="external">https://gitee.com/asii2020/myhexo</a> </p>
-<p>下面是在wsl2的环境下安装</p>
-<p>重新执行sudo cnpm install –force</p>
-<p>如果出现hexo-rederer-sass 安装失败 执行 </p>
-<p>sudo rm -rf node_moudles</p>
-<p>cnpm install –save node-sass</p>
-<p>cnpm install </p>
-<p>接着测试</p>
-<p>hexo new “测试迁移hexo到另一台主机”</p>
-<p>hexo g</p>
-<p>hexo d</p>
-<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>最近发现七牛提供的图床服务不好使了 我之前写的文章里带图片都不显示了  </p>
-<p>发现原来现在他内部改革了 国内的域名需要备案才可以上传和浏览图像</p>
-<p>我在16年搞建站的时候 没有这回事 很简单地就生成了图片链接了 </p>
-<p>之前的空间划分在华东 由于我的域名是godaddy申请的 属于美国地区 内容空间提供商是github也在美国  没办法在国内备案</p>
-<p>没办法 只能在七牛上新建一个北美地区的空间 迁移华东的图片到北美的空间 使用他们提供的脚本 发现不同区域的不能迁移</p>
-<p>还好站点的图片我有备份在上一台电脑上 只能重新上传了 这时候七牛给我分配了一个图片服务的测试地址quqnn25zc.bkt.gdipper.com</p>
-<p>期间我一直纠结 是否继续使用七牛 因为他们提供的北美空间是有回收期限的 30天后自动回收 </p>
-<p>为应对这个机制 可以在七牛新建空间（同区域） 并且迁移内容到新的空间 然后替换博客内容的图片地址 具体操作看这个链接</p>
-<p>[]: <a href="https://segmentfault.com/a/1190000018196548" target="_blank" rel="external">https://segmentfault.com/a/1190000018196548</a>    “七牛测试地址被回收了怎么办”</p>
-<p>如果不使用图床  可以使用hexo-asset-image或者hexo-image-link等插件来插入图片 个人尝试了一下 发现不好使 图片依然不显示</p>
-<p>下面介绍使用typora和picgo的方式插入图片的方法</p>
-<p>首先 使用typora的文件–偏好设置–图像  设置如图所示</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/typora的偏好设置picgo.jpg" alt></p>
-<p>这里 上传服务我选择了picgo app 可以直接使用gui进行配置</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/图床设置.jpg" alt></p>
-<p>然后进入格式-图像-插入图片时-上传图像</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/img/image-20210617181200571.png" alt="image-20210617181200571"></p>
-<p>这样可以很方便在typora上右键插入图片或者复制粘贴粘贴板的图像到文章里都可以了 也不需要自己按照固定路径放置图片等操作</p>
-<p>只要插入操作 就会触发上传了  相当无脑 我喜欢</p>
-<p>有时候插入后 hexo d -g 没有显示图片立马出来 不用担心  只要确认七牛上传的地址能够在浏览器上load到图片就可以了 网页会稍后才生效 还有网站和图片部署在美国 也可能是导致图片出来慢的原因吧</p>
-<p>测试插入图片</p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/lushi1.jpg" alt></p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/lushi2.jpg" alt></p>
-<p><img src="http://quqnn25zc.bkt.gdipper.com/lushi3.jpg" alt></p>
+<blockquote>
+<p>Primer c++ 第五版 <br>原著：Stanley B. Lippman, Josee Lajoie, Barbara E. Moo <br>翻译：王刚 杨巨峰 <br>– –读书笔记 by asii</p>
+</blockquote>
+<p>tuple类型</p>
+<p>类似于pair的模板 但他允许有不同的类型参数 大于2个的参数数量</p>
+<p>定义和初始化tuple</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">tuple&lt;<span class="keyword">size_t</span>,<span class="keyword">size_t</span>,<span class="keyword">size_t</span>&gt; t1;</span><br><span class="line">tuple&lt;<span class="built_in">string</span>,<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;,<span class="keyword">int</span>,<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&gt; t2(<span class="string">"aa"</span>,&#123;<span class="number">1.1</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,<span class="number">2</span>,&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>tuple是explicit的 只能直接初始化</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">tuple&lt;<span class="keyword">size_t</span>,<span class="keyword">size_t</span>,<span class="keyword">size_t</span>&gt; t1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>&#125;;<span class="comment">//wrong </span></span><br><span class="line">tuple&lt;<span class="keyword">size_t</span>,<span class="keyword">size_t</span>,<span class="keyword">size_t</span>&gt; t2&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>&#125;;<span class="comment">//right</span></span><br></pre></td></tr></table></figure>
+<p>标准库还定义了make_tuple函数来生成tuple <code>auto t1 = make_tuple(&quot;aaa&quot;,2,56.4f);</code> 推断t1类型为tuple<const char*,int,double> </const></p>
+<p>访问tuple的成员</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">tuple&lt;<span class="keyword">size_t</span>,<span class="keyword">size_t</span>,<span class="keyword">size_t</span>&gt; t2&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">auto</span> temp = get&lt;<span class="number">0</span>&gt;(t2); <span class="comment">// 返回t2的第一个成员</span></span><br><span class="line"><span class="keyword">auto</span> temp = get&lt;<span class="number">1</span>&gt;(t2); <span class="comment">// 返回t2的第二个成员</span></span><br></pre></td></tr></table></figure>
+<p>使用tuple_size和tuple_element来表示tuple的大小和元素</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">decltype</span><span class="params">(t2)</span> trans</span>;<span class="comment">//trans是t2的类型</span></span><br><span class="line"><span class="keyword">size_t</span> s = tuple_size&lt;trans&gt;::value; <span class="comment">// 返回s = 3</span></span><br><span class="line">tuple_element&lt;<span class="number">1</span>,trans&gt;::type cnt = get&lt;<span class="number">2</span>&gt;(t2); <span class="comment">// 返回t2的第三个成员 代替了auto</span></span><br></pre></td></tr></table></figure>
+<p>tuple特别适合用在那种不想组装bean类对象 有想在函数中返回多个数据的结构类型</p>
+<p>noexcept 指某个函数不会抛出异常</p>
+<p>将某个函数声明为noexcept 有助于编译器简化调用该函数的代码 </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">recpy</span><span class="params">(<span class="keyword">int</span>)</span> <span class="keyword">noexcept</span></span>;</span><br></pre></td></tr></table></figure>
+<p>noexcept主要用在两种情况 一是我们确认函数不会抛出异常 二是我们根本不知道该如何处理异常</p>
+<p>命名空间 namespace</p>
+<p>只要出现在全局作用域中的声明就能置于命名空间内 可以包含类 变量 函数 模板 其他命名空间</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">myNameSpace&#123;</span><br><span class="line">    <span class="keyword">class</span> A;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    Sales_data <span class="keyword">operator</span>+(<span class="keyword">const</span> Sales_data&amp;,c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要区分全局的还是命名空间内的变量声明</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">namespace</span> blip&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;<span class="comment">//定义全局i 可以与namespace内的变量同名</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mainip</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> blip;</span><br><span class="line">    ++i; <span class="comment">// 错误 不知道是全局的i还是命名空间的i </span></span><br><span class="line">    ++::i;<span class="comment">//是全局的i 得到2</span></span><br><span class="line">    ++blip::i;<span class="comment">//是命名空间的额i 得到1</span></span><br><span class="line">    j++;<span class="comment">//正确 只有一个命名空间的j 不用在前面加命名空间的名字也可以找到 得到1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要避免上面的using指示 因为当引入一个新的库时使用using指示 容易引起变量的二义性 最好是对命名空间内的每个变量进行指示或声明 </p>
+<p>多重继承和虚继承</p>
+<p>要注意当一个类继承多于1个类时 而被继承的类又继承自同一个基类时 多副本的数据存储和二义性</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">class</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">IBase() : n(<span class="number">0</span>) &#123;&#125;</span><br><span class="line"><span class="keyword">virtual</span> ~IBase() &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123; <span class="built_in">printf</span>(<span class="string">"%dn"</span>, n); &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inc</span><span class="params">()</span> </span>&#123; return ++n; &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dec</span><span class="params">()</span> </span>&#123; return --n; &#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> IA : <span class="keyword">public</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~IA() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> IB : <span class="keyword">public</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~IB() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> CImpl : <span class="keyword">public</span> IA, <span class="keyword">public</span> IB</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~CImpl() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">CImpl o;</span><br><span class="line">IA *pA = &amp;o;</span><br><span class="line">IB *pB = &amp;o;</span><br><span class="line">pA-&gt;inc();</span><br><span class="line">pA-&gt;show();</span><br><span class="line">pB-&gt;dec();</span><br><span class="line">pB-&gt;show();</span><br><span class="line">return <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后输出1和-1 这是由于多副本的数据存储 要想得到1和0的结果 可以引入virtual虚函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> IA : <span class="keyword">virtual</span> <span class="keyword">public</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~IA() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> IB : <span class="keyword">virtual</span> <span class="keyword">public</span> IBase</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">virtual</span> ~IB() &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在继承符号：后面加上virtual关键字 这个就是虚继承 他的目的是令某个类作出声明 承诺愿意共享他的基类 其中共享的基类子对象叫做虚基类 之后不论虚基类在继承体系中出现多少次 在派生类中都只包含唯一一个虚基类子对象</p>
+<p>重载new和delete</p>
+<p>需要使用malloc和free函数来配合使用 控制内存分配 下面是一些例子</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="keyword">operator</span> <span class="title">new</span><span class="params">(size_t size)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">void</span> *mem = <span class="built_in">malloc</span>(size))&#123;</span><br><span class="line">        return mem;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        throw bad_alloc();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="keyword">void</span> *mem)</span> <span class="keyword">noexcept</span></span>&#123;</span><br><span class="line">    <span class="built_in">free</span>(mem);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行时类型识别 rtti</p>
+<p>typeid 运算符 ：用于返回表达式的类型</p>
+<p>dynamic_cast 运算符: 用于将基类的指针和引用安全转换为派生类的指针和引用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cast_ptr</span><span class="params">(Base *bp)</span></span>&#123;<span class="comment">//Derived是Base的派生类</span></span><br><span class="line">    <span class="keyword">if</span>(Derived * dd = <span class="keyword">dynamic_cast</span>&lt;Derived *&gt;(bp))&#123; </span><br><span class="line">        <span class="comment">//使用dd指向的对象 Derived类型</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//使用bp指向的对象 Base类型</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> cast_ref(Base &amp;bp2)&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> Derived&amp; dd2 = <span class="keyword">dynamic_cast</span>&lt;Derived&amp;&gt;(bp);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(bad_cast)&#123;</span><br><span class="line">        <span class="comment">//处理类型转换失败的情况</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>typeid的使用有点类似于java的instanceof</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Derived *dd = new Derived;</span><br><span class="line">Base *bp = dd; <span class="comment">// bp dd两个指针都指向Derived类型对象</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeid</span>(*bp) == <span class="keyword">typeid</span>(*dd))&#123;</span><br><span class="line">    <span class="comment">//bp和dd是指向同一类型的对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//检查运行时类型是否是指定的类型</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeid</span>(*bp) == <span class="keyword">typeid</span>(Derived))&#123;</span><br><span class="line">    <span class="comment">//同java的instanceof</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面是错误的写法 不能直接比较指针的类型 括号内应该是指针指向的对象而不是指针本身</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeid</span>(bp) == <span class="keyword">typeid</span>(dd))&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虚equal函数 派生类继承基类后要做的第一件事都是相同的 就是派生类中定义自己的equal函数 好将实参类型替换成派生类型</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span> Derived::equal(<span class="keyword">const</span> Base &amp;rhs)&#123;</span><br><span class="line">    <span class="keyword">auto</span> r = <span class="keyword">dynamic_cast</span>&lt;Derived&amp;&gt;(rhs);<span class="comment">//因为是派生类 所以转型肯定不会抛出异常</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>枚举类型</p>
+<p>枚举类型属于字面值常量类型 c++中包括限定作用域和不限定作用域的枚举类型</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//限定作用域 带class</span></span><br><span class="line"><span class="keyword">enum</span> <span class="keyword">class</span> open_modes&#123;input,output,append&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//非限定作用域 不带class</span></span><br><span class="line"><span class="keyword">enum</span> color&#123;red,green,yellow&#125;;</span><br><span class="line"><span class="comment">//未命名 不限定的</span></span><br><span class="line"><span class="keyword">enum</span>&#123;a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>enum默认情况下是用整型类型来表示的 但是允许改变其类型 方法是冒号后面加类型</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定enum是unsigned long long类型</span></span><br><span class="line"><span class="keyword">enum</span> longlongValue : <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> &#123;</span><br><span class="line">    longtype = <span class="number">1234567U</span>L;</span><br><span class="line">    chartype = <span class="number">123</span>;</span><br><span class="line">    longlongtype = <span class="number">12345678901234U</span>LL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>union</p>
+<p>与c中的union用途一样 不过它还可以表示带有构造或析构函数的类对象 成员是public的 union是一种节省内存空间的类</p>
+<p>union表示任意时刻 只有一个数据有值 一般用作包含一组类型不同的互斥值 </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//表示Token对象只有一个数据成员 是下面成员中的其中一个</span></span><br><span class="line"><span class="keyword">union</span> Token&#123;</span><br><span class="line">    <span class="keyword">char</span> cval;</span><br><span class="line">    <span class="keyword">int</span> ival;</span><br><span class="line">    <span class="keyword">double</span> dval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -287,7 +284,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">c++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C//" class="article-tag-list-link color2">C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -337,7 +360,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://luyaoming.com/2021/06/15/测试迁移hexo到另一台主机/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://luyaoming.com/2021/07/21/Primer-cpp-第五版读书笔记（九）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -351,18 +374,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/06/22/使用dos命令总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          使用dos命令总结
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/05/31/Primer-cpp-第五版读书笔记（六）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Primer cpp 第五版读书笔记（六）</div>
+    <a href="/2021/07/14/Primer-cpp-第五版读书笔记（八）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Primer cpp 第五版读书笔记（八）</div>
       <i class="icon-circle-right"></i>
     </a>
   
